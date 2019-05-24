@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+	<Properties>
+		<Property name="log-path">/tmp/project/baiwa-web/logs</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{DEFAULT} %-5level (%file:%line) - %msg%n%throwable" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+		</Root>
+		
+		<Logger name="th.co.baiwa" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<Logger name="th.co.saic" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		
+		<!-- Logging Transaction -->
+<!-- 		<Logger name="org.springframework.transaction.interceptor" level="trace" additivity="false"> -->
+<!-- 			<AppenderRef ref="Console" /> -->
+<!-- 			<AppenderRef ref="RollingFile" /> -->
+<!-- 		</Logger> -->
+
+	</Loggers>
+
+</Configuration>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+		<definition name="gas_registered_list" template="/WEB-INF/jsp/portal/gas/gas_registered_list.jsp" />
+		<definition name="gas_certificate_list" template="/WEB-INF/jsp/portal/gas/gas_certificate_list.jsp" />
+		
+		<definition name="gas_history_list" template="/WEB-INF/jsp/portal/gas/gas_history_list.jsp" />
+		<definition name="gas_history_detail" template="/WEB-INF/jsp/portal/gas/gas_history_detail.jsp" />
+		
+		<definition name="gas_requested_new" template="/WEB-INF/jsp/portal/gas/gas_requested_new.jsp" />
+		<definition name="gas_requested_detail" template="/WEB-INF/jsp/portal/gas/gas_requested_detail.jsp" />
+		<definition name="gas_requested_modify" template="/WEB-INF/jsp/portal/gas/gas_requested_modify.jsp" />
+		<definition name="gas_requested_list" template="/WEB-INF/jsp/portal/gas/gas_requested_list.jsp" />
+
+<!-- 		<definition name="gas_approve_list" template="/WEB-INF/jsp/portal/gas/gas_approve_list.jsp" /> -->
+<!-- 		<definition name="gas_approve_detail" template="/WEB-INF/jsp/portal/gas/gas_approve_detail.jsp" /> -->
+		
+<!-- 		<definition name="gas_received_list" template="/WEB-INF/jsp/portal/gas/gas_received_list.jsp" /> -->
+<!-- 		<definition name="gas_received_detail" template="/WEB-INF/jsp/portal/gas/gas_received_detail.jsp" /> -->
+		
+		<!-- 		<definition name="gas_requested_list_adm" template="/WEB-INF/jsp/portal/gas/gas_requested_list_adm.jsp" /> -->
+		
+</tiles-definitions>

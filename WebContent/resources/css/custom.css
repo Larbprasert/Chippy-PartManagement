@@ -1,0 +1,350 @@
+
+@font-face {
+    font-family: 'trirongbold';
+    src: url('../fonts/trirong-bold-webfont.woff2') format('woff2'),
+         url('../fonts/trirong-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'trirongregular';
+    src: url('../fonts/trirong-regular-webfont.woff2') format('woff2'),
+         url('../fonts/trirong-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'source_sans_probold';
+    src: url('../fonts/sourcesanspro-bold-webfont.woff2') format('woff2'),
+         url('../fonts/sourcesanspro-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'source_sans_proregular';
+    src: url('../fonts/sourcesanspro-regular-webfont.woff2') format('woff2'),
+         url('../fonts/sourcesanspro-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body{
+	  -webkit-font-smoothing: antialiased;
+	background-color: #ecf0f5;
+	font-family: 'source_sans_proregular','source_sans_probold', 'trirongregular','trirongbold',sans-serif;
+	/*   background-color: #222D32; */
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'source_sans_proregular','source_sans_probold', 'trirongregular','trirongbold',sans-serif;
+} 
+
+.main-header .logo{
+	font-family: 'source_sans_probold';
+}
+
+.help-block {
+	display: block;
+	margin: 0;
+}
+
+.form-group.has-error.has-danger {
+	margin-bottom: 0;
+}
+
+ul.list-unstyled {
+	margin-top: 3px;
+}
+
+.nav-tabs-custom {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.page-header {
+	padding-bottom: 0;
+	margin: 20px 0 10px;
+	border-bottom: 0;
+}
+
+.btn-box-tool {
+	padding: 5px 18px;
+}
+
+
+.form-control {
+    border-radius: 3px;
+}
+    
+.well {
+	/* 	position: relative; */
+	border-radius: 3px;
+	background: #ffffff;
+	border-top: 3px solid #3c8dbc;
+	/*     margin-bottom: 20px; */
+	/*     width: 100%; */
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.section-preview .preview {
+	margin-bottom: 4em;
+	background-color: #eaf1f1;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.section-preview .preview .options {
+	padding: 2em;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-top: none;
+	text-align: center;
+}
+
+.panel-heading {
+	font-weight: bold;
+}
+
+.date .form-control[readonly] {
+	background-color: #ffffff;
+}
+
+.blockUI h1 {
+	margin-top: 10px;
+	font-size: 28px;
+}
+
+.sidebar-menu>li.header {
+	color: #EEEEEE;
+}
+
+.help-block {
+	display: block;
+	margin: 0;
+}
+
+.form-group.has-feedback.has-error.has-danger {
+	margin-bottom: 0;
+}
+
+ul.list-unstyled {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.nav-tabs-custom {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.page-header {
+	padding-bottom: 0;
+	margin: 20px 0 10px;
+	border-bottom: 0;
+}
+
+.btn-box-tool {
+	padding: 5px 10px;
+	/* 	     color: #fff; */
+}
+
+.well {
+	/* 	position: relative; */
+	border-radius: 3px;
+	background: #ffffff;
+	border-top: 3px solid #3c8dbc;
+	/*     margin-bottom: 20px; */
+	/*     width: 100%; */
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.section-preview .preview {
+	margin-bottom: 4em;
+	background-color: #eaf1f1;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.section-preview .preview .options {
+	padding: 2em;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-top: none;
+	text-align: center;
+}
+
+.panel-heading {
+	font-weight: bold;
+}
+
+.date .form-control[readonly] {
+	background-color: #ffffff;
+}
+
+.blockUI h1 {
+	margin-top: 10px;
+	font-size: 28px;
+}
+
+.sidebar-menu>li.header {
+	/*     color: #CCCCCC !important; */
+	font-size: 14px;
+}
+
+hr {
+	margin-top: 0px;
+}
+
+.box-body {
+	padding: 20px;
+}
+
+.wrapper, .content-wrapper {
+	position: unset;
+}
+
+table.table-bordered>thead>tr>th {
+	border: 1px solid #D2D2D2;
+/* 	font-weight: normal !important; */
+}
+
+table.table-bordered {
+	border: 1px solid #D2D2D2;
+	margin-top: 20px;
+} 
+
+table.table-bordered>tbody>tr>td {
+	border: 1px solid #D2D2D2;
+}
+
+table.table-bordered td{
+    padding: 5px !important;
+    vertical-align: middle !important;
+}
+
+table.table-bordered th{
+/*   width: auto !important; */
+  white-space: normal;
+/*    word-break: break-all; IE supports this */
+/*   word-break: break-word;  */
+/*   text-overflow: ellipsis; */
+/*   overflow: hidden; */
+}
+
+.border-bottom {
+	border-bottom: 2px solid #999;
+}
+
+.btn-table {
+	color: #fff;
+}
+
+.datepicker {
+	z-index: 1600 !important; /* has to be larger than 1050 */
+}
+
+.table .bg-green{
+    /* color: #3c763d; */
+    background-color: #3c8dbc !important;
+}
+
+table.dataTable {
+   border-collapse: collapse !important;
+/*    table-layout: fixed; */
+   width: 100% !important;
+}
+
+.table>thead>tr>th {
+    padding: 5px;
+    line-height: 2;
+}
+
+th.text-center {
+    vertical-align: middle !important;
+}
+
+
+.content-header>h1,h2,h3{
+    margin: 0;
+    font-size: 24px;
+}
+
+
+.bootstrap-select>.dropdown-toggle{
+    color: #555  !important;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+/*     border-radius: 0px; */
+    border-color: #d2d6de;
+}
+
+.error .bootstrap-select .dropdown-toggle, .has-error .bootstrap-select .dropdown-toggle {
+    border-color: #dd4b39;
+}
+
+
+.form-group.has-success .form-control, .form-group.has-success .bootstrap-select .dropdown-toggle {
+    border-color: #00a65a;
+}
+ 
+
+label {
+    font-weight: 400 !important;
+}
+
+legend {
+    font-size: 18px;
+}
+
+.control-label{
+	font-weight: bold !important;
+}
+
+.control-detail{
+	background-color: #f5f5f5;
+	height: 30px;
+}
+
+.detail-label {
+    padding-top: 7px !important;
+    margin-bottom: 0 !important;
+    text-align: left !important;
+}
+
+.modal {
+  overflow:auto;
+}
+
+.modal.fade .modal-dialog{
+   -webkit-transform: inherit;
+}
+
+.input-group .input-group-addon {
+    border-radius: 0 3px 3px 0 ;
+}
+
+.control-label.radio-inline {
+    font-weight: normal !important;
+}
+
+ 
+.fs-equipment {
+/* 	 padding: 12px; */
+	 padding-left: 20px; padding-right: 20px;
+}
+ 
+.th-equipment {
+    background-color: rgba(243, 213, 18, 0.25);
+}
+ 
+.lb-equipment {
+   	background-color: rgba(0, 166, 90, 0.12);
+    font-weight: bold !important;
+}
+
+.cl-equipment {
+   padding-top: 0;
+}
+
+ 

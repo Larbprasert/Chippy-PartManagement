@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="utility_energy_search" template="/WEB-INF/jsp/portal/envi/utility_energy_search.jsp" />
+	<definition name="utility_energy_report" template="/WEB-INF/jsp/portal/envi/utility_energy_report.jsp" />
+	<definition name="utility_energy_ems_report" template="/WEB-INF/jsp/portal/envi/utility_energy_ems_report.jsp" />
+	<definition name="utility_energy_con_report" template="/WEB-INF/jsp/portal/envi/utility_energy_con_report.jsp" />
+	
+	<definition name="emission_ambient_air_report" template="/WEB-INF/jsp/portal/envi/emission_ambient_air_report.jsp" />	
+	<definition name="emission_ambient_air_search" template="/WEB-INF/jsp/portal/envi/emission_ambient_air_search.jsp" />
+		
+	<definition name="emission_ambient_air24_report" template="/WEB-INF/jsp/portal/envi/emission_ambient_air24_report.jsp" />
+	<definition name="emission_ambient_air24_search" template="/WEB-INF/jsp/portal/envi/emission_ambient_air24_search.jsp" />
+	
+	
+	<definition name="emission_stack_report" template="/WEB-INF/jsp/portal/envi/emission_stack_report.jsp" />
+	<definition name="emission_stack_search" template="/WEB-INF/jsp/portal/envi/emission_stack_search.jsp" />
+	
+	<definition name="emission_wp_air_report" template="/WEB-INF/jsp/portal/envi/emission_wp_air_report.jsp" />
+	<definition name="emission_wp_air_search" template="/WEB-INF/jsp/portal/envi/emission_wp_air_search.jsp" />
+	
+	<definition name="emission_wp_noise_report" template="/WEB-INF/jsp/portal/envi/emission_wp_noise_report.jsp" />
+	<definition name="emission_wp_noise_search" template="/WEB-INF/jsp/portal/envi/emission_wp_noise_search.jsp" />
+	
+	<definition name="emission_wwt_report" template="/WEB-INF/jsp/portal/envi/emission_wwt_report.jsp" />
+	<definition name="emission_wwt_search" template="/WEB-INF/jsp/portal/envi/emission_wwt_search.jsp" />
+	
+	<definition name="prtr_chemical_manage" template="/WEB-INF/jsp/portal/envi/prtr_chemical_manage.jsp" />
+	<definition name="prtr_target_report" template="/WEB-INF/jsp/portal/envi/prtr_target_report.jsp" />
+	<definition name="prtr_target_search" template="/WEB-INF/jsp/portal/envi/prtr_target_search.jsp" />
+	
+	<definition name="waste_report" template="/WEB-INF/jsp/portal/envi/waste_report.jsp" />
+	<definition name="waste_search" template="/WEB-INF/jsp/portal/envi/waste_search.jsp" />
+	
+</tiles-definitions>

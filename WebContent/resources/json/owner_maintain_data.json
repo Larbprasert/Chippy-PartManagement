@@ -1,0 +1,41 @@
+{
+  "draw": 0,
+  "recordsTotal": 9998,
+  "recordsFiltered": 0,
+  "data": [
+ 	{
+      "ownerId": "1",
+      "ownerCode": "MGDT10001",
+      "ownerType": "Desktop",
+      "gender": "Optiplex 9010AIO",
+      "firstName": "CBI-SRI-A1-IS",
+      "lastName": "Wassana",
+      "mobile": "Pattayakit",
+      "officePhone": "Optiplex 9010AIO",
+      "email": "MJV/IS",
+      "deptCode": "DELL",
+      "createDate": "Optiplex 9010AIO",
+      "createBy": "F26BNW1",
+      "updateDate": "3000015",
+      "updateBy": "32783289265"
+      
+    },
+    {
+    	"ownerId": "2",
+      "ownerCode": "MGDT10001",
+      "ownerType": "Desktop",
+      "gender": "Optiplex 9013430AIO",
+      "firstName": "CBI-SRI-A1-IS",
+      "lastName": "Wassan3434a",
+      "mobile": "Pattayakit",
+      "officePhone": "Opti43434plex 9010AIO",
+      "email": "MJV/I434S",
+      "deptCode": "D3434ELL",
+      "createDate": "Opti434plex 9010AIO",
+      "createBy": "F26B3434NW1",
+      "updateDate": "30343400015",
+      "updateBy": "327834343289265"
+    }
+  ]
+  
+}

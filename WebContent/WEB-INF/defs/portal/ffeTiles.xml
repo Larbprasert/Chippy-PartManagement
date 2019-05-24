@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+		<definition name="ffe_registered_list" template="/WEB-INF/jsp/portal/ffe/ffe_registered_list.jsp" />
+		<definition name="ffe_certificate_list" template="/WEB-INF/jsp/portal/ffe/ffe_certificate_list.jsp" />
+		
+		<definition name="ffe_history_list" template="/WEB-INF/jsp/portal/ffe/ffe_history_list.jsp" />
+		<definition name="ffe_history_detail" template="/WEB-INF/jsp/portal/ffe/ffe_history_detail.jsp" />
+		
+		<definition name="ffe_requested_new" template="/WEB-INF/jsp/portal/ffe/ffe_requested_new.jsp" />
+		<definition name="ffe_requested_detail" template="/WEB-INF/jsp/portal/ffe/ffe_requested_detail.jsp" />
+		<definition name="ffe_requested_list" template="/WEB-INF/jsp/portal/ffe/ffe_requested_list.jsp" />
+
+		<definition name="ffe_approve_list" template="/WEB-INF/jsp/portal/ffe/ffe_approve_list.jsp" />
+		<definition name="ffe_approve_detail" template="/WEB-INF/jsp/portal/ffe/ffe_approve_detail.jsp" />
+		
+		<definition name="ffe_received_list" template="/WEB-INF/jsp/portal/ffe/ffe_received_list.jsp" />
+		<definition name="ffe_received_detail" template="/WEB-INF/jsp/portal/ffe/ffe_received_detail.jsp" />
+		
+</tiles-definitions>

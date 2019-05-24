@@ -1,0 +1,117 @@
+{
+	"version" : "3.5.10",
+	"themes" : [{
+			"name" : "บักผีผ่วน",
+			"description" : "A calm blue sky",
+			"thumbnail" : "/cerulean/thumbnail.png",
+			"preview" : "./cerulean/",
+			"css" : "cerulean",
+			"scssVariables" : "./cerulean/_variables.scss"
+		}, {
+			"name" : "บักต้องแล่ง",
+			"description" : "An ode to Metro",
+			"thumbnail" : "/cosmo/thumbnail.png",
+			"preview" : "./cosmo/",
+			"css" : "cosmo",
+			"scssVariables" : "./cosmo/_variables.scss"
+		}, {
+			"name" : "บักเล็บแมว",
+			"description" : "Jet black and electric blue",
+			"thumbnail" : "/cyborg/thumbnail.png",
+			"preview" : "./cyborg/",
+			"css" : "cyborg",
+			"scssVariables" : "./cyborg/_variables.scss"
+		}, {
+			"name" : "บักแงว",
+			"description" : "Flatly in night mode",
+			"thumbnail" : "/darkly/thumbnail.png",
+			"preview" : "./darkly/",
+			"css" : "darkly",
+			"scssVariables" : "./darkly/_variables.scss"
+		}, {
+			"name" : "บักตากบ",
+			"description" : "Flat and modern",
+			"thumbnail" : "/flatly/thumbnail.png",
+			"preview" : "./flatly/",
+			"css" : "flatly",
+			"scssVariables" : "./flatly/_variables.scss"
+		}, {
+			"name" : "บักเค็ง",
+			"description" : "Crisp like a new sheet of paper",
+			"thumbnail" : "/journal/thumbnail.png",
+			"preview" : "./journal/",
+			"css" : "journal",
+			"scssVariables" : "./journal/_variables.scss"
+		}, {
+			"name" : "บักก่อ",
+			"description" : "Light and shadow",
+			"thumbnail" : "/lumen/thumbnail.png",
+			"preview" : "./lumen/",
+			"css" : "lumen",
+			"scssVariables" : "./lumen/_variables.scss"
+		}, {
+			"name" : "บักแต้",
+			"description" : "Material is the metaphor",
+			"thumbnail" : "/paper/thumbnail.png",
+			"preview" : "./paper/",
+			"css" : "paper",
+			"scssVariables" : "./paper/_variables.scss"
+		}, {
+			"name" : "บักบก",
+			"description" : "Optimized for legibility",
+			"thumbnail" : "/readable/thumbnail.png",
+			"preview" : "./readable/",
+			"css" : "readable",
+			"scssVariables" : "./readable/_variables.scss"
+		}, {
+			"name" : "บักเหลี่ยม",
+			"description" : "A touch of warmth",
+			"thumbnail" : "/sandstone/thumbnail.png",
+			"preview" : "./sandstone/",
+			"css" : "sandstone",
+			"scssVariables" : "./sandstone/_variables.scss"
+		}, {
+			"name" : "บักค้อ",
+			"description" : "Mini and minimalist",
+			"thumbnail" : "/simplex/thumbnail.png",
+			"preview" : "./simplex/",
+			"css" : "simplex",
+			"scssVariables" : "./simplex/_variables.scss"
+		}, {
+			"name" : "บักเหม่า",
+			"description" : "Shades of gunmetal gray",
+			"thumbnail" : "/slate/thumbnail.png",
+			"preview" : "./slate/",
+			"css" : "slate",
+			"scssVariables" : "./slate/_variables.scss"
+		}, {
+			"name" : "บักยาง",
+			"description" : "Silvery and sleek",
+			"thumbnail" : "/spacelab/thumbnail.png",
+			"preview" : "./spacelab/",
+			"css" : "spacelab",
+			"scssVariables" : "./spacelab/_variables.scss"
+		}, {
+			"name" : "บักอีโก่ย",
+			"description" : "The brave and the blue",
+			"thumbnail" : "/superhero/thumbnail.png",
+			"preview" : "./superhero/",
+			"css" : "superhero",
+			"scssVariables" : "./superhero/_variables.scss"
+		}, {
+			"name" : "บักหาด",
+			"description" : "Ubuntu orange and unique font",
+			"thumbnail" : "/united/thumbnail.png",
+			"preview" : "./united/",
+			"css" : "united",
+			"scssVariables" : "./united/_variables.scss"
+		}, {
+			"name" : "บักเขียบ",
+			"description" : "A friendly foundation",
+			"thumbnail" : "/yeti/thumbnail.png",
+			"preview" : "./yeti/",
+			"css" : "yeti",
+			"scssVariables" : "./yeti/_variables.scss"
+		}
+	]
+}

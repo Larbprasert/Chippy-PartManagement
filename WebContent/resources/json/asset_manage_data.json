@@ -1,0 +1,29 @@
+{
+  "draw": 0,
+  "recordsTotal": 9998,
+  "recordsFiltered": 0,
+  
+  "data": [
+ 	{
+      "hostId": "Tiger Nixon 1",
+      "assetType": "xxxxxx",
+      "model": "Optiplex 9010AIO",
+      "name": "Tiger Nixon",
+      "position": "System Architect",
+      "salary": "$320,800",
+      "start_date": "2011/04/25",
+      "office": "Edinburgh",
+      "extn": "5421"
+    },
+    {
+      "hostId": "Tiger Nixon 2",
+      "assetType": "yyyyy",
+      "model": "Optiplex 9010AIO",
+      "salary": "$170,750",
+      "start_date": "2011/07/25",
+      "office": "Tokyo",
+      "extn": "8422"
+    }
+  ]
+  
+}

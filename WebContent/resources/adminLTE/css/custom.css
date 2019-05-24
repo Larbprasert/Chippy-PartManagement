@@ -1,0 +1,226 @@
+
+@font-face {
+    font-family: 'Concert One';
+    font-style: normal;
+    font-weight: 700;
+    src:  url(../fonts/ConcertOne-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+/*     font-style: normal; */
+/*     font-weight: 700; */
+    src: url(../fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf) url(../fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf) format('truetype');
+}
+
+
+html,
+body {
+  overflow-x: hidden!important;
+  font-family: 'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+/*   min-height: 100%; */
+/*   background: #f9f9f9; */
+}
+
+*:fullscreen
+*:-ms-fullscreen,
+*:-webkit-full-screen,
+*:-moz-full-screen {
+   overflow: auto !important;
+}
+
+span.logo-lg{
+/* 	font-family: 'Kaushan Script', sans-serif; */
+font-family: 'Concert One', sans-serif;
+  -webkit-font-smoothing: antialiased;
+      font-size: 24px;
+}
+
+span.logo-mini {
+	font-family: 'Concert One', sans-serif;
+}
+
+.user-panel>.info {
+    position: relative;
+       left: 20px;
+}
+
+.sidebar-form, .sidebar-menu>li.header {
+    font-size: 14px;
+}
+
+
+ .main-sidebar, .left-side {
+        min-height: 0%;
+    }
+        
+        
+.wrapper {
+  /*min-height: 100%;
+  position: relative;
+  overflow: hidden;*/
+  width: 100%;
+  min-height: 100%;
+  height: auto !important;
+  position: absolute;
+}
+
+
+.main-footer {
+    padding: 10px;
+}
+
+button.btn.dropdown-toggle.btn-default{
+	 background-color: #fff;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    border-radius: 0px;
+}
+
+
+#online-status {
+    margin-top: 1px;
+}
+
+
+
+.clockdate-wrapper {
+    text-align:center;
+    margin:0 auto;
+}
+#nav_clock{
+    font-size:20px;
+    text-shadow:0px 0px 1px #fff;
+    color:#fff;
+}
+#nav_clock span {
+    color:#fff;
+    text-shadow:0px 0px 1px #333;
+    font-size: 9px;
+    position: relative;
+    top: -10px;
+/*     left: -2px; */
+}
+
+#nav_date {
+    letter-spacing: 0.5px;
+    font-size: 10px;
+/*     font-family: arial,sans-serif; */
+    color: #fff;
+}
+
+.sidebar-form.clock{
+    margin: 0;
+    border: none;
+}
+
+.small-box .icon {
+	top: 0px;
+   font-size: 4em;
+}
+
+#salesChart, #compareChart {
+	height: 280px !important;
+}
+
+.small-box p {
+    padding-top: 10px;
+}
+.small-box .small-box-footer{
+    font-weight: bold;
+}
+
+.box{
+/* 	    margin-bottom: 0px; */
+	    
+	}
+	
+.description-text {
+	font-weight: bold;
+}
+
+
+.btn-box-tool {
+    color:     color: #fff;
+}
+
+	
+	
+
+/* *******************   Full HD Screen ************ */
+@media (min-width: 1920px) {
+	    
+	.box{
+  		margin-top: 20px;
+  		margin-bottom: 0;
+	}
+	
+	.small-box{
+  		margin-bottom: 0;
+	}
+	       
+	.small-box h3 {
+      	font-size: 8em;
+  		margin: 10px 0px 0px 20px;
+	}
+	
+	.small-box .icon {
+		top: 0px;
+	    right: 25px;
+	    font-size: 8em;
+	}
+	
+	.small-box p {
+	    font-size: 24px;
+	    right: 25px;
+	    padding: 15px 0 0 20px;
+	}
+	
+	.small-box span{
+	    font-size: 36px;
+	    font-weight: bold;
+	}
+	
+	.small-box .small-box-footer{
+	    font-size: 28px;
+	    padding: 5px;
+	    font-weight: bold;
+	}
+	
+	.small-box>.inner {
+	    padding: 5px 5px 0;
+	}
+	
+	#salesChart, #compareChart {
+		height: 280px !important;
+	}
+	
+	.progress-group , .txt-sum-hdr{
+	    font-size: 18px;
+	}
+	
+	.description-block>.description-header {
+	    font-weight: bold;
+	    font-size: 52px;
+	     text-shadow:0px 0px 1px #fff;
+	}
+	.description-text {
+		font-size: 26px;
+		font-weight: bold;
+	}
+	.progress.sm, .progress-sm {
+	    border-radius: 20px;
+	    height: 20px;
+	    margin-bottom: 20px;
+	}
+	
+	.dash-text {
+		text-shadow: 4px 4px 0px #737373;
+	}	
+}
+

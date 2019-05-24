@@ -1,0 +1,27 @@
+{
+  "draw": 0,
+  "recordsTotal": 9998,
+  "recordsFiltered": 0,
+  
+  "data": [
+ 	{
+      "hostId": "Tiger Nixon 1",
+      "name": "Tiger Nixon",
+      "position": "System Architect",
+      "salary": "$320,800",
+      "start_date": "2011/04/25",
+      "office": "Edinburgh",
+      "extn": "5421"
+    },
+    {
+      "hostId": "Tiger Nixon 2",
+      "name": "Garrett Winters",
+      "position": "Accountant",
+      "salary": "$170,750",
+      "start_date": "2011/07/25",
+      "office": "Tokyo",
+      "extn": "8422"
+    }
+  ]
+  
+}

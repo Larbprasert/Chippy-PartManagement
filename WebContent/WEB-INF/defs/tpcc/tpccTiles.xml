@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<!-- inventory/stock management -->
+	
+	<!-- History -->
+<!-- 	<definition name="asset_history" template="/WEB-INF/jsp/tpcc/she/history/asset_history.jsp" /> -->
+<!-- 	<definition name="claim_history" template="/WEB-INF/jsp/tpcc/she/history/claim_history.jsp" /> -->
+
+	
+	<definition name="person_history" template="/WEB-INF/jsp/tpcc/she/history/person_history.jsp" />
+	<definition name="course_history" template="/WEB-INF/jsp/tpcc/she/history/course_history.jsp" />
+	<definition name="report_history" template="/WEB-INF/jsp/tpcc/she/history/report_history.jsp" />
+
+	
+	
+	<!-- Management -->
+    <definition name="asset_manage" template="/WEB-INF/jsp/tpcc/she/manage/asset_manage.jsp" />
+    <definition name="asset_manage_edit" template="/WEB-INF/jsp/tpcc/she/manage/asset_manage_edit.jsp" />
+    <definition name="asset_manage_popup" template="/WEB-INF/jsp/tpcc/she/manage/asset_manage_popup.jsp" />
+    
+	<definition name="claim_manage" template="/WEB-INF/jsp/tpcc/she/manage/claim_manage.jsp" />
+	<definition name="claim_manage_edit" template="/WEB-INF/jsp/tpcc/she/manage/claim_manage_edit.jsp" />
+    <definition name="budget_manage" template="/WEB-INF/jsp/tpcc/she/manage/budget_manage.jsp" />
+	
+    <definition name="training_manage" template="/WEB-INF/jsp/tpcc/she/manage/training_manage.jsp" />
+    <definition name="training_manage_edit" template="/WEB-INF/jsp/tpcc/she/manage/training_manage_edit.jsp" />
+    <definition name="training_manage_popup" template="/WEB-INF/jsp/tpcc/she/manage/training_manage_popup.jsp" />
+    
+	<definition name="job_course_manage" template="/WEB-INF/jsp/tpcc/she/manage/job_course_manage.jsp" />
+	<definition name="job_course_manage_edit" template="/WEB-INF/jsp/tpcc/she/manage/job_course_manage_edit.jsp" />
+	<definition name="job_course_add" template="/WEB-INF/jsp/tpcc/she/manage/job_course_add.jsp" />
+	<definition name="job_course_add_contract" template="/WEB-INF/jsp/tpcc/she/manage/job_course_add_contract.jsp" />
+	<definition name="job_course_search" template="/WEB-INF/jsp/tpcc/she/manage/job_course_search.jsp" />
+<!--     <definition name="budget_manage" template="/WEB-INF/jsp/tpcc/she/manage/budget_manage.jsp" /> -->
+	
+	
+	<!-- Maintenance -->
+	<definition name="asset_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/asset_maintain.jsp" />
+	<definition name="asset_edit" template="/WEB-INF/jsp/tpcc/she/maintain/asset_edit.jsp" />
+	<definition name="asset_popup" template="/WEB-INF/jsp/tpcc/she/maintain/asset_popup.jsp" />
+	
+	<definition name="dept_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/dept_maintain.jsp" />
+	<definition name="dept_edit" template="/WEB-INF/jsp/tpcc/she/maintain/dept_edit.jsp" />
+	
+	<definition name="user_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/user_maintain.jsp" />
+	
+	
+	<definition name="parameter_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/parameter_maintain.jsp" />
+	<definition name="parameter_edit" template="/WEB-INF/jsp/tpcc/she/maintain/parameter_edit.jsp" />
+	
+	<definition name="owner_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/owner_maintain.jsp" />
+	<definition name="owner_edit" template="/WEB-INF/jsp/tpcc/she/maintain/owner_edit.jsp" />
+	<definition name="owner_popup" template="/WEB-INF/jsp/tpcc/she/maintain/owner_popup.jsp" />
+	
+		
+	<definition name="course_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/course_maintain.jsp" />
+	<definition name="course_edit" template="/WEB-INF/jsp/tpcc/she/maintain/course_edit.jsp" />
+	
+	<definition name="position_course_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/position_course_maintain.jsp" />
+	<definition name="position_course_edit" template="/WEB-INF/jsp/tpcc/she/maintain/position_course_edit.jsp" />
+	
+	
+	<definition name="add_maintain" template="/WEB-INF/jsp/tpcc/she/maintain/add_maintain.jsp" />
+	
+	<definition name="themes_setting" template="/WEB-INF/jsp/tpcc/she/maintain/themes_setting.jsp" />
+	
+	<definition name="file_upload" template="/WEB-INF/jsp/tpcc/she/fileupload/file_upload.jsp" />
+	
+</tiles-definitions>

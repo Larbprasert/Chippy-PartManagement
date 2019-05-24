@@ -1,0 +1,12 @@
+
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT001','IN_HOUSE' , 'ความปลอดภัยผู้รับเหมา'			    	,	'Contractor Safety ' 						);
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT002','IN_HOUSE' , 'การจัดการความปลอดภัยกระบวนการผลิต'		,	'Process Safety Management (PSM)'          );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT003','IN_HOUSE' , 'การดับเพลิงขั้นต้น'						,	'Basic Fire Fighting'                      );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT004','IN_HOUSE' , 'การใช้งานปั้นจั่น'						,	'Overhead Crane & Hoist Crane Training'    );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT005','IN_HOUSE' , 'ทบทวนการใช้งานปั้นจั่น'					,	'Overhead Crane & Hoist Crane Refresher'   );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT006','IN_HOUSE' , 'การทำงานที่อับอากาศ'					,	'Confined Space Working' 	               );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT007','IN_HOUSE' , 'การขับรถโฟร์คลิฟ'						,	'Forklift Driver Skill & Qualification'    );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT008','IN_HOUSE' , 'การติดตั้งและการตรวจสอบนั่งร้าน' 		    ,	'Scaffolding Election & Inspection'        );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT009','IN_HOUSE' , 'ข้อมูลความปลอดภัยและการเคลื่อนย้า	'	    ,	'SDS & Chemical Safety Handling'           );
+insert into she_course( CREATE_BY   ,CREATE_DATE  ,STATUS  ,course_CODE ,course_Type  ,course_NAME_TH, course_NAME_EN   ) value( 'admin', CURDATE(), 1 ,'CT010','IN_HOUSE' , 'ความปลอดภัยงานไฟฟ้า'					,	'Safety for Electrical Work' 	           );
+

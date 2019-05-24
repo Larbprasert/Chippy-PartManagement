@@ -1,0 +1,286 @@
+ table.dataset th { 
+    font-weight: bold;
+    text-align: center; 
+}
+
+table.dataset td.data_index .cf_aed{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/aed.jpg);
+}
+table.dataset td.data_index .cf_aud{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/aud.jpg);
+}
+table.dataset td.data_index .cf_bdt{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/bdt.jpg);
+}
+table.dataset td.data_index .cf_bhd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/bhd.jpg);
+}
+table.dataset td.data_index .cf_bnd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/bnd.jpg);
+}
+table.dataset td.data_index .cf_cad{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/cad.jpg);
+}
+table.dataset td.data_index .cf_chf{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/chf.jpg);
+}
+table.dataset td.data_index .cf_cny{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/cny.jpg);
+}
+table.dataset td.data_index .cf_dkk{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/dkk.jpg);
+}
+table.dataset td.data_index .cf_egp{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/egp.jpg);
+}
+table.dataset td.data_index .cf_eur{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/eur.jpg);
+}
+table.dataset td.data_index .cf_gbp{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/gbp.jpg);
+}
+table.dataset td.data_index .cf_hkd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/hkd.jpg);
+}
+table.dataset td.data_index .cf_idr{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/idr.jpg);
+}
+table.dataset td.data_index .cf_ils{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/ils.jpg);
+}
+table.dataset td.data_index .cf_inr{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/inr.jpg);
+}
+table.dataset td.data_index .cf_jpy{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/jpy.jpg);
+}
+table.dataset td.data_index .cf_krw{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/krw.jpg);
+}
+table.dataset td.data_index .cf_lkr{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/lkr.jpg);
+}
+table.dataset td.data_index .cf_myr{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/myr.jpg);
+}
+table.dataset td.data_index .cf_nok{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/nok.jpg);
+}
+table.dataset td.data_index .cf_npr{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/npr.png);
+}
+table.dataset td.data_index .cf_nzd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/nzd.jpg);
+}
+table.dataset td.data_index .cf_omr{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/omr.jpg);
+}
+table.dataset td.data_index .cf_php{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/php.jpg);
+}
+table.dataset td.data_index .cf_pkr{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/pkr.jpg);
+}
+table.dataset td.data_index .cf_qar{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/qar.jpg);
+}
+table.dataset td.data_index .cf_rub{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/rub.jpg);
+}
+table.dataset td.data_index .cf_sar{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/sar.jpg);
+}
+table.dataset td.data_index .cf_sek{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/sek.jpg);
+}
+table.dataset td.data_index .cf_sgd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/sgd.jpg);
+}
+table.dataset td.data_index .cf_twd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/twd.jpg);
+}
+table.dataset td.data_index .cf_usd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/usd.jpg);
+}
+table.dataset td.data_index .cf_vnd{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/wnd.jpg);
+}
+table.dataset td.data_index .cf_zar{
+	width:40px;
+	height:30px;
+	float:left;
+	display:block;
+	margin:5px 10px 0 0;
+	background:no-repeat url(../Images/icons/flag/zar.jpg);
+}
+ 
