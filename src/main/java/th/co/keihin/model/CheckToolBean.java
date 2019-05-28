@@ -1,8 +1,8 @@
 package th.co.keihin.model;
 
-import java.util.Date;
+import th.co.baiwa.common.persistence.entity.BaseDomain;
 
-public class CheckToolBean {
+public class CheckToolBean extends BaseDomain {
 	
 	private String checkTool_ID;
     private String checkTool_name;
@@ -13,11 +13,11 @@ public class CheckToolBean {
     private int timing;
     private String timing_name;
     
-	private Date createDate;
-	private String createBy;
-	
-	private Date updateDate;
-	private String updateBy;
+//	private Date createDate;
+//	private String createBy;
+//	
+//	private Date updateDate;
+//	private String updateBy;
 		
 
 
@@ -69,36 +69,5 @@ public class CheckToolBean {
 	public void setActiveFlag_name(String activeFlag_name) {
 		this.activeFlag_name = activeFlag_name;
 	}
-
-	public Date getCreateDate() {
-		return this.createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-	
-	public String getCreateBy() {
-		return this.createBy;
-	}
-	
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-	
-	public Date getupdateDate() {
-		return this.updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public String getUpdateBy() {
-		return this.updateBy;
-	}
-	
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
+ 
 }

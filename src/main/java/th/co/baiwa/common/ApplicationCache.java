@@ -68,6 +68,8 @@ public class ApplicationCache {
 	private static List<LovInfo> LOV_OWNER = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_ROLE = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_SYS_USERS = new ArrayList<LovInfo>();
+	private static List<LovInfo> LOV_TIMING = new ArrayList<LovInfo>();
+	private static List<LovInfo> LOV_ACTIVE_FLG = new ArrayList<LovInfo>();
 
 
 	
@@ -152,6 +154,8 @@ public class ApplicationCache {
 		buildOwnerLov();
 		buildRoleLov();
 		buildUserLov();
+		
+		buildLovTiming();
 		
 		logger.info("ApplicationCache Reloaded");
 	}
@@ -292,6 +296,12 @@ public class ApplicationCache {
 			LOV_ROLE.add(new LovInfo("ROLE", inv.getRoleId()+"", inv.getRoleDesc(), inv.getRoleDesc()));
 		}
 	}
+	
+	public void buildLovTiming() {
+		LOV_TIMING = lovDao.loadTimingLov();
+		LOV_ACTIVE_FLG = lovDao.loadActiveFlagLov();
+	}
+	
 
 //	public static List<LovInfo> getLovDept() {
 //		return LOV_DEPT;
@@ -313,4 +323,13 @@ public class ApplicationCache {
 		return LOV_SYS_USERS;
 	}
 	
+	public static List<LovInfo> getLovTiming() {
+		return LOV_TIMING;
+	}
+	
+	public static List<LovInfo> getLovActiveFlag() {
+		return LOV_ACTIVE_FLG;
+	}
+	
+
 }

@@ -4,20 +4,17 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
-import th.co.baiwa.common.util.DateUtils;
 import th.co.keihin.model.CheckToolBean;
-import th.co.portal.model.gas.Equipment;
-import th.co.portal.model.gas.RequestList;
 
 @Repository("checkToolService")
 public class CheckToolService {
@@ -26,68 +23,20 @@ public class CheckToolService {
 	private JdbcTemplate jdbcTemplate;
 	
 	public CheckToolBean getCheckToolBeanByID(String checkTool_ID) {
-		// TODO Auto-generated method stub
-//		Connection con = null;
-//		ResultSet rs = null;
-//		Statement checkTool = null;
-//		
-//		String query = "select ct.*, md.value1, act.value1 as activeFlag_name " +
-//				"from tb_checkTool ct left join tbm_misc_data md on ct.timing = md.misc_code and md.misc_type = 'Timing' " +
-//				"left join tbm_misc_data act on ct.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' " +
-//				"where 1=1 " +
-//				"and ct.activeFlag <> 2 " + 
-//				"and checkTool_ID='" + checkTool_ID +"'";
-//		
-		CheckToolBean checkToolBean = new CheckToolBean();
-//		
-//		System.out.println(query);
-//		
-//		try {
-////			con = DBConnect.getConnection();
-////			checkTool = con.createStatement();
-//
-//			rs = checkTool.executeQuery(query);
-//
-//			while (rs.next()) {
-//				
-//				checkToolBean.setCheckTool_ID(rs.getString("checkTool_ID"));
-//				checkToolBean.setCheckTool_name(rs.getString("checkTool_name"));
-//				
-//				checkToolBean.setTiming(rs.getInt("timing"));
-//				checkToolBean.setTiming_name(rs.getString("value1"));
-//				
-//				checkToolBean.setActiveFlag(rs.getInt("activeFlag"));
-//				checkToolBean.setActiveFlag_name(rs.getString("activeFlag_name"));
-//				
-//				checkToolBean.setCreateBy(rs.getString("createBy"));
-//				checkToolBean.setCreateDate(rs.getDate("createDate"));
-//				checkToolBean.setUpdateBy(rs.getString("updateBy"));
-//				checkToolBean.setUpdateDate(rs.getDate("updateDate"));
-//				
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (checkTool != null) {
-//					checkTool.close();
-//				}
-//				if (con != null) {
-//					con.close();
-//				}
-//			} catch (Exception e) {
-//			}
-//
-//		}		
-		return checkToolBean;
+		String query = "select ct.*, md.value1, md.value1 as timing_name, act.value1 as activeFlag_name " +
+				"from tb_checkTool ct left join tbm_misc_data md on ct.timing = md.misc_code and md.misc_type = 'Timing' " +
+				"left join tbm_misc_data act on ct.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' " +
+				"where 1=1 " +
+				"and ct.activeFlag <> 2 " + 
+				"and checkTool_ID='" + checkTool_ID +"'";
+		
+		List<CheckToolBean> list = jdbcTemplate.query(query,CHECKTOOL_MAPPER);
+		 
+	      return  list!=null&& list.size()>0? list.get(0) : new CheckToolBean() ;
 	}
 
 	
 	public DataTableAjax<CheckToolBean> getAll() {
-		// TODO Auto-generated method stub
-//		Connection con = null;
-//		ResultSet rs = null;
-//		Statement stmt = null;
 		
 		DataTableAjax<CheckToolBean> listcheckTool = new DataTableAjax<CheckToolBean>();
 		
@@ -100,6 +49,9 @@ public class CheckToolService {
 		
 
 		List<CheckToolBean> list = jdbcTemplate.query(query,CHECKTOOL_MAPPER);
+		int total = list!=null? list.size():0;
+		listcheckTool.setRecordsTotal(total);
+		listcheckTool.setRecordsFiltered(total);
 		listcheckTool.setData(list);
 		return listcheckTool;
 	}
@@ -115,7 +67,7 @@ public class CheckToolService {
 			checkToolBean.setCheckTool_name(rs.getString("checkTool_name"));
 			
 			checkToolBean.setTiming(rs.getInt("timing"));
-			checkToolBean.setTiming_name(rs.getString("value1"));
+			checkToolBean.setTiming_name(rs.getString("timing_name"));
 			
 			checkToolBean.setActiveFlag(rs.getInt("activeFlag"));
 			checkToolBean.setActiveFlag_name(rs.getString("activeFlag_name"));
@@ -197,49 +149,27 @@ public class CheckToolService {
 
 	
 	public void save(CheckToolBean checkTool) {
-		// TODO Auto-generated method stub
-		Connection con = null;
-		
-		System.out.println("createBy : " + checkTool.getCreateBy() + " || checkTool_name: " + checkTool.getCheckTool_name() + 
-				" || checkTool_ID: " + checkTool.getCheckTool_ID() + " || activeFlag: " + checkTool.getActiveFlag());
-		
-//		try {
-//
-//			con = DBConnect.getConnection();
 //
 //			PreparedStatement ps_Insert = con.prepareStatement(
 //					"INSERT INTO tb_checkTool (checkTool_ID,checkTool_name,timing,activeFlag,CreateDate,CreateBy) "+
 //							"VALUES (?,?,?,?,getdate(),? ) ",
-//							Statement.RETURN_GENERATED_KEYS);
-//
-//			ps_Insert.setString(1, checkTool.getCheckTool_ID());
-//			ps_Insert.setString(2, checkTool.getCheckTool_name());
-//			
-//			ps_Insert.setInt(3, checkTool.getTiming());
-//			ps_Insert.setInt(4, checkTool.getActiveFlag());
-//			
-//			if (checkTool.getCreateBy() == null) {
-//				checkTool.setCreateBy("System");
-//			}
-//			ps_Insert.setString(5,checkTool.getCreateBy());
-//			
-//			ps_Insert.executeUpdate();
-//			
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (con != null) {
-//					con.close();
-//				}
-//				if (con != null) {
-//					con.close();
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}		
+//							Statement.RETURN_GENERATED_KEYS); 
+			
+			try {
+		    	String query = "INSERT INTO tb_checkTool (checkTool_ID,checkTool_name,timing,activeFlag,CreateDate,CreateBy) "+
+						"VALUES (?,?,?,?,getdate(),? ) ";
+				 jdbcTemplate.update(query,
+						new Object[] {  
+								checkTool.getCheckTool_ID(),
+								checkTool.getCheckTool_name(),
+								checkTool.getTiming(),
+								checkTool.getActiveFlag(),
+								checkTool.getCreateBy(),
+								});
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 	}
 
 	
@@ -266,54 +196,33 @@ public class CheckToolService {
 //		}		
 	}
 
+	public void saveOrUpdate(CheckToolBean obj) {
+		if(StringUtils.isNotEmpty(obj.getCheckTool_ID())){
+			edit(obj);
+		}else{
+			save(obj);
+		}
+	}
 	
-	public void edit(CheckToolBean checkTool) {
-		// TODO Auto-generated method stub
-		Connection con = null;
-		
-//		try {
-//
-//			con = DBConnect.getConnection();
-//			
-//	    	String query = ("Update tb_checkTool "+
-//					"Set checkTool_name=?, "+
-//	    			"timing=?, " +
-//					"updateBy=?, updateDate=getdate() "+
-//					",activeFlag=? "+
-//					"where 1=1 "+
-//					"and checkTool_ID=? ");
-//	    	PreparedStatement ps_edit = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-//	   
-//			System.out.println(ps_edit.toString());
-//			System.out.println(query);
-//			
-//			//System.out.println(checkTool.getActiveFlag());
-//			
-//			ps_edit.setString(1, checkTool.getCheckTool_name());
-//			
-//			ps_edit.setInt(2,checkTool.getTiming());
-//			
-//			if (checkTool.getUpdateBy() == null) {
-//				checkTool.setUpdateBy("System");
-//			}
-//			ps_edit.setString(3,checkTool.getUpdateBy());
-//			ps_edit.setInt(4,checkTool.getActiveFlag());
-//			
-//			//### Where condition
-//			ps_edit.setString(5, checkTool.getCheckTool_ID());
-//			
-//			System.out.println(ps_edit.toString());
-//			
-//			ps_edit.executeUpdate();
-//			
-//			if (ps_edit != null)
-//				ps_edit.close();
-//			if (con != null)
-//				con.close();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+	public void edit(CheckToolBean inv) {
+		try {
+	    	String query = ("Update tb_checkTool "+
+					"Set checkTool_name=?, "+
+	    			"timing=?, " +
+					"updateBy=?, updateDate=getdate() "+
+					",activeFlag=? "+
+					"where  checkTool_ID=? ");
+			int updateRecord = jdbcTemplate.update(query,
+					new Object[] {  
+							inv.getCheckTool_name(),
+							inv.getTiming(),
+							inv.getUpdateBy(),
+							inv.getActiveFlag(),
+							inv.getCheckTool_ID()
+							});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 

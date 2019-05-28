@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.persistence.dao.AbstractCommonJdbcDao;
-import th.co.baiwa.common.util.DateUtils;
 import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.tpcc.model.SysParam;
 
@@ -49,6 +48,43 @@ public class LovDao extends AbstractCommonJdbcDao {
 				m.setActive(rs.getString("ACTIVE"));
 				m.setSortNo(rs.getString("SORT_NO"));
 				return m;
+			}
+			
+		});
+	}
+	
+	public List<LovInfo> loadTimingLov() {
+		String sql = "select misc_code,value1 from tbm_misc_data where 1=1 and misc_type = 'Timing' order by misc_code";
+		return executeQuery(sql, new RowMapper<LovInfo>() {
+
+			@Override
+			public LovInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				LovInfo info = new LovInfo();
+				info.setCode(rs.getString("misc_code"));
+				info.setDescEN(rs.getString("value1"));
+				info.setDescTH(rs.getString("value1"));
+				return info;
+			}
+
+		});
+	}
+	
+	public List<LovInfo> loadActiveFlagLov() {
+		String sql = "select misc_code,value1 "
+				+ "from tbm_misc_data "
+				+ "where 1=1 "
+				+ "and misc_type = 'ActiveFlag' "
+				+ "and activeFlag = 1 "
+				+ "order by misc_code";		
+		return executeQuery(sql, new RowMapper<LovInfo>() {
+			
+			@Override
+			public LovInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				LovInfo info = new LovInfo();
+				info.setCode(rs.getString("misc_code"));
+				info.setDescEN(rs.getString("value1"));
+				info.setDescTH(rs.getString("value1"));
+				return info;
 			}
 			
 		});

@@ -54,13 +54,13 @@ public class CommonController {
         mav.addObject("isSessionTimout", isNotLogin);
         String view = "home";
         
-        UserBean user = UserLoginUtils.getCurrentUser();
-        if(null!=user){
-        	if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains("ENVI"))){
-        		view = "dashboard_envi";
-        	}else if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains("GAS"))){
-        		view = "dashboard_gas";
-        	}
+//        UserBean user = UserLoginUtils.getCurrentUser();
+//        if(null!=user){
+//        	if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains("ENVI"))){
+//        		view = "dashboard_envi";
+//        	}else if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains("GAS"))){
+//        		view = "dashboard_gas";
+//        	}
         	
 	        //Add Message
 //	        Map<String, String> msgs = ApplicationCache.getAllMessageEN();
@@ -71,7 +71,7 @@ public class CommonController {
 //	        ConcurrentHashMap<String, List<LovInfo>> lov = ApplicationCache.getLov();
 //	        json = gson.toJson(lov);
 //	        mav.addObject("lovmaster", json);
-        }
+//        }
         
         
         mav.setViewName(view);
