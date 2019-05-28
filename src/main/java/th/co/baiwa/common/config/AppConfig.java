@@ -30,7 +30,8 @@ import th.co.baiwa.common.constant.CommonConstants;
 	basePackages = {
 		"th.co.baiwa",
 		"th.co.tpcc",
-		"th.co.portal"
+		"th.co.portal",
+		"th.co.keihin"
 	},
 	includeFilters = {
 		@ComponentScan.Filter(

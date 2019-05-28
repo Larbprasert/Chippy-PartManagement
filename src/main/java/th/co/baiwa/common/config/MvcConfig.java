@@ -40,7 +40,8 @@ import th.co.baiwa.common.constant.CommonConstants.ENCODING;
 	basePackages = {
 		"th.co.baiwa",
 		"th.co.tpcc",
-		"th.co.portal"
+		"th.co.portal",
+		"th.co.keihin"
 	},
 	includeFilters = {
 		@ComponentScan.Filter(
@@ -85,7 +86,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 			"/WEB-INF/defs/tpcc/tpccTiles.xml",
 			"/WEB-INF/defs/portal/enviTiles.xml",
 			"/WEB-INF/defs/portal/gasTiles.xml",
-			"/WEB-INF/defs/portal/ffeTiles.xml"
+			"/WEB-INF/defs/portal/ffeTiles.xml",
+			"/WEB-INF/defs/keihin/partManagementTitle.xml"
 		});
 		tilesconfigurer.setCheckRefresh(true);
 		

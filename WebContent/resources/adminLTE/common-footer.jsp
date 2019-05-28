@@ -1,6 +1,6 @@
   <footer class="main-footer"  th:fragment="common-footer">
-   <strong>Copyright &copy; DMS 2017
-   <a href="http://www.mgcars.com" target="_blank">SAIC Motor-CP CO.,Ltd.</a> 
+   <strong>Copyright &copy; Part Management 2019
+<!--    <a href="#" target="_blank">SAIC Motor-CP CO.,Ltd.</a>  -->
 <!--    <a href="http://baiwa.co.th">Baiwa Co,Ltd.</a>  -->
    </strong> All rights
    reserved.

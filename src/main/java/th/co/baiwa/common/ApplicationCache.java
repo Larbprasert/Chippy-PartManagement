@@ -170,12 +170,6 @@ public class ApplicationCache {
 				PARAMETER_MAP.get(info.getParamType()).add(info);
 			}
 		}
-		
-//		logger.info("load loadLOV loaded [" + LOV_MAP.size() + "]");
-//		for (String k : LOV_MAP.keySet()){
-//			logger.info(k + " = [" + LOV_MAP.get(k).size() + "]");
-//		}
-		
 		logger.info("load PARAMETER MAP  ... [" + PARAMETER_MAP.size() + "]");
 	}
 	
