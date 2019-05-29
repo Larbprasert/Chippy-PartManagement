@@ -10,11 +10,9 @@
   
  
   
-<%-- <jsp:include page="../pages/header.jsp"></jsp:include> --%>
- 
-<%-- <jsp:include page="../pages/rSide.jsp"></jsp:include> --%>
+<form action="${cPath}/checkTool/checkTool_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
-<form action="/PartManagement/checkToolServlet" method="post">
+<input name ="rAction" type="hidden" value="Delete">
 
         <div id="page-wrapper">
         
@@ -64,7 +62,7 @@
                        					<p class="help-block"><b>Timing : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Timing" name="timing" value="${checkToolBean.timing_name}" readonly>
+                       					<input type="text" class="form-control" placeholder="Timing" name="timing_name" value="${checkToolBean.timing_name}" readonly>
                        				</div>	
                        			</div>
                        			<br>                       		
@@ -73,14 +71,14 @@
                        					<p class="help-block"><b>Status : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag" value="${checkToolBean.activeFlag_name}" readonly>
+                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag_name" value="${checkToolBean.activeFlag_name}" readonly>
                        				</div>	
                        			</div>		       							 	       
 	                        </div>
 	                        
 	                        <div class="panel-footer">
-	                             <button type="button" class="btn  btn-danger " onclick="doDel('${checkToolBean.checkTool_ID}')">Delete</button>
-<%-- 		                        <a href="delete.jsp?checkTool_ID=${checkToolBean.checkTool_ID}" class="btn btn-danger" role="button" aria-pressed="true" value="delete" name="rAction">Delete</a>		                         --%>
+<%-- 	                             <button type="button" class="btn  btn-danger " onclick="doDel('${userTypeBean.userType_ID}')">Delete</button> --%>
+						 	  	<input type ="button" value="Delete" name="rAction" role="button" class="btn btn-info" onclick="doDel('${checkToolBean.checkTool_ID}')">
 						 	  	<a href="${cPath}/checkTool/checkTool_edit.htm?checkTool_ID=${checkToolBean.checkTool_ID}" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
 						 	  	<a href="${cPath}/checkTool/checkTool_list.htm" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a>  
 	                        </div> 
@@ -96,4 +94,28 @@
             
 </form>            
 
-<%-- <jsp:include page="../pages/footer.jsp"></jsp:include> --%>
+
+<script type="text/javascript">
+ 	function doDel(userType_ID){
+			bootbox.confirm({
+			    title: "Confirm",
+			    size: 'small',
+			    message: _confirmDelTxt,
+			    buttons: {
+			        cancel: {
+			            label: '<i class="fa fa-times"></i> Cancel'
+			        },
+			        confirm: {
+			            label: '<i class="fa fa-check"></i> Confirm',
+			            className: 'btn-success'
+			        }
+			    },
+			    callback : function(result) {
+					if (result) {
+						 $("#myForm").submit();
+					}
+				}
+			});
+		};
+		
+</script>

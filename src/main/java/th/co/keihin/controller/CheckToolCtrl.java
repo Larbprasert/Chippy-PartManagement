@@ -73,6 +73,8 @@ public class CheckToolCtrl {
 			checktoolService.edit(bean);
 		}else if ("Create".equals(rAction)) {
 			checktoolService.save(bean);
+		}else if ("Delete".equals(rAction)) {
+			checktoolService.delete(bean);
 		}
 		
 		

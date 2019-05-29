@@ -39,7 +39,7 @@
                        					<p class="help-block"><b>User Type ID:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="User Type ID" name="userTypeID" value="${userTypeBean.userType_ID}" readonly>
+                       					<input type="text" class="form-control" placeholder="User Type ID" name="userType_ID" value="${userTypeBean.userType_ID}" readonly>
                        				</div>	
                        			</div>
                        			<br>
@@ -48,7 +48,7 @@
                        					<p class="help-block"><b>User Type Name:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="User Type Name" name="userTypename" value="${userTypeBean.userType_name}" readonly>
+                       					<input type="text" class="form-control" placeholder="User Type Name" name="userType_name" value="${userTypeBean.userType_name}" readonly>
                        				</div>	
                        			</div>                			
                        			<br>                       			
@@ -57,7 +57,7 @@
                        					<p class="help-block"><b>Status : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag" value="${userTypeBean.activeFlag_name}" readonly>
+                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag_name" value="${userTypeBean.activeFlag_name}" readonly>
                        				</div>	
                        			</div>
 		        	</div>

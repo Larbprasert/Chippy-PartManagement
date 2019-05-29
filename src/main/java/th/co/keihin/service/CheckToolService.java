@@ -194,6 +194,20 @@ public class CheckToolService {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}		
+
+		try {
+	    	String query = ("update tb_checkTool set activeFlag = 2, updateBy=?, updateDate=getdate() Where checkTool_ID=?");
+		    	int updateRecord = jdbcTemplate.update(query,
+						new Object[] {  
+								checkTool.getUpdateBy(),							
+								checkTool.getCheckTool_ID()
+								});
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		
+		
 	}
 
 	public void saveOrUpdate(CheckToolBean obj) {
