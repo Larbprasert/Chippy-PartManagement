@@ -12,11 +12,11 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>th.co.baiwa</groupId>
-	<artifactId>MaintenanceProtal</artifactId>
+	<artifactId>MaintenancePortal</artifactId>
 	
 	<version>1.0.0</version>
 	<packaging>war</packaging>
-	<name>MaintenanceProtal</name>
+	<name>MaintenancePortal</name>
 	
 	<properties>
 		<!-- JDK -->

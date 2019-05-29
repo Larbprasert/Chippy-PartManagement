@@ -7,9 +7,9 @@
 	<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<h1 class="page-header">CheckTool List</h1>
+			<h1 class="page-header">User Type List</h1>
 		</section> 
-
+		
 		<section class="content">
 		 
 			<!-- 	##### <<<<<  SEARCH ####------------------- -->
@@ -19,7 +19,7 @@
 					<div class="box-tools pull-right">
 						<button type="button"
 							class="btn btn-box-tool btn-success btn-table" onclick="doAdd()">
-							<i class="fa fa-plus"></i>  Register New CheckTool
+							<i class="fa fa-plus"></i>  Register New User Type
 						</button>
 					</div>
 				</div>
@@ -31,9 +31,8 @@
 						<thead class="bg-green color-palette">
  							<tr>
 	                            <th class="text-center">#</th>
-	                            <th class="text-center">CheckTool ID</th>
-	                            <th class="text-center">CheckTool Name</th>
-	                            <th class="text-center">Timing</th>
+	                            <th class="text-center">User Type ID</th>
+	                            <th class="text-center">User Type Name</th>
 	                            <th class="text-center">Status</th>
 							</tr>
 						</thead>						 
@@ -41,13 +40,13 @@
 				</div>
 			</div>
 		</section>
-	</div>
+	</div>		
+		
+		
 
 
-
-
-		<!-- 	##### <<<<< JAVASCRIPT ####------------------- -->
-			<script>
+<!-- 	##### <<<<< JAVASCRIPT ####------------------- -->
+<script>
 				 
 			
 				function popupDescription(id) {
@@ -76,12 +75,10 @@
 // 					ordering : false
 // 				});
 
-
-
 				var T_DATA = {};
 				function doSearch(){
 					$.ajax({
-			            url: cPath+"/checkTool/search.json"
+			            url: cPath+"/userType/search.json"
 // 			            data: $('#myForm').serialize()
 			        }).done(function (result) {
 			            rsTable.clear().draw();
@@ -108,7 +105,7 @@
 					data:[],
 					columns: [
 						{
-							"data" : "checkTool_ID",
+							"data" : "userType_ID",
 							"fnCreatedCell" : function(nTd, sData,
 									oData, iRow, iCol) {
 								var txt = iRow;
@@ -116,38 +113,18 @@
 							}
 						},
 // 						{ "data": "checkTool_ID" }, 
-						{ "data": "checkTool_ID" 
+						{ "data": "userType_ID" 
 							,"render" : function(val, vc , obj) {
 // 								return '<a href="javascript:void(0)" onclick="popupDescription('+ obj.checkTool_ID +')" >'+obj.checkTool_ID+'</a>';
-								return '<a href="${cPath}/checkTool/checkTool_view.htm?checkTool_ID='+ obj.checkTool_ID +'" >'+obj.checkTool_ID+'</a>';
+								return '<a href="${cPath}/userType/userType_view.htm?userType_ID='+ obj.userType_ID +'" >'+obj.userType_ID+'</a>';
 							}
 						}, 
-						{ "data": "checkTool_name" }, 
-						{ "data": "timing_name" },     
+						{ "data": "userType_name" }, 						 
 						{ "data": "activeFlag_name" }   
-// 						{ "data": "calTimeStd" },    
-// 						{ "data": "lastCalDate" },    
-// 						{ "data": "servicedByName" },    
-// 						{ "data": "servicedByEmail" },    
-// 						{ "data": "status" },    
-// 						{ 
-// 				     		"data": "id"
-// 					        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-// 					        	 var txt = '<a href="../checkTool/view.jsp?checkTool_ID= "> </a>';
-// 					            $(nTd).html(txt);
-// 					        } 
-// 			            },
-// 						{ 
-// 				     		"data": "id"
-// 					        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-// 					        	 var txt = '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" '
-// 					        		 + 'onclick="popupCert('+ oData.id+')"> <i class="fa fa-certificate"></i> Certificate </button>';
-// 					            $(nTd).html(txt);
-// 					        } 
-// 			            }
+// 						
 				    ],
 				      "aoColumnDefs": [
-				      { "sClass": "text-center", "aTargets": [0,1,3,4] },
+				      { "sClass": "text-center", "aTargets": [0,1,2,3] },
 				    ],
 				    rowCallback: function (row, data) {}, 
 				    ordering: false, 
@@ -156,7 +133,7 @@
 				 
 				
 				function doAdd() {
-					location = cPath + "/checkTool/checkTool_create.htm" ;
+					location = cPath + "/userType/userType_create.htm" ;
 			}
 				
 				
@@ -165,8 +142,4 @@
 				});
 				
 				
-			</script>
-			
-
-  
-
+</script>

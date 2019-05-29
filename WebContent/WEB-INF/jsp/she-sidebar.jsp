@@ -33,7 +33,8 @@
 							</span> </a>
 							<ul class="treeview-menu">
 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
-									<li><a href="${cPath}/envi/prtr_target_search.htm"><i
+									<li><a href="${cPath}/userType/userType_list.htm"><i
+<%-- 									<li><a href="${cPath}/envi/prtr_target_search.htm"><i --%>
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
 <%-- 								<li><a href="${cPath}/envi/prtr_target_report.htm"><i --%>
@@ -61,7 +62,7 @@
 							</span> </a>
 							<ul class="treeview-menu">
 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
-									<li><a href="#"><i
+									<li><a href="${cPath}/envi/prtr_target_search.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
 							</ul>

@@ -5,12 +5,18 @@
 
 <tiles-definitions>
 
-
+<!-- CheckTool -->
 		<definition name="checkTool_list" template="/WEB-INF/jsp/keihin/checkTool/checkTool_list.jsp" />
 		<definition name="checkTool_view" template="/WEB-INF/jsp/keihin/checkTool/checkTool_view.jsp" />
 		<definition name="checkTool_edit" template="/WEB-INF/jsp/keihin/checkTool/checkTool_edit.jsp" />
 		<definition name="checkTool_create" template="/WEB-INF/jsp/keihin/checkTool/checkTool_create.jsp" />
-<!-- 	<definition name="utility_energy_report" template="/WEB-INF/jsp/portal/envi/utility_energy_report.jsp" /> -->
+
+<!-- User Type -->
+		<definition name="userType_list" template="/WEB-INF/jsp/keihin/userType/userType_list.jsp" />
+		<definition name="userType_view" template="/WEB-INF/jsp/keihin/userType/userType_view.jsp" />
+		<definition name="userType_edit" template="/WEB-INF/jsp/keihin/userType/userType_edit.jsp" />
+		<definition name="userType_create" template="/WEB-INF/jsp/keihin/userType/userType_create.jsp" />
+
 	
 	
 </tiles-definitions>
