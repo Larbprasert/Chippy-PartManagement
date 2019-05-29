@@ -39,7 +39,7 @@
                        					<p class="help-block"><b>Check Tool ID : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="User Type ID" name="checkTool_ID" value="" required="required">
+                       					<input type="text" class="form-control" placeholder="Check Tool ID" name="checkTool_ID" value="" required="required">
                        														<div class="help-block with-errors"></div>
                        					
                        				</div>	
@@ -50,7 +50,7 @@
                        					<p class="help-block"><b>Check Tool Name : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="checkTool Name" name="checkTool_name" value="" required>
+                       					<input type="text" class="form-control" placeholder="Check Tool Name" name="checkTool_name" value="" required>
                        														<div class="help-block with-errors"></div>
                        					
                        				</div>	
