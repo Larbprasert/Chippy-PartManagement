@@ -17,6 +17,11 @@
 		<definition name="userType_edit" template="/WEB-INF/jsp/keihin/userType/userType_edit.jsp" />
 		<definition name="userType_create" template="/WEB-INF/jsp/keihin/userType/userType_create.jsp" />
 
-	
+
+<!-- Department -->
+		<definition name="department_list" template="/WEB-INF/jsp/keihin/department/department_list.jsp" />
+		<definition name="department_view" template="/WEB-INF/jsp/keihin/department/department_view.jsp" />
+		<definition name="department_edit" template="/WEB-INF/jsp/keihin/department/department_edit.jsp" />
+		<definition name="department_create" template="/WEB-INF/jsp/keihin/department/department_create.jsp" />	
 	
 </tiles-definitions>

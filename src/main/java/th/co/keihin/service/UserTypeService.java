@@ -118,10 +118,12 @@ private RowMapper USERTYPE_MAPPER = new RowMapper(){
 				"order by a.userType_ID";
 				
 		List<UserTypeBean> list = jdbcTemplate.query(query,USERTYPE_MAPPER);
+		
 		int total = list!=null? list.size():0;
 		listuserType.setRecordsTotal(total);
 		listuserType.setRecordsFiltered(total);
 		listuserType.setData(list);
+		
 		return listuserType;
 	}
 

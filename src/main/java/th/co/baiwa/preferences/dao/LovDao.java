@@ -53,6 +53,7 @@ public class LovDao extends AbstractCommonJdbcDao {
 		});
 	}
 	
+//	Load constanst of Partmanagement value to temp server
 	public List<LovInfo> loadTimingLov() {
 		String sql = "select misc_code,value1 from tbm_misc_data where 1=1 and misc_type = 'Timing' order by misc_code";
 		return executeQuery(sql, new RowMapper<LovInfo>() {
@@ -89,5 +90,8 @@ public class LovDao extends AbstractCommonJdbcDao {
 			
 		});
 	}
+	
+//	Load constanst of Partmanagement value to temp server	
+	
 
 }

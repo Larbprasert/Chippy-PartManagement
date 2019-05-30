@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
-import th.co.keihin.model.CheckToolBean;
 import th.co.keihin.model.UserTypeBean;
 import th.co.keihin.service.UserTypeService;
 
