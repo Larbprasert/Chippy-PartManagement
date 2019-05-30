@@ -34,5 +34,12 @@
 		<definition name="moldType_view" template="/WEB-INF/jsp/keihin/moldType/moldType_view.jsp" />
 		<definition name="moldType_edit" template="/WEB-INF/jsp/keihin/moldType/moldType_edit.jsp" />
 		<definition name="moldType_create" template="/WEB-INF/jsp/keihin/moldType/moldType_create.jsp" />	
+		
+<!-- Location -->
+		<definition name="location_list" template="/WEB-INF/jsp/keihin/location/location_list.jsp" />
+		<definition name="location_view" template="/WEB-INF/jsp/keihin/location/location_view.jsp" />
+		<definition name="location_edit" template="/WEB-INF/jsp/keihin/location/location_edit.jsp" />
+		<definition name="location_create" template="/WEB-INF/jsp/keihin/location/location_create.jsp" />			
+
 	
 </tiles-definitions>

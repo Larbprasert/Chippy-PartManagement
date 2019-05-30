@@ -20,7 +20,7 @@ public class FactoryService {
 	private JdbcTemplate jdbcTemplate;
 
 	
-	private RowMapper USERTYPE_MAPPER = new RowMapper(){
+	private RowMapper FACTORY_MAPPER = new RowMapper(){
 		
 		@Override
 		public FactoryBean mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -52,7 +52,7 @@ public class FactoryService {
 			"where 1=1 and fac.activeFlag <> 2 " +
 			"and fac.factory_ID='" + factory_ID +"'";
 
-			List<FactoryBean> list = jdbcTemplate.query(query,USERTYPE_MAPPER);
+			List<FactoryBean> list = jdbcTemplate.query(query,FACTORY_MAPPER);
 			 
 		    return  list!=null&& list.size()>0? list.get(0) : new FactoryBean();
 
@@ -70,7 +70,7 @@ public class FactoryService {
 				"where 1=1 and fac.activeFlag <> 2 " +
 				"order by fac.factory_ID";
 				
-		List<FactoryBean> list = jdbcTemplate.query(query,USERTYPE_MAPPER);
+		List<FactoryBean> list = jdbcTemplate.query(query,FACTORY_MAPPER);
 		
 		int total = list!=null? list.size():0;
 		listFactory.setRecordsTotal(total);

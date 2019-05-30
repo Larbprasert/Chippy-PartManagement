@@ -23,7 +23,7 @@ public class DepartmentService {
 	private JdbcTemplate jdbcTemplate;
 
 	
-	private RowMapper USERTYPE_MAPPER = new RowMapper(){
+	private RowMapper DEPARTMENT_MAPPER = new RowMapper(){
 		
 		@Override
 		public DepartmentBean mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -56,7 +56,7 @@ public class DepartmentService {
 				"where 1=1 and dept.activeFlag <> 2 " +
 				"and dept.dept_ID='" + dept_ID +"'"; 
 		
-		List<DepartmentBean> list = jdbcTemplate.query(query,USERTYPE_MAPPER);
+		List<DepartmentBean> list = jdbcTemplate.query(query,DEPARTMENT_MAPPER);
 		 
 	    return  list!=null&& list.size()>0? list.get(0) : new DepartmentBean() ;
 		
@@ -73,7 +73,7 @@ public class DepartmentService {
 				"where 1=1 and dept.activeFlag <> 2 " +
 				"order by dept.dept_ID";
 				
-		List<DepartmentBean> list = jdbcTemplate.query(query,USERTYPE_MAPPER);
+		List<DepartmentBean> list = jdbcTemplate.query(query,DEPARTMENT_MAPPER);
 		
 		int total = list!=null? list.size():0;
 		listDepartment.setRecordsTotal(total);

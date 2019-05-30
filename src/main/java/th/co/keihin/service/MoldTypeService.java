@@ -21,7 +21,7 @@ public class MoldTypeService {
 	private JdbcTemplate jdbcTemplate;
 
 	
-	private RowMapper USERTYPE_MAPPER = new RowMapper(){
+	private RowMapper MOLDTYPE_MAPPER = new RowMapper(){
 		
 		@Override
 		public MoldTypeBean mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -53,7 +53,7 @@ public class MoldTypeService {
 				"where 1=1 and a.activeFlag <> 2 " +
 				"and a.MoldType_ID='" + MoldType_ID +"'"; 
 		
-		List<MoldTypeBean> list = jdbcTemplate.query(query,USERTYPE_MAPPER);
+		List<MoldTypeBean> list = jdbcTemplate.query(query,MOLDTYPE_MAPPER);
 		 
 	    return  list!=null&& list.size()>0? list.get(0) : new MoldTypeBean();
 		
@@ -72,7 +72,7 @@ public class MoldTypeService {
 				"where 1=1 and a.activeFlag <> 2 " +
 				"order by a.moldType_ID";
 				
-		List<MoldTypeBean> list = jdbcTemplate.query(query,USERTYPE_MAPPER);
+		List<MoldTypeBean> list = jdbcTemplate.query(query,MOLDTYPE_MAPPER);
 		
 		int total = list!=null? list.size():0;
 		listMoldType.setRecordsTotal(total);
