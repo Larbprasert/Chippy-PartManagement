@@ -17,7 +17,6 @@
 		<definition name="userType_edit" template="/WEB-INF/jsp/keihin/userType/userType_edit.jsp" />
 		<definition name="userType_create" template="/WEB-INF/jsp/keihin/userType/userType_create.jsp" />
 
-
 <!-- Department -->
 		<definition name="department_list" template="/WEB-INF/jsp/keihin/department/department_list.jsp" />
 		<definition name="department_view" template="/WEB-INF/jsp/keihin/department/department_view.jsp" />
@@ -29,5 +28,11 @@
 		<definition name="factory_view" template="/WEB-INF/jsp/keihin/factory/factory_view.jsp" />
 		<definition name="factory_edit" template="/WEB-INF/jsp/keihin/factory/factory_edit.jsp" />
 		<definition name="factory_create" template="/WEB-INF/jsp/keihin/factory/factory_create.jsp" />	
+
+<!-- Mold Type -->
+		<definition name="moldType_list" template="/WEB-INF/jsp/keihin/moldType/moldType_list.jsp" />
+		<definition name="moldType_view" template="/WEB-INF/jsp/keihin/moldType/moldType_view.jsp" />
+		<definition name="moldType_edit" template="/WEB-INF/jsp/keihin/moldType/moldType_edit.jsp" />
+		<definition name="moldType_create" template="/WEB-INF/jsp/keihin/moldType/moldType_create.jsp" />	
 	
 </tiles-definitions>
