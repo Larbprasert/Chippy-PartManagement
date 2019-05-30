@@ -17,6 +17,9 @@ import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.service.LocationService;
 import th.co.keihin.model.LocationBean;
 
+import th.co.keihin.service.FactoryService;
+import th.co.keihin.model.FactoryBean;
+
 
 @RestController
 public class LocationCtrl {
@@ -24,6 +27,9 @@ public class LocationCtrl {
 	@Autowired
 	private LocationService locationService;
 
+//	@Autowired
+//	private FactoryService factoryService;
+//	
 	@RequestMapping("/location/location_list.htm")
 	public ModelAndView location_list(HttpServletRequest httpRequest) {
 		ModelAndView mav = new ModelAndView();
@@ -37,6 +43,8 @@ public class LocationCtrl {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("locationBean",locationService.getLocationBeanByID(bean.getLocation_ID()));
+		
+//		mav.addObject("locationBean",factoryService.getFactoryBeanByID(bean.getFactory_ID()));
 		
 		mav.setViewName("location_view");
 		return mav;

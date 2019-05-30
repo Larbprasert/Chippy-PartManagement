@@ -9,10 +9,10 @@ public class LocationBean extends BaseDomain{
     private int activeFlag;
     private String activeFlag_name;
     
-//	private FactoryBean factory;
-	private String factory_ID;
-	private String factory_name;
-		
+	private FactoryBean factory;
+//	private String factory_ID;
+//	private String factory_name;
+//		
 
 	public String getLocation_ID() {
         return location_ID;
@@ -48,29 +48,30 @@ public class LocationBean extends BaseDomain{
 		this.activeFlag_name = activeFlag_name;
 	}
 
-	public String getFactory_ID() {
-		return factory_ID;
-	}
-
-	public void setFactory_ID(String factory_ID) {
-		this.factory_ID = factory_ID;
-	}
-
-	public String getFactory_name() {
-		return factory_name;
-	}
-
-	public void setFactory_name(String factory_name) {
-		this.factory_name = factory_name;
-	}
-
-//	public FactoryBean getFactory() {
-//		return factory;
+//	public String getFactory_ID() {
+//		return factory_ID;
 //	}
 //
-//	public void setFactory(FactoryBean factory) {
-//		this.factory = factory;
+//	public void setFactory_ID(String factory_ID) {
+//		this.factory_ID = factory_ID;
 //	}
+//
+//	public String getFactory_name() {
+//		return factory_name;
+//	}
+//
+//	public void setFactory_name(String factory_name) {
+//		this.factory_name = factory_name;
+//	}
+
+
+	public FactoryBean getFactory() {
+		return factory;
+	}
+
+	public void setFactory(FactoryBean factory) {
+		this.factory = factory;
+	}
 	
 	
 }

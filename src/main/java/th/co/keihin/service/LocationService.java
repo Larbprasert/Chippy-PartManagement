@@ -28,7 +28,7 @@ public class LocationService {
 		public LocationBean mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 			LocationBean location = new LocationBean();
-//			FactoryBean factory = new FactoryBean();
+			FactoryBean factory = new FactoryBean();
 			
 			
 			location.setLocation_ID(rs.getString("location_ID"));
@@ -42,13 +42,13 @@ public class LocationService {
 			location.setUpdateBy(rs.getString("updateBy"));
 			location.setUpdateDate(rs.getDate("updateDate"));
 			
-			location.setFactory_ID(rs.getString("factory_ID"));
-			location.setFactory_name(rs.getString("factory_name"));
-			
-//			factory.setFactory_ID(rs.getString("factory_ID"));
-//			factory.setFactory_name(rs.getString("factory_name"));
+//			location.setFactory_ID(rs.getString("factory_ID"));
+//			location.setFactory_name(rs.getString("factory_name"));
 //			
-//			location.setFactory(factory);
+			factory.setFactory_ID(rs.getString("factory_ID"));
+			factory.setFactory_name(rs.getString("factory_name"));
+			
+			location.setFactory(factory);
 			
 			return location;
 		}
@@ -115,8 +115,8 @@ public class LocationService {
 							location.getLocation_name(),
 							location.getActiveFlag(),
 							location.getCreateBy(),
-//							location.getFactory().getFactory_ID(),
-							location.getFactory_ID(),
+							location.getFactory().getFactory_ID(),
+//							location.getFactory_ID(),
 							});
 			
 		} catch (Exception e) {
@@ -161,8 +161,8 @@ public class LocationService {
 	    					location.getUpdateBy(),
 	    					location.getActiveFlag(),
 	    					
-//	    					location.getFactory().getFactory_ID(),
-	    					location.getFactory_ID(),
+	    					location.getFactory().getFactory_ID(),
+//	    					location.getFactory_ID(),
 	    					
 	    					location.getLocation_ID()
 	    					});
