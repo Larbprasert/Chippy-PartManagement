@@ -23,5 +23,11 @@
 		<definition name="department_view" template="/WEB-INF/jsp/keihin/department/department_view.jsp" />
 		<definition name="department_edit" template="/WEB-INF/jsp/keihin/department/department_edit.jsp" />
 		<definition name="department_create" template="/WEB-INF/jsp/keihin/department/department_create.jsp" />	
+		
+<!-- Factory -->
+		<definition name="factory_list" template="/WEB-INF/jsp/keihin/factory/factory_list.jsp" />
+		<definition name="factory_view" template="/WEB-INF/jsp/keihin/factory/factory_view.jsp" />
+		<definition name="factory_edit" template="/WEB-INF/jsp/keihin/factory/factory_edit.jsp" />
+		<definition name="factory_create" template="/WEB-INF/jsp/keihin/factory/factory_create.jsp" />	
 	
 </tiles-definitions>

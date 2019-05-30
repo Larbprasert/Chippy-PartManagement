@@ -51,7 +51,7 @@
                        				<div class="col-lg-8">
                        					<select class="form-control" name="activeFlag" required>
 													 <c:forEach var="item" items="${LOV_ACTIVE_FLG}">
-												     	<option value="${item.code}" ${item.code == checkToolBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
+												     	<option value="${item.code}" ${item.code == userTypeBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
 												    </c:forEach>				
 	                                	</select>
                        				</div>
