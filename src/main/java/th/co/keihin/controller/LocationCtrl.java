@@ -27,8 +27,8 @@ public class LocationCtrl {
 	@Autowired
 	private LocationService locationService;
 
-//	@Autowired
-//	private FactoryService factoryService;
+	@Autowired
+	private FactoryService factoryService;
 //	
 	@RequestMapping("/location/location_list.htm")
 	public ModelAndView location_list(HttpServletRequest httpRequest) {
@@ -69,7 +69,7 @@ public class LocationCtrl {
 		mav.addObject("locationBean",locationService.getLocationBeanByID(bean.getLocation_ID()));
 		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
-		
+				
 		mav.setViewName("location_edit");
 		return mav;
 	}

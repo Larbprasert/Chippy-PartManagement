@@ -7,14 +7,15 @@
 <%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
 <%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
-<form action="${cPath}/location/location_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
+
+<form action="${cPath}/unitType/unitType_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
 <input name ="rAction" type="hidden" value="Edit">
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Location View</h1>
+                    <h1 class="page-header">Unit Type Edit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -27,42 +28,30 @@
             	<div class="col-lg-6">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>Location :</b> ${locationBean.location_name}
+                            <b>unitType :</b> ${unitTypeBean.unitType_name}
                         </div>                        
                         
 
                        		<div class="panel-body">
+		       					
 		                        <div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Location ID : </b></p>
+                       					<p class="help-block"><b>Unit Type ID:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="location ID" name="location_ID" value="${locationBean.location_ID}" readonly>
+                       					<input type="text" class="form-control" placeholder="User Type ID" name="unitType_ID" value="${unitTypeBean.unitType_ID}" readonly>
                        				</div>	
                        			</div>
                        			<br>
                        			<div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Location Name : </b></p>
+                       					<p class="help-block"><b>Unit Type Name:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="location Name" name="location_name" value="${locationBean.location_name}" >
+                       					<input type="text" class="form-control" placeholder="unitType Name" name="unitType_name" value="${unitTypeBean.unitType_name}">
                        				</div>	
-                       			</div>                       			
-                       			<br>
-                       			<div class="row">
-                       				<div class="col-lg-4">
-                       					<p class="help-block"><b>Factory : </b></p>
-                       				</div>
-                       				<div class="col-lg-8">                       					
-                       					<select class="form-control" name="factory_name" required>
-											 <c:forEach var="item" items="${factoryBean}">
-										     	<option value="${item.factory_ID}" ${item.factory_ID == locationBean.factory_ID ? 'selected="selected"' : ''}  >${item.factory_name}</option>
-										    </c:forEach>				
-	                                	</select>
-                       				</div>	
-                       			</div>                       			
-                       			<br>
+                       			</div>                			
+                       			<br>                       			
                        			<div class="row">
                        				<div class="col-lg-4">
                        					<p class="help-block"><b>Status : </b></p>
@@ -70,34 +59,34 @@
                        				<div class="col-lg-8">
                        					<select class="form-control" name="activeFlag" required>
 											 <c:forEach var="item" items="${LOV_ACTIVE_FLG}">
-										     	<option value="${item.code}" ${item.code == locationBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										     	<option value="${item.code}" ${item.code == unitTypeBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
 										    </c:forEach>				
 	                                	</select>
                        				</div>	
                        			</div>
-		                        
-		                        				 	       
+		                        			 	       
 	                        </div>
 	                        <div class="panel-footer">
-		                        <input type ="button" value="Save" name="rAction" role="button" class="btn btn-info" onclick="doSaveLocation()">
-                        		<a type="reset" class="btn btn-default" href="${cPath}/location/location_list.htm"  role="button" >Cancel</a>  
-	                        </div> 	 	                        
+		                        <input type ="button" value="Save" name="rAction" role="button" class="btn btn-info" onclick="doSaveUnitType()">
+                        		<a type="reset" class="btn btn-default" href="${cPath}/unitType/unitType_list.htm"  role="button" >Cancel</a>  
+	                        </div> 		                        
 
 					</div>     
                     </div>
              	<div class="col-lg-3">
 				
-				</div>                      
+				</div>   
+				                               
                 </div>
                 <!-- /.col-lg-4 -->
            	</div>
 
             
 </form>            
-
+          
 <script type="text/javascript">
 
-function doSaveLocation() {
+function doSaveUnitType() {
 
 	bootbox.confirm({
 		title : "Confirm",
@@ -119,4 +108,4 @@ function doSaveLocation() {
 		}
 	});
 }
-</script> 
+</script>  

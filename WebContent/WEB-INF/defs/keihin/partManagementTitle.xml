@@ -47,5 +47,10 @@
 		<definition name="requestType_edit" template="/WEB-INF/jsp/keihin/requestType/requestType_edit.jsp" />
 		<definition name="requestType_create" template="/WEB-INF/jsp/keihin/requestType/requestType_create.jsp" />		
 
+<!-- Unit Type -->
+		<definition name="unitType_list" template="/WEB-INF/jsp/keihin/unitType/unitType_list.jsp" />
+		<definition name="unitType_view" template="/WEB-INF/jsp/keihin/unitType/unitType_view.jsp" />
+		<definition name="unitType_edit" template="/WEB-INF/jsp/keihin/unitType/unitType_edit.jsp" />
+		<definition name="unitType_create" template="/WEB-INF/jsp/keihin/unitType/unitType_create.jsp" />	
 	
 </tiles-definitions>

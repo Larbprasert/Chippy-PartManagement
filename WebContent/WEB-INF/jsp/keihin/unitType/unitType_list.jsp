@@ -7,7 +7,7 @@
 	<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<h1 class="page-header">Location List</h1>
+			<h1 class="page-header">Unit Type List</h1>
 		</section> 
 		
 		<section class="content">
@@ -19,7 +19,7 @@
 					<div class="box-tools pull-right">
 						<button type="button"
 							class="btn btn-box-tool btn-success btn-table" onclick="doAdd()">
-							<i class="fa fa-plus"></i>  Register New Location
+							<i class="fa fa-plus"></i>  Register New Unit Type
 						</button>
 					</div>
 				</div>
@@ -31,9 +31,8 @@
 						<thead class="bg-green color-palette">
 		                                <tr>
 		                                    <th>#</th>
-		                                    <th>Location ID</th>
-		                                    <th>Location Name</th>
-		                                    <th>Factory Name</th>
+		                                    <th>Unit Type ID</th>
+		                                    <th>Unit Type Name</th>
 		                                    <th>Status</th>
 		                                </tr>
 						</thead>						 
@@ -75,9 +74,11 @@
 // 				});
 
 				var T_DATA = {};
+				
+				
 				function doSearch(){
 					$.ajax({
-			            url: cPath+"/location/search.json"
+			            url: cPath+"/unitType/search.json"
 // 			            data: $('#myForm').serialize()
 			        }).done(function (result) {
 			            rsTable.clear().draw();
@@ -104,25 +105,24 @@
 					data:[],
 					columns: [
 						{
-							"data" : "location_ID",
+							"data" : "unitType_ID",
 							"fnCreatedCell" : function(nTd, sData,
 									oData, iRow, iCol) {
 								var txt = iRow;
 								$(nTd).html(txt + 1);
 							}
 						},
-						{ "data": "location_ID" 
+						{ "data": "unitType_ID" 
 							,"render" : function(val, vc , obj) {
-								return '<a href="${cPath}/location/location_view.htm?location_ID='+ obj.location_ID +'" >'+obj.location_ID+'</a>';
+								return '<a href="${cPath}/unitType/unitType_view.htm?unitType_ID='+ obj.unitType_ID +'" >'+obj.unitType_ID+'</a>';
 							}
 						}, 
-						{ "data": "location_name" },
-						{ "data": "factory.factory_name" },
+						{ "data": "unitType_name" }, 						 
 						{ "data": "activeFlag_name" }   
 						
 				    ],
 				      "aoColumnDefs": [
-				      { "sClass": "text-center", "aTargets": [0,1,4] },
+				      { "sClass": "text-center", "aTargets": [0,1,3] },
 				    ],
 				    rowCallback: function (row, data) {}, 
 				    ordering: false, 
@@ -131,7 +131,7 @@
 				 
 				
 				function doAdd() {
-					location = cPath + "/location/location_create.htm" ;
+					location = cPath + "/unitType/unitType_create.htm" ;
 			}
 				
 				

@@ -2,6 +2,7 @@ package th.co.keihin.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.FactoryBean;
 import th.co.keihin.model.LocationBean;
-
 
 @Repository("locationService")
 public class LocationService {
@@ -171,6 +171,5 @@ public class LocationService {
 			e.printStackTrace();
 		}		
 	}
-
 	
 }

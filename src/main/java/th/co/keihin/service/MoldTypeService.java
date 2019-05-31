@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.MoldTypeBean;
-import th.co.keihin.model.FactoryBean;
 
 @Repository("moldTypeService")
 public class MoldTypeService {
