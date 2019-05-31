@@ -8,80 +8,72 @@
 <%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
 
-<form action="${cPath}/location/location_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
+<form action="${cPath}/requestType/requestType_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
 <input name ="rAction" type="hidden" value="Delete">
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Location View</h1>
+                    <h1 class="page-header">Request Type View</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             
             <div class="row">
-             	<div class="col-lg-3">
+              	<div class="col-lg-3">
 				
 				</div>   
 				           
             	<div class="col-lg-6">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>Location :</b> ${locationBean.location_name}
+                            <b>Request Type :</b> ${requestTypeBean.requestType_name}
                         </div>                        
                         
 
                        		<div class="panel-body">
+		       					
 		                        <div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Location ID : </b></p>
+                       					<p class="help-block"><b>Request Type ID: </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="location ID" name="location_ID" value="${locationBean.location_ID}" readonly>
+                       					<input type="text" class="form-control" placeholder="User Type ID" name="requestType_ID" value="${requestTypeBean.requestType_ID}" readonly>
                        				</div>	
                        			</div>
                        			<br>
                        			<div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Location Name : </b></p>
+                       					<p class="help-block"><b>Request Type Name:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="location Name" name="location_name" value="${locationBean.location_name}" readonly >
+                       					<input type="text" class="form-control" placeholder="requestType Name" name="requestType_name" value="${requestTypeBean.requestType_name}" readonly>
                        				</div>	
-                       			</div>                       			
-                       			<br>
-                       			<div class="row">
-                       				<div class="col-lg-4">
-                       					<p class="help-block"><b>Factory : </b></p>
-                       				</div>
-                       				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Factory" name="factory_name" value="${locationBean.factory_name}" readonly>
-                       				</div>	
-                       			</div>                       			
+                       			</div>                			
                        			<br>
                        			<div class="row">
                        				<div class="col-lg-4">
                        					<p class="help-block"><b>Status : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag_name" value="${locationBean.activeFlag_name}" readonly>
+                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag_name" value="${requestTypeBean.activeFlag_name}" readonly>
                        				</div>	
                        			</div>
-		                        
-		                        				 	       
+									                        
 	                        </div>
+	                        
 	                        <div class="panel-footer">
-		                        <input type ="button" value="Delete" name="rAction" role="button" class="btn btn-info" onclick="doDel('${locationBean.location_ID}')">
-						 	  	<a href="${cPath}/location/location_edit.htm?location_ID=${locationBean.location_ID}" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
-						 	  	<a href="${cPath}/location/location_list.htm" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a>  
-	                        </div> 	 	                        
+		                        <input type ="button" value="Delete" name="rAction" role="button" class="btn btn-info" onclick="doDel('${requestTypeBean.requestType_ID}')">
+						 	  	<a href="${cPath}/requestType/requestType_edit.htm?requestType_ID=${requestTypeBean.requestType_ID}" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
+						 	  	<a href="${cPath}/requestType/requestType_list.htm" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a>    
+	                        </div>		                        
 
 					</div>     
                     </div>
-             	<div class="col-lg-3">
+              	<div class="col-lg-3">
 				
-				</div>                      
+				</div>                     
                 </div>
                 <!-- /.col-lg-4 -->
            	</div>
@@ -90,7 +82,7 @@
 </form>            
 
 <script type="text/javascript">
- 	function doDel(factory_ID){
+ 	function doDel(requestType_ID){
 			bootbox.confirm({
 			    title: "Confirm",
 			    size: 'small',
@@ -111,5 +103,4 @@
 				}
 			});
 		};
-		
 </script> 

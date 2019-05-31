@@ -49,9 +49,6 @@ private RowMapper USERTYPE_MAPPER = new RowMapper(){
 	
 	public UserTypeBean getUserTypeBeanByID(String userType_ID) {
 		// TODO Auto-generated method stub
-		Connection con = null;
-		ResultSet rs = null;
-		Statement uType = null;
 		
 		String query = "Select a.*,act.value1 as activeFlag_name " +
 				"From tb_UserType a " +
@@ -63,49 +60,7 @@ private RowMapper USERTYPE_MAPPER = new RowMapper(){
 		 
 	      return  list!=null&& list.size()>0? list.get(0) : new UserTypeBean() ;
 	}
-	
-//	public void getNewUserTypeID(String createBy, String userType_name, String activeFlag) {
-//		// TODO Auto-generated method stub
-//
-//		Connection con = null;
-//		
-//		System.out.println("createBy : " + createBy + " || userType_name: " + userType_name);
-//		
-//		try {
-//
-//			con = DBConnect.getConnection();
-//
-//			PreparedStatement ps_Insert = con.prepareStatement(
-//					"INSERT INTO tb_userType (userType_ID,userType_name,activeFlag,CreateDate,CreateBy) "+
-//							"VALUES ((SELECT top 1 'UT' + CAST(CAST(substring((select case when max(userType_ID) IS NULL then '1' else max(userType_ID) end userType_ID "+
-//							"from [dbo].[tb_UserType]),3,len((select case when max(userType_ID) IS NULL then '1' else max(userType_ID) end userType_ID "+
-//							"from [dbo].[tb_UserType]))) AS INT)+1 AS varchar(250))) "+
-//							",?,?,getdate(),? ) ",
-//							Statement.RETURN_GENERATED_KEYS);
-//
-//			ps_Insert.setString(1, userType_name);
-//			ps_Insert.setString(2, activeFlag);
-//			ps_Insert.setString(3,createBy);
-//			ps_Insert.executeUpdate();
-//			
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (con != null) {
-//					con.close();
-//				}
-//				if (con != null) {
-//					con.close();
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}		
-//	}
-	
-	
+		
 	
 	public DataTableAjax<UserTypeBean> getAll() {
 		// TODO Auto-generated method stub

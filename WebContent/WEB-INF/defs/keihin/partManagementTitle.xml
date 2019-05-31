@@ -39,7 +39,13 @@
 		<definition name="location_list" template="/WEB-INF/jsp/keihin/location/location_list.jsp" />
 		<definition name="location_view" template="/WEB-INF/jsp/keihin/location/location_view.jsp" />
 		<definition name="location_edit" template="/WEB-INF/jsp/keihin/location/location_edit.jsp" />
-		<definition name="location_create" template="/WEB-INF/jsp/keihin/location/location_create.jsp" />			
+		<definition name="location_create" template="/WEB-INF/jsp/keihin/location/location_create.jsp" />		
+		
+<!-- Request Type -->
+		<definition name="requestType_list" template="/WEB-INF/jsp/keihin/requestType/requestType_list.jsp" />
+		<definition name="requestType_view" template="/WEB-INF/jsp/keihin/requestType/requestType_view.jsp" />
+		<definition name="requestType_edit" template="/WEB-INF/jsp/keihin/requestType/requestType_edit.jsp" />
+		<definition name="requestType_create" template="/WEB-INF/jsp/keihin/requestType/requestType_create.jsp" />		
 
 	
 </tiles-definitions>
