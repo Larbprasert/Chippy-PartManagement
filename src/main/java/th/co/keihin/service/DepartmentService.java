@@ -4,17 +4,21 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.keihin.model.DepartmentBean;
+import th.co.keihin.model.FactoryBean;
 
 @Repository("departmentService")
 public class DepartmentService {
@@ -84,67 +88,6 @@ public class DepartmentService {
 	}
 
 	
-	public Vector<DepartmentBean> getByName(String dept_name) {
-		// TODO Auto-generated method stub
-		Connection con = null;
-		ResultSet rs = null;
-		Statement stmt = null;
-		
-		Vector<DepartmentBean> listDepartment = new Vector<DepartmentBean>();
-		
-		String query = "Select dept.*, act.value1 as activeFlag_name "+
-				"From tb_department dept " + 
-				"left join tbm_misc_data act on dept.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' " +
-				"where 1=1 and dept.activeFlag <> 2 ";
-		
-		if (dept_name != null) {
-			query += "and dept.dept_name like '%" + dept_name + "%'";
-		}
-
-		query += "Order By dept.dept_ID"; 
-				
-//		try {
-//			con = DBConnect.getConnection();
-//			stmt = con.createStatement();
-//
-//			rs = stmt.executeQuery(query);
-//			
-//			while (rs.next()) {
-//			
-//				DepartmentBean DepartmentBean = new DepartmentBean();
-//				
-//				DepartmentBean.setDept_ID(rs.getString("dept_ID"));
-//				DepartmentBean.setDept_name(rs.getString("dept_name"));
-//				
-//				DepartmentBean.setActiveFlag(rs.getInt("activeFlag"));
-//				DepartmentBean.setActiveFlag_name(rs.getString("activeFlag_name"));
-//				
-//				DepartmentBean.setCreateBy(rs.getString("createBy"));
-//				DepartmentBean.setCreateDate(rs.getDate("createDate"));
-//				DepartmentBean.setUpdateBy(rs.getString("updateBy"));
-//				DepartmentBean.setUpdateDate(rs.getDate("updateDate"));
-//				
-//				listDepartment.add(DepartmentBean);
-//			}
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (stmt != null) {
-//					stmt.close();
-//				}
-//				if (con != null) {
-//					con.close();
-//				}
-//			} catch (Exception e) {
-//			}
-//
-//		}
-
-		return listDepartment;
-	}
-
 	public void saveOrUpdate(DepartmentBean obj) {
 		if(StringUtils.isNotEmpty(obj.getDept_ID())){
 			edit(obj);
@@ -188,20 +131,6 @@ public class DepartmentService {
 							department.getDept_ID()
 							});
 	    	
-    	
-//			con = DBConnect.getConnection();
-//			PreparedStatement ps_del = con.prepareStatement("update tb_Department set activeFlag = 2, updateBy=?, updateDate=getdate() Where dept_ID=?");
-//			
-//			ps_del.setString(1, department.getUpdateBy());
-//			ps_del.setString(2, department.getDept_ID());
-//
-//			ps_del.executeUpdate();
-//	 
-//			if (ps_del != null)
-//				ps_del.close();
-//			if (con != null)
-//				con.close();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -236,88 +165,26 @@ public class DepartmentService {
 	}
 
 	
-	public List<DepartmentBean> search(DepartmentBean department) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	public void saveStatement(DepartmentBean department) {
-		// TODO Auto-generated method stub
-		//String dept_ID = null;
-//		Connection con = null;
-//		
-//		try {
-//
-//			con = DBConnect.getConnection();
-//    	
-//			String query = "INSERT INTO tb_Department (dept_ID,dept_name,activeFlag,CreateDate,CreateBy) " + 
-//					"VALUES (?,?,?,getdate(),? )";
-//			PreparedStatement ps_Insert = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-//			
-//			ps_Insert.setString(1, department.getDept_ID());
-//			ps_Insert.setString(2, department.getDept_name());
-//			ps_Insert.setInt(3, department.getActiveFlag());
-//			
-//			if (department.getCreateBy() == null) {
-//				department.setCreateBy("System");
-//			}
-//			ps_Insert.setString(4,department.getCreateBy());
-//			
-//			ps_Insert.executeUpdate();
-//						
-//						
-//			System.out.println("insert id =" + department.getDept_ID());
-//						
-//			if (ps_Insert != null)
-//				ps_Insert.close();
-//			if (con != null)
-//				con.close();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return;		
-	}
-
-	
-	public void getNewDept_ID(String dept_ID, String dept_name, String activeFlag, String createBy) {
-		// TODO Auto-generated method stub
-//		Connection con = null;
-//		
-//		System.out.println("createBy : " + createBy + " || dept_name: " + dept_name + " || dept_ID: " + dept_ID + " || activeFlag: " + activeFlag);
-//		
-//		try {
-//
-//			con = DBConnect.getConnection();
-//
-//			PreparedStatement ps_Insert = con.prepareStatement(
-//					"INSERT INTO tb_Department (dept_ID,dept_name,activeFlag,CreateDate,CreateBy) "+
-//							"VALUES (?,?,?,getdate(),? ) ",
-//							Statement.RETURN_GENERATED_KEYS);
-//
-//			ps_Insert.setString(1, dept_ID);
-//			ps_Insert.setString(2, dept_name);
-//			ps_Insert.setString(3, activeFlag);
-//			ps_Insert.setString(4,createBy);
-//			ps_Insert.executeUpdate();
-//			
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (con != null) {
-//					con.close();
-//				}
-//				if (con != null) {
-//					con.close();
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}			
+	public List<LovInfo> loadActiveDepartment() {
+		 List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+		
+		String query = "Select dept.dept_ID, dept.dept_name "+
+				"From tb_department dept " + 
+				"where 1=1 and dept.activeFlag <> 2 " +
+				"order by dept.dept_ID";
+		
+		
+		List<DepartmentBean> deptlist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(DepartmentBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (DepartmentBean departmentBean : deptlist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(departmentBean.getDept_ID());
+			lovInfo.setDescTH(departmentBean.getDept_name());
+			lovInfo.setDescEN(departmentBean.getDept_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 
 

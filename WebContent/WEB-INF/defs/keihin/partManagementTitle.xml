@@ -51,6 +51,12 @@
 		<definition name="unitType_list" template="/WEB-INF/jsp/keihin/unitType/unitType_list.jsp" />
 		<definition name="unitType_view" template="/WEB-INF/jsp/keihin/unitType/unitType_view.jsp" />
 		<definition name="unitType_edit" template="/WEB-INF/jsp/keihin/unitType/unitType_edit.jsp" />
-		<definition name="unitType_create" template="/WEB-INF/jsp/keihin/unitType/unitType_create.jsp" />	
+		<definition name="unitType_create" template="/WEB-INF/jsp/keihin/unitType/unitType_create.jsp" />
+		
+<!-- Section -->
+		<definition name="section_list" template="/WEB-INF/jsp/keihin/section/section_list.jsp" />
+		<definition name="section_view" template="/WEB-INF/jsp/keihin/section/section_view.jsp" />
+		<definition name="section_edit" template="/WEB-INF/jsp/keihin/section/section_edit.jsp" />
+		<definition name="section_create" template="/WEB-INF/jsp/keihin/section/section_create.jsp" />		
 	
 </tiles-definitions>
