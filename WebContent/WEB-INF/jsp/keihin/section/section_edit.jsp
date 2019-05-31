@@ -1,51 +1,21 @@
+<!DOCTYPE HTML>
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="sectionByID" class="com.service.sectionService"></jsp:useBean> 
-<jsp:useBean id="listsection" class="com.service.sectionService"></jsp:useBean>    
-<jsp:useBean id="listDepartment" class="com.service.departmentService"></jsp:useBean>  
-
-<jsp:useBean id="listActiveFlag" class="com.service.activeFlagService"></jsp:useBean>
-<%@page import="com.entity.activeFlagBean" %> 
-
-<%@page import="com.entity.userBean" %>
-<%@page import="com.entity.sectionBean" %>
-<%@page import="com.entity.departmentBean" %>
-
-<%@page import="java.util.Vector" %>
+	pageEncoding="UTF-8"%>
+<%@include file="/resources/adminLTE/common.jsp"%>
+<body class="${bodySkin}">
+<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
 
- <% 
- 	sectionBean sectionBean  = new sectionBean();
- 
- 	System.out.println(request.getParameter("section_ID"));
-	
-	 if(request.getParameter("section_ID") !=null){
-		 sectionBean = sectionByID.getSectionBeanByID(request.getParameter("section_ID"));	 	
-	 }
-	 else
-	 {
-		response.sendRedirect("#"); 
-	 }
-	 
-	 userBean currentUser = (userBean)session.getAttribute("user_name");	
-	 
- %> 
- 
-  
-<jsp:include page="../pages/header.jsp"></jsp:include>
- 
- <jsp:include page="../pages/rSide.jsp"></jsp:include>
+<form action="${cPath}/section/section_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
-<form action="/PartManagement/sectionServlet" method="post">
+<input name ="rAction" type="hidden" value="Edit">
 
-<input class="form-control" id="user_ID" name ="user_ID" type="hidden" value="<%=currentUser.getUser_ID()%>">
-<!-- <input class="form-control" id="userID" name ="userID" type="hidden" value="Admin"> -->
-            
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Section - Edit</h1>
+                    <h1 class="page-header">Section Edit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -56,19 +26,19 @@
 				</div> 
 				            
             	<div class="col-lg-6">
-                    <div class="panel panel-warning">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>Section :</b> <%=sectionBean.getSection_name() %>
-                        </div>
+                            <b>Section :</b> ${sectionBean.section_name}
+                        </div>                        
                         
-
                        		<div class="panel-body">
-		       					<div class="row">
-		                        	<div class="col-lg-4">
+		       					
+		                        <div class="row">
+                       				<div class="col-lg-4">
                        					<p class="help-block"><b>Section ID:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="User Type ID" name="section_ID" value="<%=sectionBean.getSection_ID() %>" readonly>
+                       					<input type="text" class="form-control" placeholder="User Type ID" name="section_ID" value="${sectionBean.section_ID}" readonly>
                        				</div>	
                        			</div>
                        			<br>
@@ -77,7 +47,7 @@
                        					<p class="help-block"><b>Section Name:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="section Name" name="section_name" value="<%=sectionBean.getSection_name() %>" >
+                       					<input type="text" class="form-control" placeholder="section Name" name="section_name" value="${sectionBean.section_name}">
                        				</div>	
                        			</div>                			
                        			<br>
@@ -86,25 +56,10 @@
                        					<p class="help-block"><b>Department:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<select class="form-control" name="dept_ID" required>
-	                                	
-										<% 
-										Vector<departmentBean> departmentList = listDepartment.getAll();
-										%>
-										
-										<option value="<%=sectionBean.getDept_ID()%>"><%=sectionBean.getDept_name() %></option>
-										
-										<%
-										for (int i=0;i <departmentList.size();i++){
-											departmentBean department =(departmentBean)departmentList.elementAt(i);
-											if(!department.getDept_ID().equals(sectionBean.getDept_ID())){
-											
-										%>
-										<option value="<%=department.getDept_ID()%>"><%=department.getDept_name() %></option>
-										<%
-											}
-										} 
-										%> 
+                       					<select class="form-control" name="department.dept_ID" required>
+											  <c:forEach var="item" items="${LOV_DEPARTMENT}">
+										     	<option value="${item.code}" ${item.code == sectionBean.department.dept_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										    </c:forEach>			
 	                                	</select>
                        				</div>	
                        			</div>                			
@@ -115,38 +70,21 @@
                        				</div>
                        				<div class="col-lg-8">
                        					<select class="form-control" name="activeFlag" required>
-										<% 										
-
-										Vector<activeFlagBean> activeFlagList = listActiveFlag.getActiveFlag() ;
-										%>
-										
-										<option value="<%=sectionBean.getActiveFlag() %>"><%=sectionBean.getActiveFlag_name() %></option>
-										
-										<%
-										for (int i=0;i <activeFlagList.size();i++){											
-											activeFlagBean activeFlag =(activeFlagBean)activeFlagList.elementAt(i);
- 											if (!activeFlag.getactiveFlag_name().equals(sectionBean.getActiveFlag_name())){
-												%>
-												<option value="<%=activeFlag.getactiveFlag_code() %>"><%=activeFlag.getactiveFlag_name() %></option>
-												<%												
-											}										
-										} 
-										%>											
+											 <c:forEach var="item" items="${LOV_ACTIVE_FLG}">
+										     	<option value="${item.code}" ${item.code == sectionBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										    </c:forEach>				
 	                                	</select>
                        				</div>	
                        			</div>
-                                
-                                
-                                		                        
+		                        
+		                        			 	       
 	                        </div>
-	                        
 	                        <div class="panel-footer">
-                                <input type ="submit" value="Edit" name="rAction" role="button" class="btn btn-warning">
-                                <a type="reset" class="btn btn-default" href="list.jsp" role="button" >Cancel</a>
-	                        </div> 	 	                        
-
-					</div>                     
-                             
+		                        <input type ="button" value="Save" name="rAction" role="button" class="btn btn-info" onclick="doSaveSection()">
+                        		<a type="reset" class="btn btn-default" href="${cPath}/section/section_list.htm"  role="button" >Cancel</a>    
+	                        </div> 	
+	                        
+					</div>     
                     </div>
             	<div class="col-lg-3">
 				
@@ -156,8 +94,31 @@
                 <!-- /.col-lg-4 -->
            	</div>
 
+            
 </form>
             
-            
+<script type="text/javascript">
 
-<jsp:include page="../pages/footer.jsp"></jsp:include>
+function doSaveSection() {
+
+	bootbox.confirm({
+		title : "Confirm",
+		message : _confirmSaveTxt,
+		buttons : {
+			cancel : {
+				label : '<i class="fa fa-times"></i> Cancel',
+				className : 'btn-danger'
+			},
+			confirm : {
+				label : '<i class="fa fa-check"></i> Confirm',
+				className : 'btn-success'
+			}
+		},
+		callback : function(result) {
+			if (result) {
+				 $("#myForm").submit();
+			}
+		}
+	});
+}
+</script>  

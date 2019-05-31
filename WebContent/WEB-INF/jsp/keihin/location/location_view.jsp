@@ -90,7 +90,7 @@
 </form>            
 
 <script type="text/javascript">
- 	function doDel(factory_ID){
+ 	function doDel(location_ID){
 			bootbox.confirm({
 			    title: "Confirm",
 			    size: 'small',
