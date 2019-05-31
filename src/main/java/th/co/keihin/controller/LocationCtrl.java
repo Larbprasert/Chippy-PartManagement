@@ -56,6 +56,8 @@ public class LocationCtrl {
 		
 		mav.addObject("locationBean",locationService.getLocationBeanByID(bean.getLocation_ID()));
 		
+		mav.addObject("LOV_FACTORY",factoryService.loadActiveFactory());
+
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 
 		mav.setViewName("location_create");
@@ -67,6 +69,8 @@ public class LocationCtrl {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("locationBean",locationService.getLocationBeanByID(bean.getLocation_ID()));
+		
+		mav.addObject("LOV_FACTORY",factoryService.loadActiveFactory());
 		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 				

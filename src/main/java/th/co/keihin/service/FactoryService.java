@@ -2,15 +2,18 @@ package th.co.keihin.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.keihin.model.FactoryBean;
 
 @Repository("factoryService")
@@ -155,6 +158,28 @@ public class FactoryService {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	public List<LovInfo> loadActiveFactory() {
+		 List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+		String query = "Select fac.factory_ID ," + 
+				"fac.factory_Name factory_name "+
+				"from tb_factory fac " +
+				"where 1=1 and fac.activeFlag <> 2 " +
+				"order by fac.factory_ID";
+				
+		List<FactoryBean> faclist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(FactoryBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (FactoryBean factoryBean : faclist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(factoryBean.getFactory_ID());
+			lovInfo.setDescTH(factoryBean.getFactory_name());
+			lovInfo.setDescEN(factoryBean.getFactory_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 
 }

@@ -1,33 +1,16 @@
+ <!DOCTYPE HTML>
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="uTypeService" class="com.service.locationService"></jsp:useBean>  
-<jsp:useBean id="listfactory" class="com.service.factoryService"></jsp:useBean>    
-
-<jsp:useBean id="listActiveFlag" class="com.service.activeFlagService"></jsp:useBean>
-<%@page import="com.entity.activeFlagBean" %>
-
-<%@page import="com.entity.locationBean" %>
-<%@page import="com.entity.userBean" %>
-<%@page import="com.entity.factoryBean" %>
-
-<%@page import="java.util.Vector" %>
+	pageEncoding="UTF-8"%>
+<%@include file="/resources/adminLTE/common.jsp"%>
+<body class="${bodySkin}">
+<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
   
-<jsp:include page="../pages/header.jsp"></jsp:include>
- 
-<jsp:include page="../pages/rSide.jsp"></jsp:include>
+<form action="${cPath}/location/location_save.htm" method="post" id="myForm" data-toggle="validator" >
 
-<% 
-userBean currentUser = (userBean)session.getAttribute("user_name");	
-
-System.out.println(currentUser.getUser_ID());
-
-%>  
-
-<form action="/PartManagement/locationServlet" method="post">
-
-<input class="form-control" id="user_ID" name ="user_ID" type="hidden" value="<%=currentUser.getUser_ID()%>">
+<input name ="rAction" type="hidden" value="Create">
 
 <div id="page-wrapper">
             <div class="row">
@@ -73,18 +56,11 @@ System.out.println(currentUser.getUser_ID());
                        					<p class="help-block"><b>Factory : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<select class="form-control" name="factory_ID" required>
-	                                	
-										<% 
-										Vector<factoryBean> factoryList = listfactory.getAll();
-										for (int i=0;i <factoryList.size();i++){
-											factoryBean factory =(factoryBean)factoryList.elementAt(i);
-										%>
-										<option value="<%=factory.getFactory_ID()%>"><%=factory.getFactory_name() %></option>
-										<%
-										} 
-										%> 
-	                                </select>
+                       					<select class="form-control" name="factory.factory_ID" required>
+											  <c:forEach var="item" items="${LOV_FACTORY}">
+										     	<option value="${item.code}" ${item.code == locationBean.factory.factory_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										    </c:forEach>			
+	                                	</select>
                        				</div>	
                        			</div>                       			
                        			<br>         
@@ -94,24 +70,16 @@ System.out.println(currentUser.getUser_ID());
                        				</div>
                        				<div class="col-lg-8">
                        					<select class="form-control" name="activeFlag" required>
-										<% 										
-
-										Vector<activeFlagBean> activeFlagList = listActiveFlag.getActiveFlag();	
-										
-										for (int i=0;i <activeFlagList.size();i++){											
-											activeFlagBean activeFlag =(activeFlagBean)activeFlagList.elementAt(i);
-										%>
-										<option value="<%=activeFlag.getactiveFlag_code() %>"><%=activeFlag.getactiveFlag_name() %></option>
-										<%
-										} 
-										%>											
+											 <c:forEach var="item" items="${LOV_ACTIVE_FLG}">
+										     	<option value="${item.code}" ${item.code == locationBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										    </c:forEach>				
 	                                	</select>
                        				</div>	
                        			</div>  					 	       
 	                        </div>
 	                        <div class="panel-footer">
-                                <input type ="submit" value="Create" name="rAction" role="button" class="btn btn-success">
-                                <a type="reset" class="btn btn-default" href="list.jsp" role="button" >Cancel</a>  
+                                <input type ="button" value="Save"   role="button" class="btn btn-info" onclick="doSaveLocation()" >
+                                <a type="reset" class="btn btn-default" href="${cPath}/location/location_list.htm"  role="button" >Cancel</a>  
 	                        </div> 	 	                        
  
 					</div>  
@@ -126,4 +94,31 @@ System.out.println(currentUser.getUser_ID());
             
 </form>            
 
-<jsp:include page="../pages/footer.jsp"></jsp:include>
+<script type="text/javascript">
+ 
+function doSaveLocation() {
+	var _f = $('#myForm').validator('validate');
+	if (_f.has('.has-error').length == 0) {
+		 
+	bootbox.confirm({
+		title : "Confirm",
+		message : _confirmSaveTxt,
+		buttons : {
+			cancel : {
+				label : '<i class="fa fa-times"></i> Cancel',
+				className : 'btn-danger'
+			},
+			confirm : {
+				label : '<i class="fa fa-check"></i> Confirm',
+				className : 'btn-success'
+			}
+		},
+		callback : function(result) {
+			if (result) {
+				 $("#myForm").submit();
+			}
+		}
+	});
+	}
+}
+</script>   

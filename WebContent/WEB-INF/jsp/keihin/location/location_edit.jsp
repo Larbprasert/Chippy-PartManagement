@@ -55,10 +55,10 @@
                        					<p class="help-block"><b>Factory : </b></p>
                        				</div>
                        				<div class="col-lg-8">                       					
-                       					<select class="form-control" name="factory_name" required>
-											 <c:forEach var="item" items="${factoryBean}">
-										     	<option value="${item.factory_ID}" ${item.factory_ID == locationBean.factory_ID ? 'selected="selected"' : ''}  >${item.factory_name}</option>
-										    </c:forEach>				
+                       					<select class="form-control" name="factory.factory_ID" required>
+											  <c:forEach var="item" items="${LOV_FACTORY}">
+										     	<option value="${item.code}" ${item.code == locationBean.factory.factory_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										    </c:forEach>			
 	                                	</select>
                        				</div>	
                        			</div>                       			

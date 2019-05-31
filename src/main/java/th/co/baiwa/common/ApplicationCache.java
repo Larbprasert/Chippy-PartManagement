@@ -25,6 +25,7 @@ import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.baiwa.preferences.entity.Message;
 import th.co.baiwa.preferences.entity.ParameterGroup;
 import th.co.baiwa.preferences.entity.ParameterInfo;
+import th.co.keihin.service.FactoryService;
 import th.co.tpcc.dao.OwnerDao;
 import th.co.tpcc.model.Owner;
 import th.co.tpcc.model.SysParam;
@@ -37,12 +38,12 @@ public class ApplicationCache {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@Autowired
-	private ParameterGroupDao parameterGroupDao;
-	@Autowired
-	private ParameterInfoDao parameterInfoDao;
-	@Autowired
-	private MessageDao messageDao;
+//	@Autowired
+//	private ParameterGroupDao parameterGroupDao;
+//	@Autowired
+//	private ParameterInfoDao parameterInfoDao;
+//	@Autowired
+//	private MessageDao messageDao;
 //	@Autowired
 //	private SheDeptDao sheDeptDao;
 //	@Autowired
@@ -58,6 +59,9 @@ public class ApplicationCache {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private FactoryService factoryService;
+	
 //	private static final ConcurrentHashMap<String, ParameterGroupWrapper> PARAMETER_GROUP_MAP = new ConcurrentHashMap<String, ParameterGroupWrapper>();
 //	private static final ConcurrentHashMap<Long, ParameterInfo> PARAMETER_INFO_MAP = new ConcurrentHashMap<Long, ParameterInfo>();
 	private static final ConcurrentHashMap<String, Message> MESSAGE_MAP = new ConcurrentHashMap<String, Message>();
@@ -70,6 +74,7 @@ public class ApplicationCache {
 	private static List<LovInfo> LOV_SYS_USERS = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_TIMING = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_ACTIVE_FLG = new ArrayList<LovInfo>();
+//	private static List<LovInfo> LOV_FACTORY = new ArrayList<LovInfo>();
 
 
 	
@@ -155,7 +160,7 @@ public class ApplicationCache {
 		buildRoleLov();
 		buildUserLov();
 		
-		buildLovTiming();
+		buildLovAll();
 		
 		logger.info("ApplicationCache Reloaded");
 	}
@@ -297,9 +302,10 @@ public class ApplicationCache {
 		}
 	}
 	
-	public void buildLovTiming() {
+	public void buildLovAll() {
 		LOV_TIMING = lovDao.loadTimingLov();
 		LOV_ACTIVE_FLG = lovDao.loadActiveFlagLov();
+//		LOV_FACTORY = factoryService.loadActiveFactoryLov();
 	}
 	
 
@@ -330,6 +336,10 @@ public class ApplicationCache {
 	public static List<LovInfo> getLovActiveFlag() {
 		return LOV_ACTIVE_FLG;
 	}
+	
+//	public static Object getActiveFactory() {
+//		return LOV_FACTORY;
+//	}
 	
 
 }
