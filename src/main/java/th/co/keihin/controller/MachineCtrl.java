@@ -52,9 +52,9 @@ public class MachineCtrl {
 	public ModelAndView machine_create(HttpServletRequest httpRequest, MachineBean bean) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("machineBean",machineService.getMachineBeanByID(bean.getMachine_ID()));
+		//mav.addObject("machineBean",machineService.getMachineBeanByID(bean.getMachine_ID()));
 		
-		mav.addObject("LOV_FACTORY",productionLineService.loadActiveProductionLine());
+		mav.addObject("LOV_PRODUCTIONLINE",productionLineService.loadActiveProductionLine());
 
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 
@@ -68,7 +68,7 @@ public class MachineCtrl {
 		
 		mav.addObject("machineBean",machineService.getMachineBeanByID(bean.getMachine_ID()));
 		
-		mav.addObject("LOV_FACTORY",productionLineService.loadActiveProductionLine());
+		mav.addObject("LOV_PRODUCTIONLINE",productionLineService.loadActiveProductionLine());
 		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 				

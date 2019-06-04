@@ -45,8 +45,7 @@
 
 
 <!-- 	##### <<<<< JAVASCRIPT ####------------------- -->
-<script>
-				 
+<script type="text/javascript">	 
 			
 				function popupDescription(id) {
 					
@@ -131,7 +130,7 @@
 				 
 				
 				function doAdd() {
-					machine = cPath + "/machine/machine_create.htm" ;
+					location = cPath + "/machine/machine_create.htm" ;
 			}
 				
 				

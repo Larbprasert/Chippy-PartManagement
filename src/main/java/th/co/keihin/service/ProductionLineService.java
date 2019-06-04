@@ -174,7 +174,7 @@ public class ProductionLineService {
 	public List<LovInfo> loadActiveProductionLine() {
 		 List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
 		
-		String query = "Select a.productionLine_ID, a.productionLine_name"+
+		String query = "Select a.productionLine_ID, a.productionLine_name "+
 		"From tb_productionLine a " +
 		"where 1=1 and a.activeFlag <> 2 order by a.productionLine_ID";
 				
