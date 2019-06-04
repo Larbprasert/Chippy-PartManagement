@@ -35,7 +35,7 @@ public class MakerCtrl {
 	public ModelAndView maker_view(HttpServletRequest httpRequest, MakerBean bean) {
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("factoryBean",makerService.getMakerBeanByID(bean.getMaker_ID()));
+		mav.addObject("makerBean",makerService.getMakerBeanByID(bean.getMaker_ID()));
 		
 		mav.setViewName("maker_view");
 		return mav;
@@ -45,7 +45,7 @@ public class MakerCtrl {
 	public ModelAndView maker_create(HttpServletRequest httpRequest, MakerBean bean) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("factoryBean",makerService.getMakerBeanByID(bean.getMaker_ID()));
+		mav.addObject("makerBean",makerService.getMakerBeanByID(bean.getMaker_ID()));
 		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 		
@@ -59,7 +59,7 @@ public class MakerCtrl {
 	public ModelAndView maker_edit(HttpServletRequest httpRequest, MakerBean bean) {
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("factoryBean",makerService.getMakerBeanByID(bean.getMaker_ID()));
+		mav.addObject("makerBean",makerService.getMakerBeanByID(bean.getMaker_ID()));
 		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 		
@@ -89,7 +89,7 @@ public class MakerCtrl {
 	}
 	
 	
-	@RequestMapping("/factory/search.json")
+	@RequestMapping("/maker/search.json")
 	public DataTableAjax<MakerBean> search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DataTableAjax<MakerBean> dataTableAjax = makerService.getAll();
 		return dataTableAjax;
