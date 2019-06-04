@@ -91,6 +91,22 @@ public class LovDao extends AbstractCommonJdbcDao {
 		});
 	}
 	
+	public List<LovInfo> loadProvince() {
+		String sql = "select province_code,province_name_tha from tbm_province order by province_code";		
+		return executeQuery(sql, new RowMapper<LovInfo>() {
+			
+			@Override
+			public LovInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				LovInfo info = new LovInfo();
+				info.setCode(rs.getString("province_code"));
+				info.setDescEN(rs.getString("province_name_tha"));
+				info.setDescTH(rs.getString("province_name_tha"));
+				return info;
+			}
+			
+		});
+	}
+	
 //	Load constanst of Partmanagement value to temp server	
 	
 

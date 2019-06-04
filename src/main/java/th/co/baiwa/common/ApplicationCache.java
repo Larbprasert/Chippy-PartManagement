@@ -72,8 +72,11 @@ public class ApplicationCache {
 	private static List<LovInfo> LOV_OWNER = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_ROLE = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_SYS_USERS = new ArrayList<LovInfo>();
+	
+	
 	private static List<LovInfo> LOV_TIMING = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_ACTIVE_FLG = new ArrayList<LovInfo>();
+	private static List<LovInfo> LOV_PROVINCE = new ArrayList<LovInfo>();
 //	private static List<LovInfo> LOV_FACTORY = new ArrayList<LovInfo>();
 
 
@@ -303,9 +306,13 @@ public class ApplicationCache {
 	}
 	
 	public void buildLovAll() {
+
+//		Load constanst of Partmanagement value to temp server
 		LOV_TIMING = lovDao.loadTimingLov();
 		LOV_ACTIVE_FLG = lovDao.loadActiveFlagLov();
-//		LOV_FACTORY = factoryService.loadActiveFactoryLov();
+		LOV_PROVINCE = lovDao.loadProvince();
+//		Load constanst of Partmanagement value to temp server
+		
 	}
 	
 
@@ -328,7 +335,9 @@ public class ApplicationCache {
 	public static List<LovInfo> getLovUsers() {
 		return LOV_SYS_USERS;
 	}
+
 	
+//Load constanst of Partmanagement value to temp server	
 	public static List<LovInfo> getLovTiming() {
 		return LOV_TIMING;
 	}
@@ -337,9 +346,8 @@ public class ApplicationCache {
 		return LOV_ACTIVE_FLG;
 	}
 	
-//	public static Object getActiveFactory() {
-//		return LOV_FACTORY;
-//	}
-	
-
+	public static List<LovInfo> getLovProvince() {
+		return LOV_PROVINCE;
+	}
+//Load constanst of Partmanagement value to temp server
 }

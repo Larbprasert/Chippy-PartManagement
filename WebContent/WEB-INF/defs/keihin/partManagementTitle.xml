@@ -70,4 +70,10 @@
 		<definition name="machine_view" template="/WEB-INF/jsp/keihin/machine/machine_view.jsp" />
 		<definition name="machine_edit" template="/WEB-INF/jsp/keihin/machine/machine_edit.jsp" />
 		<definition name="machine_create" template="/WEB-INF/jsp/keihin/machine/machine_create.jsp" />	
+
+<!-- Maker -->
+		<definition name="maker_list" template="/WEB-INF/jsp/keihin/maker/maker_list.jsp" />
+		<definition name="maker_view" template="/WEB-INF/jsp/keihin/maker/maker_view.jsp" />
+		<definition name="maker_edit" template="/WEB-INF/jsp/keihin/maker/maker_edit.jsp" />
+		<definition name="maker_create" template="/WEB-INF/jsp/keihin/maker/maker_create.jsp" />
 </tiles-definitions>
