@@ -63,5 +63,11 @@
 		<definition name="productionLine_list" template="/WEB-INF/jsp/keihin/productionLine/productionLine_list.jsp" />
 		<definition name="productionLine_view" template="/WEB-INF/jsp/keihin/productionLine/productionLine_view.jsp" />
 		<definition name="productionLine_edit" template="/WEB-INF/jsp/keihin/productionLine/productionLine_edit.jsp" />
-		<definition name="productionLine_create" template="/WEB-INF/jsp/keihin/productionLine/productionLine_create.jsp" />		
+		<definition name="productionLine_create" template="/WEB-INF/jsp/keihin/productionLine/productionLine_create.jsp" />	
+
+<!-- Machine -->
+		<definition name="machine_list" template="/WEB-INF/jsp/keihin/machine/machine_list.jsp" />
+		<definition name="machine_view" template="/WEB-INF/jsp/keihin/machine/machine_view.jsp" />
+		<definition name="machine_edit" template="/WEB-INF/jsp/keihin/machine/machine_edit.jsp" />
+		<definition name="machine_create" template="/WEB-INF/jsp/keihin/machine/machine_create.jsp" />	
 </tiles-definitions>

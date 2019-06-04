@@ -2,15 +2,18 @@ package th.co.keihin.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.keihin.model.FactoryBean;
 import th.co.keihin.model.ProductionLineBean;
 
@@ -166,5 +169,25 @@ public class ProductionLineService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	public List<LovInfo> loadActiveProductionLine() {
+		 List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+		
+		String query = "Select a.productionLine_ID, a.productionLine_name"+
+		"From tb_productionLine a " +
+		"where 1=1 and a.activeFlag <> 2 order by a.productionLine_ID";
+				
+		List<ProductionLineBean> productionLineList = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(ProductionLineBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (ProductionLineBean ProductionLineBean : productionLineList) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(ProductionLineBean.getProductionLine_ID());
+			lovInfo.setDescTH(ProductionLineBean.getProductionLine_name());
+			lovInfo.setDescEN(ProductionLineBean.getProductionLine_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 }
