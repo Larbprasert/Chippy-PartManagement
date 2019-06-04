@@ -1,41 +1,16 @@
+<!DOCTYPE HTML>
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="listsection" class="com.service.sectionService"></jsp:useBean> 
-<jsp:useBean id="sectionByID" class="com.service.sectionService"></jsp:useBean> 
+	pageEncoding="UTF-8"%>
+<%@include file="/resources/adminLTE/common.jsp"%>
+<body class="${bodySkin}">
+<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
-<%@page import="com.entity.sectionBean" %>
-<%@page import="java.util.Vector" %>
 
- <% 
- 	sectionBean sectionBean  = new sectionBean();
- 
- 	System.out.println(request.getParameter("section_ID"));
-	
-	 if(request.getParameter("section_ID") !=null){
-		 sectionBean = sectionByID.getSectionBeanByID(request.getParameter("section_ID"));	 	
-	 }
-	 else
-	 {
-		response.sendRedirect("#"); 
-	 }
-	 
-	 String activeFlag = null;	 
-	 if( sectionBean.getActiveFlag() == 1) { 
-		activeFlag = "Active"; 
-		} else {
-		activeFlag = "inActive";
-		} 
+<form action="${cPath}/section/section_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
-	 
- %> 
- 
-  
-<jsp:include page="../pages/header.jsp"></jsp:include>
- 
-<jsp:include page="../pages/rSide.jsp"></jsp:include>
-
-<form action="/PartManagement/sectionServlet" method="post">
+<input name ="rAction" type="hidden" value="Delete">
 
         <div id="page-wrapper">
             <div class="row">
@@ -53,7 +28,7 @@
             	<div class="col-lg-6">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>Section :</b> <%=sectionBean.getSection_name() %>
+                            <b>Section :</b> ${sectionBean.section_name}
                         </div>                        
                         
                        		<div class="panel-body">
@@ -63,7 +38,7 @@
                        					<p class="help-block"><b>Section ID:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="User Type ID" name="section_ID" value="<%=sectionBean.getSection_ID() %>" readonly>
+                       					<input type="text" class="form-control" placeholder="User Type ID" name="section_ID" value="${sectionBean.section_ID}" readonly>
                        				</div>	
                        			</div>
                        			<br>
@@ -72,7 +47,7 @@
                        					<p class="help-block"><b>Section Name:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="section Name" name="section_name" value="<%=sectionBean.getSection_name() %>" readonly>
+                       					<input type="text" class="form-control" placeholder="section Name" name="section_name" value="${sectionBean.section_name}" readonly>
                        				</div>	
                        			</div>                			
                        			<br>
@@ -81,7 +56,7 @@
                        					<p class="help-block"><b>Department:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Department" name="dept_name" value="<%=sectionBean.getDept_name() %>" readonly>
+                       					<input type="text" class="form-control" placeholder="Department" name="dept_name" value="${sectionBean.department.dept_name}" readonly>
                        				</div>	
                        			</div>                			
                        			<br>
@@ -90,16 +65,16 @@
                        					<p class="help-block"><b>Status : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag" value="<%=sectionBean.getActiveFlag_name() %>" readonly>
+                       					<input type="text" class="form-control" placeholder="Status" name="activeFlag_name" value="${sectionBean.activeFlag_name}" readonly>
                        				</div>	
                        			</div>
 		                        
 		                        			 	       
 	                        </div>
 	                        <div class="panel-footer">
-		                        <a href="delete.jsp?section_ID=<%=sectionBean.getSection_ID() %>" class="btn btn-danger" role="button" aria-pressed="true" value="delete" name="rAction">Delete</a>		                        
-						 	  	<a href="edit.jsp?section_ID=<%=sectionBean.getSection_ID() %>" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
-						 	  	<a href="list.jsp" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a>  
+		                        <input type ="button" value="Delete" name="rAction" role="button" class="btn btn-info" onclick="doDel('${sectionBean.section_ID}')">
+						 	  	<a href="${cPath}/section/section_edit.htm?section_ID=${sectionBean.section_ID}" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
+						 	  	<a href="${cPath}/section/section_list.htm" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a>  
 	                        </div> 	
 	                        
 					</div>     
@@ -113,6 +88,29 @@
            	</div>
 
             
-</form>            
-
-<jsp:include page="../pages/footer.jsp"></jsp:include>
+</form>
+            
+<script type="text/javascript">
+ 	function doDel(section_ID){
+			bootbox.confirm({
+			    title: "Confirm",
+			    size: 'small',
+			    message: _confirmDelTxt,
+			    buttons: {
+			        cancel: {
+			            label: '<i class="fa fa-times"></i> Cancel'
+			        },
+			        confirm: {
+			            label: '<i class="fa fa-check"></i> Confirm',
+			            className: 'btn-success'
+			        }
+			    },
+			    callback : function(result) {
+					if (result) {
+						 $("#myForm").submit();
+					}
+				}
+			});
+		};
+		
+</script> 

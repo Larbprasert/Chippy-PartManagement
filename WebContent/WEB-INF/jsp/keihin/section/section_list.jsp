@@ -7,7 +7,7 @@
 	<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<h1 class="page-header">Department List</h1>
+			<h1 class="page-header">Section List</h1>
 		</section> 
 		
 		<section class="content">
@@ -19,7 +19,7 @@
 					<div class="box-tools pull-right">
 						<button type="button"
 							class="btn btn-box-tool btn-success btn-table" onclick="doAdd()">
-							<i class="fa fa-plus"></i>  Register New Department
+							<i class="fa fa-plus"></i>  Register New Section
 						</button>
 					</div>
 				</div>
@@ -42,7 +42,6 @@
 			</div>
 		</section>
 	</div>	
-
 
 <!-- 	##### <<<<< JAVASCRIPT ####------------------- -->
 <script>
@@ -131,7 +130,7 @@
 				 
 				
 				function doAdd() {
-					section = cPath + "/section/section_create.htm" ;
+					location = cPath + "/section/section_create.htm" ;
 			}
 				
 				
