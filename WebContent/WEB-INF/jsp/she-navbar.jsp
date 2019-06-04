@@ -19,7 +19,7 @@
 
        <a th:href="@{/home}" class="logo">
 <!--           DMS Web Portal -->
-             <span class="logo-mini"><b>MT</b></span>
+<!--              <span class="logo-mini"><b>MT</b></span> -->
       		<span class="logo-lg"> <b>Maintenance Web</b> </span>
       
       </a>

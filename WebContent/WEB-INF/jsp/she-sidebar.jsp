@@ -141,7 +141,7 @@
 							</span> </a>
 							<ul class="treeview-menu">
 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
-									<li><a href="#"><i
+									<li><a href="${cPath}/productionLine/productionLine_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
 							</ul>

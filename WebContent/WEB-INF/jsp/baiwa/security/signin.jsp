@@ -35,9 +35,10 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-body ">
 					<div class="text-center sign-box">
-						<img class="sign-img" src="${cPath}/resources/images/tp/TPCC_TPAC.png" alt="">
+<%-- 						<img class="sign-img" src="${cPath}/resources/images/tp/TPCC_TPAC.png" alt=""> --%>
+						<img class="sign-img" src="${cPath}/resources/images/tp/KEIHIN.png" alt="">
 					</div>
-					<h2 class="text-center">${projectName}</h2> 
+<%-- 					<h2 class="text-center">${projectName}</h2>  --%>
 <!-- 					<hr> -->
 					<form role="form" class="sign-box" action="login.htm" method="post">
 						<fieldset>

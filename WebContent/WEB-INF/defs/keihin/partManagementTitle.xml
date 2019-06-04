@@ -58,5 +58,10 @@
 		<definition name="section_view" template="/WEB-INF/jsp/keihin/section/section_view.jsp" />
 		<definition name="section_edit" template="/WEB-INF/jsp/keihin/section/section_edit.jsp" />
 		<definition name="section_create" template="/WEB-INF/jsp/keihin/section/section_create.jsp" />		
-	
+
+<!-- Production Line -->
+		<definition name="productionLine_list" template="/WEB-INF/jsp/keihin/productionLine/productionLine_list.jsp" />
+		<definition name="productionLine_view" template="/WEB-INF/jsp/keihin/productionLine/productionLine_view.jsp" />
+		<definition name="productionLine_edit" template="/WEB-INF/jsp/keihin/productionLine/productionLine_edit.jsp" />
+		<definition name="productionLine_create" template="/WEB-INF/jsp/keihin/productionLine/productionLine_create.jsp" />		
 </tiles-definitions>
