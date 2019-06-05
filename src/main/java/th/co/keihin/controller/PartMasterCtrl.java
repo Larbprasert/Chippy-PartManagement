@@ -83,6 +83,11 @@ public class PartMasterCtrl {
 		
 		mav.addObject("partMasterBean",partMasterService.getPartMasterBeanByID(bean.getPart_ID()));
 		
+		mav.addObject("LOV_UNITTYPE",unitTypeService.loadActiveUnitType());
+		mav.addObject("LOV_LOCATION",locationService.loadActiveLocation());
+		mav.addObject("LOV_MAKER",makerService.loadActiveMaker());
+		mav.addObject("LOV_MOLDTYPE",moldTypeService.loadActiveMoldType());
+		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 				
 		mav.setViewName("partMaster_edit");
