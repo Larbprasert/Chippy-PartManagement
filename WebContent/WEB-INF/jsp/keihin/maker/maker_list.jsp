@@ -124,7 +124,7 @@
 						
 				    ],
 				      "aoColumnDefs": [
-				      { "sClass": "text-center", "aTargets": [0,1,3] },
+				      { "sClass": "text-center", "aTargets": [0,1,5] },
 				    ],
 				    rowCallback: function (row, data) {}, 
 				    ordering: false, 

@@ -34,11 +34,14 @@ public class MakerService {
 			
 			maker.setMaker_ID(rs.getString("maker_ID"));
 			maker.setMaker_name(rs.getString("maker_name"));
-			maker.setMaker_tel(rs.getInt("maker_tel"));
+			maker.setMaker_tel(rs.getString("maker_tel"));
 			maker.setMaker_contactName(rs.getString("maker_contactName"));
 			maker.setMaker_contactLastName(rs.getString("maker_contactLastName"));
 			maker.setMaker_address1(rs.getString("maker_address1"));
-			maker.setMaker_province(rs.getString("province_name_tha"));
+			
+			maker.setMaker_province(rs.getString("maker_province"));
+			maker.setProvince_name_tha(rs.getString("province_name_tha"));
+			
 			maker.setMaker_email(rs.getString("maker_email"));
 			
 			maker.setActiveFlag(rs.getInt("activeFlag"));
@@ -59,7 +62,7 @@ public class MakerService {
 		
 		String query = "Select a.*,b.province_name_tha , act.value1 as activeFlag_name " +
 				"From tb_maker a " + 
-				"left join tbm_province b on a.maker_province = b.province_code " +
+				"left join tbm_province b on a.maker_province = b.province_code COLLATE SQL_Latin1_General_CP1_CI_AS " +
 				"left join tbm_misc_data act on a.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' " +
 				"where 1=1 and a.activeFlag <> 2 " +
 				"and a.maker_ID='" + maker_ID +"'"; 
@@ -75,7 +78,7 @@ public class MakerService {
 		
 		String query = "Select a.*,b.province_name_tha , act.value1 as activeFlag_name " +
 				"From tb_maker a " + 
-				"left join tbm_province b on a.maker_province = b.province_code " +
+				"left join tbm_province b on a.maker_province = b.province_code COLLATE SQL_Latin1_General_CP1_CI_AS " +
 				"left join tbm_misc_data act on a.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' " +
 				"where 1=1 and a.activeFlag <> 2 " +
 				"order by a.maker_ID";

@@ -5,11 +5,14 @@ import th.co.baiwa.common.persistence.entity.BaseDomain;
 public class MakerBean extends BaseDomain {
 	private String maker_ID;
     private String maker_name;
-    private int maker_tel;
+    private String maker_tel;
     private String maker_contactName;
     private String maker_contactLastName;
     private String maker_address1;
+    
     private String maker_province;
+    private String province_name_tha;
+    
     private String maker_email;
     
     private int activeFlag;
@@ -38,15 +41,16 @@ public class MakerBean extends BaseDomain {
     	 maker_name = newMaker_name;
 	}
 
-     public int getMaker_tel() {
-     	return this.maker_tel;
-     }
-     
-     public void setMaker_tel(int maker_tel) {
-     	this.maker_tel= maker_tel;
-     }      
-     
-     public String getMaker_contactName() {
+         
+     public String getMaker_tel() {
+		return maker_tel;
+	}
+
+	public void setMaker_tel(String maker_tel) {
+		this.maker_tel = maker_tel;
+	}
+
+	public String getMaker_contactName() {
          return maker_contactName;
  	}
 
@@ -78,8 +82,16 @@ public class MakerBean extends BaseDomain {
      public void setMaker_province(String newMaker_province) {
     	 maker_province = newMaker_province;
 	}
+     
+    public String getProvince_name_tha() {
+		return province_name_tha;
+	}
 
-    public String getMaker_email() {
+	public void setProvince_name_tha(String province_name_tha) {
+		this.province_name_tha = province_name_tha;
+	}
+
+	public String getMaker_email() {
          return maker_email;
  	}
 

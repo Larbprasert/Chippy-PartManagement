@@ -1,54 +1,45 @@
+<!DOCTYPE HTML>
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="listProvince" class="com.service.provinceService"></jsp:useBean> 
+	pageEncoding="UTF-8"%>
+<%@include file="/resources/adminLTE/common.jsp"%>
+<body class="${bodySkin}">
+<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
-<jsp:useBean id="listActiveFlag" class="com.service.activeFlagService"></jsp:useBean>
-<%@page import="com.entity.activeFlagBean" %> 
-    
-<%@page import="java.util.Vector" %>
-<%@page import="com.entity.makerBean" %>
-<%@page import="com.entity.userBean" %>
-<%@page import="com.entity.provinceBean" %>
-<%@page import="com.service.provinceService" %>
-  
-<jsp:include page="../pages/header.jsp"></jsp:include>
- 
-<jsp:include page="../pages/rSide.jsp"></jsp:include>
 
-<% 
-userBean currentUser = (userBean)session.getAttribute("user_name");	
+<form action="${cPath}/maker/maker_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
-%>  
+<input name ="rAction" type="hidden" value="Create">
 
-<form action="/PartManagement/makerServlet" method="post">
 
-<input class="form-control" id="user_ID" name ="user_ID" type="hidden" value="<%=currentUser.getUser_ID()%>">
-
-<div id="page-wrapper">
+        <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Maker - Create</h1>
+                    <h1 class="page-header">Maker Create</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             
-            <div class="row">
-                
-            	<div class="col-lg-12">
-                    <div class="panel panel-warning">
+			<div class="row">
+				<div class="col-lg-3">
+				
+				</div>   
+				           
+            	<div class="col-lg-8">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>Maker :</b> Create New 
+                            <b>Maker :</b> 
                         </div>
                         
 
-                      		<div class="panel-body">
+                       		<div class="panel-body">
                        			<div class="row">
                        				<div class="col-lg-2">
                        					<p class="help-block"><b>Maker ID: </b></p>
                        				</div>
                        				<div class="col-lg-4">
-                       					<input type="text" class="form-control" placeholder="Maker ID" name="maker_empID" value="" required>
+                       					<input type="text" class="form-control" placeholder="Maker ID" name="maker_ID" value="" required>
                        				</div>
                        				<div class="col-lg-6">
                        					
@@ -61,7 +52,7 @@ userBean currentUser = (userBean)session.getAttribute("user_name");
                        					<p class="help-block"><b>Maker Name: </b></p>
                        				</div>
                        				<div class="col-lg-10">
-                       					<input type="text" class="form-control" placeholder="Maker Name" name="maker_name" value=""  required>
+                       					<input type="text" class="form-control" placeholder="Maker Name" name="maker_name" value="" required>
                        				</div>
                        			</div>
                        			
@@ -77,7 +68,7 @@ userBean currentUser = (userBean)session.getAttribute("user_name");
                        					<p class="help-block"><b>Lastname: </b></p>
                        				</div>
                        				<div class="col-lg-4">
-                       					<input type="text" class="form-control" placeholder="Surname" name="maker_contactLastName" value="" required>
+                       					<input type="text" class="form-control" placeholder="Surname" name="maker_contactLastName" value="" >
                        				</div>
                        			</div>
 
@@ -110,17 +101,9 @@ userBean currentUser = (userBean)session.getAttribute("user_name");
                        				</div>
                        				<div class="col-lg-4">
                        					<select class="form-control" name="maker_province" required>
-										<% 										
-
-										Vector<provinceBean> provinceList = listProvince.getProvince();
-										
-										for (int i=0;i <provinceList.size();i++){											
-											provinceBean province =(provinceBean)provinceList.elementAt(i);
-											%>
-											<option value="<%=province.getProvince_code() %>"><%=province.getProvince_name_tha() %></option>
-											<%												
-										} 
-										%>	
+											  <c:forEach var="item" items="${LOV_PROVINCE}">
+										     	<option value="${item.code}" ${item.code == makerBean.maker_province ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										    </c:forEach>			
 	                                	</select>
                        				</div>
                        			</div>
@@ -132,17 +115,9 @@ userBean currentUser = (userBean)session.getAttribute("user_name");
                        				</div>
                        				<div class="col-lg-4">
                        					<select class="form-control" name="activeFlag" required>
-										<% 										
-
-										Vector<activeFlagBean> activeFlagList = listActiveFlag.getActiveFlag();	
-										
-										for (int i=0;i <activeFlagList.size();i++){											
-											activeFlagBean activeFlag =(activeFlagBean)activeFlagList.elementAt(i);
-										%>
-										<option value="<%=activeFlag.getactiveFlag_code() %>"><%=activeFlag.getactiveFlag_name() %></option>
-										<%
-										} 
-										%>											
+											 <c:forEach var="item" items="${LOV_ACTIVE_FLG}">
+										     	<option value="${item.code}" ${item.code == makerBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
+										    </c:forEach>				
 	                                	</select>
                        				</div>
                        				<div class="col-lg-6">
@@ -154,18 +129,45 @@ userBean currentUser = (userBean)session.getAttribute("user_name");
 	                        
 	                        
 	                       <div class="panel-footer">
-                                <input type ="submit" value="Create" name="rAction" role="button" class="btn btn-success">
-                                <a type="reset" class="btn btn-default" href="list.jsp" role="button" >Cancel</a> 
-	                        </div>	
+		                        <input type ="button" value="Save"   role="button" class="btn btn-info" onclick="doSaveMaker()" >
+                                <a type="reset" class="btn btn-default" href="${cPath}/maker/maker_list.htm"  role="button" >Cancel</a>                             
+	                        </div>		                        
 
 					</div>  
                 </div>
-                   
+                <div class="col-lg-1">
+				
+				</div> 
            	</div>
-                <!-- /.col-lg-4 -->
-		</div>
+	</div>
 
-            
-</form>            
+</form> 
 
-<jsp:include page="../pages/footer.jsp"></jsp:include>
+<script type="text/javascript">
+ 
+function doSaveMaker() {
+	var _f = $('#myForm').validator('validate');
+	if (_f.has('.has-error').length == 0) {
+		 
+	bootbox.confirm({
+		title : "Confirm",
+		message : _confirmSaveTxt,
+		buttons : {
+			cancel : {
+				label : '<i class="fa fa-times"></i> Cancel',
+				className : 'btn-danger'
+			},
+			confirm : {
+				label : '<i class="fa fa-check"></i> Confirm',
+				className : 'btn-success'
+			}
+		},
+		callback : function(result) {
+			if (result) {
+				 $("#myForm").submit();
+			}
+		}
+	});
+	}
+}
+</script> 
