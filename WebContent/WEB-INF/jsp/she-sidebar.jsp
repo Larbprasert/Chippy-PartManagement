@@ -204,12 +204,14 @@
 							</span> </a>
 							<ul class="treeview-menu">
 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
-									<li><a href="${cPath}/envi/utility_energy_search.htm"><i
+<%-- 									<li><a href="${cPath}/envi/utility_energy_search.htm"><i --%>
+									<li><a href="${cPath}/partMaster/partMaster_list.htm"><i
 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li>
 <%-- 									<li><a href="${cPath}/envi/part_inventory_search.htm"><i --%>
 <!-- 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li> -->
 								</security:authorize>
-								<li><a href="${cPath}/envi/utility_energy_report.htm"><i
+								<li><a href="#"><i
+<%-- 								<li><a href="${cPath}/envi/utility_energy_report.htm"><i --%>
 										class="fa fa-chevron-circle-right"></i>Report </a></li>								
 <%-- 								<li><a href="${cPath}/envi/utility_energy_report.htm"><i --%>
 <!-- 										class="fa fa-chevron-circle-right"></i>CO<sub>2</sub> Emission Report </a></li> -->

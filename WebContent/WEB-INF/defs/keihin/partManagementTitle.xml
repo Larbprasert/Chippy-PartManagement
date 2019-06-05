@@ -76,4 +76,11 @@
 		<definition name="maker_view" template="/WEB-INF/jsp/keihin/maker/maker_view.jsp" />
 		<definition name="maker_edit" template="/WEB-INF/jsp/keihin/maker/maker_edit.jsp" />
 		<definition name="maker_create" template="/WEB-INF/jsp/keihin/maker/maker_create.jsp" />
+
+<!-- Part Master -->
+		<definition name="partMaster_list" template="/WEB-INF/jsp/keihin/partMaster/partMaster_list.jsp" />
+		<definition name="partMaster_view" template="/WEB-INF/jsp/keihin/partMaster/partMaster_view.jsp" />
+		<definition name="partMaster_edit" template="/WEB-INF/jsp/keihin/partMaster/partMaster_edit.jsp" />
+		<definition name="partMaster_create" template="/WEB-INF/jsp/keihin/partMaster/partMaster_create.jsp" />
+
 </tiles-definitions>

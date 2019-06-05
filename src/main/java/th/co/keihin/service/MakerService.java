@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.baiwa.preferences.entity.LovInfo;
-import th.co.keihin.model.FactoryBean;
 import th.co.keihin.model.MakerBean;
 
 
@@ -195,6 +194,28 @@ public class MakerService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+	}
+
+
+	public List<LovInfo> loadActiveMaker() {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+			
+		String query = "Select a.maker_ID, a.maker_name "+
+				"From tb_maker a " + 
+				"where 1=1 and a.activeFlag <> 2 " +
+				"order by a.maker_ID";
+				
+		List<MakerBean> makerlist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(MakerBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (MakerBean maker : makerlist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(maker.getMaker_ID());
+			lovInfo.setDescTH(maker.getMaker_name());
+			lovInfo.setDescEN(maker.getMaker_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 	
 	

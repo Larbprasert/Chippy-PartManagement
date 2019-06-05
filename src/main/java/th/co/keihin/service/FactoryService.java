@@ -162,7 +162,7 @@ public class FactoryService {
 
 
 	public List<LovInfo> loadActiveFactory() {
-		 List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
 		String query = "Select fac.factory_ID ," + 
 				"fac.factory_Name factory_name "+
 				"from tb_factory fac " +

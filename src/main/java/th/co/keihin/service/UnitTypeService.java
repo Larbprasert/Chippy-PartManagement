@@ -2,16 +2,18 @@ package th.co.keihin.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
-import th.co.keihin.model.MoldTypeBean;
+import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.keihin.model.UnitTypeBean;
 
 @Repository("unitTypeService")
@@ -156,6 +158,28 @@ public class UnitTypeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	
+	public List<LovInfo> loadActiveUnitType() {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+			
+		String query = "Select a.unitType_ID, a.unitType_name " +
+						"From tb_UnitType a " + 
+						"where 1=1 and a.activeFlag <> 2 " +
+						"order by a.unitType_ID";
+				
+		List<UnitTypeBean> unitTypelist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(UnitTypeBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (UnitTypeBean unitTypeBean : unitTypelist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(unitTypeBean.getUnitType_ID());
+			lovInfo.setDescTH(unitTypeBean.getUnitType_name());
+			lovInfo.setDescEN(unitTypeBean.getUnitType_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 
 }

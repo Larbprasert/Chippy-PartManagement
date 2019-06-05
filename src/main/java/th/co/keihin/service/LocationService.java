@@ -7,11 +7,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.keihin.model.FactoryBean;
 import th.co.keihin.model.LocationBean;
 
@@ -170,6 +172,28 @@ public class LocationService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+	}
+
+
+	public List<LovInfo> loadActiveLocation() {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+			
+		String query = "Select a.location_ID, a.location_name "+
+				"From tb_location a " + 
+				"where 1=1 and a.activeFlag <> 2 " +
+				"order by a.location_ID";
+				
+		List<LocationBean> locationlist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(LocationBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (LocationBean locationBean : locationlist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(locationBean.getLocation_ID());
+			lovInfo.setDescTH(locationBean.getLocation_name());
+			lovInfo.setDescEN(locationBean.getLocation_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 	
 }

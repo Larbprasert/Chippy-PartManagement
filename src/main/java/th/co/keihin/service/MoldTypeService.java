@@ -2,15 +2,19 @@ package th.co.keihin.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
+import th.co.keihin.model.MakerBean;
 import th.co.keihin.model.MoldTypeBean;
 
 @Repository("moldTypeService")
@@ -149,5 +153,27 @@ public class MoldTypeService {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	public List<LovInfo> loadActiveMoldType() {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+			
+		String query = "Select a.moldType_ID, a.moldType_name "+
+				"From tb_MoldType a " + 
+				"where 1=1 and a.activeFlag <> 2 " +
+				"order by a.moldType_ID";
+				
+		List<MoldTypeBean> moldTypelist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(MoldTypeBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (MoldTypeBean moldType : moldTypelist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(moldType.getMoldType_ID());
+			lovInfo.setDescTH(moldType.getMoldType_name());
+			lovInfo.setDescEN(moldType.getMoldType_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 }
