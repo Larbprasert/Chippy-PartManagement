@@ -38,8 +38,8 @@ public class PartMasterService {
 			
 			partMaster.setSysPart_ID(rs.getString("sysPart_ID"));
 			
-			partMaster.setPart_ID(rs.getString("Part_ID"));
-			partMaster.setPart_name(rs.getString("Part_name"));
+			partMaster.setPart_ID(rs.getString("part_ID"));
+			partMaster.setPart_name(rs.getString("part_name"));
 			
 			partMaster.setMin_stock(rs.getInt("min_stock"));
 			partMaster.setMax_stock(rs.getInt("max_stock"));
@@ -68,8 +68,8 @@ public class PartMasterService {
 			maker.setMaker_name(rs.getString("maker_name"));
 			partMaster.setMaker(maker);
 			
-			moldType.setMoldType_ID(rs.getString("MoldType_ID"));
-			moldType.setMoldType_name(rs.getString("MoldType_name"));
+			moldType.setMoldType_ID(rs.getString("moldType_ID"));
+			moldType.setMoldType_name(rs.getString("moldType_name"));
 			partMaster.setMoldType(moldType);
 			
 			
@@ -123,7 +123,9 @@ public class PartMasterService {
 				+ "where 1=1 "
 				+ "and pm.activeFlag <> 2 "
 				+ "order by pm.part_ID";
-				
+		
+		System.out.println(query);
+		
 		List<PartMasterBean> list = jdbcTemplate.query(query,PARTMASTER_MAPPER);
 		
 		int total = list!=null? list.size():0;
@@ -236,6 +238,8 @@ public class PartMasterService {
 					+ "updateDate=getdate() "
 					+ "where 1=1 "+
 					"and sysPart_ID=? ");
+	    	
+			System.out.println("Edit Part_ID = " + PartMaster.getPart_ID());
 	    	
 	    	int updateRecord = jdbcTemplate.update(query,
 	    			new Object[] {  

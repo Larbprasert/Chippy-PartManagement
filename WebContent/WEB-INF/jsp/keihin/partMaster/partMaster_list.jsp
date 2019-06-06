@@ -1,55 +1,34 @@
+<!DOCTYPE HTML>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="listpartMaster" class="com.service.partMasterService"></jsp:useBean>  
-
-<%@ page import="com.entity.partMasterBean" %>
-<%@page import="com.entity.userBean"%>
-
-<%@page import="java.util.Vector" %>
-  
-<jsp:include page="../pages/header.jsp"></jsp:include>
- 
- <jsp:include page="../pages/rSide.jsp"></jsp:include>
-<%
-
-HttpServletRequest req=(HttpServletRequest)request;
-if(req.getSession().getAttribute("user_name")==null){
-	response.sendRedirect("/login.jsp");
-}else{
+	pageEncoding="UTF-8"%>
+<%@include file="/resources/adminLTE/common.jsp"%>
+<body class="${bodySkin}">
+	<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+	<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
+	<div class="content-wrapper">
+		<section class="content-header">
+			<h1 class="page-header">Part List</h1>
+		</section> 
 		
-}
+		<section class="content">
+		 
+			<!-- 	##### <<<<<  SEARCH ####------------------- -->
+			<div class="box box-primary"  id="rs_table">
+				<div class="box-header with-border">
+					<h3 class="box-title"></h3>
+					<div class="box-tools pull-right">
+						<button type="button"
+							class="btn btn-box-tool btn-success btn-table" onclick="doAdd()">
+							<i class="fa fa-plus"></i>  Register New Part
+						</button>
+					</div>
+				</div>
 
-userBean currentUser = (userBean)session.getAttribute("user_name");	
-			
-%> 
-
-<form action="/PartManagement/partMasterServlet" method="post">
-
-<input class="form-control" id="user_ID" name ="user_ID" type="hidden" value="<%=currentUser.getUser_ID()%>">
-
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Part Master List</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
-            <div class="row">
-	            <div class="col-lg-12">
-		            <div class="panel panel-default">
-		                <div class="panel-heading">
-		                    <a href="../partMaster/create.jsp" name="rAction" value="Create"><i class="fa fa-plus fa-fw"></i> Register new part master</a>
-		                </div>
-		                <!-- /.panel-heading -->
-		                
-		                <div class="panel-body">
-<!-- 		                    <div class="table-responsive"> -->
-	<!-- 	                        <table class="table table-striped"> -->
-	
-	                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-		                            <thead>
+				<div class="box-body">
+					<table id="result-table"
+						class="table table-striped table-bordered"
+						style="width: 100%">
+						<thead class="bg-green color-palette">
 		                                <tr>
 		                                    <th>#</th>
 		                                    <th>Part ID</th>
@@ -59,39 +38,109 @@ userBean currentUser = (userBean)session.getAttribute("user_name");
 		                                    <th>Qty</th>
 		                                    <th>Status</th>
 		                                </tr>
-		                            </thead>
-		                            
-		                            <tbody>
-	<%
-		Vector<PartMasterBean> vList = listpartMaster.getAll();
-		    for (int i=0;i <vList.size();i++){
-		    	PartMasterBean partMasterBean =(PartMasterBean)vList.elementAt(i);
-	%>
-<%-- 		                            <% System.out.println(partMasterBean.getPartMaster_ID()); %> --%>
-		                                <tr>
-		                                    <td><%=i+1 %></td>
-		                                    <td><a href="../partMaster/view.jsp?part_ID=<%=partMasterBean.getPart_ID() %>"><%=partMasterBean.getPart_ID() %></a></td>
-		                                    <td><%=partMasterBean.getPart_name() %></td>
-		                                    <td><%=partMasterBean.getMaker_name() %></td>
-		                                    <td><%=partMasterBean.getMoldType_name() %></td>
-		                                    <td><%=partMasterBean.getQty() %></td>
-		                                    <td><%=partMasterBean.getActiveFlag_name() %></td>
-		                                </tr>
-	<%
-	} 
-	%>	                               
-		                            </tbody>
-		                        </table>
-
-		                    <!-- /.table-responsive -->
-		                    
-		                </div>
-		                <!-- /.panel-body -->
-		            </div>
-		            <!-- /.panel -->
-		        </div>
+						</thead>						 
+					</table>
+				</div>
 			</div>
-	</div>
-</form>
+		</section>
+	</div>	
 
-<jsp:include page="../pages/footer.jsp"></jsp:include>
+
+<!-- 	##### <<<<< JAVASCRIPT ####------------------- -->
+<script>
+
+$(document).ready(function() {
+	doSearch();
+});
+			
+				function popupDescription(id) {
+					
+					$('#detailModal').modal('show');
+					
+					/**call method in modal*/
+					EQ_DETAIL.loadDetails(id);
+				}
+				
+				
+				function popupHistory(id) {
+					$('#historyModal').modal('show');
+					
+					/**call method in modal*/
+					EQ_HIST.loadHistoryList(id);
+					
+				}
+				
+				
+				function doClear() {
+// 					$("#rs_table").hide();
+				}
+
+// 				$('#result-table').DataTable({
+// 					ordering : false
+// 				});
+
+				var T_DATA = {};
+				function doSearch(){
+					$.ajax({
+			            url: cPath+"/partMaster/search.json"
+// 			            data: $('#myForm').serialize()
+			        }).done(function (result) {
+			            rsTable.clear().draw();
+			            if(result.recordsTotal>0){
+// 			            	T_DATA = result.data;
+				            rsTable.rows.add(result.data).draw();
+			            }else{
+//			             	bootbox.alert({
+//			 				    message: "No Data Found!",
+//			 				    size: 'small'
+//			 				});
+			            }
+			           }).fail(function (jqXHR, textStatus, errorThrown) { 
+			                 // needs to implement if it fails
+			           });
+					
+					$("#rs_table").show();
+					
+			 	};
+
+			 	
+				var rsTable = $('#result-table').DataTable({
+					autoWidth: false,
+					data:[],
+					columns: [
+						{
+							"data" : "part_ID",
+							"fnCreatedCell" : function(nTd, sData,
+									oData, iRow, iCol) {
+								var txt = iRow;
+								$(nTd).html(txt + 1);
+							}
+						},
+						{ "data": "part_ID" 
+							,"render" : function(val, vc , obj) {
+								return '<a href="${cPath}/partMaster/partMaster_view.htm?part_ID='+ obj.part_ID +'" >'+obj.part_ID+'</a>';
+							}
+						}, 
+						{ "data": "part_name" },
+						{ "data": "maker.maker_name" },
+						{ "data": "moldType.moldType_name" },
+						{ "data": "qty" },
+						{ "data": "activeFlag_name" }   
+						
+				    ],
+				      "aoColumnDefs": [
+				      { "sClass": "text-center", "aTargets": [0,1,5] },
+				    ],
+				    rowCallback: function (row, data) {}, 
+				    ordering: false, 
+			   	   	destroy: true 
+				 });
+				 
+				
+// 				function doAdd() {
+// 					location = cPath + "/partMaster/partMaster_create.htm" ;
+// 				}
+				function doAdd() {
+					location = cPath + "/productionLine/productionLine_create.htm" ;
+				}
+</script>

@@ -1,41 +1,16 @@
+<!DOCTYPE HTML>
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="listpartMaster" class="com.service.partMasterService"></jsp:useBean> 
-<jsp:useBean id="partMasterByID" class="com.service.partMasterService"></jsp:useBean> 
+	pageEncoding="UTF-8"%>
+<%@include file="/resources/adminLTE/common.jsp"%>
+<body class="${bodySkin}">
+<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
-<%@page import="com.entity.partMasterBean" %>
-<%@page import="java.util.Vector" %>
 
- <%
- 	PartMasterBean partMasterBean  = new PartMasterBean();
-  
-  	System.out.println(request.getParameter("part_ID"));
- 	
- 	 if(request.getParameter("part_ID") !=null){
- 		 partMasterBean = partMasterByID.getpartMasterBeanByID(request.getParameter("part_ID"));	 	
- 	 }
- 	 else
- 	 {
- 		response.sendRedirect("#"); 
- 	 }
- 	 
- 	 String activeFlag = null;	 
- 	 if( partMasterBean.getActiveFlag() == 1) { 
- 		activeFlag = "Active"; 
- 		} else {
- 		activeFlag = "inActive";
- 		}
- %> 
- 
-  
-<jsp:include page="../pages/header.jsp"></jsp:include>
- 
-<jsp:include page="../pages/rSide.jsp"></jsp:include>
+<form action="${cPath}/partMaster/partMaster_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
-<form action="/PartManagement/partMasterServlet" method="post">
-
-<input class="form-control" id="sysPart_ID" name ="sysPart_ID" type="hidden" value="<%=partMasterBean.getSysPart_ID() %>">
+<input name ="rAction" type="hidden" value="Delete">
 
         <div id="page-wrapper">
             <div class="row">
@@ -47,14 +22,14 @@
             
             
             <div class="row">
-             	<div class="col-lg-2">
+             	<div class="col-lg-3">
 				
 				</div>   
 				           
             	<div class="col-lg-8">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>Part Master :</b> <%=partMasterBean.getPart_name() %>
+                            <b>Part Master :</b>  ${partMasterBean.part_name}
                         </div>                        
                         		
 <div class="panel-body">
@@ -64,13 +39,13 @@
 			<p class="help-block"><b>Part ID:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Part ID" name="part_ID" value="<%=partMasterBean.getPart_ID() %>" readonly>
+			<input type="text" class="form-control" placeholder="Part ID" name="part_ID" value="${partMasterBean.part_ID}" readonly>
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Part Name:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Part Name" name="part_name" value="<%=partMasterBean.getPart_name() %>" readonly>
+			<input type="text" class="form-control" placeholder="Part Name" name="part_name" value="${partMasterBean.part_name}" readonly>
 		</div>		
 	</div>
 	<br>
@@ -80,13 +55,13 @@
 			<p class="help-block"><b>Qty:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Qty" name="qty" value="<%=partMasterBean.getQty() %>" readonly >
+			<input type="text" class="form-control" placeholder="Qty" name="qty" value="${partMasterBean.qty}" readonly >
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Price:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Price" name="price" value="<%=partMasterBean.getPrice() %>" readonly>
+			<input type="text" class="form-control" placeholder="Price" name="price" value="${partMasterBean.price}" readonly>
 		</div>		
 	</div>
 	<br>
@@ -96,13 +71,13 @@
 			<p class="help-block"><b>Min Stock:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Min Stock" name="min_stock" value="<%=partMasterBean.getMin_stock() %>" readonly>
+			<input type="text" class="form-control" placeholder="Min Stock" name="min_stock" value="${partMasterBean.min_stock}" readonly>
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Max Stock:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Max Stock" name="max_stock" value="<%=partMasterBean.getMax_stock() %>" readonly>
+			<input type="text" class="form-control" placeholder="Max Stock" name="max_stock" value="${partMasterBean.max_stock}" readonly>
 		</div>		
 	</div>
 	<br>
@@ -112,13 +87,13 @@
 			<p class="help-block"><b>Unit Type:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Status" name="unitType_ID" value="<%=partMasterBean.getUnitType_name() %>" readonly>
+			<input type="text" class="form-control" placeholder="Status" name="unitType_name" value="${partMasterBean.unitType.unitType_name}" readonly>
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Location:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Status" name="location_ID" value="<%=partMasterBean.getLocation_name() %>" readonly>
+			<input type="text" class="form-control" placeholder="Status" name="location_name" value="${partMasterBean.location.location_name}" readonly>
 		</div>		
 	</div>
 	<br>
@@ -128,13 +103,13 @@
 			<p class="help-block"><b>Maker/Brand:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Status" name="maker_ID" value="<%=partMasterBean.getMaker_name() %>" readonly>
+			<input type="text" class="form-control" placeholder="Status" name="maker_name" value="${partMasterBean.maker.maker_name}" readonly>
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Mold/Type:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Status" name="moldType_ID" value="<%=partMasterBean.getMoldType_name() %>" readonly>
+			<input type="text" class="form-control" placeholder="Status" name="moldType_name" value="${partMasterBean.moldType.moldType_name}" readonly>
 		</div>		
 	</div>
 	<br>
@@ -144,7 +119,7 @@
 			<p class="help-block"><b>Status:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Status" name="activeFlag" value="<%=activeFlag %>" readonly>
+			<input type="text" class="form-control" placeholder="Status" name="activeFlag_name" value="${partMasterBean.activeFlag_name}" readonly>
 		</div>
 		<div class="col-lg-6">
 			
@@ -154,14 +129,14 @@
 	                        
 	                        
 	                        <div class="panel-footer">
-		                        <a href="delete.jsp?part_ID=<%=partMasterBean.getPart_ID() %>" class="btn btn-danger" role="button" aria-pressed="true" value="delete" name="rAction">Delete</a>		                        
-						 	  	<a href="edit.jsp?part_ID=<%=partMasterBean.getPart_ID() %>" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
-						 	  	<a href="list.jsp" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a>  
+		                        <input type ="button" value="Delete" name="rAction" role="button" class="btn btn-info" onclick="doDel('${partMasterBean.part_ID}')">
+						 	  	<a href="${cPath}/partMaster/partMaster_edit.htm?part_ID=${partMasterBean.part_ID}" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
+						 	  	<a href="${cPath}/partMaster/partMaster_list.htm" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a> 
 	                        </div> 	 	                        
 
 					</div>     
                     </div>
-             	<div class="col-lg-2">
+             	<div class="col-lg-1">
 				
 				</div>                      
                 </div>
@@ -171,4 +146,27 @@
             
 </form>            
 
-<jsp:include page="../pages/footer.jsp"></jsp:include>
+<script type="text/javascript">
+ 	function doDel(part_ID){
+			bootbox.confirm({
+			    title: "Confirm",
+			    size: 'small',
+			    message: _confirmDelTxt,
+			    buttons: {
+			        cancel: {
+			            label: '<i class="fa fa-times"></i> Cancel'
+			        },
+			        confirm: {
+			            label: '<i class="fa fa-check"></i> Confirm',
+			            className: 'btn-success'
+			        }
+			    },
+			    callback : function(result) {
+					if (result) {
+						 $("#myForm").submit();
+					}
+				}
+			});
+		};
+		
+</script> 

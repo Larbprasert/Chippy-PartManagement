@@ -1,75 +1,37 @@
+<!DOCTYPE HTML>
+<%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<jsp:useBean id="partMasterByID" class="com.service.partMasterService"></jsp:useBean> 
-<jsp:useBean id="listpartMaster" class="com.service.partMasterService"></jsp:useBean>    
-<jsp:useBean id="uTypeService" class="com.service.partMasterService"></jsp:useBean>  
-<jsp:useBean id="listmoldType" class="com.service.moldTypeService"></jsp:useBean> 
-<jsp:useBean id="listmaker" class="com.service.makerService"></jsp:useBean> 
-<jsp:useBean id="listunitType" class="com.service.unitTypeService"></jsp:useBean>
-<jsp:useBean id="listlocation" class="com.service.locationService"></jsp:useBean>
-
-<jsp:useBean id="listActiveFlag" class="com.service.activeFlagService"></jsp:useBean>
-<%@page import="com.entity.activeFlagBean" %> 
-
-<%@page import="com.entity.userBean" %>
-<%@page import="com.entity.partMasterBean" %>
-<%@page import="com.entity.userBean" %>
-<%@page import="com.entity.moldTypeBean" %>
-<%@page import="com.entity.makerBean" %>
-<%@page import="com.entity.unitTypeBean" %>
-<%@page import="com.entity.locationBean" %>
+	pageEncoding="UTF-8"%>
+<%@include file="/resources/adminLTE/common.jsp"%>
+<body class="${bodySkin}">
+<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
 
-<%@page import="java.util.Vector" %>
+<form action="${cPath}/partMaster/partMaster_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 
+<input name ="rAction" type="hidden" value="Edit">
 
- <%
- 	PartMasterBean partMasterBean  = new PartMasterBean();
-  
-  	System.out.println(request.getParameter("part_ID"));
- 	
- 	 if(request.getParameter("part_ID") !=null){
- 		 partMasterBean = partMasterByID.getpartMasterBeanByID(request.getParameter("part_ID"));	 	
- 	 }
- 	 else
- 	 {
- 		response.sendRedirect("#"); 
- 	 }
- 	 
- 	 userBean currentUser = (userBean)session.getAttribute("user_name");
- %> 
- 
-  
-<jsp:include page="../pages/header.jsp"></jsp:include>
- 
- <jsp:include page="../pages/rSide.jsp"></jsp:include>
-
-<form action="/PartManagement/partMasterServlet" method="post">
-
-<input class="form-control" id="user_ID" name ="user_ID" type="hidden" value="<%=currentUser.getUser_ID()%>">
-<input class="form-control" id="sysPart_ID" name ="sysPart_ID" type="hidden" value="<%=partMasterBean.getSysPart_ID() %>">
-
-<!-- <input class="form-control" id="userID" name ="userID" type="hidden" value="Admin"> -->
-            
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Part Master - Edit</h1>
+                    <h1 class="page-header">Part Master View</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             
+            
             <div class="row">
-             	<div class="col-lg-2">
+             	<div class="col-lg-3">
 				
 				</div>   
 				           
             	<div class="col-lg-8">
-                    <div class="panel panel-warning">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>Part Master :</b> <%=partMasterBean.getPart_name() %>
-                        </div>
+                            <b>Part Master :</b>  ${partMasterBean.part_name}
+                        </div>                        
+                        		
 <div class="panel-body">
 
 	<div class="row">
@@ -77,13 +39,13 @@
 			<p class="help-block"><b>Part ID:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Part ID" name="part_ID" value="<%=partMasterBean.getPart_ID() %>" readonly>
+			<input type="text" class="form-control" placeholder="Part ID" name="part_ID" value="${partMasterBean.part_ID}" >
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Part Name:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Part Name" name="part_name" value="<%=partMasterBean.getPart_name() %>" readonly>
+			<input type="text" class="form-control" placeholder="Part Name" name="part_name" value="${partMasterBean.part_name}" >
 		</div>		
 	</div>
 	<br>
@@ -93,13 +55,13 @@
 			<p class="help-block"><b>Qty:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Qty" name="qty" value="<%=partMasterBean.getQty() %>" readonly >
+			<input type="text" class="form-control" placeholder="Qty" name="qty" value="${partMasterBean.qty}"  >
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Price:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Price" name="price" value="<%=partMasterBean.getPrice() %>" readonly>
+			<input type="text" class="form-control" placeholder="Price" name="price" value="${partMasterBean.price}" >
 		</div>		
 	</div>
 	<br>
@@ -109,13 +71,13 @@
 			<p class="help-block"><b>Min Stock:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Min Stock" name="min_stock" value="<%=partMasterBean.getMin_stock() %>" >
+			<input type="text" class="form-control" placeholder="Min Stock" name="min_stock" value="${partMasterBean.min_stock}" >
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Max Stock:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Max Stock" name="max_stock" value="<%=partMasterBean.getMax_stock() %>" >
+			<input type="text" class="form-control" placeholder="Max Stock" name="max_stock" value="${partMasterBean.max_stock}" >
 		</div>		
 	</div>
 	<br>
@@ -124,51 +86,21 @@
 		<div class="col-lg-2">
 			<p class="help-block"><b>Unit Type:</b></p>
 		</div>
-		<div class="col-lg-4">
-			<select class="form-control" name="unitType_ID" required>	                                	
-				<% 
-				Vector<unitTypeBean> unitTypeList = listunitType.getAll();
-				%>
-				
-				<option value="<%=partMasterBean.getUnitType_ID() %>"><%=partMasterBean.getUnitType_name() %></option>
-				
-				<%										
-				
-				for (int i=0;i <unitTypeList.size();i++){
-					unitTypeBean unitType =(unitTypeBean)unitTypeList.elementAt(i);
-					
-					if (!unitType.getUnitType_ID().equals(partMasterBean.getUnitType_ID())){
-				%>
-				<option value="<%=unitType.getUnitType_ID() %>"><%=unitType.getUnitType_name() %></option>
-				<%
-					}
-				} 
-				%> 
+		<div class="col-lg-4">			
+			<select class="form-control" name="unitType.unitType_ID" required>
+				<c:forEach var="item" items="${LOV_UNITTYPE}">
+					<option value="${item.code}" ${item.code == partMasterBean.unitType.unitType_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+				</c:forEach>				
 			</select>
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Location:</b></p>
 		</div>
-		<div class="col-lg-4">
-			<select class="form-control" name="location_ID" required>	                                	
-				<% 
-				Vector<locationBean> locationList = listlocation.getAll();
-				%>
-				
-				<option value="<%=partMasterBean.getLocation_ID() %>"><%=partMasterBean.getLocation_name() %></option>
-				
-				<%											
-				
-				for (int i=0;i <locationList.size();i++){
-					locationBean location =(locationBean)locationList.elementAt(i);
-					if (!location.getLocation_ID().equals(partMasterBean.getLocation_ID())){
-					
-				%>
-				<option value="<%=location.getLocation_ID() %>"><%=location.getLocation_name() %></option>
-				<%
-					}
-				} 
-				%> 
+		<div class="col-lg-4">			
+			<select class="form-control" name="location.location_ID" required>
+				<c:forEach var="item" items="${LOV_LOCATION}">
+					<option value="${item.code}" ${item.code == partMasterBean.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+				</c:forEach>				
 			</select>
 		</div>		
 	</div>
@@ -178,49 +110,21 @@
 		<div class="col-lg-2">
 			<p class="help-block"><b>Maker/Brand:</b></p>
 		</div>
-		<div class="col-lg-4">
-			<select class="form-control" name="maker_ID" required>
-				
-				<% 
-				Vector<makerBean> makerList = listmaker.getAll();
-				%>
-				
-				<option value="<%=partMasterBean.getMaker_ID() %>"><%=partMasterBean.getMaker_name() %></option>
-				
-				<%										
-				for (int i=0;i <makerList.size();i++){
-					makerBean maker =(makerBean)makerList.elementAt(i);
-					if (!maker.getMaker_ID().equals(partMasterBean.getMaker_ID())){
-				%>
-				<option value="<%=maker.getMaker_ID() %>"><%=maker.getMaker_name() %></option>
-				<%
-					}
-				} 
-				%> 
+		<div class="col-lg-4">			
+			<select class="form-control" name="maker.maker_ID" required>
+				<c:forEach var="item" items="${LOV_MAKER}">
+					<option value="${item.code}" ${item.code == partMasterBean.maker.maker_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+				</c:forEach>				
 			</select>
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Mold/Type:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<select class="form-control" name="moldType_ID" required>			
-				<% 
-				Vector<moldTypeBean> moldTypeList = listmoldType.getAll();
-				%>
-				
-				<option value="<%=partMasterBean.getMoldType_ID() %>"><%=partMasterBean.getMoldType_name() %></option>
-				
-				<%										
-				
-				for (int i=0;i <moldTypeList.size();i++){
-					moldTypeBean moldType =(moldTypeBean)moldTypeList.elementAt(i);
-					if (!moldType.getMoldType_ID().equals(partMasterBean.getMoldType_ID())){
-				%>
-				<option value="<%=moldType.getMoldType_ID() %>"><%=moldType.getMoldType_name() %></option>
-				<%
-					}
-				} 
-				%> 
+			<select class="form-control" name="moldType.moldType_ID" required>
+				<c:forEach var="item" items="${LOV_MOLDTYPE}">
+					<option value="${item.code}" ${item.code == partMasterBean.moldType.moldType_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+				</c:forEach>				
 			</select>
 		</div>		
 	</div>
@@ -232,23 +136,9 @@
 		</div>
 		<div class="col-lg-4">
 			<select class="form-control" name="activeFlag" required>
-				<% 										
-				
-				Vector<activeFlagBean> activeFlagList = listActiveFlag.getActiveFlag() ;
-				%>
-				
-				<option value="<%=partMasterBean.getActiveFlag() %>"><%=partMasterBean.getActiveFlag_name() %></option>
-				
-				<%
-				for (int i=0;i <activeFlagList.size();i++){											
-					activeFlagBean activeFlag =(activeFlagBean)activeFlagList.elementAt(i);
-						if (!activeFlag.getactiveFlag_name().equals(partMasterBean.getActiveFlag_name())){
-						%>
-				<option value="<%=activeFlag.getactiveFlag_code() %>"><%=activeFlag.getactiveFlag_name() %></option>
-				<%												
-					}										
-				} 
-				%>											
+				<c:forEach var="item" items="${LOV_ACTIVE_FLG}">
+					<option value="${item.code}" ${item.code == partMasterBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
+				</c:forEach>				
 			</select>
 		</div>
 		<div class="col-lg-6">
@@ -256,28 +146,47 @@
 		</div>				
 	</div>
 </div>
-                       		
+	                        
 	                        
 	                        <div class="panel-footer">
-                                <input type ="submit" value="Edit" name="rAction" role="button" class="btn btn-warning">
-                                <a type="reset" class="btn btn-default" href="list.jsp" role="button" >Cancel</a>
-                                
-<%--                                 <%=partMasterBean.getSysPart_ID() %> --%>
+		                        <input type ="button" value="Save" name="rAction" role="button" class="btn btn-info" onclick="doSavePartMaster()">
+                        		<a type="reset" class="btn btn-default" href="${cPath}/partMaster/partMaster_list.htm"  role="button" >Cancel</a> 
 	                        </div> 	 	                        
 
-					</div>                     
-                             
+					</div>     
                     </div>
-             	<div class="col-lg-2">
+             	<div class="col-lg-1">
 				
-				</div>   
-				                           
+				</div>                      
                 </div>
                 <!-- /.col-lg-4 -->
            	</div>
 
-</form>
             
-            
+</form>            
 
-<jsp:include page="../pages/footer.jsp"></jsp:include>
+<script type="text/javascript">
+
+function doSavePartMaster() {
+
+	bootbox.confirm({
+		title : "Confirm",
+		message : _confirmSaveTxt,
+		buttons : {
+			cancel : {
+				label : '<i class="fa fa-times"></i> Cancel',
+				className : 'btn-danger'
+			},
+			confirm : {
+				label : '<i class="fa fa-check"></i> Confirm',
+				className : 'btn-success'
+			}
+		},
+		callback : function(result) {
+			if (result) {
+				 $("#myForm").submit();
+			}
+		}
+	});
+}
+</script> 
