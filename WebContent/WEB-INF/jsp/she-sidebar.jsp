@@ -34,11 +34,8 @@
 							<ul class="treeview-menu">
 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
 									<li><a href="${cPath}/userType/userType_list.htm"><i
-<%-- 									<li><a href="${cPath}/envi/prtr_target_search.htm"><i --%>
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
-<%-- 								<li><a href="${cPath}/envi/prtr_target_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i> Report </a></li> -->
 							</ul>
 						</li>
 
@@ -185,9 +182,6 @@
 								</security:authorize>
 							</ul>
 						</li>
-							
-<%-- 						<li><a href="${cPath}/envi/prtr_chemical_manage.htm"><i --%>
-<!-- 								class="fa fa-chevron-circle-right"></i>PRTR Chemical List </a></li> -->
 					</ul></li>
 					
 
@@ -204,124 +198,13 @@
 							</span> </a>
 							<ul class="treeview-menu">
 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
-<%-- 									<li><a href="${cPath}/envi/utility_energy_search.htm"><i --%>
 									<li><a href="${cPath}/partMaster/partMaster_list.htm"><i
 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li>
-<%-- 									<li><a href="${cPath}/envi/part_inventory_search.htm"><i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li> -->
 								</security:authorize>
 								<li><a href="#"><i
-<%-- 								<li><a href="${cPath}/envi/utility_energy_report.htm"><i --%>
-										class="fa fa-chevron-circle-right"></i>Report </a></li>								
-<%-- 								<li><a href="${cPath}/envi/utility_energy_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i>CO<sub>2</sub> Emission Report </a></li> -->
-<%-- 								<li><a href="${cPath}/envi/utility_energy_ems_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i>Emission Source Report -->
-<!-- 								</a></li> -->
-<%-- 								<li><a href="${cPath}/envi/utility_energy_con_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i>Consumption Report </a></li> -->
+										class="fa fa-chevron-circle-right"></i>Report </a></li>
 							</ul></li>
 					</ul></li>
-					
-
-<!-- 				<li class="treeview"><a href="#"> <i class="fa fa-industry"></i> -->
-<!-- 						<span>Emission </span> <span class="pull-right-container"> -->
-<!-- 							<i class="fa fa-angle-left pull-right"></i> -->
-<!-- 					</span> -->
-<!-- 				</a> -->
-<!-- 					<ul class="treeview-menu"> -->
-
-<!-- 						<li class="treeview"><a href="#"><i -->
-<!-- 								class="fa fa-chevron-circle-right"></i>Ambient Air (7 days) <span -->
-<!-- 								class="pull-right-container"> <i -->
-<!-- 									class="fa fa-angle-left pull-right"></i> -->
-<!-- 							</span> </a> -->
-<!-- 							<ul class="treeview-menu"> -->
-<!-- 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')"> -->
-<!-- 									<li><a -->
-<%-- 										href="${cPath}/envi/emission_ambient_air_search.htm"><i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li> -->
-<!-- 								</security:authorize> -->
-<%-- 								<li><a href="${cPath}/envi/emission_ambient_air_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i>Report </a></li> -->
-<!-- 							</ul></li> -->
-
-<!-- 						<li class="treeview"><a href="#"><i -->
-<!-- 								class="fa fa-chevron-circle-right"></i>Ambient Air (24 HR) <span -->
-<!-- 								class="pull-right-container"> <i -->
-<!-- 									class="fa fa-angle-left pull-right"></i> -->
-<!-- 							</span> </a> -->
-<!-- 							<ul class="treeview-menu"> -->
-<!-- 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')"> -->
-<!-- 									<li><a -->
-<%-- 										href="${cPath}/envi/emission_ambient_air24_search.htm"><i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li> -->
-<!-- 								</security:authorize> -->
-<!-- 								<li><a -->
-<%-- 									href="${cPath}/envi/emission_ambient_air24_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i>Report </a></li> -->
-<!-- 							</ul></li> -->
-
-
-<!-- 						<li class="treeview"><a href="#"><i -->
-<!-- 								class="fa fa-chevron-circle-right"></i> Stack Result <span -->
-<!-- 								class="pull-right-container"> <i -->
-<!-- 									class="fa fa-angle-left pull-right"></i> -->
-<!-- 							</span> </a> -->
-<!-- 							<ul class="treeview-menu"> -->
-<!-- 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')"> -->
-<%-- 									<li><a href="${cPath}/envi/emission_stack_search.htm"><i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li> -->
-<!-- 								</security:authorize> -->
-<%-- 								<li><a href="${cPath}/envi/emission_stack_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i> Report </a></li> -->
-<!-- 							</ul></li> -->
-
-<!-- 						<li class="treeview"><a href="#"><i -->
-<!-- 								class="fa fa-chevron-circle-right"></i> Workplace Air Result <span -->
-<!-- 								class="pull-right-container"> <i -->
-<!-- 									class="fa fa-angle-left pull-right"></i> -->
-<!-- 							</span> </a> -->
-<!-- 							<ul class="treeview-menu"> -->
-<!-- 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')"> -->
-<%-- 									<li><a href="${cPath}/envi/emission_wp_air_search.htm"><i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li> -->
-<!-- 								</security:authorize> -->
-<%-- 								<li><a href="${cPath}/envi/emission_wp_air_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i> Report </a></li> -->
-<!-- 							</ul></li> -->
-
-<!-- 						<li class="treeview"><a href="#"><i -->
-<!-- 								class="fa fa-chevron-circle-right"></i> Workplace Noise Result <span -->
-<!-- 								class="pull-right-container"> <i -->
-<!-- 									class="fa fa-angle-left pull-right"></i> -->
-<!-- 							</span> </a> -->
-<!-- 							<ul class="treeview-menu"> -->
-<!-- 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')"> -->
-<%-- 									<li><a href="${cPath}/envi/emission_wp_noise_search.htm"><i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li> -->
-<!-- 								</security:authorize> -->
-<%-- 								<li><a href="${cPath}/envi/emission_wp_noise_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i> Report </a></li> -->
-<!-- 							</ul></li> -->
-
-<!-- 						<li class="treeview"><a href="#"><i -->
-<!-- 								class="fa fa-chevron-circle-right"></i> WWT <span -->
-<!-- 								class="pull-right-container"> <i -->
-<!-- 									class="fa fa-angle-left pull-right"></i> -->
-<!-- 							</span> </a> -->
-<!-- 							<ul class="treeview-menu"> -->
-<!-- 								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')"> -->
-<%-- 									<li><a href="${cPath}/envi/emission_wwt_search.htm"><i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li> -->
-<!-- 								</security:authorize> -->
-<%-- 								<li><a href="${cPath}/envi/emission_wwt_report.htm"><i --%>
-<!-- 										class="fa fa-chevron-circle-right"></i> Report </a></li> -->
-<!-- 							</ul></li> -->
-
-<!-- 					</ul></li>					 -->
-					
-
 			</security:authorize>
 
 
@@ -335,27 +218,6 @@
 					</span>
 					</a>
 					<ul class="treeview-menu">
-
-<!-- 						<security:authorize access="hasAnyRole('ADMIN','GAS_STAFF')"> -->
-<!-- 							<li class="treeview"><a href="#"> <i -->
-<!-- 									class="fa fa-chevron-circle-right"></i> <span>Gas Detector Maintenance</span> <span class="pull-right-container"> -->
-<!-- 										<i class="fa fa-angle-left pull-right"></i> -->
-<!-- 								</span> -->
-<!-- 							</a> -->
-<!-- 								<ul class="treeview-menu"> -->
-<%-- 									<li><a href="${cPath}/gas/gas_registered_list.htm"> <i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Registered lists -->
-<!-- 									</a></li> -->
-<%-- 									<li><a href="${cPath}/gas/gas_certificate_list.htm"> <i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Gas Detector Certificate -->
-<!-- 									</a></li> -->
-<%-- 									<li><a href="${cPath}/gas/gas_history_list.htm"> <i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Gas Detector History -->
-<!-- 									</a></li> -->
-<!-- 								</ul></li> -->
-<!-- 						</security:authorize> -->
-
-
 <!-- 						Level #2 -->
 						<li class="treeview"><a href="#"> <i class="fa fa-chevron-circle-right"></i> 
 								<span>Maintenance Service</span> 
@@ -366,9 +228,11 @@
 							<ul class="treeview-menu">								
 								<security:authorize access="hasAnyRole('ADMIN','GAS_STAFF','GAS_USER','GAS_SUP','GAS_SEC_MNG')">
 									<li><a href="${cPath}/gas/gas_requested_list.htm"> <i
+<%-- 									<li><a href="${cPath}/request/requested_list.htm"> <i --%>
 											class="fa fa-chevron-circle-right"></i> Requested list
 									</a></li>
-									<li><a href="${cPath}/gas/gas_requested_new.htm"> <i
+<%-- 									<li><a href="${cPath}/gas/gas_requested_new.htm"> <i --%>
+									<li><a href="${cPath}/request/requested_new.htm"> <i
 											class="fa fa-chevron-circle-right"></i> New Request
 									</a></li>
 								</security:authorize>								
@@ -377,56 +241,6 @@
 						
 					</ul>
 				</li>
-
-
-<!-- 				<li class="treeview"><a href="#"> <i -->
-<!-- 						class="fa  fa-fire-extinguisher"></i> <span>FFE & SCBA</span>  -->
-<!-- 						<span class="pull-right-container"> <i -->
-<!-- 							class="fa fa-angle-left pull-right"></i> -->
-<!-- 					</span> -->
-<!-- 				</a> -->
-<!-- 					<ul class="treeview-menu"> -->
-<!-- 						<security:authorize access="hasAnyRole('ADMIN','GAS_STAFF')"> -->
-<!-- 							<li class="treeview"><a href="#"> <i -->
-<!-- 									class="fa fa-chevron-circle-right"></i> <span>FFE -->
-<!-- 										 Maintenance</span> <span class="pull-right-container"> -->
-<!-- 										<i class="fa fa-angle-left pull-right"></i> -->
-<!-- 								</span> -->
-<!-- 							</a> -->
-<!-- 								<ul class="treeview-menu"> -->
-								
-<%-- 									<li><a href="${cPath}/ffe/ffe_registered_list.htm"> <i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Registered lists -->
-<!-- 									</a></li> -->
-									
-<%-- 									<li><a href="${cPath}/ffe/ffe_certificate_list.htm"> <i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> FFE Certificate -->
-<!-- 									</a></li> -->
-									
-<%-- 									<li><a href="${cPath}/ffe/ffe_history_list.htm"> <i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> FFE History -->
-<!-- 									</a></li> -->
-<!-- 								</ul></li> -->
-<!-- 						</security:authorize> -->
-
-<!-- 						<li class="treeview"><a href="#"> <i -->
-<!-- 								class="fa fa-chevron-circle-right"></i> <span>FFE Service</span> <span class="pull-right-container"> <i -->
-<!-- 									class="fa fa-angle-left pull-right"></i> -->
-<!-- 							</span> -->
-<!-- 						</a> -->
-<!-- 							<ul class="treeview-menu"> -->
-								
-<!-- 								<security:authorize access="hasAnyRole('ADMIN','GAS_STAFF','GAS_USER','GAS_SUP','GAS_SEC_MNG')"> -->
-<%-- 									<li><a href="${cPath}/ffe/ffe_requested_list.htm"> <i --%>
-<!-- 											class="fa fa-chevron-circle-right"></i> Requested list -->
-<!-- 									</a></li> -->
-<%-- 									<li><a href="${cPath}/ffe/ffe_requested_new.htm"> <i --%>
-<!-- 												class="fa fa-chevron-circle-right"></i> New Request -->
-<!-- 									</a></li> -->
-<!-- 								</security:authorize> -->
-<!-- 							</ul></li> -->
-<!-- 					</ul></li> -->
-
 			</security:authorize>
 
 
