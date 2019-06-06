@@ -137,10 +137,7 @@ $(document).ready(function() {
 				 });
 				 
 				
-// 				function doAdd() {
-// 					location = cPath + "/partMaster/partMaster_create.htm" ;
-// 				}
 				function doAdd() {
-					location = cPath + "/productionLine/productionLine_create.htm" ;
+					location = cPath + "/partMaster/partMaster_create.htm" ;
 				}
 </script>
