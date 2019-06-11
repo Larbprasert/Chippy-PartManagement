@@ -4,16 +4,20 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
+import th.co.keihin.model.LocationBean;
 import th.co.keihin.model.RequestTypeBean;
 import th.co.keihin.model.UserTypeBean;
 
@@ -157,5 +161,26 @@ private RowMapper REQUESTTYPE_MAPPER = new RowMapper(){
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public List<LovInfo> loadActiveRequestType() {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+			
+		String query = "Select a.requestType_ID,a.requestType_name " +
+				"From tb_requestType a " + 
+				"where 1=1 and a.activeFlag <> 2 " +
+				"order by a.requestType_ID";
+				
+		List<RequestTypeBean> requestTypelist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(RequestTypeBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (RequestTypeBean RequestType : requestTypelist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(RequestType.getRequestType_ID());
+			lovInfo.setDescTH(RequestType.getRequestType_name());
+			lovInfo.setDescEN(RequestType.getRequestType_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 }

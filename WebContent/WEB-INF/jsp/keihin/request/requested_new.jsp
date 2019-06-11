@@ -14,18 +14,23 @@
 
 	    <div id="wrapper">
 	        <div id="page-wrapper">
-	            <div class="row">
-	                <div class="col-lg-12">
-	                    <h1 class="page-header">Repair and Rebuild Request Sheet</h1>
-	                </div>
-	                <!-- /.col-lg-12 -->
-	            </div>
+	        
+<!-- 	            <div class="row"> -->
+<!-- 	                <div class="col-lg-12"> -->
+<!-- 	                    <h1 class="page-header">Repair and Rebuild Request Sheet</h1> -->
+<!-- 	                </div> -->
+<!-- <!-- 	                /.col-lg-12 --> -->
+<!-- 	            </div> -->
 	
-				<p id="demo"></p>
+<!-- 				<p id="demo"></p> -->
 	
 	            <div class="row">
-	                <!-- /.col-lg-12 -->
-	                <div class="col-lg-12">
+	            	<div class="col-lg-2">
+	            	
+	            	</div>
+	                
+	                <!-- /.col-lg-8 -->
+	                <div class="col-lg-10">
 	                    <div class="panel panel-default">
 	                    
 <!-- ###########################################################################       header	                     -->
@@ -259,9 +264,9 @@
 				                                                </label>
 				                                            </div>	
 
-														<%
-																}
-															%>	
+<%-- 														<% --%>
+<!-- 																} -->
+<!-- 															%>	 -->
 				                                </div> 
 				                            </div>
 			                            </div>
@@ -353,7 +358,7 @@
 		                                <!-- /.row -->
 		                                <div class="row" >
 		                                	<div class="col-lg-12">
-		                                		<jsp:include page="../pages/CRUDwithDataTable.jsp"></jsp:include>
+<%-- 		                                		<jsp:include page="../pages/CRUDwithDataTable.jsp"></jsp:include> --%>
 		                                	</div>
 		                                </div>
 
@@ -545,7 +550,11 @@
 	                    </div>
 	                    <!-- /.panel -->
 	                </div>
-	                <!-- /.col-lg-12 -->   
+	                <!-- /.col-lg-8 -->
+	                
+<!-- 	                <div class="col-lg-1"> -->
+	            	
+<!-- 	            	</div>    -->
 	                             
 	            </div>
 	        </div>

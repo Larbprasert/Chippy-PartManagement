@@ -84,9 +84,9 @@
 		<definition name="partMaster_create" template="/WEB-INF/jsp/keihin/partMaster/partMaster_create.jsp" />
 
 <!-- Request -->
-		<definition name="requested_new" template="/WEB-INF/jsp/portal/request/requested_new.jsp" />
-		<definition name="requested_detail" template="/WEB-INF/jsp/portal/request/requested_detail.jsp" />
-		<definition name="requested_modify" template="/WEB-INF/jsp/portal/request/requested_modify.jsp" />
-		<definition name="requested_list" template="/WEB-INF/jsp/portal/request/requested_list.jsp" />
+		<definition name="requested_new" template="/WEB-INF/jsp/keihin/request/requested_new.jsp" />
+		<definition name="requested_detail" template="/WEB-INF/jsp/keihin/request/requested_detail.jsp" />
+		<definition name="requested_modify" template="/WEB-INF/jsp/keihin/request/requested_modify.jsp" />
+		<definition name="requested_list" template="/WEB-INF/jsp/keihin/request/requested_list.jsp" />
 
 </tiles-definitions>

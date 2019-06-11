@@ -2,7 +2,7 @@ package th.co.keihin.model;
 
 import th.co.baiwa.common.persistence.entity.BaseDomain;
 
-public class RequestFormBean extends BaseDomain{
+public class RequestBean extends BaseDomain{
 
 		private String request_ID;
 	    private String doc_number;
@@ -26,10 +26,28 @@ public class RequestFormBean extends BaseDomain{
 //	    private String machine_ID;
 //	    private String machine_name;
 	    
+	    private LocationBean location;
+	    	    	    
 //	    private Date informDate;
 //	    private Time informTime;
 	    
-	    private String requestApprove_ID;
+	    public RequestTypeBean getRequestType() {
+			return requestType;
+		}
+
+		public void setRequestType(RequestTypeBean requestType) {
+			this.requestType = requestType;
+		}
+
+		public LocationBean getLocation() {
+			return location;
+		}
+
+		public void setLocation(LocationBean location) {
+			this.location = location;
+		}
+
+		private String requestApprove_ID;
 	    private String requestApprove_name;
 	    
 	    private String repairApprove_ID;
