@@ -39,7 +39,7 @@
                        					<p class="help-block"><b>Factory ID : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="factory ID" name="factory_ID" >
+                       					<input type="text" class="form-control" placeholder="Factory ID" name="factory_ID" >
                        				</div>	
                        			</div>
                        			<br>
@@ -48,7 +48,7 @@
                        					<p class="help-block"><b>Factory Name : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="factory Name" name="factory_name" >
+                       					<input type="text" class="form-control" placeholder="Factory Name" name="factory_name" >
                        				</div>	
                        			</div>                       			
                        			<br>

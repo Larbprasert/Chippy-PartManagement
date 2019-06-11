@@ -21,7 +21,7 @@
             </div>
             
             <div class="row">
-             	<div class="col-lg-2">
+             	<div class="col-lg-3">
 				
 				</div>   
 				           
@@ -89,12 +89,12 @@
 
 					</div>  
                 </div>
-              	<div class="col-lg-2">
+              	<div class="col-lg-1">
 				
 				</div>   
 				           
-            	<div class="col-lg-6">               
-           	</div>
+<!--             	<div class="col-lg-6">                -->
+<!--            		</div> -->
                 <!-- /.col-lg-4 -->
 		</div>
 

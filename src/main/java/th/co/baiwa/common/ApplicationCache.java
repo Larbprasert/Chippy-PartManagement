@@ -77,7 +77,10 @@ public class ApplicationCache {
 	private static List<LovInfo> LOV_TIMING = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_ACTIVE_FLG = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_PROVINCE = new ArrayList<LovInfo>();
-//	private static List<LovInfo> LOV_FACTORY = new ArrayList<LovInfo>();
+	private static List<LovInfo> LOV_APPSTATUS = new ArrayList<LovInfo>();
+	private static List<LovInfo> LOV_MAINTENACETYPE = new ArrayList<LovInfo>();
+	private static List<LovInfo> LOV_JUDMENT = new ArrayList<LovInfo>();	
+	private static List<LovInfo> LOV_MOVEMENT = new ArrayList<LovInfo>();
 
 
 	
@@ -311,6 +314,11 @@ public class ApplicationCache {
 		LOV_TIMING = lovDao.loadTimingLov();
 		LOV_ACTIVE_FLG = lovDao.loadActiveFlagLov();
 		LOV_PROVINCE = lovDao.loadProvince();
+		LOV_APPSTATUS = lovDao.loadAppStatus();
+		
+		LOV_MAINTENACETYPE = lovDao.loadMaintenanceType();
+		LOV_JUDMENT = lovDao.loadJudment();
+		LOV_MOVEMENT = lovDao.loadMovement();
 //		Load constanst of Partmanagement value to temp server
 		
 	}
@@ -348,6 +356,10 @@ public class ApplicationCache {
 	
 	public static List<LovInfo> getLovProvince() {
 		return LOV_PROVINCE;
+	}
+	
+	public static List<LovInfo> getLovAppStatus() {
+		return LOV_APPSTATUS;
 	}
 //Load constanst of Partmanagement value to temp server
 }

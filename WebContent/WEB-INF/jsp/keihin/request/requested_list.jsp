@@ -10,7 +10,7 @@
 	<div class="content-wrapper">
 		<section class="content-header">
 			<h3>
-				<i class="fa fa-list"></i> Gas Detector Request List 
+				<i class="fa fa-list"></i> Repair and Rebuild Request Sheet
 			</h3>
 
 		</section>
@@ -385,8 +385,6 @@
 		
 		
 
-	</script>
-
-	
+	</script>	
 	
 <%@ include file="gas_registered_detail.jsp"%>

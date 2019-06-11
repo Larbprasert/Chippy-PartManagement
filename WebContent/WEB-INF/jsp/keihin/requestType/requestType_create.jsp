@@ -39,7 +39,7 @@
                        					<p class="help-block"><b>Request Type ID: </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="User Type ID" name="requestType_ID" value="" >
+                       					<input type="text" class="form-control" placeholder="Request Type ID" name="requestType_ID" value="" >
                        				</div>	
                        			</div>
                        			<br>
@@ -48,7 +48,7 @@
                        					<p class="help-block"><b>Request Type Name:</b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="requestType Name" name="requestType_name" value="" >
+                       					<input type="text" class="form-control" placeholder="Request Type Name" name="requestType_name" value="" >
                        				</div>	
                        			</div>                			
                        			<br>

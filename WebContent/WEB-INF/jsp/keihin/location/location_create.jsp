@@ -38,7 +38,7 @@
                        					<p class="help-block"><b>Location ID : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="location ID" name="location_ID" value="" >
+                       					<input type="text" class="form-control" placeholder="Location ID" name="location_ID" value="" >
                        				</div>	
                        			</div>
                        			<br>
@@ -47,7 +47,7 @@
                        					<p class="help-block"><b>Location Name : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="location Name" name="location_name" value="" >
+                       					<input type="text" class="form-control" placeholder="Location Name" name="location_name" value="" >
                        				</div>	
                        			</div>                       			
                        			<br>
