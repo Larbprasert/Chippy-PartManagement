@@ -15,7 +15,7 @@ import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
 
 import th.co.keihin.model.PartMasterBean;
-
+import th.co.keihin.service.CheckToolService;
 import th.co.keihin.service.LocationService;
 import th.co.keihin.service.MakerService;
 import th.co.keihin.service.MoldTypeService;
@@ -32,6 +32,9 @@ public class RequestCtrl {
 	
 	@Autowired
 	private LocationService locationService;
+	
+	@Autowired
+	private CheckToolService checkToolService;
 	
 		
 //	
@@ -73,13 +76,15 @@ public class RequestCtrl {
 		ModelAndView mav = new ModelAndView();
 		
 //		mav.addObject("partMasterBean",partMasterService.getPartMasterBeanByID(bean.getPart_ID()));
-//		
-//		mav.addObject("LOV_UNITTYPE",unitTypeService.loadActiveUnitType());
-//		mav.addObject("LOV_LOCATION",locationService.loadActiveLocation());
-//		mav.addObject("LOV_MAKER",makerService.loadActiveMaker());
-//		mav.addObject("LOV_MOLDTYPE",moldTypeService.loadActiveMoldType());
-//		
+		
+		mav.addObject("LOV_CHECKTOOLBEFORE", checkToolService.loadCheckToolBefore());
+		mav.addObject("LOV_CHECKTOOLAFTER", checkToolService.loadCheckToolAfter());
+		
+		mav.addObject("LOV_JUDMENT", ApplicationCache.getLovJudment());
+		mav.addObject("LOV_MAINTENANCETYPE", ApplicationCache.getLovMaintenanceType());
+		
 //		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
+		
 				
 		mav.setViewName("partMaster_edit");
 		return mav;

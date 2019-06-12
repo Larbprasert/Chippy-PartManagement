@@ -252,7 +252,7 @@
 										<div class="row">
 											<div class="col-lg-9">
 				                                <div class="form-group">
-					                                <p class="help-block"><b>ตรวจสอบเครื่องมือและเครื่องจักรก่อนการซ่อม  (Check Tooling and Machine before  Repaired)</b></p>
+					                                <p class="help-block"><b>ตรวจสอบเครื่องมือและเครื่องจักรก่อนการซ่อม  (Check Tooling and Machine before  Repaired)</b></p>		
 <%-- 														<% --%>
 <!-- 															Vector<CheckToolBean> checkToolBeforeList = listCheckToolBefore.getCheckToolBefore(); -->
 <!-- 																										for (int i=0;i <checkToolBeforeList.size();i++){ -->
@@ -358,6 +358,8 @@
 		                                <!-- /.row -->
 		                                <div class="row" >
 		                                	<div class="col-lg-12">
+		                                	
+		                                	Data Table CRUD
 <%-- 		                                		<jsp:include page="../pages/CRUDwithDataTable.jsp"></jsp:include> --%>
 		                                	</div>
 		                                </div>
@@ -376,11 +378,11 @@
 <!--  																											for (int i=0;i <maintenanceTypeList.size();i++){ -->
 <!--  																												maintenanceTypeBean maintenanceType =(maintenanceTypeBean)maintenanceTypeList.elementAt(i); -->
 <%-- 															%> --%>
-<!-- 				                                        <div class="radio">     -->
-<!-- 				                                                <label> -->
+				                                        <div class="radio">    
+				                                                <label>
 <%-- 				                                                    <input type="radio" name="maintenanceType" value="<%=maintenanceType.getmaintenanceType_code()%>"><%=maintenanceType.getmaintenanceType_name()%> --%>
-<!-- 				                                                </label> -->
-<!-- 				                                        </div>    -->
+				                                                </label>
+				                                        </div>   
 
 <%-- 														<% --%>
 <!--     															} -->
@@ -396,11 +398,11 @@
 <!--  																										for (int i=0;i <checkToolAfterList.size();i++){ -->
 <!--  																											CheckToolBean checkToolAfter =(CheckToolBean)checkToolAfterList.elementAt(i); -->
 <!-- 														%> -->
-<!-- 				                                            <div class="checkbox"> -->
-<!-- 				                                                <label> -->
+				                                            <div class="checkbox">
+				                                                <label>
 <%-- 				                                                    <input type="checkbox" value="<%=checkToolAfter.getCheckTool_ID() %>"><%=checkToolAfter.getCheckTool_name() %> --%>
-<!-- 				                                                </label> -->
-<!-- 				                                            </div>	 -->
+				                                                </label>
+				                                            </div>	
 
 <%-- 														<% --%>
 <!-- 														}  -->
@@ -442,9 +444,9 @@
 <!-- 																judgementBean judgement =(judgementBean)judgementList.elementAt(i); -->
 <!-- 															%> -->
 					                                            
-<!-- 					                                                <label class="radio-inline"> -->
-<%-- 					                                                    <input type="radio" name="judgement" id="judgement" value="<%=judgement.getjudgement_code() %>"><%=judgement.getjudgement_name() %> --%>
-<!-- 					                                                </label> -->
+					                                                <label class="radio-inline">
+<%-- 					                                                    <input type="radio" name="confirmJudgment" id="confirmJudgment" value="<%=judgement.getjudgement_code() %>"><%=judgement.getjudgement_name() %> --%>
+					                                                </label>
 <%-- 															<% --%>
 <!-- 															}  -->
 <!-- 															%> -->
@@ -563,18 +565,18 @@
 	    </div>
 	    <!-- /#wrapper -->
 	
-	    <!-- jQuery -->
-	    <script src="../vendor/jquery/jquery.min.js"></script>
+<!-- 	    jQuery -->
+<!-- 	    <script src="../vendor/jquery/jquery.min.js"></script> -->
 	
-	    <!-- Bootstrap Core JavaScript -->
-	    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></script>
+<!-- 	    Bootstrap Core JavaScript -->
+<!-- 	    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- 		<script src="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"></script> -->
 	
-	    <!-- Metis Menu Plugin JavaScript -->
-	    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+<!-- 	    Metis Menu Plugin JavaScript -->
+<!-- 	    <script src="../vendor/metisMenu/metisMenu.min.js"></script> -->
 	
-	    <!-- Custom Theme JavaScript -->
-	    <script src="../dist/js/sb-admin-2.js"></script>
+<!-- 	    Custom Theme JavaScript -->
+<!-- 	    <script src="../dist/js/sb-admin-2.js"></script> -->
 	    
 	    <!-- Data Table JavaScript -->
 <!--     	<script src="../js/jquery.dataTables.min.js"></script> -->

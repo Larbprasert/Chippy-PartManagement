@@ -31,7 +31,19 @@ public class RequestBean extends BaseDomain{
 //	    private Date informDate;
 //	    private Time informTime;
 	    
-	    public RequestTypeBean getRequestType() {
+	    private CheckToolBean checkTool;
+	    
+	    
+	    
+	    public CheckToolBean getCheckTool() {
+			return checkTool;
+		}
+
+		public void setCheckTool(CheckToolBean checkTool) {
+			this.checkTool = checkTool;
+		}
+
+		public RequestTypeBean getRequestType() {
 			return requestType;
 		}
 

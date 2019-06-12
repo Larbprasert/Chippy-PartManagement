@@ -387,4 +387,4 @@
 
 	</script>	
 	
-<%@ include file="gas_registered_detail.jsp"%>
+<%-- <%@ include file="gas_registered_detail.jsp"%> --%>

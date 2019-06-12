@@ -361,5 +361,17 @@ public class ApplicationCache {
 	public static List<LovInfo> getLovAppStatus() {
 		return LOV_APPSTATUS;
 	}
+	
+	public static List<LovInfo> getLovJudment() {
+		return LOV_JUDMENT;
+	}
+	
+	public static List<LovInfo> getLovMaintenanceType() {
+		return LOV_MAINTENACETYPE;
+	}
+	
+	public static List<LovInfo> getLovMovement() {
+		return LOV_MOVEMENT;
+	}
 //Load constanst of Partmanagement value to temp server
 }
