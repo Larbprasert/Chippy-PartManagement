@@ -125,6 +125,12 @@
 	                            <!-- Tab panes -->
 	                            <div class="tab-content">
 	                                <div class="tab-pane fade in active" id="requestDeatil-pills">
+										<!-- /.row -->
+										<div class="row">
+											<div class="col-lg-12">
+											<br>
+											</div>
+										</div>
 										
 										<!-- /.row -->
 										<div class="row">
@@ -248,25 +254,24 @@
 <!-- ###########################################################################       body repair detail	                     -->	                                
 									<!-- /.repairDetail	-->
 	                                <div class="tab-pane fade" id="repairDeatil-pills">
+	                                	
+	                                	<!-- /.row -->
+										<div class="row">
+											<div class="col-lg-12">
+											<br>
+											</div>
+										</div>
+										
 										<!-- /.row -->
 										<div class="row">
 											<div class="col-lg-9">
 				                                <div class="form-group">
 					                                <p class="help-block"><b>ตรวจสอบเครื่องมือและเครื่องจักรก่อนการซ่อม  (Check Tooling and Machine before  Repaired)</b></p>		
-<%-- 														<% --%>
-<!-- 															Vector<CheckToolBean> checkToolBeforeList = listCheckToolBefore.getCheckToolBefore(); -->
-<!-- 																										for (int i=0;i <checkToolBeforeList.size();i++){ -->
-<!-- 																											CheckToolBean checkToolBefore =(CheckToolBean)checkToolBeforeList.elementAt(i); -->
-<!-- 														%> -->
-				                                            <div class="checkbox">
-				                                                <label>
-<%-- 				                                                    <input type="checkbox" value="<%=checkToolBefore.getCheckTool_ID()%>"><%=checkToolBefore.getCheckTool_name()%> --%>
-				                                                </label>
-				                                            </div>	
-
-<%-- 														<% --%>
-<!-- 																} -->
-<!-- 															%>	 -->
+ 														
+															<c:forEach var="item" items="${LOV_CHECKTOOLBEFORE}">
+																<input type="radio" name="checkToolBefore_ID" value="${item.code}" ${item.code == requestBean.checkTool.checkTool_ID ? 'selected="selected"' : ''} >&nbsp; ${item.descTH}  &nbsp; 
+															</c:forEach>	
+															
 				                                </div> 
 				                            </div>
 			                            </div>
@@ -372,41 +377,22 @@
 		                                
 											<div class="col-lg-4">
 		                                		<div class="form-group">
-				                                	<p class="help-block"><b> ประเภทการซ่อม  </b></p>	
-<%-- 														<% --%>
-<!--  																Vector<maintenanceTypeBean> maintenanceTypeList = listmaintenanceType.getmaintenanceType(); -->
-<!--  																											for (int i=0;i <maintenanceTypeList.size();i++){ -->
-<!--  																												maintenanceTypeBean maintenanceType =(maintenanceTypeBean)maintenanceTypeList.elementAt(i); -->
-<%-- 															%> --%>
-				                                        <div class="radio">    
-				                                                <label>
-<%-- 				                                                    <input type="radio" name="maintenanceType" value="<%=maintenanceType.getmaintenanceType_code()%>"><%=maintenanceType.getmaintenanceType_name()%> --%>
-				                                                </label>
-				                                        </div>   
+				                                	<p class="help-block"><b> ประเภทการซ่อม  </b></p>
+				                                	
+				                                			<c:forEach var="item" items="${LOV_MAINTENANCETYPE}">
+																<input type="radio" name="maintenanceType" value="${item.code}">&nbsp; ${item.descTH} &nbsp;  
+															</c:forEach>
+				                                		
 
-<%-- 														<% --%>
-<!--     															} -->
-<%--    														%> --%>
 				                                </div>
 			                                </div>
 
 											<div class="col-lg-8">
 				                                <div class="form-group">
 					                                <p class="help-block"><b> การตรวจสอบเครื่องมือและเครื่องจักรหลังการซ่อม  (Check Tooling and Machine after  Repaired) </b></p>
-<%-- 														<% --%>
-<!--  															Vector<CheckToolBean> checkToolAfterList = listCheckToolAfter.getCheckToolAfter(); -->
-<!--  																										for (int i=0;i <checkToolAfterList.size();i++){ -->
-<!--  																											CheckToolBean checkToolAfter =(CheckToolBean)checkToolAfterList.elementAt(i); -->
-<!-- 														%> -->
-				                                            <div class="checkbox">
-				                                                <label>
-<%-- 				                                                    <input type="checkbox" value="<%=checkToolAfter.getCheckTool_ID() %>"><%=checkToolAfter.getCheckTool_name() %> --%>
-				                                                </label>
-				                                            </div>	
-
-<%-- 														<% --%>
-<!-- 														}  -->
-<!-- 														%>	 -->
+															<c:forEach var="item" items="${LOV_CHECKTOOLAFTER}">
+																<input type="radio" name="checkToolAfter_ID" value="${item.code}" ${item.code == requestBean.checkTool.checkTool_ID ? 'selected="selected"' : ''} >&nbsp; ${item.descTH}  &nbsp; 
+															</c:forEach>
 				                                </div> 
 				                            </div>
 		                                </div>  
@@ -438,18 +424,9 @@
 				                                <div class="row">
 					                                <div class="form-group">
 					                                    <p class="help-block"><b> ความเห็นสำหรับ QA </b></p>
-<%-- 								                           <%  --%>
-<!-- 															Vector<judgementBean> judgementList = listjudgement.getjudgement(); -->
-<!-- 															for (int i=0;i <judgementList.size();i++){ -->
-<!-- 																judgementBean judgement =(judgementBean)judgementList.elementAt(i); -->
-<!-- 															%> -->
-					                                            
-					                                                <label class="radio-inline">
-<%-- 					                                                    <input type="radio" name="confirmJudgment" id="confirmJudgment" value="<%=judgement.getjudgement_code() %>"><%=judgement.getjudgement_name() %> --%>
-					                                                </label>
-<%-- 															<% --%>
-<!-- 															}  -->
-<!-- 															%> -->
+															<c:forEach var="item" items="${LOV_JUDMENT}">
+																<input type="radio" name="confirmJudment" value="${item.code}" >&nbsp; ${item.descTH}  &nbsp; 
+															</c:forEach>
 					                                </div>
 					                        	</div>
 			                                </div>	   		                                

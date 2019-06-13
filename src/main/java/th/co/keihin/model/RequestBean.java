@@ -34,8 +34,7 @@ public class RequestBean extends BaseDomain{
 	    private CheckToolBean checkTool;
 	    
 	    
-	    
-	    public CheckToolBean getCheckTool() {
+		public CheckToolBean getCheckTool() {
 			return checkTool;
 		}
 

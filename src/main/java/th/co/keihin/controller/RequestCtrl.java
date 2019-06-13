@@ -21,6 +21,7 @@ import th.co.keihin.service.MakerService;
 import th.co.keihin.service.MoldTypeService;
 import th.co.keihin.service.PartMasterService;
 import th.co.keihin.service.RequestTypeService;
+import th.co.keihin.service.SectionService;
 import th.co.keihin.service.UnitTypeService;
 
 
@@ -35,6 +36,9 @@ public class RequestCtrl {
 	
 	@Autowired
 	private CheckToolService checkToolService;
+	
+	@Autowired
+	private SectionService sectionService;
 	
 		
 //	
@@ -61,9 +65,17 @@ public class RequestCtrl {
 		ModelAndView mav = new ModelAndView();
 		
 //		mav.addObject("partMasterBean",partMasterService.getPartMasterBeanByID(bean.getPart_ID()));
-//		
+		
+//		mav.addObject("LOV_SECTION",sectionService.loadActiveSection());
+		
 		mav.addObject("LOV_REQUESTTYPE",requestTypeService.loadActiveRequestType());
 		mav.addObject("LOV_LOCATION",locationService.loadActiveLocation());
+		
+		mav.addObject("LOV_CHECKTOOLBEFORE", checkToolService.loadCheckToolBefore());
+		mav.addObject("LOV_CHECKTOOLAFTER", checkToolService.loadCheckToolAfter());
+		
+		mav.addObject("LOV_JUDMENT", ApplicationCache.getLovJudment());
+		mav.addObject("LOV_MAINTENANCETYPE", ApplicationCache.getLovMaintenanceType());
 //		
 //		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 		

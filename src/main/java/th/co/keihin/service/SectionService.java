@@ -7,11 +7,14 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
+import th.co.keihin.model.CheckToolBean;
 import th.co.keihin.model.DepartmentBean;
 import th.co.keihin.model.SectionBean;
 
@@ -165,5 +168,26 @@ public class SectionService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	public List<LovInfo> loadActiveSection() {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+		
+		String query = "Select a.section_ID, a.section_name " +
+				"From tb_section a " +
+				"where 1=1 and a.activeFlag <> 2 " +
+				"order by a.section_ID";
+				
+		List<SectionBean> sectionList = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(SectionBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (SectionBean section : sectionList) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(section.getSection_ID());
+			lovInfo.setDescTH(section.getSection_name());
+			lovInfo.setDescEN(section.getSection_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 }
