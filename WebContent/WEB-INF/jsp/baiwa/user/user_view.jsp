@@ -57,13 +57,13 @@
                   </div>
              </div>
 	          
-              <div class="col-lg-6">
-	          <div class="form-group">
+             <div class="col-lg-6">
+	          	<div class="form-group">
                     <label for="paramDesc" class="col-lg-4 control-label">Email</label>
                     <div class="col-lg-6">
                        <input type="text" class="form-control" name="email" >
                     </div>
-                  </div>
+             	</div>
              </div>
 	          
 	          

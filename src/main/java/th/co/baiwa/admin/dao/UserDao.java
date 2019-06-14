@@ -66,15 +66,7 @@ public class UserDao extends AbstractCommonJdbcDao {
         StringBuilder sql = new StringBuilder();
         sql.append(" UPDATE adm_user ");
         sql.append(" SET ");
-//        sql.append("   USERNAME = ? ");
-//        sql.append("   ,PASSWORD = ? ");
-//        sql.append("   ,ENABLED = ? ");
-//        sql.append("   ,ACCOUNT_NON_EXPIRED = ? ");
-//        sql.append("   ,CREDENTIALS_NON_EXPIRED = ? ");
-//        sql.append("   ,ACCOUNT_NON_LOCKED = ? ");
         sql.append("   ACTIVE_FLG = ? ");
-//        sql.append("   ,CREATE_BY = ? ");
-//        sql.append("   ,CREATE_DATE = ? ");
         sql.append("   ,UPDATE_BY = ? ");
         sql.append("   ,UPDATE_DATE = GETDATE() ");
         sql.append(" WHERE ");

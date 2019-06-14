@@ -24,6 +24,8 @@ import th.co.baiwa.admin.service.UserService;
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.baiwa.common.bean.EditDataTableRespone;
+import th.co.keihin.service.FactoryService;
+import th.co.keihin.service.SectionService;
 import th.co.tpcc.model.SysParam;
 
 @Controller
@@ -34,6 +36,12 @@ public class UserManagementController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private FactoryService factoryService;
+	
+	@Autowired
+	private SectionService sectionService;
 
 	@RequestMapping(value = "/viewUser.htm", method = RequestMethod.GET)
 	public ModelAndView viewUser(HttpServletRequest httpRequest) {
@@ -43,8 +51,12 @@ public class UserManagementController {
 		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
 		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
 		mav.addObject("LOV_ROLE",ApplicationCache.getLovRole());
-		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
+//		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
 		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
+		
+		mav.addObject("LOV_FACTORY",factoryService.loadActiveFactory());
+		mav.addObject("LOV_SECTION",sectionService.loadActiveSection());
+		
 
 		return  mav;
 	}
@@ -60,7 +72,10 @@ public class UserManagementController {
 		mav.addObject("LOV_ROLE",ApplicationCache.getLovRole());
 		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
 		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
-
+		
+		mav.addObject("LOV_FACTORY",factoryService.loadActiveFactory());
+		mav.addObject("LOV_SECTION",sectionService.loadActiveSection());
+		
 		UserProfile userProfile =  new UserProfile();
 		if(StringUtils.isNotEmpty(userId)){
 			userProfile =  userService.getById(userId);

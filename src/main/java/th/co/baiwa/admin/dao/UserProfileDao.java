@@ -21,6 +21,71 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
     protected final static String SQL_UPDATE = buildUpdateStatement();
     protected final static String SQL_DELETE = buildDeleteStatement();
 
+//    private final static String buildSelectStatement() {
+//        StringBuilder sql = new StringBuilder();
+//        sql.append(" SELECT ");
+//        sql.append("   PROFILE_ID ");
+//        sql.append("   ,USER_ID ");
+//        sql.append("   ,TITLE ");
+//        sql.append("   ,FIRST_NAME_TH ");
+//        sql.append("   ,LAST_NAME_TH ");
+//        sql.append("   ,FIRST_NAME_EN ");
+//        sql.append("   ,LAST_NAME_EN ");
+//        sql.append("   ,GENDER ");
+//        sql.append("   ,MOBILE ");
+//        sql.append("   ,EMAIL ");
+//        sql.append("   ,ACTIVE_FLG ");
+//        sql.append("   ,CREATE_BY ");
+//        sql.append("   ,CREATE_DATE ");
+//        sql.append("   ,UPDATE_BY ");
+//        sql.append("   ,UPDATE_DATE ");
+//        sql.append("   ,THEME_CODE ");
+//        sql.append("   ,COMPANY_CODE ");
+//        sql.append("   ,DEPT_CODE ");
+//        sql.append(" FROM adm_user_profile");
+//        return sql.toString();
+//    }
+//
+//    private final static String buildInsertStatement() {
+//        StringBuilder sql = new StringBuilder();
+//        sql.append(" INSERT INTO adm_user_profile ( ");
+//        sql.append("   USER_ID ");
+//        sql.append("   ,TITLE ");
+//        sql.append("   ,FIRST_NAME_TH ");
+//        sql.append("   ,LAST_NAME_TH ");
+//        sql.append("   ,GENDER ");
+//        sql.append("   ,MOBILE ");
+//        sql.append("   ,EMAIL ");
+//        sql.append("   ,COMPANY_CODE ");
+//        sql.append("   ,DEPT_CODE ");
+//        sql.append("   ,ACTIVE_FLG ");
+//        sql.append("   ,CREATE_BY ");
+//        sql.append("   ,CREATE_DATE ");
+//        sql.append(" ) ");
+//        sql.append(" VALUES (?,?,?,?,?,?,?,?,?,?,?,GETDATE()) ");
+//        return sql.toString();
+//    }
+//
+//    private final static String buildUpdateStatement() {
+//        StringBuilder sql = new StringBuilder();
+//        sql.append(" UPDATE adm_user_profile ");
+//        sql.append(" SET ");
+//        sql.append("   TITLE = ? ");
+//        sql.append("   ,FIRST_NAME_TH = ? ");
+//        sql.append("   ,LAST_NAME_TH = ? ");
+//        sql.append("   ,GENDER = ? ");
+//        sql.append("   ,MOBILE = ? ");
+//        sql.append("   ,EMAIL = ? ");
+//        sql.append("   ,COMPANY_CODE = ? ");
+//        sql.append("   ,DEPT_CODE = ? ");
+//        sql.append("   ,ACTIVE_FLG = ? ");
+//        sql.append("   ,UPDATE_BY = ? ");
+//        sql.append("   ,UPDATE_DATE = GETDATE() ");
+//        sql.append(" WHERE ");
+//        sql.append("   USER_ID = ? ");
+//        return sql.toString();
+//    }
+
     private final static String buildSelectStatement() {
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT ");
@@ -39,16 +104,15 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
         sql.append("   ,CREATE_DATE ");
         sql.append("   ,UPDATE_BY ");
         sql.append("   ,UPDATE_DATE ");
-        sql.append("   ,THEME_CODE ");
-        sql.append("   ,COMPANY_CODE ");
-        sql.append("   ,DEPT_CODE ");
-        sql.append(" FROM adm_user_profile");
+        sql.append("   ,FACTORY_ID ");
+        sql.append("   ,SECTION_ID ");
+        sql.append(" FROM tb_user_profile");
         return sql.toString();
     }
 
     private final static String buildInsertStatement() {
         StringBuilder sql = new StringBuilder();
-        sql.append(" INSERT INTO adm_user_profile ( ");
+        sql.append(" INSERT INTO tb_user_profile ( ");
         sql.append("   USER_ID ");
         sql.append("   ,TITLE ");
         sql.append("   ,FIRST_NAME_TH ");
@@ -56,8 +120,8 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
         sql.append("   ,GENDER ");
         sql.append("   ,MOBILE ");
         sql.append("   ,EMAIL ");
-        sql.append("   ,COMPANY_CODE ");
-        sql.append("   ,DEPT_CODE ");
+        sql.append("   ,FACTORY_ID ");
+        sql.append("   ,SECTION_ID ");
         sql.append("   ,ACTIVE_FLG ");
         sql.append("   ,CREATE_BY ");
         sql.append("   ,CREATE_DATE ");
@@ -68,7 +132,7 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
 
     private final static String buildUpdateStatement() {
         StringBuilder sql = new StringBuilder();
-        sql.append(" UPDATE adm_user_profile ");
+        sql.append(" UPDATE tb_user_profile ");
         sql.append(" SET ");
         sql.append("   TITLE = ? ");
         sql.append("   ,FIRST_NAME_TH = ? ");
@@ -76,8 +140,8 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
         sql.append("   ,GENDER = ? ");
         sql.append("   ,MOBILE = ? ");
         sql.append("   ,EMAIL = ? ");
-        sql.append("   ,COMPANY_CODE = ? ");
-        sql.append("   ,DEPT_CODE = ? ");
+        sql.append("   ,FACTORY_ID = ? ");
+        sql.append("   ,SECTION_ID = ? ");
         sql.append("   ,ACTIVE_FLG = ? ");
         sql.append("   ,UPDATE_BY = ? ");
         sql.append("   ,UPDATE_DATE = GETDATE() ");
@@ -85,6 +149,9 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
         sql.append("   USER_ID = ? ");
         return sql.toString();
     }
+    
+    
+    
 
     private final static String buildDeleteStatement() {
         StringBuilder sql = new StringBuilder();

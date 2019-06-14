@@ -16,6 +16,9 @@ import th.co.baiwa.admin.dao.UserRoleDao;
 import th.co.baiwa.admin.entity.UserProfile;
 import th.co.baiwa.common.bean.DataTableAjax;
 
+import th.co.keihin.service.FactoryService;
+import th.co.keihin.service.SectionService;
+
 @Service("userService")
 public class UserService {
 
@@ -27,6 +30,12 @@ public class UserService {
 	private UserProfileDao userProfileDao;
 	@Autowired
 	private UserRoleDao userRoleDao;
+	
+	@Autowired
+	private FactoryService factoryService;
+	
+	@Autowired
+	private SectionService sectionService;
 	
 
 	public DataTableAjax<UserProfile> queryUserList(UserProfile user) {
