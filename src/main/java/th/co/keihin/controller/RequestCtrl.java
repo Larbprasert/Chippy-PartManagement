@@ -14,12 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
 
-import th.co.keihin.model.PartMasterBean;
+import th.co.keihin.model.RequestBean;
 import th.co.keihin.service.CheckToolService;
 import th.co.keihin.service.LocationService;
 import th.co.keihin.service.MakerService;
 import th.co.keihin.service.MoldTypeService;
 import th.co.keihin.service.PartMasterService;
+import th.co.keihin.service.RequestService;
 import th.co.keihin.service.RequestTypeService;
 import th.co.keihin.service.SectionService;
 import th.co.keihin.service.UnitTypeService;
@@ -40,31 +41,34 @@ public class RequestCtrl {
 	@Autowired
 	private SectionService sectionService;
 	
+	@Autowired
+	private RequestService requestService;
+	
 		
 //	
 	@RequestMapping("/request/requested_list.htm")
-	public ModelAndView partMaster_list(HttpServletRequest httpRequest) {
+	public ModelAndView request_list(HttpServletRequest httpRequest) {
 		ModelAndView mav = new ModelAndView();
 
-		mav.setViewName("partMaster_list");
+		mav.setViewName("request_list");
 		return mav;
 	}
 	
 	@RequestMapping("/request/requested_view.htm")
-	public ModelAndView partMaster_view(HttpServletRequest httpRequest, PartMasterBean bean) {
+	public ModelAndView request_view(HttpServletRequest httpRequest, RequestBean bean) {
 		ModelAndView mav = new ModelAndView();
 
-//		mav.addObject("partMasterBean",partMasterService.getPartMasterBeanByID(bean.getPart_ID()));
+//		mav.addObject("requestBean",requestService.getRequestBeanByID(bean.getPart_ID()));
 
-		mav.setViewName("partMaster_view");
+		mav.setViewName("request_view");
 		return mav;
 	}
 	 
 	@RequestMapping("/request/requested_new.htm")
-	public ModelAndView partMaster_create(HttpServletRequest httpRequest, PartMasterBean bean) {
+	public ModelAndView request_create(HttpServletRequest httpRequest, RequestBean bean) {
 		ModelAndView mav = new ModelAndView();
 		
-//		mav.addObject("partMasterBean",partMasterService.getPartMasterBeanByID(bean.getPart_ID()));
+//		mav.addObject("requestBean",requestService.getRequestBeanByID(bean.getPart_ID()));
 		
 //		mav.addObject("LOV_SECTION",sectionService.loadActiveSection());
 		
@@ -84,10 +88,10 @@ public class RequestCtrl {
 	}
 	
 	@RequestMapping("/request/requested_edit.htm")
-	public ModelAndView partMaster_edit(HttpServletRequest httpRequest, PartMasterBean bean) {
+	public ModelAndView request_edit(HttpServletRequest httpRequest, RequestBean bean) {
 		ModelAndView mav = new ModelAndView();
 		
-//		mav.addObject("partMasterBean",partMasterService.getPartMasterBeanByID(bean.getPart_ID()));
+//		mav.addObject("requestBean",requestService.getRequestBeanByID(bean.getPart_ID()));
 		
 		mav.addObject("LOV_CHECKTOOLBEFORE", checkToolService.loadCheckToolBefore());
 		mav.addObject("LOV_CHECKTOOLAFTER", checkToolService.loadCheckToolAfter());
@@ -98,19 +102,19 @@ public class RequestCtrl {
 //		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 		
 				
-		mav.setViewName("partMaster_edit");
+		mav.setViewName("request_edit");
 		return mav;
 	}
 	
 	@RequestMapping("/request/requested_save.htm")
-	public ModelAndView partMaster_save(HttpServletRequest httpRequest, PartMasterBean bean, String rAction) {
+	public ModelAndView request_save(HttpServletRequest httpRequest, RequestBean bean, String rAction) {
 		
 //		if ("Edit".equals(rAction)) {
-//			partMasterService.edit(bean);
+//			requestService.edit(bean);
 //		}else if ("Create".equals(rAction)) {
-//			partMasterService.save(bean);
+//			requestService.save(bean);
 //		}else if ("Delete".equals(rAction)) {
-//			partMasterService.delete(bean);		
+//			requestService.delete(bean);		
 //		}
 		
 		ModelAndView mav = new ModelAndView();
@@ -121,9 +125,9 @@ public class RequestCtrl {
 	}
 	
 	
-//	@RequestMapping("/partMaster/search.json")
-//	public DataTableAjax<PartMasterBean> search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getAll();
-//		return dataTableAjax;
-//	}
+	@RequestMapping("/request/search.json")
+	public DataTableAjax<RequestBean> search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DataTableAjax<RequestBean> dataTableAjax = requestService.getAll();
+		return dataTableAjax;
+	}
 }

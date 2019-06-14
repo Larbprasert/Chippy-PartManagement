@@ -174,7 +174,7 @@
 										<option value="">${_PLEASE_SELECT}</option>
 									    <c:forEach var="item" items="${LOV_COMPANY}">
 									     	<option value="${item.code}" ${item.code == userProfile.companyCode ? 'selected="selected"' : ''}>${item.descTH}</option>
-									    </c:forEach>
+									    </c:forEach>									    
 									</select>
 									<div class="help-block with-errors"></div>
 			                    </div>

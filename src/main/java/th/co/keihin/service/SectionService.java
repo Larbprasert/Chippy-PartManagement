@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.baiwa.preferences.entity.LovInfo;
-import th.co.keihin.model.CheckToolBean;
 import th.co.keihin.model.DepartmentBean;
 import th.co.keihin.model.SectionBean;
 

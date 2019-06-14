@@ -227,8 +227,8 @@
 							</a>
 							<ul class="treeview-menu">								
 								<security:authorize access="hasAnyRole('ADMIN','GAS_STAFF','GAS_USER','GAS_SUP','GAS_SEC_MNG')">
-									<li><a href="${cPath}/gas/gas_requested_list.htm"> <i
-<%-- 									<li><a href="${cPath}/request/requested_list.htm"> <i --%>
+<%-- 									<li><a href="${cPath}/gas/gas_requested_list.htm"> <i --%>
+									<li><a href="${cPath}/request/requested_list.htm"> <i
 											class="fa fa-chevron-circle-right"></i> Requested list
 									</a></li>
 <%-- 									<li><a href="${cPath}/gas/gas_requested_new.htm"> <i --%>
