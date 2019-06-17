@@ -36,8 +36,7 @@ public class UserProfile extends BaseDomain {
 	private FactoryBean factory;
 	private SectionBean section;
 	private DepartmentBean department;
-	
-	
+		
 	
 	public DepartmentBean getDepartment() {
 		return department;

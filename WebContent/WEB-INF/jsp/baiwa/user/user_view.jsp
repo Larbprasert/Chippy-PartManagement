@@ -177,7 +177,7 @@
 												<th class="text-center">Last Name</th>
 												<th class="text-center">Mobile</th>
 <!-- 												<th class="text-center">Email</th> -->
-												<th class="text-center">Company</th>
+												<th class="text-center">Section</th>
 												<th class="text-center">Department</th>
 												<th class="text-center">Status</th>
 <!-- 												<th class="text-center">Create Date  </th>  -->
@@ -288,12 +288,11 @@
 				{ "data": "firstNameTh" },
 				{ "data": "lastNameTh" },
 				{ "data": "mobile" },
-// 				{ "data": "email" },
-				{ "data": "companyName" },
-				{ "data": "deptName" },
+// 				{ "data": "companyName" },
+// 				{ "data": "deptName" },
+				{ "data": "section.section_name" },
+				{ "data": "department.dept_name" },
 				{ "data": "activeFlg" }
-// 				{ "data": "createDateStr" }
-// 				{ "data": "updateDateStr" }
 		    ],
 		    "aoColumnDefs": [
 		      { "sClass": "text-center", "aTargets": [0,5,6,7,8] }

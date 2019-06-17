@@ -24,6 +24,7 @@ import th.co.baiwa.admin.service.UserService;
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.baiwa.common.bean.EditDataTableRespone;
+import th.co.keihin.service.DepartmentService;
 import th.co.keihin.service.FactoryService;
 import th.co.keihin.service.SectionService;
 import th.co.tpcc.model.SysParam;
@@ -42,6 +43,9 @@ public class UserManagementController {
 	
 	@Autowired
 	private SectionService sectionService;
+	
+	@Autowired
+	private DepartmentService departmentService;
 
 	@RequestMapping(value = "/viewUser.htm", method = RequestMethod.GET)
 	public ModelAndView viewUser(HttpServletRequest httpRequest) {
@@ -56,7 +60,7 @@ public class UserManagementController {
 		
 		mav.addObject("LOV_FACTORY",factoryService.loadActiveFactory());
 		mav.addObject("LOV_SECTION",sectionService.loadActiveSection());
-		
+		mav.addObject("LOV_DEPARTMENT",departmentService.loadActiveDepartment());
 
 		return  mav;
 	}

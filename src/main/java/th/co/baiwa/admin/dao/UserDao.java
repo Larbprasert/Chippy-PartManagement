@@ -18,6 +18,7 @@ import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.baiwa.common.constant.CommonConstants.FLAG;
 import th.co.baiwa.common.persistence.dao.AbstractCommonJdbcDao;
 import th.co.baiwa.common.util.DateUtils;
+import th.co.keihin.model.DepartmentBean;
 import th.co.keihin.model.FactoryBean;
 import th.co.keihin.model.SectionBean;
 import th.co.tpcc.model.InvAsset;
@@ -254,7 +255,8 @@ public class UserDao extends AbstractCommonJdbcDao {
 		
 		sql.append(" SELECT   a.USERNAME,  b.*                                        ");
 		sql.append("  , dbo.GetParamDesc(b.ACTIVE_FLG,'ACTIVE_TYPE','TH')    ACTIVE        ");
-		sql.append("  , d.DEPT_NAME        ");
+		sql.append("  , c.section_name        ");
+		sql.append("  , d.dept_ID, d.dept_name      ");
 		sql.append("  , ur.ROLES  ");
 		sql.append("  FROM adm_user a                     ");
 		sql.append(" LEFT JOIN adm_user_profile b                                     ");
@@ -270,8 +272,7 @@ public class UserDao extends AbstractCommonJdbcDao {
 		sql.append(" 			 and a.USER_ID = b.USER_ID     ");   
 		sql.append("            FOR XML PATH('')               ");   
 		sql.append("            ), 1, 1, '')                   ");   
-		sql.append("             from adm_user a  ) ur         ");   
-		
+		sql.append("             from adm_user a  ) ur         ");
 		sql.append(" ON a.USER_ID = ur.USER_ID           WHERE 1=1       ");		
 		
 //		UserProfile profile = user.getProfile();
@@ -311,9 +312,9 @@ public class UserDao extends AbstractCommonJdbcDao {
 //		}
 		
 		if(StringUtils.isNotEmpty(user.getUserProfile().getSection().getSection_ID())){
-		wh.add(user.getUserProfile().getSection().getSection_ID());
-		sql.append(" AND b.section_ID = ? ");
-	}
+			wh.add(user.getUserProfile().getSection().getSection_ID());
+			sql.append(" AND b.section_ID = ? ");
+		}
 		
 		if(StringUtils.isNotEmpty(user.getRoleCode())){
 			sql.append(" and exists                            ");
@@ -372,7 +373,8 @@ public class UserDao extends AbstractCommonJdbcDao {
 		
 		sql.append(" SELECT   a.USERNAME,  b.*                                        ");
 		sql.append("  , dbo.GetParamDesc(b.ACTIVE_FLG,'ACTIVE_TYPE','TH')    ACTIVE        ");
-		sql.append("  , d.DEPT_NAME        ");
+		sql.append("  , c.section_name        ");
+		sql.append("  , d.dept_ID, d.dept_name      ");
 		sql.append("  , ur.ROLES  ");
 		sql.append("  FROM adm_user a                     ");
 		sql.append(" LEFT JOIN adm_user_profile b                                     ");
@@ -388,8 +390,7 @@ public class UserDao extends AbstractCommonJdbcDao {
 		sql.append(" 			 and a.USER_ID = b.USER_ID     ");   
 		sql.append("            FOR XML PATH('')               ");   
 		sql.append("            ), 1, 1, '')                   ");   
-		sql.append("             from adm_user a  ) ur         ");   
-		
+		sql.append("             from adm_user a  ) ur         ");
 		sql.append(" ON a.USER_ID = ur.USER_ID           WHERE 1=1       ");	
 
 		List<UserProfile> list = (List<UserProfile>) executeQuery(sql.toString(), SELECT_RM);
@@ -403,6 +404,7 @@ public class UserDao extends AbstractCommonJdbcDao {
 			UserProfile p = new UserProfile();
 			
 			SectionBean section = new SectionBean();
+			DepartmentBean department = new DepartmentBean();
 			
 			p.setUserId(rs.getString("user_id"));
 			p.setUserName(rs.getString("USERNAME"));
@@ -431,8 +433,12 @@ public class UserDao extends AbstractCommonJdbcDao {
 //			p.setDeptName(rs.getString("DEPT_NAME"));
 			
 			section.setSection_ID(rs.getString("section_ID"));
-			
+			section.setSection_name(rs.getString("section_name"));			
 			p.setSection(section);
+			
+			department.setDept_ID(rs.getString("dept_ID"));
+			department.setDept_name(rs.getString("dept_name"));
+			p.setDepartment(department);
 			
 			return p;
 		}
@@ -448,18 +454,17 @@ public class UserDao extends AbstractCommonJdbcDao {
 
 	public UserProfile getById(String id) {
 	        StringBuilder sql = new StringBuilder();
-			sql.append(" SELECT   a.USERNAME, b.*,                                        ");
-			sql.append("   dbo.GetParamDesc(b.ACTIVE_FLG,'ACTIVE_TYPE','TH')    ACTIVE        ");
-			sql.append("  , dbo.GetParamDesc(b.DEPT_CODE,'DEPARTMENT','TH')    DEPT_NAME        ");
-			sql.append("   , e.DESC_TH COMPANY_NAME                               ");
-			sql.append("   , ur.ROLES FROM adm_user a                                 ");
+			
+	        sql.append(" SELECT   a.USERNAME,  b.*                                        ");
+			sql.append("  , dbo.GetParamDesc(b.ACTIVE_FLG,'ACTIVE_TYPE','TH')    ACTIVE        ");
+			sql.append("  , c.section_name        ");
+			sql.append("  , d.dept_ID, d.dept_name      ");
+			sql.append("  , ur.ROLES  ");
+			sql.append("  FROM adm_user a                     ");
 			sql.append(" LEFT JOIN adm_user_profile b                                     ");
 			sql.append(" ON a.USER_ID = b.USER_ID                                         ");
-			sql.append(" LEFT JOIN  sys_param e  ON e.PARAM_TYPE = 'COMPANY'   AND e.PARAM_CODE = b.COMPANY_CODE ");
-//			sql.append(" JOIN  (SELECT a.USER_ID, GROUP_CONCAT(a.ROLE_ID) ROLES  ");
-//			sql.append(" 	FROM adm_user_role a, adm_role b                             ");
-//			sql.append(" 	WHERE a.ROLE_ID = b.ROLE_ID GROUP BY a.USER_ID ORDER BY ROLE_CODE) ur           ");
-			
+			sql.append(" LEFT JOIN tb_Section c ON b.section_ID = c.section_ID COLLATE database_default ");
+			sql.append(" LEFT JOIN tb_department d ON c.dept_ID = d.dept_ID COLLATE database_default ");
 			sql.append(" JOIN (   select a.USER_ID,                ");   
 			sql.append("         ROLES = STUFF((                   ");   
 			sql.append("            SELECT ',' + Convert(Varchar, c.ROLE_ID )    ");   
@@ -469,9 +474,9 @@ public class UserDao extends AbstractCommonJdbcDao {
 			sql.append(" 			 and a.USER_ID = b.USER_ID     ");   
 			sql.append("            FOR XML PATH('')               ");   
 			sql.append("            ), 1, 1, '')                   ");   
-			sql.append("             from adm_user a  ) ur         ");   
-			
+			sql.append("             from adm_user a  ) ur         ");
 			sql.append(" ON a.USER_ID = ur.USER_ID   WHERE a.USER_ID = ? ");
+			
 	        List<UserProfile> list = (List<UserProfile>) executeQuery(sql.toString(),new Object[] {id}, SELECT_RM);
 	        return list!=null&&list.size()>0? list.get(0): new UserProfile();
 	}
