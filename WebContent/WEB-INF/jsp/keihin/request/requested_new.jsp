@@ -364,8 +364,49 @@
 		                                <div class="row" >
 		                                	<div class="col-lg-12">
 		                                	
-		                                	Data Table CRUD
-<%-- 		                                		<jsp:include page="../pages/CRUDwithDataTable.jsp"></jsp:include> --%>
+<!-- 		                                	Data Table CRUD -->
+<%-- 		                                		<jsp:include page="${cPath}/request/requestWithDataTable.jsp"></jsp:include> --%>
+			<div class="table-title">
+                <div class="row">
+                    <div class="col-sm-12">
+                    	<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                    </div>                    
+                </div>
+            </div>
+			<table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Part ID</th>
+                        <th>Part Name</th>
+						<th>Qty</th>
+                        <th>Price</th>
+                        <th>Other Cost</th>
+                        <th>Total Cost</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr>
+						<td>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="checkbox1" name="options[]" value="1">
+								<label for="checkbox1"></label>
+							</span>
+						</td>
+                        <td>Part ID</td>
+                        <td>Part Name</td>
+						<td>Qty</td>
+                        <td>Price</td>
+                        <td>Other Cost</td>
+                        <td>Total Cost</td>
+                        <td>
+                            <a href="#editPartModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+             </table>
 		                                	</div>
 		                                </div>
 
