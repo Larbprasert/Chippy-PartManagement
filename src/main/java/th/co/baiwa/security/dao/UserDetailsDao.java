@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import th.co.baiwa.admin.entity.User;
 import th.co.baiwa.admin.entity.UserProfile;
 import th.co.baiwa.common.persistence.dao.AbstractCommonJdbcDao;
+import th.co.keihin.model.DepartmentBean;
+import th.co.keihin.model.SectionBean;
 
 @Repository("userDetailsDao")
 public class UserDetailsDao extends AbstractCommonJdbcDao {
@@ -63,11 +65,20 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 		logger.info("findProfile userId={}", userId);
 		
 		StringBuilder sql = new StringBuilder();
+//		sql.append(" SELECT p.*  ");
+//		sql.append("  , dbo.GetParamDesc(p.COMPANY_CODE,'COMPANY','TH')    COMPANY_NAME   ");
+//		sql.append("  , dbo.GetParamDesc(p.DEPT_CODE,'DEPARTMENT','TH')    DEPT_NAME   ");
+//		sql.append(" FROM adm_user_profile p ");
+//		sql.append(" WHERE  p.user_id = ? ");
+
 		sql.append(" SELECT p.*  ");
-		sql.append("  , dbo.GetParamDesc(p.COMPANY_CODE,'COMPANY','TH')    COMPANY_NAME   ");
-		sql.append("  , dbo.GetParamDesc(p.DEPT_CODE,'DEPARTMENT','TH')    DEPT_NAME   ");
+		sql.append("  ,b.section_name   ");
+		sql.append("  ,c.dept_ID,c.dept_name ");
 		sql.append(" FROM adm_user_profile p ");
+		sql.append(" LEFT JOIN tb_Section b ON p.section_ID = b.section_ID COLLATE database_default ");
+		sql.append(" LEFT JOIN tb_department c ON b.dept_ID = c.dept_ID COLLATE database_default ");
 		sql.append(" WHERE  p.user_id = ? ");
+		
 		
 		UserProfile profile = executeQueryForObject(sql.toString(),
 			new Object[] {
@@ -77,6 +88,10 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 				@Override
 				public UserProfile mapRow(ResultSet rs, int rowNum) throws SQLException {
 					UserProfile user = new UserProfile();
+					
+					SectionBean section = new SectionBean();
+					DepartmentBean department = new DepartmentBean();
+					
 					user.setUserId(rs.getString("user_id"));
 					user.setTitle(rs.getString("title"));
 					user.setFirstNameTh(rs.getString("first_name_th"));
@@ -88,10 +103,20 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 					user.setEmail(rs.getString("email"));
 					user.setActiveFlg(rs.getString("active_flg"));
 					user.setThemeCode(rs.getString("theme_code"));
-					user.setCompanyCode(rs.getString("COMPANY_CODE"));
-					user.setCompanyName(rs.getString("COMPANY_NAME"));
-					user.setDeptCode(rs.getString("DEPT_CODE"));
-					user.setDeptName(rs.getString("DEPT_NAME"));
+					
+//					user.setCompanyCode(rs.getString("COMPANY_CODE"));
+//					user.setCompanyName(rs.getString("COMPANY_NAME"));
+//					user.setDeptCode(rs.getString("DEPT_CODE"));
+//					user.setDeptName(rs.getString("DEPT_NAME"));
+					
+					section.setSection_ID(rs.getString("section_ID"));
+					section.setSection_name(rs.getString("section_name"));
+					user.setSection(section);
+
+					department.setDept_ID(rs.getString("dept_ID"));
+					department.setDept_name(rs.getString("dept_name"));
+					user.setDepartment(department);
+										
 					return user;
 				}
 			}

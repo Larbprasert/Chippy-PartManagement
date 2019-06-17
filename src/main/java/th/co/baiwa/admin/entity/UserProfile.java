@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import th.co.baiwa.common.persistence.entity.BaseDomain;
+import th.co.keihin.model.DepartmentBean;
 import th.co.keihin.model.FactoryBean;
 import th.co.keihin.model.SectionBean;
 
@@ -34,8 +35,18 @@ public class UserProfile extends BaseDomain {
 	
 	private FactoryBean factory;
 	private SectionBean section;
+	private DepartmentBean department;
 	
 	
+	
+	public DepartmentBean getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(DepartmentBean department) {
+		this.department = department;
+	}
+
 	public FactoryBean getFactory() {
 		return factory;
 	}

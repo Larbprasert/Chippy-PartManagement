@@ -167,13 +167,40 @@
 			                    </div>
 			                  </div>
 			                  
-					         <div class="form-group">
-			                    <label for="" class="col-lg-4 control-label">Company</label>
+<!-- 					         <div class="form-group"> -->
+<!-- 			                    <label for="" class="col-lg-4 control-label">Company</label> -->
+<!-- 			                    <div class="col-lg-6"> -->
+<!-- 			                     	<select  class="form-control" name="companyCode" required > -->
+<%-- 										<option value="">${_PLEASE_SELECT}</option> --%>
+<%-- 									    <c:forEach var="item" items="${LOV_COMPANY}"> --%>
+<%-- 									     	<option value="${item.code}" ${item.code == userProfile.companyCode ? 'selected="selected"' : ''}>${item.descTH}</option> --%>
+<%-- 									    </c:forEach>									     --%>
+<!-- 									</select> -->
+<!-- 									<div class="help-block with-errors"></div> -->
+<!-- 			                    </div> -->
+<!-- 			                  </div> -->
+			                  
+<!-- 					         <div class="form-group"> -->
+<!-- 			                    <label for="" class="col-lg-4 control-label">Department</label> -->
+<!-- 			                    <div class="col-lg-6"> -->
+<!-- 			                     	<select  class="form-control" name="deptCode" required > -->
+<%-- 										<option value="">${_PLEASE_SELECT} </option> --%>
+<%-- 									    <c:forEach var="item" items="${LOV_DEPT}"> --%>
+<%-- 									     	<option value="${item.code}" ${item.code==userProfile.deptCode ? 'selected="selected"' : ''} >${item.descTH}</option> --%>
+<%-- 									    </c:forEach> --%>
+<!-- 									</select> -->
+<!-- 									<div class="help-block with-errors"></div> -->
+<!-- 			                    </div> -->
+<!-- 			                  </div> -->
+			                  
+			                  
+			                  <div class="form-group">
+			                    <label for="" class="col-lg-4 control-label">Factory</label>
 			                    <div class="col-lg-6">
 			                     	<select  class="form-control" name="companyCode" required >
 										<option value="">${_PLEASE_SELECT}</option>
-									    <c:forEach var="item" items="${LOV_COMPANY}">
-									     	<option value="${item.code}" ${item.code == userProfile.companyCode ? 'selected="selected"' : ''}>${item.descTH}</option>
+									    <c:forEach var="item" items="${LOV_FACTORY}">
+									     	<option value="${item.code}" ${item.code == userProfile.factory.factory_ID ? 'selected="selected"' : ''}>${item.descTH}</option>
 									    </c:forEach>									    
 									</select>
 									<div class="help-block with-errors"></div>
@@ -181,12 +208,12 @@
 			                  </div>
 			                  
 					         <div class="form-group">
-			                    <label for="" class="col-lg-4 control-label">Department</label>
+			                    <label for="" class="col-lg-4 control-label">Section</label>
 			                    <div class="col-lg-6">
 			                     	<select  class="form-control" name="deptCode" required >
 										<option value="">${_PLEASE_SELECT} </option>
-									    <c:forEach var="item" items="${LOV_DEPT}">
-									     	<option value="${item.code}" ${item.code==userProfile.deptCode ? 'selected="selected"' : ''} >${item.descTH}</option>
+									    <c:forEach var="item" items="${LOV_SECTION}">
+									     	<option value="${item.code}" ${item.code == userProfile.section.section_ID ? 'selected="selected"' : ''}>${item.descTH}</option>
 									    </c:forEach>
 									</select>
 									<div class="help-block with-errors"></div>

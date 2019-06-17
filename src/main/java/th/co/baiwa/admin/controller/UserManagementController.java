@@ -81,6 +81,7 @@ public class UserManagementController {
 			userProfile =  userService.getById(userId);
 		}
 		
+		
 		mav.addObject("userProfile", userProfile);
 		
 		return  mav;

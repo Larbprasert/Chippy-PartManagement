@@ -21,7 +21,7 @@ public class UserRoleDao extends AbstractCommonJdbcDao {
 	private final static String buildInsertStatement() {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" INSERT INTO adm_user_role ( ");
-		sql.append("   USER_ID ");
+		sql.append("    USER_ID ");
 		sql.append("   ,ROLE_ID ");
 		sql.append("   ,CREATE_BY ");
 		sql.append("   ,CREATE_DATE ");

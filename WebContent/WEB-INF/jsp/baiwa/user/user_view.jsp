@@ -57,41 +57,49 @@
                   </div>
              </div>
 	          
-             <div class="col-lg-6">
-	          	<div class="form-group">
-                    <label for="paramDesc" class="col-lg-4 control-label">Email</label>
-                    <div class="col-lg-6">
-                       <input type="text" class="form-control" name="email" >
-                    </div>
-             	</div>
-             </div>
+<!--              <div class="col-lg-6"> -->
+<!-- 	          	<div class="form-group"> -->
+<!--                     <label for="paramDesc" class="col-lg-4 control-label">Email</label> -->
+<!--                     <div class="col-lg-6"> -->
+<!--                        <input type="text" class="form-control" name="email" > -->
+<!--                     </div> -->
+<!--              	</div> -->
+<!--              </div> -->
 	          
 	          
-             	<div class="col-lg-6">
+<!--              	<div class="col-lg-6"> -->
 					
-						  <div class="form-group">
-			                    <label for="" class="col-lg-4 control-label">Role</label>
-			                    <div class="col-lg-6">
-			                       <select  class="form-control selectpicker" id="roleCode" name="roleCode" title="${_ALL}"  >
-									    <option value="">${_ALL}</option>
-									    <c:forEach var="item" items="${LOV_ROLE}">
-									     	<option value="${item.code}">${item.descTH}</option>
-									    </c:forEach>
-									</select>
-			                    </div>
-			              </div>
-			    </div>
+<!-- 						  <div class="form-group"> -->
+<!-- 			                    <label for="" class="col-lg-4 control-label">Role</label> -->
+<!-- 			                    <div class="col-lg-6"> -->
+<%-- 			                       <select  class="form-control selectpicker" id="roleCode" name="roleCode" title="${_ALL}"  > --%>
+<%-- 									    <option value="">${_ALL}</option> --%>
+<%-- 									    <c:forEach var="item" items="${LOV_ROLE}"> --%>
+<%-- 									     	<option value="${item.code}">${item.descTH}</option> --%>
+<%-- 									    </c:forEach> --%>
+<!-- 									</select> -->
+<!-- 			                    </div> -->
+<!-- 			              </div> -->
+<!-- 			    </div> -->
 			    
 			 <div class="col-lg-6">
 			           <div class="form-group">
-			                    <label for="" class="col-lg-4 control-label">Company</label>
+			                    <label for="" class="col-lg-4 control-label">Section</label>
 			                    <div class="col-lg-6">
-			                     	<select  class="form-control" name="companyCode"   >
+<!-- 			                     	<select  class="form-control" name="companyCode"   > -->
+<%-- 										<option value="">${_ALL}</option> --%>
+<%-- 									    <c:forEach var="item" items="${}"> --%>
+<%-- 									     	<option value="${item.code}" ${item.code == userProfile.companyCode ? 'selected="selected"' : ''}>${item.descTH}</option> --%>
+<%-- 									    </c:forEach> --%>
+<!-- 									</select> -->
+									
+									<select  class="form-control" name="companyCode"   >
 										<option value="">${_ALL}</option>
-									    <c:forEach var="item" items="${LOV_COMPANY}">
-									     	<option value="${item.code}" ${item.code == userProfile.companyCode ? 'selected="selected"' : ''}>${item.descTH}</option>
+									    <c:forEach var="item" items="${LOV_SECTION}">
+									     	<option value="${item.code}" ${item.code == userProfile.section.section_ID ? 'selected="selected"' : ''}>${item.descTH}</option>
 									    </c:forEach>
 									</select>
+									
 			                    </div>
 			                  </div>
 			 	</div>
@@ -238,7 +246,6 @@
 			});
 		};
 		
-		function doSearch(){
 			$.ajax({
 	             url: cPath+"/admin/user/getUserTable.json",
 	            data: $('#myForm').serialize()
@@ -255,7 +262,7 @@
             }).fail(function (jqXHR, textStatus, errorThrown) { 
                   // needs to implement if it fails
             });
-	 	};
+	 
  	
 		var rsTable = $('#result-table').DataTable({
 			autoWidth: false,

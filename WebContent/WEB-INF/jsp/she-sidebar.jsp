@@ -13,7 +13,7 @@
 				</li>
 
 
-			<security:authorize access="hasAnyRole('ENVI_USER' , 'ENVI_ADMIN')">
+			<security:authorize access="hasAnyRole('ADMIN' , 'ENVI_ADMIN')">
 				<li><a href="${cPath}/she/home.htm"> <i
 						class="fa fa-dashboard"></i> <span>Dashboard</span>
 				</a></li>
