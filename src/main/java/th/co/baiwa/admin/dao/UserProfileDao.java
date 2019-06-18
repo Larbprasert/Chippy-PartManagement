@@ -56,18 +56,22 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
         sql.append("   ,GENDER ");
         sql.append("   ,MOBILE ");
         sql.append("   ,EMAIL ");
-        sql.append("   ,COMPANY_CODE ");
-        sql.append("   ,DEPT_CODE ");
+        
+        sql.append("   ,section_ID ");
+//      sql.append("   ,COMPANY_CODE = ? ");
+//      sql.append("   ,DEPT_CODE = ? ");
+        
         sql.append("   ,ACTIVE_FLG ");
         sql.append("   ,CREATE_BY ");
         sql.append("   ,CREATE_DATE ");
         sql.append(" ) ");
-        sql.append(" VALUES (?,?,?,?,?,?,?,?,?,?,?,GETDATE()) ");
+        sql.append(" VALUES (?,?,?,?,?,?,?,?,?,?,GETDATE()) ");
         return sql.toString();
     }
 
     private final static String buildUpdateStatement() {
         StringBuilder sql = new StringBuilder();
+        
         sql.append(" UPDATE adm_user_profile ");
         sql.append(" SET ");
         sql.append("   TITLE = ? ");
@@ -76,13 +80,17 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
         sql.append("   ,GENDER = ? ");
         sql.append("   ,MOBILE = ? ");
         sql.append("   ,EMAIL = ? ");
-        sql.append("   ,COMPANY_CODE = ? ");
-        sql.append("   ,DEPT_CODE = ? ");
+        
+        sql.append("   ,section_ID = ? ");
+//        sql.append("   ,COMPANY_CODE = ? ");
+//        sql.append("   ,DEPT_CODE = ? ");
+        
         sql.append("   ,ACTIVE_FLG = ? ");
         sql.append("   ,UPDATE_BY = ? ");
         sql.append("   ,UPDATE_DATE = GETDATE() ");
         sql.append(" WHERE ");
         sql.append("   USER_ID = ? ");
+        
         return sql.toString();
     }
 
@@ -187,8 +195,11 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
 						UserProfile.getGender(), 
 						UserProfile.getMobile(), 
 						UserProfile.getEmail(),
-						UserProfile.getCompanyCode(),
-						UserProfile.getDeptCode(),
+						
+						UserProfile.getSection().getSection_ID(),
+//						UserProfile.getCompanyCode(),
+//						UserProfile.getDeptCode(),
+						
 						UserProfile.getActiveFlg(), 
 						UserProfile.getCreateBy()
 						});
@@ -201,13 +212,14 @@ public class UserProfileDao extends AbstractCommonJdbcDao {
 						UserProfile.getTitle(), 
 						UserProfile.getFirstNameTh(),
 						UserProfile.getLastNameTh(), 
-//						UserProfile.getFirstNameEn(), 
-//						UserProfile.getLastNameEn(),
 						UserProfile.getGender(), 
 						UserProfile.getMobile(), 
 						UserProfile.getEmail(),
-						UserProfile.getCompanyCode(),
-						UserProfile.getDeptCode(),
+						
+						UserProfile.getSection().getSection_ID(),
+//						UserProfile.getCompanyCode(),
+//						UserProfile.getDeptCode(),
+						
 						UserProfile.getActiveFlg(),
 						UserProfile.getUpdateBy(),
 						UserProfile.getUserId()

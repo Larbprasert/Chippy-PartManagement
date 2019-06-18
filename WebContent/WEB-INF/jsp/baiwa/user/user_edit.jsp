@@ -210,10 +210,10 @@
 					         <div class="form-group">
 			                    <label for="" class="col-lg-4 control-label">Section</label>
 			                    <div class="col-lg-6">
-			                     	<select  class="form-control" name="deptCode" required >
+			                     	<select  class="form-control" name="section.section_ID" required >
 										<option value="">${_PLEASE_SELECT} </option>
 									    <c:forEach var="item" items="${LOV_SECTION}">
-									     	<option value="${item.code}" ${item.code == userProfile.section.section_ID ? 'selected="selected"' : ''}>${item.descTH}</option>
+									     	<option value="${item.code}" ${item.code == userProfile.section.section_ID ? 'selected="selected"' : ''}>${item.descTH}</option>									     	
 									    </c:forEach>
 									</select>
 									<div class="help-block with-errors"></div>
