@@ -93,7 +93,7 @@
 <%-- 									    </c:forEach> --%>
 <!-- 									</select> -->
 									
-									<select  class="form-control" name="companyCode"   >
+									<select  class="form-control" name="section.section_ID"   >
 										<option value="">${_ALL}</option>
 									    <c:forEach var="item" items="${LOV_SECTION}">
 									     	<option value="${item.code}" ${item.code == userProfile.section.section_ID ? 'selected="selected"' : ''}>${item.descTH}</option>

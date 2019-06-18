@@ -13,7 +13,7 @@
 				</li>
 
 
-			<security:authorize access="hasAnyRole('ADMIN' , 'ENVI_ADMIN')">
+			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 				<li><a href="${cPath}/she/home.htm"> <i
 						class="fa fa-dashboard"></i> <span>Dashboard</span>
 				</a></li>
@@ -32,7 +32,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/userType/userType_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -45,7 +45,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/checkTool/checkTool_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -58,7 +58,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/department/department_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -71,7 +71,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/factory/factory_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -84,7 +84,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/location/location_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -98,7 +98,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/machine/machine_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -111,7 +111,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/maker/maker_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -124,7 +124,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/moldType/moldType_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -137,7 +137,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/productionLine/productionLine_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -150,7 +150,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/section/section_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -163,7 +163,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/unitType/unitType_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -176,7 +176,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
 									<li><a href="${cPath}/requestType/requestType_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -184,7 +184,9 @@
 						</li>
 					</ul></li>
 					
+			</security:authorize>
 
+			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 				<li class="treeview"><a href="#"> <i class="fa fa-cubes"></i>
 						<span>Utility</span> <span class="pull-right-container"> <i
 							class="fa fa-angle-left pull-right"></i>
@@ -197,7 +199,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ENVI_ADMIN')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF' )">
 									<li><a href="${cPath}/partMaster/partMaster_list.htm"><i
 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li>
 								</security:authorize>
@@ -208,9 +210,7 @@
 			</security:authorize>
 
 
-			<security:authorize access="hasAnyRole('ADMIN','GAS_USER','GAS_STAFF', 
-						'GAS_SUP', 'GAS_SEC_MNG', 'GAS_DEP_MNG')">
-
+			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF','ROLE_REQ_MNG', 'ROLE_REQ_SUP', 'ROLE_REQ_USER','ROLE_QA')">
 				<li class="header">Request Maintenance Data</li>
 				<li class="treeview"><a href="#"> <i class="fa fa-fire"></i>
 					<span>Request Maintenance Data</span> <span class="pull-right-container">
@@ -226,7 +226,7 @@
 								</span>
 							</a>
 							<ul class="treeview-menu">								
-								<security:authorize access="hasAnyRole('ADMIN','GAS_STAFF','GAS_USER','GAS_SUP','GAS_SEC_MNG')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF','ROLE_REQ_MNG', 'ROLE_REQ_SUP', 'ROLE_REQ_USER','ROLE_QA')">
 <%-- 									<li><a href="${cPath}/gas/gas_requested_list.htm"> <i --%>
 									<li><a href="${cPath}/request/requested_list.htm"> <i
 											class="fa fa-chevron-circle-right"></i> Requested list
@@ -245,68 +245,68 @@
 
 
 
-			<security:authorize access="hasAnyRole('TRAIN_VIEW','TRAIN_MODIFY')">
-				<li class="header">Safety Training Record</li>
+<!-- 			<security:authorize access="hasAnyRole('TRAIN_VIEW','TRAIN_MODIFY')"> -->
+<!-- 				<li class="header">Safety Training Record</li> -->
 
 
-				<li class="treeview"><a href="#"> <i class="fa fa-history"></i>
-						<span><spring:message code="menu.history" /></span> <span
-						class="pull-right-container"> <i
-							class="fa fa-angle-left pull-right"></i>
-					</span>
-				</a>
-					<ul class="treeview-menu">
-						<li><a href="${cPath}/history/reportSum.htm"> <i
-								class="fa fa-chevron-circle-right"></i> Training Summary Report
-						</a></li>
-					</ul></li>
+<!-- 				<li class="treeview"><a href="#"> <i class="fa fa-history"></i> -->
+<!-- 						<span><spring:message code="menu.history" /></span> <span -->
+<!-- 						class="pull-right-container"> <i -->
+<!-- 							class="fa fa-angle-left pull-right"></i> -->
+<!-- 					</span> -->
+<!-- 				</a> -->
+<!-- 					<ul class="treeview-menu"> -->
+<%-- 						<li><a href="${cPath}/history/reportSum.htm"> <i --%>
+<!-- 								class="fa fa-chevron-circle-right"></i> Training Summary Report -->
+<!-- 						</a></li> -->
+<!-- 					</ul></li> -->
 
-				<security:authorize access="hasAnyRole('TRAIN_MODIFY')">
-					<li class="treeview"><a href="#"> <i
-							class="fa fa-calendar-check-o"></i> <span>Management</span> <span
-							class="pull-right-container"> <i
-								class="fa fa-angle-left pull-right"></i>
-						</span>
-					</a>
-						<ul class="treeview-menu">
-							<li><a href="${cPath}/manage/training_manage.htm"> <i
-									class="fa fa-chevron-circle-right"></i> Personal Training
-							</a></li>
-							<li><a href="${cPath}/manage/job_course_manage.htm"> <i
-									class="fa fa-chevron-circle-right"></i> Course Training
-							</a></li>
-							<li><a href="${cPath}/manage/job_course_search.htm"> <i
-									class="fa fa-chevron-circle-right"></i> Personal / Course
-									Training
-							</a></li>
-							<li><a href="${cPath}/manage/job_course_add.htm"> <i
-									class="fa fa-chevron-circle-right"></i> Create Course Training
-							</a></li>
-						</ul></li>
-					<li class="treeview"><a href="#"> <i class="fa fa-wrench"></i>
-							<span>Maintenance</span> <span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-						</span>
-					</a>
-						<ul class="treeview-menu">
-							<li><a href="${cPath}/maintain/owner.htm"> <i
-									class="fa fa-chevron-circle-right"></i> Contractor Maintenance
-							</a></li>
-							<li><a href="${cPath}/maintain/course.htm"> <i
-									class="fa fa-chevron-circle-right"></i> Course Maintenance
-							</a></li>
-							<li><a href="${cPath}/maintain/positionCourse.htm"> <i
-									class="fa fa-chevron-circle-right"></i> Training Need by Job
-									Position
-							</a></li>
-						</ul></li>
-				</security:authorize>
-			</security:authorize>
-
-
+<!-- 				<security:authorize access="hasAnyRole('TRAIN_MODIFY')"> -->
+<!-- 					<li class="treeview"><a href="#"> <i -->
+<!-- 							class="fa fa-calendar-check-o"></i> <span>Management</span> <span -->
+<!-- 							class="pull-right-container"> <i -->
+<!-- 								class="fa fa-angle-left pull-right"></i> -->
+<!-- 						</span> -->
+<!-- 					</a> -->
+<!-- 						<ul class="treeview-menu"> -->
+<%-- 							<li><a href="${cPath}/manage/training_manage.htm"> <i --%>
+<!-- 									class="fa fa-chevron-circle-right"></i> Personal Training -->
+<!-- 							</a></li> -->
+<%-- 							<li><a href="${cPath}/manage/job_course_manage.htm"> <i --%>
+<!-- 									class="fa fa-chevron-circle-right"></i> Course Training -->
+<!-- 							</a></li> -->
+<%-- 							<li><a href="${cPath}/manage/job_course_search.htm"> <i --%>
+<!-- 									class="fa fa-chevron-circle-right"></i> Personal / Course -->
+<!-- 									Training -->
+<!-- 							</a></li> -->
+<%-- 							<li><a href="${cPath}/manage/job_course_add.htm"> <i --%>
+<!-- 									class="fa fa-chevron-circle-right"></i> Create Course Training -->
+<!-- 							</a></li> -->
+<!-- 						</ul></li> -->
+<!-- 					<li class="treeview"><a href="#"> <i class="fa fa-wrench"></i> -->
+<!-- 							<span>Maintenance</span> <span class="pull-right-container"> -->
+<!-- 								<i class="fa fa-angle-left pull-right"></i> -->
+<!-- 						</span> -->
+<!-- 					</a> -->
+<!-- 						<ul class="treeview-menu"> -->
+<%-- 							<li><a href="${cPath}/maintain/owner.htm"> <i --%>
+<!-- 									class="fa fa-chevron-circle-right"></i> Contractor Maintenance -->
+<!-- 							</a></li> -->
+<%-- 							<li><a href="${cPath}/maintain/course.htm"> <i --%>
+<!-- 									class="fa fa-chevron-circle-right"></i> Course Maintenance -->
+<!-- 							</a></li> -->
+<%-- 							<li><a href="${cPath}/maintain/positionCourse.htm"> <i --%>
+<!-- 									class="fa fa-chevron-circle-right"></i> Training Need by Job -->
+<!-- 									Position -->
+<!-- 							</a></li> -->
+<!-- 						</ul></li> -->
+<!-- 				</security:authorize> -->
+<!-- 			</security:authorize> -->
 
 
-			<security:authorize access="hasAnyRole('ADMIN' )">
+
+
+			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG')">
 
 				<li class="header">System Configuration</li>
 

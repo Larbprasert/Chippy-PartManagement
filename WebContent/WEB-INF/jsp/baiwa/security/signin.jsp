@@ -83,13 +83,13 @@
 							<button type="submit" class="btn btn-primary"  > &nbsp;&nbsp;<spring:message code="signin.signinBtn"/> <i class='fa fa-sign-in'></i>&nbsp;&nbsp; </button>
 							</div>
 								<small>
-								SHE Admin  : admin/123456 <br>
-								Envi User  : enviuser/123456 <br>
-								Envi Admin  : enviadmin/123456 <br>
-								Area Rep.  : rep1/123456 ,  rep2/123456 <br>
-								Area Sup.  : sup1/123456 <br>
-								Area Sec.  : sec1/123456 <br>
-								SHE Staff  : shestaff/123456
+								Admin  : admin/123456 <br>
+								MT. MNG  : K1304021/123456 <br>
+								MT.Staff  : K1305014/123456 <br>
+								Requestor  : req1/123456 <br>
+								Req Sup.  : sup1/123456 <br>
+								Req MNG  : reqMNG1/123456 <br>
+								QA  : qa01/123456
 <!-- 								Area Dept.  : enviuser/enviuser   -->
  								</small>		 			
 							<spring:eval expression="@environment.getProperty('project.lastupdate')" var="lastupdate" />

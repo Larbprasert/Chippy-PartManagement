@@ -311,10 +311,10 @@ public class UserDao extends AbstractCommonJdbcDao {
 //			sql.append(" AND b.DEPT_CODE = ? ");
 //		}
 		
-//		if(StringUtils.isNotEmpty(user.getSection().getSection_ID())){
-//			wh.add(user.getSection().getSection_ID());
-//			sql.append(" AND b.section_ID = ? ");
-//		}
+		if(StringUtils.isNotEmpty(user.getSection().getSection_ID())){
+			wh.add(user.getSection().getSection_ID());
+			sql.append(" AND b.section_ID = ? ");
+		}
 		
 		if(StringUtils.isNotEmpty(user.getRoleCode())){
 			sql.append(" and exists                            ");
