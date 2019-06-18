@@ -305,8 +305,10 @@
 				$.notify({
 					title: "<strong>Success!</strong> ",
 					message: " Save successfully"
+					
+
 				});
-				
+	 			location = cPath+"/admin/user/viewUser.htm";		
 			}
 		
 			$("#saveBtn").click(function(e){
