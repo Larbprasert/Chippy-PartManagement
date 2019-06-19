@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
 <%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 
-<script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<script src="${cPath}/resources/js/moment.min.js"></script>
 
  
 <div class="content-wrapper">
@@ -17,9 +17,9 @@
 		
   <section class="content">
 		 
-	<form action="${cPath}/request/request_save.htm" method="post" id="myForm" data-toggle="validator" >
+	<form action="${cPath}/request/requested_save.htm" method="post"   id="myForm" data-toggle="validator" >
 
-			<input name ="rAction" type="hidden" value="Create">
+<!-- 			<input name ="rAction" type="hidden" value="Create"> -->
  
 	            <div class="row">
 	             
@@ -37,7 +37,7 @@
 		                                		<p class="help-block"><b>Request No.</b></p>
 		                                	</div>
 		                                	<div class="col-lg-7">		                                		
-							                    <input type="text" class="form-control" placeholder="" name="request_ID" id="request_ID" value="PE${_CURR_YEAR}******" readonly>
+							                    <input type="text" class="form-control" placeholder="" id="request_ID" value="PE${_CURR_YEAR}******" readonly>
 		                                	</div>                          			
 	                            		</div>
 	                            	</div>
@@ -73,7 +73,7 @@
 		                                		<p class="help-block"><b>Request By</b></p>
 		                                	</div>
 		                                	<div class="col-lg-7">		                                		
-							                    <input type="text" class="form-control" placeholder="" name="createBy" id="createBy" value="${_userProfile.firstNameTh} ${_userProfile.lastNameTh}" readonly>
+							                    <input type="text" class="form-control" placeholder=""  id="createBy" value="${_userProfile.firstNameTh} ${_userProfile.lastNameTh}" readonly>
 		                                	</div>                            			
 	                            		</div>
 	                            	</div>
@@ -83,8 +83,7 @@
 	                                		<p class="help-block"><b>Section</b></p>
 	                                	</div>
 	                                	<div class="col-lg-7">		                                		
-						                    <input type="text" class="form-control" placeholder="" name="section_name" id="section_name" value="${_userProfile.section.section_name}" readonly>
-						                    <input type="hidden" name="section_ID" value="">
+						                    <input type="text" class="form-control" placeholder="" id="section_name" value="${_userProfile.section.section_name}" readonly>
 	                                	</div>
 	                            	</div>
 	                            	
@@ -93,8 +92,7 @@
 	                                		<p class="help-block"><b>Request Status</b></p>
 	                                	</div>
 	                                	<div class="col-lg-7">		                                		
-						                    <input type="text" class="form-control" placeholder="" name="status" id="status" value="Create Request" readonly>
-	                                		<input type="hidden" name="status" value="">
+						                    <input type="text" class="form-control" placeholder=""  value="Create Request" readonly>
 	                                	</div>	                                	
 	                            	</div>
 	                            </div>
@@ -184,7 +182,7 @@
 		                                	<div class="col-lg-6">
 				                                <div class="form-group">
 				                                    <p class="help-block"><b> Problem Picture Before (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
-				                                    <input type="file"  name="beforePicture[]" class="form-control-file" id="beforePicture" class="file"   multiple>
+<!-- 				                                    <input type="file"  name="beforePicture[]" class="form-control-file" id="beforePicture" class="file"   multiple> -->
 				                                
 				                               
 				                                </div>
@@ -202,7 +200,7 @@
 							                            <b>Request person</b>
 							                        </div>
 							                        <div class="panel-body">
-							                            <p id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh}</p>
+							                            <p id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </p>
 							                        </div>
 							                        <div class="panel-footer text-right">
 <!-- 							                        	<input type="hidden" name="status" value="1"> -->
@@ -298,6 +296,7 @@
 <script type="text/javascript">
 
 	function updateTime() {
+		  $('#request_ID').val("PE"+moment().format('YYYYMM')+"****");
 		  $('#informDate').val(moment().format('YYYY-MM-DD'));
 		  $('#informTime').val(moment().format('H:mm:ss'));
 	}
@@ -325,7 +324,7 @@ function saveReq(){
 	
 //		console.log(jsonObj);
 
-	/* bootbox.confirm({
+	 bootbox.confirm({
 		    title: "Confirm",
 		    size: 'small',
 		    message: "Confirm create new request?",
@@ -344,11 +343,11 @@ function saveReq(){
 		        	 
 		        	// Submit form
 		        	
-		        	
+		        	$("#myForm").submit();
 				 
 		        }
 		    }
-		}); */
+		}); 
 //		alert(ItemForm);
 };
 

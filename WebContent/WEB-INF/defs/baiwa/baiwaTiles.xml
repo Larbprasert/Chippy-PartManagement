@@ -14,6 +14,7 @@
 	
 	<definition name="viewUser" template="/WEB-INF/jsp/baiwa/user/user_view.jsp" />
 	<definition name="editUser" template="/WEB-INF/jsp/baiwa/user/user_edit.jsp" />
+	<definition name="editProfile" template="/WEB-INF/jsp/baiwa/user/profile_edit.jsp" />
 	
 	<definition name="error403" template="/WEB-INF/jsp/baiwa/security/error403.jsp" />
 	

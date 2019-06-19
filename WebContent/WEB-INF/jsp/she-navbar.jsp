@@ -69,9 +69,10 @@
               </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
-<!--                 <div class="pull-left"> -->
-<%--                   <a  href="${cPath}/profile/viewProfile.htm?userId=${_userProfile.userId}" class="btn btn-default btn-flat"  ><i class="fa fa-user"></i> Profile</a> --%>
-<!--                 </div> -->
+               <div class="pull-left">
+                  <a  href="${cPath}/profile/userProfile.htm" class="btn btn-default btn-flat"  ><i class="fa fa-user"></i> Profile</a>
+                </div>
+                
                 <div class="pull-right">
                   <a href="${cPath}/logout.htm" class="btn btn-default btn-flat"  ><i class="fa fa-sign-out"></i> Logout  </a>
                 </div>

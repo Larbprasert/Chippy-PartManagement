@@ -35,11 +35,11 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="paramType" class="col-lg-4 control-label">Department</label>
+											<label for="paramType" class="col-lg-4 control-label">Section</label>
 											<div class="col-lg-6">
-												<select class="form-control"  id="departmentSearch" name="departmentSearch">  
+												<select class="form-control"  id="departmentSearch" name="sectionSearch">  
 													 <option value="">${_ALL}</option> 
-													 <c:forEach var="item" items="${LOV_DEPT}">
+													 <c:forEach var="item" items="${LOV_SECTION}">
 												     	<option value="${item.code}">${item.descTH}</option>
 												    </c:forEach>
 												</select>
@@ -76,7 +76,7 @@
 									</div>
 									<div class="col-lg-6">
 										<div class="form-group">
-											<label for="paramDesc" class="col-lg-4 control-label">Equipment
+											<label for="paramDesc" class="col-lg-4 control-label">Request No.
 												Type</label>
 											<div class="col-lg-6">
 												<input type="text" class="form-control" name="equipmentTypeSearch" id="equipmentTypeSearch">
