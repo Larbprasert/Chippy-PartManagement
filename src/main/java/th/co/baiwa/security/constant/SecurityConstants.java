@@ -3,7 +3,7 @@ package th.co.baiwa.security.constant;
 public class SecurityConstants {
 	
 	public static final String LOGIN_URL = "/login.htm";
-	public static final String LOGIN_SUCCESS_URL = "/she/home.htm";
+	public static final String LOGIN_SUCCESS_URL = "/home.htm";
 	public static final String LOGIN_WARNING_URL = "/login.htm?warning";
 	public static final String LOGIN_ERROR_URL = "/login.htm?error";
 	public static final String LOGOUT_URL = "/logout.htm";

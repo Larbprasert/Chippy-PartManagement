@@ -37,7 +37,7 @@ public class SectionService {
 			section.setSection_ID(rs.getString("section_ID"));
 			section.setSection_name(rs.getString("section_name"));
 			
-			section.setActiveFlag(rs.getInt("activeFlag"));
+			section.setActiveFlag(rs.getString("activeFlag"));
 			section.setActiveFlag_name(rs.getString("activeFlag_name"));
 			
 			section.setCreateBy(rs.getString("createBy"));

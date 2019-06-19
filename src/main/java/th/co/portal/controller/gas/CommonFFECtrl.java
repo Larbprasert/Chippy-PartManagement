@@ -23,9 +23,9 @@ public class CommonFFECtrl {
 		mav.setViewName("gas_registered_list");
 		
 		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
-		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
-		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
-		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
+//		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
+//		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
+//		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
 		mav.setViewName("ffe_registered_list");
 		
 		return mav; 

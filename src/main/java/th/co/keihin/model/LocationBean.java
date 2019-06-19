@@ -6,7 +6,7 @@ public class LocationBean extends BaseDomain{
 	private String location_ID;
     private String location_name;
     
-    private int activeFlag;
+    private String activeFlag;
     private String activeFlag_name;
     
 	private FactoryBean factory;
@@ -31,11 +31,11 @@ public class LocationBean extends BaseDomain{
     	 location_name = newLocation_name;
 	}
      
-    public int getActiveFlag() {
+    public String getActiveFlag() {
     	return this.activeFlag;
     }
     
-    public void setActiveFlag(int activeFlag) {
+    public void setActiveFlag(String activeFlag) {
     	this.activeFlag= activeFlag;
     } 
     

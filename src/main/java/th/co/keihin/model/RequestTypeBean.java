@@ -6,7 +6,7 @@ public class RequestTypeBean extends BaseDomain {
 	private String requestType_ID;
     private String requestType_name;
     
-    private int activeFlag;
+    private String activeFlag;
     private String activeFlag_name;
   
 	public String getRequestType_ID() {
@@ -26,11 +26,11 @@ public class RequestTypeBean extends BaseDomain {
     	 requestType_name = newRequestType_name;
 	}
      
-    public int getActiveFlag() {
+    public String getActiveFlag() {
     	return this.activeFlag;
     }
     
-    public void setActiveFlag(int activeFlag) {
+    public void setActiveFlag(String activeFlag) {
     	this.activeFlag= activeFlag;
     }
     

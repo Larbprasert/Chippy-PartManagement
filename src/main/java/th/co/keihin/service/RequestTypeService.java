@@ -40,7 +40,7 @@ private RowMapper REQUESTTYPE_MAPPER = new RowMapper(){
 		requestType.setRequestType_ID(rs.getString("requestType_ID"));
 		requestType.setRequestType_name(rs.getString("requestType_name"));
 		
-		requestType.setActiveFlag(rs.getInt("activeFlag"));
+		requestType.setActiveFlag(rs.getString("activeFlag"));
 		requestType.setActiveFlag_name(rs.getString("activeFlag_name"));
 		
 		requestType.setCreateBy(rs.getString("createBy"));

@@ -36,7 +36,7 @@ public class LocationService {
 			location.setLocation_ID(rs.getString("location_ID"));
 			location.setLocation_name(rs.getString("location_name"));
 			
-			location.setActiveFlag(rs.getInt("activeFlag"));
+			location.setActiveFlag(rs.getString("activeFlag"));
 			location.setActiveFlag_name(rs.getString("activeFlag_name"));
 			
 			location.setCreateBy(rs.getString("createBy"));

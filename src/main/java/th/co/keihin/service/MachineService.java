@@ -32,7 +32,7 @@ public class MachineService {
 			machine.setMachine_ID(rs.getString("machine_ID"));
 			machine.setMachine_name(rs.getString("machine_name"));
 			
-			machine.setActiveFlag(rs.getInt("activeFlag"));
+			machine.setActiveFlag(rs.getString("activeFlag"));
 			machine.setActiveFlag_name(rs.getString("activeFlag_name"));
 			
 			machine.setCreateBy(rs.getString("createBy"));

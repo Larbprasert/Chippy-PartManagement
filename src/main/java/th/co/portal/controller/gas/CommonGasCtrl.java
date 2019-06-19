@@ -39,10 +39,10 @@ public class CommonGasCtrl {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("gas_registered_list");
 		
-		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
-		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
-		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
-		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
+//		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
+//		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
+//		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
+//		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
 		
 		String roleSup = "ROLE_GAS_SUP";
 		String roleSec = "ROLE_GAS_SEC_MNG";
@@ -68,11 +68,11 @@ public class CommonGasCtrl {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("gas_history_list");
 		
-		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
-		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
-		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
-		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
-		
+//		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
+//		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
+//		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
+//		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
+//		
 		return mav;
 	}
 	
@@ -88,10 +88,10 @@ public class CommonGasCtrl {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("gas_certificate_list");
 		
-		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
-		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
-		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
-		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
+//		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
+//		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
+//		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
+//		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
 		
 		return mav;
 	}
@@ -123,11 +123,11 @@ public class CommonGasCtrl {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("gas_requested_list");
 		
-		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
-		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
-		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
-		mav.addObject("LOV_REQUEST_STATUS",ApplicationCache.getLovByType("REQUEST_STATUS"));
-		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
+//		mav.addObject("LOV_DEPT",ApplicationCache.getLovByType("DEPARTMENT"));
+//		mav.addObject("LOV_ACTIVE_TYPE",ApplicationCache.getLovByType("ACTIVE_TYPE"));
+//		mav.addObject("LOV_EQUIPMENT_TYPE",ApplicationCache.getLovByType("EQUIPMENT_TYPE"));
+//		mav.addObject("LOV_REQUEST_STATUS",ApplicationCache.getLovByType("REQUEST_STATUS"));
+//		mav.addObject("LOV_COMPANY",ApplicationCache.getLovByType("COMPANY"));
 		
 		return mav;
 	}

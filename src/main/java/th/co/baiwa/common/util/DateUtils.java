@@ -217,7 +217,7 @@ public class DateUtils {
 
 	public static String get_ddmmyyyyhhmmss_from_date(Timestamp dateIn) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss", thaiLocale);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss", Locale.US);
 
 		try {
 

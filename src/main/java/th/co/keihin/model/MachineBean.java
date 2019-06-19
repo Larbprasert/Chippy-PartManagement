@@ -6,7 +6,7 @@ public class MachineBean extends BaseDomain{
 	private String machine_ID;
     private String machine_name;
     
-    private int activeFlag;
+    private String activeFlag;
     private String activeFlag_name;
     
 //	private Date createDate;
@@ -38,11 +38,11 @@ public class MachineBean extends BaseDomain{
 	}
 
      
-    public int getActiveFlag() {
+    public String getActiveFlag() {
     	return this.activeFlag;
     }
     
-    public void setActiveFlag(int activeFlag) {
+    public void setActiveFlag(String activeFlag) {
     	this.activeFlag= activeFlag;
     } 
     

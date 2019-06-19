@@ -6,7 +6,7 @@ public class SectionBean extends BaseDomain{
 	private String section_ID;
     private String section_name;
     
-    private int activeFlag;
+    private String activeFlag;
     private String activeFlag_name;
     
 
@@ -34,11 +34,11 @@ public class SectionBean extends BaseDomain{
 	}
 
      
-    public int getActiveFlag() {
+    public String getActiveFlag() {
     	return this.activeFlag;
     }
     
-    public void setActiveFlag(int activeFlag) {
+    public void setActiveFlag(String activeFlag) {
     	this.activeFlag= activeFlag;
     } 
     

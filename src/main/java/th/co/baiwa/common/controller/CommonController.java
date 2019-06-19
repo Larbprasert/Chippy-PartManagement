@@ -42,13 +42,13 @@ public class CommonController {
 //		return mav;
 //	}
 	
-	@RequestMapping(value = "/she/home.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.htm", method = RequestMethod.GET)
 	public ModelAndView welcome(Locale locale, HttpServletRequest httpRequest, String home) {
 		ModelAndView mav = new ModelAndView();
 		
 		boolean isNotLogin =  SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken ;
 		
-		logger.info(" # /she/home.htm ,isNotLogin=" + isNotLogin);
+		logger.info(" # /home.htm ,isNotLogin=" + isNotLogin);
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
         mav.addObject("isSessionTimout", isNotLogin);
