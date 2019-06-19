@@ -33,6 +33,7 @@
 
 		int start_year = 2012;
 		int curr_year = Calendar.getInstance().get(Calendar.YEAR);
+// 		int curr_month = Calendar.getInstance().get(Calendar.MONTH);
 
   %>
 

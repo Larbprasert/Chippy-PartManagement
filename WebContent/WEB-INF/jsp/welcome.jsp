@@ -16,7 +16,7 @@
 /* 	color: #5f6468; */
 /* 	height: 100%; */
 /* 	width: 100%; */
- 	background-image: url(${cPath}/resources/images/tp/Home_logo.png);  
+/* 	background-image: url(${cPath}/resources/images/tp/Home_logo.png);   */
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: 50%;

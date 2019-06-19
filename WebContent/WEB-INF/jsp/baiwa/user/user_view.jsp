@@ -246,6 +246,7 @@
 			});
 		};
 		
+		function doSearch(){
 			$.ajax({
 	             url: cPath+"/admin/user/getUserTable.json",
 	            data: $('#myForm').serialize()
@@ -262,7 +263,7 @@
             }).fail(function (jqXHR, textStatus, errorThrown) { 
                   // needs to implement if it fails
             });
-	 
+	 	};
  	
 		var rsTable = $('#result-table').DataTable({
 			autoWidth: false,
@@ -305,6 +306,7 @@
 			  doSearch();
         });
 
+			  doSearch();
 	
 </script>
 	

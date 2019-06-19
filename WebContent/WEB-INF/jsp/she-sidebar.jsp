@@ -14,7 +14,7 @@
 
 
 			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
-				<li><a href="${cPath}/she/home.htm"> <i
+				<li><a href="${cPath}/home.htm"> <i
 						class="fa fa-dashboard"></i> <span>Dashboard</span>
 				</a></li>
 

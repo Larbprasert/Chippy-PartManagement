@@ -10,18 +10,44 @@
 </head>
 
 <style>		
-	.signin{ 
-		background-color: #444444;
-		background-image: url('${cPath}/resources/images/tp/smart-industry-1024x267.png');
+
+		.signin{ 
+/* 		background-color: #444444; */
+		background: linear-gradient(to right top, #858b92, #68778c, #4d6285, #354e7d, #1e3974);
+	}
+	
+	.signin-bg{ 
+/*  		background-image: url('${cPath}/resources/images/tp/about-us-footer.png');  */
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-position-x: center; 
 		background-position-y: bottom; 
+		position: fixed;
+	  left: 0;
+	  bottom: 0;
+	  width: 100%;
+	  height: 100%;
+	  z-index: -1;
 	}
 	
 	.panel-default {
 	    padding: 15px;
 	}
+	
+	.sign-box{
+	   padding-bottom: 10px;
+	}
+	
+	.inst{
+	   padding-top: 10px;
+	}
+		
+		
+		
+.alert {
+  
+  transition: top .5s ease-in-out;
+}
 		
  </style>
 	
