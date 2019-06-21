@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import th.co.baiwa.common.bean.DataTableAjax;
-import th.co.portal.model.gas.CertDocument;
+import th.co.portal.model.gas.UploadFile;
 import th.co.portal.service.gas.EquipmentCertService;
 
 @RestController
@@ -28,7 +28,7 @@ public class EquipmentCertCtrl {
 	
 	
 	@RequestMapping(value = "getDataTable.json")
-	public DataTableAjax<CertDocument> getDataTable(@ModelAttribute("bean") CertDocument bean) {
+	public DataTableAjax<UploadFile> getDataTable(@ModelAttribute("bean") UploadFile bean) {
 		logger.info(" getDataTable.getDataTable ");
 		DataTableAjax dataTableAjax = new DataTableAjax<>();
 		dataTableAjax = service.getDataTable(bean);

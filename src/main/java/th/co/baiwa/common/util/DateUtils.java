@@ -17,10 +17,8 @@ public class DateUtils {
 
 	public static String convert_ddmmyyy_to_yyyymmdd(String ddmmyyStr) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yyyy",
-				Locale.US);
-		SimpleDateFormat yyyyddmm_sdf = new SimpleDateFormat("yyyy-mm-dd",
-				Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yyyy", Locale.US);
+		SimpleDateFormat yyyyddmm_sdf = new SimpleDateFormat("yyyy-mm-dd", Locale.US);
 		try {
 			Date tmpdate = null;
 			if (ddmmyyStr != null) {
@@ -34,73 +32,71 @@ public class DateUtils {
 		return returnStr;
 
 	}
-	public static String getShortThaiMonthFromDate(Timestamp dateIn){
-		String returnstr ="";
-		try{
-			  
-			Date date = new Date(dateIn.getTime());  
-			Calendar calendar = new GregorianCalendar(); 
-			calendar.setTime(date); 
-			int dateInt = calendar.get(Calendar.DATE);
-			int monthIn =calendar.get(Calendar.MONTH);
-			int yearInt = calendar.get(Calendar.YEAR)+543;
-			
-			
-			String monthStr ="";
-			if(monthIn==0){
-				monthStr="ม.ค.";
-			}
-			if(monthIn==1){
-				monthStr="ก.พ.";
-			}
-			if(monthIn==2){
-				monthStr="มี.ค.";
-			}
-			if(monthIn==3){
-				monthStr=" เม.ย.";
-			}
-			if(monthIn==4){
-				monthStr=" พ.ค.";
-			}
-			if(monthIn==5){
-				monthStr="มิ.ย.";
-			}
-			if(monthIn==6){
-				monthStr="ก.ค.";
-			}
-			if(monthIn==7){
-				monthStr="ส.ค.";
-			}
-			if(monthIn==8){
-				monthStr="ก.ย.";
-			}
-			
-			if(monthIn==9){
-				monthStr="ต.ค.";
-			}			
-			if(monthIn==10){
-				monthStr="พ.ย.";
-			}			
-			if(monthIn==11){
-				monthStr="ธ.ค.";
-			}
-			returnstr = dateInt+" "+monthStr+ " "+yearInt;
-	  
-			//logger.info("Date = " + calendar.get(Calendar.DATE));
 
-			//logger.info("Month = " + calendar.get(Calendar.MONTH));
-			
-		}catch(Exception ex){
+	public static String getShortThaiMonthFromDate(Timestamp dateIn) {
+		String returnstr = "";
+		try {
+
+			Date date = new Date(dateIn.getTime());
+			Calendar calendar = new GregorianCalendar();
+			calendar.setTime(date);
+			int dateInt = calendar.get(Calendar.DATE);
+			int monthIn = calendar.get(Calendar.MONTH);
+			int yearInt = calendar.get(Calendar.YEAR) + 543;
+
+			String monthStr = "";
+			if (monthIn == 0) {
+				monthStr = "ม.ค.";
+			}
+			if (monthIn == 1) {
+				monthStr = "ก.พ.";
+			}
+			if (monthIn == 2) {
+				monthStr = "มี.ค.";
+			}
+			if (monthIn == 3) {
+				monthStr = " เม.ย.";
+			}
+			if (monthIn == 4) {
+				monthStr = " พ.ค.";
+			}
+			if (monthIn == 5) {
+				monthStr = "มิ.ย.";
+			}
+			if (monthIn == 6) {
+				monthStr = "ก.ค.";
+			}
+			if (monthIn == 7) {
+				monthStr = "ส.ค.";
+			}
+			if (monthIn == 8) {
+				monthStr = "ก.ย.";
+			}
+
+			if (monthIn == 9) {
+				monthStr = "ต.ค.";
+			}
+			if (monthIn == 10) {
+				monthStr = "พ.ย.";
+			}
+			if (monthIn == 11) {
+				monthStr = "ธ.ค.";
+			}
+			returnstr = dateInt + " " + monthStr + " " + yearInt;
+
+			// logger.info("Date = " + calendar.get(Calendar.DATE));
+
+			// logger.info("Month = " + calendar.get(Calendar.MONTH));
+
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return returnstr;
 	}
-		
-	
+
 	public static Date convert_to_yyyy_MM_dd(String ddmmyyStr) {
 		String returnStr = "";
-		SimpleDateFormat yyyyddmm_sdf = new SimpleDateFormat("yyyy-MM-dd",
-				thaiLocale);
+		SimpleDateFormat yyyyddmm_sdf = new SimpleDateFormat("yyyy-MM-dd", thaiLocale);
 		Date tmpdate = null;
 		try {
 
@@ -117,10 +113,8 @@ public class DateUtils {
 
 	public static String convert_ddmmyyy_to_yyyyddMM(String ddmmyyStr) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yyyy",
-				Locale.US);
-		SimpleDateFormat yyyyddmm_sdf = new SimpleDateFormat("yyyy-dd-MM",
-				Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yyyy", Locale.US);
+		SimpleDateFormat yyyyddmm_sdf = new SimpleDateFormat("yyyy-dd-MM", Locale.US);
 		try {
 			Date tmpdate = null;
 			if (ddmmyyStr != null) {
@@ -136,8 +130,7 @@ public class DateUtils {
 	}
 
 	public static String getCurrentDateNoTime() {
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat(
-				"MM/dd/yyyy HH:mm:ss", Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.US);
 		// formatter = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 		Date returnDate = null;
 		String dateStr = "";
@@ -163,8 +156,23 @@ public class DateUtils {
 
 	public static String get_ddmmyy_from_date(Date dateIn) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yy",
-				Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yy", Locale.US);
+
+		try {
+
+			returnStr = ddmmyyy_sdf.format(dateIn);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return returnStr;
+
+	}
+
+	public static String get_yyyyMMdd_from_date(Date dateIn) {
+		String returnStr = "";
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
 		try {
 
@@ -201,8 +209,7 @@ public class DateUtils {
 	public static String getddmmyy_from_yyddmm(String yyddmm) {
 		String returnStr = "";
 		SimpleDateFormat yyddmm_sdf = new SimpleDateFormat("yymmdd", Locale.US);
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yy",
-				Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yy", Locale.US);
 		try {
 			Date tmpDate = yyddmm_sdf.parse(yyddmm);
 			returnStr = ddmmyyy_sdf.format(tmpDate);
@@ -217,7 +224,7 @@ public class DateUtils {
 
 	public static String get_ddmmyyyyhhmmss_from_date(Timestamp dateIn) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss", Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.US);
 
 		try {
 
@@ -231,10 +238,23 @@ public class DateUtils {
 
 	}
 
+	public static String get_yyyymmdd_hhmmss_en_from_date(Timestamp dateIn) {
+		String returnStr = "";
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+
+		try {
+			returnStr = ddmmyyy_sdf.format(dateIn);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		return returnStr;
+
+	}
+
 	public static String get_ddmmyyyy_from_date(Date dateIn) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yyyy",
-				Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/mm/yyyy", Locale.US);
 
 		try {
 
@@ -260,15 +280,15 @@ public class DateUtils {
 		}
 		return returnStr;
 	}
-	
+
 	public static String get_ddMMyyyy_from_date(Date dateIn, String lang) {
-		return (lang!=null&&"TH".equals(lang))? get_ddMMyyyy_thai_from_date(dateIn) : get_ddMMyyyy_from_date(dateIn);
+		return (lang != null && "TH".equals(lang)) ? get_ddMMyyyy_thai_from_date(dateIn)
+				: get_ddMMyyyy_from_date(dateIn);
 	}
 
 	public static String get_hhmmss_from_date(Date dateIn) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("HH:mm:ss",
-				Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("HH:mm:ss", Locale.US);
 
 		try {
 
@@ -294,8 +314,7 @@ public class DateUtils {
 		}
 		return returnStr;
 	}
-	
-	
+
 	public static String get_MMddyyyy_thai_from_date(Date dateIn) {
 		String returnStr = "";
 		if (null != dateIn) {
@@ -311,8 +330,7 @@ public class DateUtils {
 
 	public static String get_ddmmyyyy_time_thai_from_date(Date dateIn) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_time_thai = new SimpleDateFormat(
-				"MM/dd/yyyy HH:mm:ss", thaiLocale);
+		SimpleDateFormat ddmmyyy_time_thai = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", thaiLocale);
 
 		try {
 
@@ -328,7 +346,7 @@ public class DateUtils {
 	public static String get_current_ddmmyyyy() {
 		Date dateIn = new Date();
 		String returnStr = "";
-		SimpleDateFormat sdf_thai = new SimpleDateFormat("dd/MM/yyyy",Locale.US);
+		SimpleDateFormat sdf_thai = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
 
 		try {
 			returnStr = sdf_thai.format(dateIn);
@@ -339,28 +357,26 @@ public class DateUtils {
 		return returnStr;
 
 	}
-	
+
 	public static String get_current_ddmmyyyy_thai_from_date() {
 		Date dateIn = new Date();
 		String returnStr = "";
-		SimpleDateFormat sdf_thai = new SimpleDateFormat("dd/MM/yyyy",
-				thaiLocale);
-		
+		SimpleDateFormat sdf_thai = new SimpleDateFormat("dd/MM/yyyy", thaiLocale);
+
 		try {
 			returnStr = sdf_thai.format(dateIn);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		return returnStr;
-		
+
 	}
 
 	public static String get_current_yyyy_MM_dd_thai_from_date() {
 		Date dateIn = new Date();
 		String returnStr = "";
-		SimpleDateFormat sdf_thai = new SimpleDateFormat("yyyy-MM-dd",
-				thaiLocale);
+		SimpleDateFormat sdf_thai = new SimpleDateFormat("yyyy-MM-dd", thaiLocale);
 
 		try {
 			returnStr = sdf_thai.format(dateIn);
@@ -388,8 +404,7 @@ public class DateUtils {
 	}
 
 	public static String getMonthTH(Date dateIn) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM", new Locale(
-				"th", "th"));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM", new Locale("th", "th"));
 		String returnStr = "";
 		try {
 			returnStr = dateFormat.format(dateIn);
@@ -401,8 +416,7 @@ public class DateUtils {
 	}
 
 	public static String getDayTH(Date dateIn) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd", new Locale(
-				"th", "th"));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd", new Locale("th", "th"));
 		String returnStr = "";
 		try {
 			returnStr = dateFormat.format(dateIn);
@@ -414,8 +428,7 @@ public class DateUtils {
 	}
 
 	public static String getYearTH(Date dateIn) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy", new Locale(
-				"th", "th"));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy", new Locale("th", "th"));
 		String returnStr = "";
 		try {
 			returnStr = dateFormat.format(dateIn);
@@ -454,10 +467,8 @@ public class DateUtils {
 	public static java.util.Date sqlDateToutilDate(java.sql.Date sDate) {
 		try {
 			if (sDate != null) {
-				DateFormat utilDateFormatter = new SimpleDateFormat(
-						"dd-MM-yyyy");
-				return (java.util.Date) utilDateFormatter
-						.parse(utilDateFormatter.format(sDate));
+				DateFormat utilDateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+				return (java.util.Date) utilDateFormatter.parse(utilDateFormatter.format(sDate));
 			}
 
 		} catch (Exception e) {
@@ -466,9 +477,9 @@ public class DateUtils {
 		return null;
 
 	}
-	
+
 	public static Date parseDate(String dateStr, String format) {
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat(format==null? "dd/MM/yyyy":format, Locale.US);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat(format == null ? "dd/MM/yyyy" : format, Locale.US);
 		Date tmpDate = null;
 		if (dateStr != null && !"".equals(dateStr)) {
 			try {
@@ -479,17 +490,15 @@ public class DateUtils {
 		}
 		return tmpDate;
 	}
-	
+
 	public static Date parseDate(String dateStr) {
 		return parseDate(dateStr, "dd/MM/yyyy");
 	}
 
-	
 	public static Date parseDateLang(String dateStr, String lang) {
-		return "TH".equals(lang)? parseDateTH(dateStr, "dd/MM/yyyy"): parseDate(dateStr, "dd/MM/yyyy");
+		return "TH".equals(lang) ? parseDateTH(dateStr, "dd/MM/yyyy") : parseDate(dateStr, "dd/MM/yyyy");
 	}
-	
-	
+
 	public static Timestamp parseTimeStamp(String dateStr) {
 		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
 		Timestamp tmpDate = null;
@@ -506,7 +515,7 @@ public class DateUtils {
 	}
 
 	public static Date parseDateTH(String dateStr, String format) {
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat(format==null? "dd/MM/yyyy":format, thaiLocale);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat(format == null ? "dd/MM/yyyy" : format, thaiLocale);
 		Date tmpDate = null;
 		try {
 			tmpDate = ddmmyyy_sdf.parse(dateStr);
@@ -517,10 +526,9 @@ public class DateUtils {
 		return tmpDate;
 
 	}
-	
+
 	public static Date convertStr_MMddyyy_TH_to_Date(String dateStr) {
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("MM/dd/yyy",
-				thaiLocale);
+		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("MM/dd/yyy", thaiLocale);
 		Date tmpDate = null;
 		try {
 			tmpDate = ddmmyyy_sdf.parse(dateStr);
@@ -534,14 +542,10 @@ public class DateUtils {
 
 	public static Date convertDateThToDateEn(Date dateTh) {
 		try {
-			String year = DateFormatUtils.format(dateTh, "yyyy", new Locale(
-					"en", "US"));
-			String day = DateFormatUtils.format(dateTh, "dd", new Locale("en",
-					"US"));
-			String month = DateFormatUtils.format(dateTh, "MM", new Locale(
-					"en", "US"));
-			String dateStr = day + "/" + month + "/"
-					+ (Integer.parseInt(year) - 543);
+			String year = DateFormatUtils.format(dateTh, "yyyy", new Locale("en", "US"));
+			String day = DateFormatUtils.format(dateTh, "dd", new Locale("en", "US"));
+			String month = DateFormatUtils.format(dateTh, "MM", new Locale("en", "US"));
+			String dateStr = day + "/" + month + "/" + (Integer.parseInt(year) - 543);
 
 			return parseDate(dateStr);
 		} catch (Exception ex) {
@@ -549,17 +553,13 @@ public class DateUtils {
 		}
 		return null;
 	}
-	
+
 	public static Date convertDateToDateEn(Date dateTh) {
 		try {
-			String year = DateFormatUtils.format(dateTh, "yyyy", new Locale(
-					"en", "US"));
-			String day = DateFormatUtils.format(dateTh, "dd", new Locale("en",
-					"US"));
-			String month = DateFormatUtils.format(dateTh, "MM", new Locale(
-					"en", "US"));
-			String dateStr = day + "/" + month + "/"
-					+ (Integer.parseInt(year));
+			String year = DateFormatUtils.format(dateTh, "yyyy", new Locale("en", "US"));
+			String day = DateFormatUtils.format(dateTh, "dd", new Locale("en", "US"));
+			String month = DateFormatUtils.format(dateTh, "MM", new Locale("en", "US"));
+			String dateStr = day + "/" + month + "/" + (Integer.parseInt(year));
 
 			return parseDate(dateStr);
 		} catch (Exception ex) {
@@ -567,7 +567,7 @@ public class DateUtils {
 		}
 		return null;
 	}
-	
+
 	public static String getCustomFormat_thai_from_date(Date dateIn, String format) {
 		String returnStr = "";
 		SimpleDateFormat sdf_thai = new SimpleDateFormat(format, thaiLocale);
@@ -583,7 +583,7 @@ public class DateUtils {
 		return returnStr;
 
 	}
-	
+
 	public static String getCustomFormat_en_from_date(Date dateIn, String format) {
 		String returnStr = "";
 		SimpleDateFormat sdf_thai = new SimpleDateFormat(format);
@@ -599,70 +599,70 @@ public class DateUtils {
 		return returnStr;
 
 	}
-	
-	public static String get_current_ddMMMMyyyy_thai_from_date(Date dateIn){
-		if(dateIn!=null)
-			return getCustomFormat_thai_from_date(dateIn,"dd MMMM yyyy");
+
+	public static String get_current_ddMMMMyyyy_thai_from_date(Date dateIn) {
+		if (dateIn != null)
+			return getCustomFormat_thai_from_date(dateIn, "dd MMMM yyyy");
 		else
 			return "";
 	}
-	
-	public static String get_current_ddMMMyyyy_thai_from_date(Date dateIn){
-		if(dateIn!=null)
-			return getCustomFormat_thai_from_date(dateIn,"dd MMM yyyy");
+
+	public static String get_current_ddMMMyyyy_thai_from_date(Date dateIn) {
+		if (dateIn != null)
+			return getCustomFormat_thai_from_date(dateIn, "dd MMM yyyy");
 		else
 			return "";
 	}
-	
+
 	public static String get_current_ddMMMyyyyhhmmss_thai_from_date(Timestamp dateIn) {
-		if(dateIn!=null)
-			return getCustomFormat_thai_from_date(dateIn,"dd MMM yyyy HH:mm:ss");
+		if (dateIn != null)
+			return getCustomFormat_thai_from_date(dateIn, "dd MMM yyyy HH:mm:ss");
 		else
 			return "";
 
 	}
-	
+
 	public static String get_current_ddMMyyyy_hhmmss_from_date(Timestamp dateIn) {
-		if(dateIn!=null)
-			return getCustomFormat_thai_from_date(dateIn,"dd/MM/yyyy HH:mm:ss");
+		if (dateIn != null)
+			return getCustomFormat_thai_from_date(dateIn, "dd/MM/yyyy HH:mm:ss");
 		else
 			return "";
-		
+
 	}
-	
+
 	public static String get_current_ddMMyyyy__from_date(Timestamp dateIn) {
-		if(dateIn!=null)
-			return getCustomFormat_en_from_date(dateIn,"dd/MM/yyyy");
+		if (dateIn != null)
+			return getCustomFormat_en_from_date(dateIn, "dd/MM/yyyy");
 		else
 			return "";
-		
+
 	}
-	
+
 	public static String ddMMyyyyToDateEnStr(String dateStr, String lang) {
-		if(dateStr!=null)
+		if (dateStr != null)
 			return get_ddMMyyyy_from_date(parseDateLang(dateStr, lang));
 		else
 			return "";
 
 	}
-	
+
 	public static String convertENYearToTHYear(String year) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.YEAR, Integer.parseInt(year));
 		return getCustomFormat_thai_from_date(calendar.getTime(), "yyyy");
 	}
-	
+
 	public static String convertTHYearToENYear(String year) {
 		Calendar calendar = Calendar.getInstance(thaiLocale);
 		calendar.set(Calendar.YEAR, Integer.parseInt(year));
 		return getCustomFormat_en_from_date(calendar.getTime(), "yyyy");
 	}
-	
+
 	public static String convertTime(Time time) {
-		SimpleDateFormat form = new SimpleDateFormat("HH:mm");  
+		SimpleDateFormat form = new SimpleDateFormat("HH:mm");
 		return form.format(time);
 	}
-	
+
 	public static void main(String arg[]) {
 		System.out.println(" xx : " + get_ddMMyyyy_from_date(getCurrentDateTime()));
 		System.out.println(" xx : " + get_ddMMyyyy_thai_from_date(getCurrentDateTime()));

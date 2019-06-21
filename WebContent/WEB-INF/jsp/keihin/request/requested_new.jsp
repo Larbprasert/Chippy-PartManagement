@@ -9,15 +9,23 @@
 
 <script src="${cPath}/resources/js/moment.min.js"></script>
 
+<!-- blueimp Gallery styles -->
+<link rel="stylesheet" href="${cPath}/resources/jFileupload/css/blueimp-gallery.min.css">
+<link rel="stylesheet" href="${cPath}/resources/jFileupload/css/jquery.fileupload.css">
+<link rel="stylesheet" href="${cPath}/resources/jFileupload/css/jquery.fileupload-ui.css">
+<!-- CSS adjustments for browsers with JavaScript disabled -->
+<noscript><link rel="stylesheet" href="${cPath}/resources/jFileupload/css/jquery.fileupload-noscript.css"></noscript>
+<noscript><link rel="stylesheet" href="${cPath}/resources/jFileupload/css/jquery.fileupload-ui-noscript.css"></noscript>
+
  
 <div class="content-wrapper">
 		<section class="content-header">
-			<h1 class="page-header">Repair/Rebuild Request</h1>
+			<h1 class="page-header">Repair/Rebuild Request Detail</h1>
 		</section> 
 		
   <section class="content">
 		 
-	<form action="${cPath}/request/requested_save.htm" method="post"   id="myForm" data-toggle="validator" >
+	<form action="${cPath}/request/requested_save" method="post"   id="myForm" data-toggle="validator" >
 
 <!-- 			<input name ="rAction" type="hidden" value="Create"> -->
  
@@ -183,7 +191,8 @@
 				                                <div class="form-group">
 				                                    <p class="help-block"><b> Problem Picture Before (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
 <!-- 				                                    <input type="file"  name="beforePicture[]" class="form-control-file" id="beforePicture" class="file"   multiple> -->
-				                                
+				                                  	<button type="button" class="btn btn-warning" id="beforePicture" onclick="popupUpload('1')" > 
+				                                			<i class="fa fa-upload"></i> Upload File (After) </button>
 				                               
 				                                </div>
 			                                </div>    	                                
@@ -223,10 +232,10 @@
 													    </c:forEach>	
 							                            
 							                        </div>
-							                        <div class="panel-footer text-right">
-						                                <button type="button" class="btn btn-default" disabled name="rAction" value=""  ><i class="fa fa-hourglass-half"></i> Wait Approve</button>
+<!-- 							                        <div class="panel-footer text-right"> -->
+<!-- 						                                <button type="button" class="btn btn-default" disabled name="rAction" value=""  ><i class="fa fa-hourglass-half"></i> Wait Approve</button> -->
 <!-- 						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a>  -->
-							                        </div>
+<!-- 							                        </div> -->
 							                    </div>
 			                                </div>
 
@@ -240,9 +249,9 @@
 													     	<p  >${ach_user.firstNameTh} ${ach_user.lastNameTh}</p> 
 													    </c:forEach>	
 							                        </div>
-							                        <div class="panel-footer text-right">
-						                                <button type="button" class="btn btn-default" disabled name="rAction" value=""  ><i class="fa fa-hourglass-half"></i> Wait Approve</button>
-							                        </div>
+<!-- 							                        <div class="panel-footer text-right"> -->
+<!-- 						                                <button type="button" class="btn btn-default" disabled name="rAction" value=""  ><i class="fa fa-hourglass-half"></i> Wait Approve</button> -->
+<!-- 							                        </div> -->
 							                    </div>
 			                                </div>		
 			                                
@@ -261,15 +270,15 @@
 	                        <!-- /.panel-body -->
 	                        
 	                        <!-- /.panel-Footer -->
-	                        <div class="panel-footer">
+	                         <div class="panel-footer">
                                 <div class="row">
                                 	<div class="col-lg-4">
-                                		<p class="help-block"><b>ระยะเวลาในการจัดเก็บเอกสาร 20+1 ปี</b></p>
+                                		<p class="help-block"><b><spring:message code="repair.footer.detail"/></b></p>
                                 	</div>
                                 	<div class="col-lg-5">
                                 	</div>
                                 	<div class="col-lg-3">
-                                		<p class="help-block" align="right"><b>FP-PE-01-04 REV.02 </b></p>
+                                		<p class="help-block" align="right"><b><spring:message code="repair.footer.version"/></b></p>
                                 	</div>
                                 </div>
 	                        </div>
@@ -352,5 +361,17 @@ function saveReq(){
 };
 
 
+
+function popupUpload(type) {
+	
+	_UPLOAD_FILE.loadFileList(null,type);
+	
+	$('#upload-btn-new').show();
+	
+	
+}
+
 </script>
 </body>
+
+	<%@ include file="requested_upload.jsp"%>

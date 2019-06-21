@@ -32,7 +32,6 @@ public class RequestBean extends BaseDomain {
 	private String informDate;
 	private String informTime;
 
-	
 
 	private CheckToolBean checkTool;
 
@@ -54,7 +53,10 @@ public class RequestBean extends BaseDomain {
 	private String achApprove_ID;
 	private String achApprove_name;
 
+	/** For details */
+	private String sectionName;
 	private String requestStatus;
+	private String requestBy;
 	private String status_name;
 
 	public CheckToolBean getCheckTool() {
@@ -189,25 +191,7 @@ public class RequestBean extends BaseDomain {
 		status_name = newstatus_name;
 	}
 
-	// informDate
-	public String getInformdate() {
-		return this.informDate;
-	}
-
-	//
-	public void setInformdate(String informDate) {
-		this.informDate = informDate;
-	}
-
-	// informTime
-	public String getInformtime() {
-		return this.informTime;
-	}
-
-	public void setInformtime(String informTime) {
-		this.informTime = informTime;
-	}
-
+	 
 	// requestApprove
 	public String getrequestApprove_ID() {
 		return requestApprove_ID;
@@ -348,6 +332,38 @@ public class RequestBean extends BaseDomain {
 
 	public void setRequestTypeSearch(String requestTypeSearch) {
 		this.requestTypeSearch = requestTypeSearch;
+	}
+
+	public String getInformDate() {
+		return informDate;
+	}
+
+	public void setInformDate(String informDate) {
+		this.informDate = informDate;
+	}
+
+	public String getInformTime() {
+		return informTime;
+	}
+
+	public void setInformTime(String informTime) {
+		this.informTime = informTime;
+	}
+
+	public String getRequestBy() {
+		return requestBy;
+	}
+
+	public void setRequestBy(String requestBy) {
+		this.requestBy = requestBy;
+	}
+
+	public String getSectionName() {
+		return sectionName;
+	}
+
+	public void setSectionName(String sectionName) {
+		this.sectionName = sectionName;
 	}
 
 }

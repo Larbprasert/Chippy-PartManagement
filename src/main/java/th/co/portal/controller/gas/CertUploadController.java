@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import th.co.portal.model.gas.CertDocument;
+import th.co.portal.model.gas.UploadFile;
 import th.co.portal.service.gas.CertUploadService;
 import th.co.tpcc.model.FilUploadResponse;
 import th.co.tpcc.model.FilUploadResponseList;
@@ -118,7 +118,7 @@ public class CertUploadController {
                 System.out.println("upload file : "+fileId);
                 FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(fileId));
                 
-                CertDocument document = new CertDocument();
+                UploadFile document = new UploadFile();
                 document.setEqId(eqIds.intValue());
                 document.setFileId(fileId);
                 document.setFileName(ofileName);
@@ -128,7 +128,7 @@ public class CertUploadController {
                 
                 uploadService.insert(document);
                 
-                fileMeta.setFileId(eqIds);
+//                fileMeta.setFileId(eqIds);
                 
                 FilUploadResponse fileObj = new FilUploadResponse();
                 fileObj.setDeleteUrl( request.getContextPath()+"/fileCert/fileRemove/"+document.getId());
@@ -166,7 +166,7 @@ public class CertUploadController {
 //         FileMeta getFile = files.get(Integer.parseInt(id));
          try {      
         	 System.out.println("getFile  : "+id);
-        	 	CertDocument document = uploadService.selectById(id);
+        	 	UploadFile document = uploadService.selectById(id);
                 response.setContentType(document.getFileType());
                 response.setHeader("Content-disposition", "attachment; filename=\""+document.getFileName()+"\"");
                 FileCopyUtils.copy(new FileInputStream(document.getFileId()), response.getOutputStream());
@@ -181,7 +181,7 @@ public class CertUploadController {
 	public @ResponseBody FileDeleteResponse fileRemove(HttpServletResponse response,@PathVariable Long id) {
     	FileDeleteResponse resp = new FileDeleteResponse();
     	System.out.println("Remove : "+id);
-    	CertDocument document = uploadService.selectById(id);
+    	UploadFile document = uploadService.selectById(id);
     	try{
 //            String uploadPath = environment.getProperty("file.upload.path");
 
@@ -222,8 +222,8 @@ public class CertUploadController {
 		FilUploadResponseList respList = new FilUploadResponseList();
 		ArrayList<FilUploadResponse> responses = new ArrayList();
 
-		List<CertDocument> documents = uploadService.select(new Long(eqId));
-		for (CertDocument document : documents) {
+		List<UploadFile> documents = uploadService.select(new Long(eqId));
+		for (UploadFile document : documents) {
 				
 			FilUploadResponse fileObj = new FilUploadResponse();
 	        fileObj.setDeleteUrl( request.getContextPath()+"/file/fileRemove/"+document.getId());

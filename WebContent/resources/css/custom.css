@@ -330,9 +330,8 @@ legend {
 }
 
  
-.fs-equipment {
-/* 	 padding: 12px; */
-	 padding-left: 20px; padding-right: 20px;
+.fs-detail {
+	 padding: 10px;
 }
  
 .th-equipment {
@@ -348,4 +347,8 @@ legend {
    padding-top: 0;
 }
 
+
+.panel-heading {
+    padding: 15px 15px;
+}
  

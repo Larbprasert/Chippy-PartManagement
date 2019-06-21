@@ -247,11 +247,11 @@
 // 					console.log(oData);
 					var htm = "";
 					if($roleApprove){
-						if("1"==oData['requestStatus']){
+// 						if("1"==oData['requestStatus']){
 								htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-file-text"></i> Approve Request </button> ';
-						}else{
-							htm = '<button type="button" onclick="viewDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-file-text"></i> View Request </button> ';
-						}
+// 						}else{
+// 							htm = '<button type="button" onclick="viewDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-file-text"></i> View Request </button> ';
+// 						}
 					}
 					return htm;
 

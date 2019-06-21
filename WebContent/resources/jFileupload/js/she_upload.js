@@ -13,13 +13,15 @@
 
 $(function () {
     'use strict';
+    
+    var upath = cPath+"/fileUpload/upload";
 
     // Initialize the jQuery File Upload widget:
      $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
 //        url:  cPath+'/file/upload99/',
-        url: cPath+"/fileCert/upload",
+        url: upath,
 //        disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator.userAgent),
         maxFileSize: 5000000,
 //        acceptFileTypes: /(\.|\/)(gif|jpe?g|png|doc|docx|xls|xlsx|txt|csv)$/i,

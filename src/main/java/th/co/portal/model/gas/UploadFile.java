@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import th.co.baiwa.common.persistence.entity.BaseDomain;
 
-public class CertDocument extends BaseDomain {
+public class UploadFile extends BaseDomain {
 
 	private Integer id;
 	private Integer eqId;

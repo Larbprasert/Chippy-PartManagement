@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.baiwa.common.persistence.dao.AbstractCommonJdbcDao;
 import th.co.baiwa.common.util.DateUtils;
-import th.co.portal.model.gas.CertDocument;
+import th.co.portal.model.gas.UploadFile;
 
 @Repository("EquipmentCertDao")
 public class EquipmentCertDao extends AbstractCommonJdbcDao{
@@ -24,8 +24,8 @@ public class EquipmentCertDao extends AbstractCommonJdbcDao{
     
     private RowMapper DB_ROW_MAPPER = new RowMapper(){
 		@Override
-		public CertDocument mapRow(ResultSet rs, int rowNum) throws SQLException {
-			CertDocument m = new CertDocument();
+		public UploadFile mapRow(ResultSet rs, int rowNum) throws SQLException {
+			UploadFile m = new UploadFile();
 			m.setId (rs.getInt("ID"));
 			m.setEqId (rs.getInt("EQ_ID"));
 			m.setFileId (rs.getString("FILE_ID"));
@@ -43,7 +43,7 @@ public class EquipmentCertDao extends AbstractCommonJdbcDao{
 		}
     };
     
-    public DataTableAjax<CertDocument> getDataTable(CertDocument param) {
+    public DataTableAjax<UploadFile> getDataTable(UploadFile param) {
 		logger.info("### getDataTable CertDocument :xxxxxx ");
 		DataTableAjax result = new DataTableAjax<>();
 		
@@ -79,7 +79,7 @@ public class EquipmentCertDao extends AbstractCommonJdbcDao{
 		
 //		System.out.println(sql.toString()); 
 		
-		List<CertDocument> list = (List<CertDocument>) executeQuery(sql.toString(), wh.toArray(), DB_ROW_MAPPER);
+		List<UploadFile> list = (List<UploadFile>) executeQuery(sql.toString(), wh.toArray(), DB_ROW_MAPPER);
 		int total = list!=null? list.size():0;
 		result.setRecordsTotal(total);
 		result.setRecordsFiltered(total);

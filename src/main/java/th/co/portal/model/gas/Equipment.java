@@ -46,7 +46,7 @@ public class Equipment extends BaseDomain {
 	private String emailCCTxt;
 	private String calUnitTxt;
 
-	private List<CertDocument> certList;
+	private List<UploadFile> certList;
 
 	public String getServicedByName() {
 		return servicedByName;
@@ -304,11 +304,11 @@ public class Equipment extends BaseDomain {
 		this.lastCalDateTxt = lastCalDateTxt;
 	}
 
-	public List<CertDocument> getCertList() {
+	public List<UploadFile> getCertList() {
 		return certList;
 	}
 
-	public void setCertList(List<CertDocument> certList) {
+	public void setCertList(List<UploadFile> certList) {
 		this.certList = certList;
 	}
 

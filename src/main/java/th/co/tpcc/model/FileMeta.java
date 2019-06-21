@@ -2,7 +2,7 @@ package th.co.tpcc.model;
 
 public class FileMeta {
 
-	private Long fileId;
+	private String fileId;
 	private String fileName;
 	private String fileSize;
 	private String fileType;
@@ -40,11 +40,11 @@ public class FileMeta {
 		this.bytes = bytes;
 	}
 
-	public Long getFileId() {
+	public String getFileId() {
 		return fileId;
 	}
 
-	public void setFileId(Long fileId) {
+	public void setFileId(String fileId) {
 		this.fileId = fileId;
 	}
 

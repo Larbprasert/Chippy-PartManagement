@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.persistence.dao.AbstractCommonJdbcDao;
-import th.co.portal.model.gas.CertDocument;
+import th.co.portal.model.gas.UploadFile;
 
 @Repository("certUploadDao")
 public class CertUploadDao extends AbstractCommonJdbcDao {
@@ -51,22 +51,22 @@ public class CertUploadDao extends AbstractCommonJdbcDao {
 		return sql.toString();
 	}
 
-	public List<CertDocument> selectAll() {
-		List<CertDocument> resultList = jdbcTemplate.query(SQL_SELECT,
-				BeanPropertyRowMapper.newInstance(CertDocument.class));
+	public List<UploadFile> selectAll() {
+		List<UploadFile> resultList = jdbcTemplate.query(SQL_SELECT,
+				BeanPropertyRowMapper.newInstance(UploadFile.class));
 		return resultList;
 	}
 
-	public CertDocument selectById(Long id) {
+	public UploadFile selectById(Long id) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(SQL_SELECT);
 		sql.append(" WHERE ");
 		sql.append("   id = ? ");
-	   List<CertDocument> list = jdbcTemplate.query(sql.toString(), BeanPropertyRowMapper.newInstance(CertDocument.class), new Object[] {id });
-       return  list!=null&& list.size()>0? list.get(0):new CertDocument() ;
+	   List<UploadFile> list = jdbcTemplate.query(sql.toString(), BeanPropertyRowMapper.newInstance(UploadFile.class), new Object[] {id });
+       return  list!=null&& list.size()>0? list.get(0):new UploadFile() ;
 	}
 	
-	public List<CertDocument> select( Long eqId) {
+	public List<UploadFile> select( Long eqId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(SQL_SELECT);
 		sql.append(" WHERE 1=1 ");
@@ -75,13 +75,13 @@ public class CertUploadDao extends AbstractCommonJdbcDao {
 			sql.append("  and id = ? ");
 			obj.add(eqId);
 		}else{
-			return new ArrayList<CertDocument>();
+			return new ArrayList<UploadFile>();
 		}
-		List<CertDocument> list = jdbcTemplate.query(sql.toString(), BeanPropertyRowMapper.newInstance(CertDocument.class), obj.toArray()) ;
+		List<UploadFile> list = jdbcTemplate.query(sql.toString(), BeanPropertyRowMapper.newInstance(UploadFile.class), obj.toArray()) ;
 		return  list ;
 	}
 	
-	 public int insert(CertDocument bean) {
+	 public int insert(UploadFile bean) {
 			Long insertRecord = executeInsert(SQL_INSERT,
 					new Object[] { 
 							bean.getFileId(),

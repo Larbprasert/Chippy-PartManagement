@@ -1,621 +1,577 @@
-<!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/resources/adminLTE/common.jsp"%>
 <body class="${bodySkin}">
-	<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
-	<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
-	<div class="content-wrapper yung">
-		<!-- หัวข้อ         -->
+<%@ include file="/WEB-INF/jsp/she-navbar.jsp"%>
+<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
+
+<div class="content-wrapper">
+		
 		<section class="content-header">
-			<h1>
-<%-- 				<i class="fa fa-file-text"></i>&nbsp;${roleApprove? 'Approve / Cancel':'View Request'}<small> --%>
-				<i class="fa fa-file-text"></i>&nbsp;View Request<small>
-					: Gas Detector </small>
-			</h1>
-		</section>
-		<!--ค้นหา  -->
-		<section class="content">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="box box-success">
-						<div class="box-header with-border  text-center">
-							<h4
-								style="background-color: #f7f7f7; text-align: center; padding: 10px; margin: 0; font-weight: bold;">
-								SHE EQUIPMENT SERVICE REQUEST</h4>
-						</div>
+			<h1 class="page-header">Repair/Rebuild Request</h1>
+		</section> 
+		
+  <section class="content">
+		 
+	<form action="${cPath}/request/request_save.htm" method="post" id="myForm" data-toggle="validator" >
 
-						<div class="box-body">
-
-							<form class="form-horizontal" id="saveform" command="util"
-								data-toggle="validator">
-
-								<fieldset class="fs-equipment" disabled>
-<%-- 									${requestObj} --%>
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramType" class="col-lg-5 control-label">บริษัท
-													(Company)</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.companyName}" readonly />
-													<%-- 													<input type='hidden'   id="companyForm" name="companyForm"  value="${_userProfile.companyCode}" />   --%>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">รหัสรายการ
-													(Job No.)</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control" id="jobNoForm"
-														name="jobNoForm" readonly="readonly"
-														value="${requestObj.jobNo}" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">ชื่อผู้ร้องขอ
-													(Requester's Name) </label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.requesterName}" readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">แผนก/ฝ่าย
-													(Department)</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control" id="departmentForm"
-														name="departmentForm" value="${requestObj.departmentName}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">โทรศัพท์
-													(Ext.) </label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control" id="telephoneForm"
-														name="telephoneForm" value="${requestObj.phone}" readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">ชื่อตัวแทน
-													(Agent Name) </label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control" id="agentNameForm"
-														name="agentNameForm" value="${requestObj.agentName}" readonly />
-												</div>
-											</div>
-										</div>
-
-									</div>
-
-
-									<div class="row">
-										<div class="col-lg-12">
-											<legend class="lb-equipment">วัตถุประสงค์ (Purpose)</legend>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-2"></div>
-										<div class="col-lg-10">
-											<div class="form-group"  >
-												<!-- 												<label class="control-label radio-inline"> <input -->
-												<!-- 													onclick="conditionNotOther();" type="radio" -->
-												<!-- 													name="ObjectOptions" id="ObjectOptions1" checked -->
-												<!-- 													value="OJ1"> อัดบรรจุ (Packing) -->
-												</label> <label class=" control-label radio-inline"> <input
-													onclick="conditionNotOther();" type="radio" disabled
-													name="ObjectOptions" value="CL"> สอบเทียบ 
-													(Calibration)
-												</label> <label class=" control-label radio-inline"> <input
-													onclick="conditionNotOther();" type="radio" disabled
-													name="ObjectOptions" value="RP"> ซ่อม (Repair)
-												</label> <label class=" control-label radio-inline"> <input
-													onclick="conditionNotOther();" type="radio" disabled
-													name="ObjectOptions" value="CH"> ตรวจเช็ค (Check)
-												</label> <label class=" control-label radio-inline"> <input
-													onclick="conditionOther();" type="radio" disabled
-													name="ObjectOptions" value="OT"> อื่นๆ (Other) 
-												</label> <label class=" control-label radio-inline"> <input
-													type="text" class="form-control" name="OtherForm" disabled
-													id="OtherForm" disabled="disabled" value="${requestObj.objectiveName}">
-												</label>
-
-
-											</div>
-										</div>
-									</div>
-
-
-
-									<div class="row"
-										style="padding-left: 60px; padding-right: 60px;">
-										<div class="col-lg-12">
-											<div class="form-group">
-												<table class="table table-striped table-bordered">
-													<thead class="th-equipment">
-														<tr>
-															<th class="text-center">หมายเลขอุปกรณ์ (Equipment No.)</th>
-															<th class="text-center">ซีรีนัมเบอร์ (Serial No.)</th>
-															<th class="text-center">แบรนด์ (Brand)</th>
-															<th class="text-center">โมเดล(Model)</th>
-															<!-- 																<th class="text-center"  >ประเภท (Type)</th> -->
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td class="text-center">${requestObj.equipment.eqCode}</td>
-															<td class="text-center">${requestObj.equipment.serialNo}</label></td>
-															<td class="text-center">${requestObj.equipment.brand}</td>
-															<td class="text-center">${requestObj.equipment.model}</td>
-															<!-- 																<td class="text-center"  ><label id="equipmentType" name="equipmentType"></label></td> -->
-														</tr>
-													</tbody>
-												</table>
-
-
-
-											</div>
-										</div>
-										<!-- 									</div> -->
-									</div>
-
-
-									<div class="row">
-										<div class="col-lg-12 ">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">อนุมัติ
-													/ ยกเลิก (Approve / Cancel): </label>
-												<div class="col-lg-5">${requestObj.approveType}
-												
-												
-												<input type='text' class="form-control"
-														value="${requestObj.approveType}"
-														readonly="readonly" />
-														
-													<!-- <select class="form-control" id="statsApprove"
-														name="statsApprove">
-																														<option value="" selected="selected">Please
-																																select ...</option>
-														<option value="Approve" selected="selected">อนุมัติ
-															(Approve)</option>
-														<option value="Cancel">ยกเลิก (Cancel)</option>
-													</select> -->
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-12 text-center">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">หมายเหตุ
-													(Remark)</label>
-												<div class="col-lg-6">
-													<textarea class="form-control" id="remarkForm"
-														name="remarkForm" rows="5">${requestObj.remark}</textarea>
-													</span>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-7 control-label">ผู้อนุมัติ/ยกเลิก(Approved
-													/ Canceled): </label>
-												<div class="col-lg-5">
-													<input type='text' class="form-control"
-														value="${requestObj.approve_by}"
-														readonly="readonly" />
-													<!-- 															<input type='text' class="form-control" id="approveBy" name="approveBy" readonly="readonly"/> -->
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-7 control-label">วันที่อนุมัติ/ยกเลิก
-													(Approved Date)</label>
-												<div class="col-lg-4">
-													<input type='text' class="form-control" id="approveDate"
-														name="approveDate" value="${requestObj.approve_date}"
-														readonly="readonly" /> </span>
-												</div>
-											</div>
-										</div>
-									</div>
-
-
-									<div class="row">
-										<div class="col-lg-12">
-											<legend class="lb-equipment"> สำหรับฝ่าย SHE (SHE
-												Dept. Only) </legend>
-										</div>
-									</div>
-
-									<div class="row">
-										<!-- 											<div class="col-lg-12"> -->
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">วันที่
-													<br>(Received Date)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_receive_date}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">ผู้รับเรื่อง<br>(Received
-													By)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_receive_by}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-									</div>
-									<hr>
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">หมายเลขใบนำของออก
-													<br>(Material Gate Pass No.)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_send_no}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">วันที่นำของออก
-													<br>(Date)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_send_date}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">บริษัทผู้นำของออก
-													<br> (Vendor Company)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_send_vendor}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">ชื่อผู้นำของออก
-													<br> (Vendor Name)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_send_name}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-
-
-									<div class="row">
-										<div class="col-lg-12">
-											<legend class="lb-equipment">การเซ็นต์รับคืน</legend>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">บริษัทผู้นำส่ง
-													<br>(Vendor Company)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.vendor_sign_by}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">วันที่ส่ง
-													<br>(Date)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.vendor_sign_date}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">ชื่อผู้รับ
-													<br>(SHE)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_sign_by}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">วันที่รับ
-													<br>(Date)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.she_sign_date}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-									</div>
-									<hr>
-									<div class="row">
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-5 control-label">ชื่อผู้รับ
-													<br>(Requestor)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.complete_req_by}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-6">
-											<div class="form-group">
-												<label for="paramCode" class="col-lg-4 control-label">วันที่รับ
-													<br>(Date)
-												</label>
-												<div class="col-lg-6">
-													<input type='text' class="form-control"
-														value="${requestObj.complete_req_date}"
-														readonly="readonly" />
-												</div>
-											</div>
-										</div>
-									</div>
-
-
-
-
-									<!-- 										</div> -->
-									<!-- 									</div> -->
-
-								</fieldset>
-
-
+<!-- 			<input name ="rAction" type="hidden" value="Create"> -->
+ 
+	            <div class="row">
+	             
+	                <div class="col-lg-12">
+	                    <div class="panel panel-default">
+	                    
+<!-- ###########################################################################       header	                     -->
+	                        <div class="panel-heading">
+	                        	<!-- /.row -->
 								<div class="row">
+									<div class="col-lg-4">
+		                                <div class="form-group">
+		                                	<div class="col-lg-5">
+		                                		<p class="help-block"><b>Request No.</b></p>
+		                                	</div>
+		                                	<div class="col-lg-7">		                                		
+							                    <input type="text" class="form-control" placeholder="" name="request_ID" id="request_ID" value=" ${requestObj.request_ID}" readonly>
+		                                	</div>                          			
+	                            		</div>
+	                            	</div>
+	                            	
+	                            	<div class="col-lg-4">
+		                                <div class="form-group">
+	                            			<div class="col-lg-5">
+		                                		<p class="help-block"><b>Request Date</b></p>
+		                                	</div>
+		                                	<div class="col-lg-7">		                                		
+							                    <input type="text" class="form-control" placeholder="" name="informDate" id="informDate" value="${requestObj.informDate}" readonly>
+		                                	</div>
+	                            		</div>
+	                            	</div>
+	                            	
+	                            	<div class="col-lg-4">
+	                            		<div class="col-lg-5">
+	                                		<p class="help-block"><b>Request Time</b></p>
+	                                	</div>
+	                                	<div class="col-lg-7">		                                		
+						                    <input type="text" class="form-control" placeholder="" name="informTime" id="informTime" value="${requestObj.informTime}" readonly>
+	                                	</div>
+	                            	</div>
+	                            </div>
+	                            <!-- /.row -->
+	                            
+	                            <br>
+	                            <!-- /.row -->
+	                            <div class="row">
+									<div class="col-lg-4">
+		                                <div class="form-group">
+		                                	<div class="col-lg-5">
+		                                		<p class="help-block"><b>Request by</b></p>
+		                                	</div>
+		                                	<div class="col-lg-7">		                                		
+							                    <input type="text" class="form-control" placeholder="" name="createBy" id="requestBy" value="${requestObj.requestBy}" readonly>
+		                                	</div>                            			
+	                            		</div>
+	                            	</div>
+	                            	
+	                            	<div class="col-lg-4">
+	                            		<div class="col-lg-5">
+	                                		<p class="help-block"><b>Section</b></p>
+	                                	</div>
+	                                	<div class="col-lg-7">		                                		
+						                    <input type="text" class="form-control" placeholder="" name="section_name" id="section_name" value="${requestObj.section.section_name}" readonly>
+<!-- 						                    <input type="hidden" name="section_ID" value=""> -->
+	                                	</div>
+	                            	</div>
+	                            	
+	                            	<div class="col-lg-4">
+	                            		<div class="col-lg-5">
+	                                		<p class="help-block"><b>Request Status</b></p>
+	                                	</div>
+	                                	<div class="col-lg-7">		                                		
+						                    <input type="text" class="form-control" placeholder="" name="status" id="status" value="${requestObj.status_name}" readonly>
+<!-- 	                                		<input type="hidden" name="status" value=""> -->
+	                                	</div>	                                	
+	                            	</div>
+	                            </div>
+	                            <!-- /.row -->
+	                        </div>
+	                        <!-- /.panel-heading -->
 
-<!-- 									<div class="col-lg-6 text-left"> -->
-<!-- 										<button type="reset" -->
-<%-- 											onclick="window.location.href='${cPath}/gas/gas_requested_list.htm'" --%>
-<!-- 											class="btn btn-default" style="width: 100px;">&nbsp;กลับ</button> -->
-		<!-- 									</div> -->
-										<div class="col-lg-6 text-left">
+<!-- ###########################################################################       body	                     -->	                        
+	                        <div class="panel-body nav-tabs-custom " >
+	                            <!-- Nav tabs -->
+	                            <ul class="nav nav-tabs ">
+	<!--                             <ul class="nav nav-pills"> -->
+	                                <li class="active">
+	                                	<a href="#requestDeatil-pills" data-toggle="tab">Request Detail</a>
+	                                </li>
+	                                <li>
+	                                	<a href="#repairDeatil-pills" data-toggle="tab">Repair Detail</a>
+	                                </li>                                
+	                            </ul>
+
+<!-- ###########################################################################       body request detail	                     -->	
+	                            <!-- Tab panes -->
+	                            	 
+								
+									 
+									 
+	                            <div class="tab-content">
+	                                <div class="tab-pane fade in active" id="requestDeatil-pills" >
+									
+										 <fieldset  class="fs-detail" disabled>
+									 
+										<!-- /.row -->
+										<div class="row">
+											<div class="col-lg-6">
+				                                <div class="form-group">
+					                                <p class="help-block"><b>Request Type</b></p>
+					                                <input   type="text" class="form-control"   value="${requestObj.requestType.requestType_name}">
+				                                </div> 
+				                            </div>
+
+		                                    <div class="col-lg-6">
+		                                                                    
+				                                <div class="form-group">
+					                                <p class="help-block"><b>Location / Process</b></p>
+					                                <input   type="text" class="form-control"   value="${requestObj.location.location_name}">
+				                                </div>
+				                                
+			                                </div>					                            
+				                            
+			                            </div>
+			                            <!-- /.row -->                                   
+	                                    
+	                                 
+		                                
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                	<div class="col-lg-12">
+				                                <div class="form-group">
+				                                    <p class="help-block"><b> Before Problem Description (รายละเอียดปัญหาก่อนแก้ไข) </b></p>
+				                                    <textarea   class="form-control" rows="3" name="beforeDetail">${requestObj.beforeDetail}</textarea>
+				                                </div>
+			                                </div>
+		                                </div>  
+		                                <!-- /.row -->  
+		                                
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                	<div class="col-lg-6">
+				                                <div class="form-group">
+				                                    <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
+<!-- 				                                    <input type="button" class="form-control-file" id="beforePicture"> -->
+				                                </div>
+			                                </div>    	                                
+		                                </div>  
+		                                <!-- /.row --> 
+		                                
+		                                
+		                                </fieldset>
+		                                
+		                                  <hr>
+		                                  
+		                              
+		                                <!-- /.row -->
+		                                <div class="row hidden">
+		                                	<div class="col-lg-4">
+
+							                    <div class="panel panel-default">
+							                        <div class="panel-heading">
+							                            <b>Request person</b>
+							                        </div>
+							                        <div class="panel-body">
+							                            <p id="request"></p>
+							                        </div>
+							                        <div class="panel-footer">
+							                        	<input type="hidden" name="status" value="1">
+						                                <button type="submit" class="btn btn-success" name="rAction" value="Create" id="" onClick="requestApprove();">Create</button>
+						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
+						                                
+							                        </div>
+							                    </div>
+
+			                                </div>  
+			                                
+		                                	<div class="col-lg-4">
+							                    <div class="panel panel-info">
+							                        <div class="panel-heading">
+							                            <b>Section Approve  (LD Up)</b>
+							                        </div>
+							                        <div class="panel-body">
+							                            <p id="requestSectionBeforeApprove"></p>
+							                        </div>
+							                        <div class="panel-footer">
+						                                <button type="submit" class="btn btn-success" name="rAction" value="" id="btnRequestSectionBeforeApprove" onClick="requestSectionBeforeApprove();">Approve</button>
+						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
+							                        </div>
+							                    </div>
+			                                </div>
+
+		                                	<div class="col-lg-4">
+							                    <div class="panel panel-success">
+							                        <div class="panel-heading">
+							                            <b>Repair section Approve (ACH  Up)</b>
+							                        </div>
+							                        <div class="panel-body">
+							                            <p id="repairSectionBeforeApprove"></p>
+							                        </div>
+							                        <div class="panel-footer">
+						                                <button type="submit" class="btn btn-success" name="rAction" value="" id="btnRepairSectionBeforeApprove" onClick="repairSectionBeforeApprove();">Approve</button>
+						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
+							                        </div>
+							                    </div>
+			                                </div>			                                			                                  	                                
+		                                </div> 		                                
+		                                <!-- /.row -->	
+		                                
+		                           
+	                                </div>
+
+<!-- ###########################################################################       body repair detail	                     -->	                                
+									<!-- /.repairDetail	-->
+	                                <div class="tab-pane fade" id="repairDeatil-pills">
+	                                	
+	                                 <fieldset  class="fs-detail" disabled>
+										
+										<!-- /.row -->
+										<div class="row">
+											<div class="col-lg-9">
+				                                <div class="form-group">
+					                                <p class="help-block"><b>ตรวจสอบเครื่องมือและเครื่องจักรก่อนการซ่อม  (Check Tooling and Machine before  Repaired)</b></p>		
+ 														
+															<c:forEach var="item" items="${LOV_CHECKTOOLBEFORE}">
+																<input type="radio" name="checkToolBefore_ID" value="${item.code}" ${item.code == requestBean.checkTool.checkTool_ID ? 'selected="selected"' : ''} >&nbsp; ${item.descTH}  &nbsp; 
+															</c:forEach>	
+															
+				                                </div> 
+				                            </div>
+			                            </div>
+			                            <!-- /.row --> 
+			                            
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                	<div class="col-lg-9">
+				                                <div class="form-group">
+				                                    <p class="help-block"><b> After  Description Correction (รายละเอียดการแก้ไข) </b></p>
+				                                    <textarea class="form-control" rows="3" name="afterDetail"></textarea>
+				                                </div>
+			                                </div>
+
+											<div class="col-lg-3">
+				                                <div class="form-group">
+				                                    <p class="help-block"><b> Attach files (เอกสารแนบ) </b></p>
+				                                     <label class="radio-inline">
+		                                                <input type="radio" name="attachfile" id="attachfileYes" value="1">มี (Yes)
+		                                            </label>
+		                                            <label class="radio-inline">
+		                                                <input type="radio" name="attachfile" id="attachfileNo" value="0">ไม่มี (No)
+		                                            </label>		                                            
+				                                </div>
+			                                </div>
+			                                
+		                                </div>  
+		                                <!-- /.row --> 
+		                                
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                	<div class="col-lg-6">
+				                                <div class="form-group">
+				                                    <p class="help-block"><b> After  Picture Problem (รูปภาพปัญหาหลังการแก้ไข) </b></p>
+				                                    <input type="file" class="form-control-file" id="afterPicture">
+				                                </div>
+			                                </div>    	                                
+		                                </div>  
+		                                <!-- /.row --> 	
+
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                	<div class="col-lg-12">
+		                                		<div class="form-group">
+		                                		<p class="help-block"><b> เวลาที่ใช้ในการซ่อม  </b></p>
+		                                        <div class="col-md-4">
+		                                            
+							                        <div class="form-group input-group">
+							                            <span class="input-group-addon">Start(เริ่ม)</span>
+							                            <input type="text" class="form-control" placeholder="Start(เริ่ม)" name="timeStart" id="timeStart" value="">										                        		                        
+							                        </div>		                                            
+		                                            
+		                                            
+		                                        </div>
+		                                        
+		                                        <div class="col-md-4">
+		                                            
+							                        <div class="form-group input-group">
+							                            <span class="input-group-addon">Complete(เสร็จสิ้น)</span>
+							                            <input type="text" class="form-control" placeholder="Complete(เสร็จสิ้น)" name="timeFinish" id="timeFinish" value="">										                        		                        
+							                        </div>
+		                                        </div>
+		                                        
+				                                <div class="col-md-4">
+		                                             
+							                        <div class="form-group input-group">
+							                            <span class="input-group-addon">Total(รวม)</span>
+							                            <input type="text" class="form-control" placeholder="Total(รวม)" name="totalTime" id="totalTime" value="" readonly>										                        		                        
+							                        	<span class="input-group-addon">Minutes</span>
+							                        </div>	
+							                        		                                             
+		                                        </div>
+		                                        
+		                                        </div>
+			                                </div>			                                    	                                
+		                                </div>  
+		                                <!-- /.row --> 
+
+										<hr>
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                	<div class="col-lg-12">
+		                                		<p class="help-block"><b> รายละเอียดการใช้อะไหล่  </b></p>	
+		                                	</div>
+		                                </div>
+		                                <!-- /.row --> 
+
+
+		                                <!-- /.row -->
+		                                <div class="row" >
+		                                	<div class="col-lg-12">
+		                                	
+<!-- 		                                	Data Table CRUD -->
+<%-- 		                                		<jsp:include page="${cPath}/request/requestWithDataTable.jsp"></jsp:include> --%>
+										<div class="table-title">
+							                <div class="row">
+							                    <div class="col-sm-12">
+							                    	<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+							                    </div>                    
+							                </div>
+							            </div>
+										<table class="table table-striped table-hover">
+							                <thead>
+							                    <tr>
+							                        <th>#</th>
+							                        <th>Part ID</th>
+							                        <th>Part Name</th>
+													<th>Qty</th>
+							                        <th>Price</th>
+							                        <th>Other Cost</th>
+							                        <th>Total Cost</th>
+							                        <th>Actions</th>
+							                    </tr>
+							                </thead>
+							                <tbody>
+							                	<tr>
+													<td>
+														<span class="custom-checkbox">
+															<input type="checkbox" id="checkbox1" name="options[]" value="1">
+															<label for="checkbox1"></label>
+														</span>
+													</td>
+							                        <td>Part ID</td>
+							                        <td>Part Name</td>
+													<td>Qty</td>
+							                        <td>Price</td>
+							                        <td>Other Cost</td>
+							                        <td>Total Cost</td>
+							                        <td>
+							                            <a href="#editPartModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+														<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							                        </td>
+							                    </tr>
+							                </tbody>
+							             </table>
+		                                	</div>
+		                                	
+		                                </div>
+
+										<!-- /.row -->
+		                                										
+										<hr>		                                
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                
+											<div class="col-lg-4">
+		                                		<div class="form-group">
+				                                	<p class="help-block"><b> ประเภทการซ่อม  </b></p>
+				                                	
+				                                			<c:forEach var="item" items="${LOV_MAINTENANCETYPE}">
+																<input type="radio" name="maintenanceType" value="${item.code}">&nbsp; ${item.descTH} &nbsp;  
+															</c:forEach>
+				                                		
+
+				                                </div>
+			                                </div>
+
+											<div class="col-lg-8">
+				                                <div class="form-group">
+					                                <p class="help-block"><b> การตรวจสอบเครื่องมือและเครื่องจักรหลังการซ่อม  (Check Tooling and Machine after  Repaired) </b></p>
+															<c:forEach var="item" items="${LOV_CHECKTOOLAFTER}">
+																<input type="radio" name="checkToolAfter_ID" value="${item.code}" ${item.code == requestBean.checkTool.checkTool_ID ? 'selected="selected"' : ''} >&nbsp; ${item.descTH}  &nbsp; 
+															</c:forEach>
+				                                </div> 
+				                            </div>
+		                                </div>  
+		                                <!-- /.row --> 
+		                                
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                	<div class="col-lg-6">
+				                                <div class="form-group">
+				                                    <p class="help-block"><b> Comment After Repair/Rebuild </b></p>
+				                                    <textarea class="form-control" rows="4" name="afterComment"></textarea>
+				                                </div>
+			                                </div>
+
+		                                	<div class="col-lg-6">
+		                                		<div class="row">
+		                                			<div class="form-group">
+		                                				<p class="help-block"><b> ※ กรณีที่มีความเกี่ยวข้องด้านคุณภาพให้แผนก QA ร่วมตรวจเช็คด้วย </b></p>
+		                                				<label class="radio-inline">
+		                                                    <input type="radio" name="concernQA" id="concernQA" value="1">เกี่ยวข้อง
+		                                                </label>
+		                                                <label class="radio-inline">
+		                                                    <input type="radio" name="concernQA" id="concernQA" value="0">ไม่เกี่ยวข้อง
+		                                                </label>
+		                                			</div>
+		                                		</div>
+		                                		
+		                                		
+				                                <div class="row">
+					                                <div class="form-group">
+					                                    <p class="help-block"><b> ความเห็นสำหรับ QA </b></p>
+															<c:forEach var="item" items="${LOV_JUDMENT}">
+																<input type="radio" name="confirmJudment" value="${item.code}" >&nbsp; ${item.descTH}  &nbsp; 
+															</c:forEach>
+					                                </div>
+					                        	</div>
+			                                </div>	   		                                
+			                                
+		                                </div>  
+		                                <!-- /.row --> 
+
+										<hr>		                                
+		                            
+<!-- ###########################################################################       approve	                     -->			                                
+		                                <!-- /.row -->
+		                                <div class="row hidden" >
+		                                	<div class="col-lg-3">
+							                    <div class="panel panel-default">
+							                        <div class="panel-heading">
+							                            <b>Repair person</b>
+							                        </div>
+							                        <div class="panel-body">
+							                            <p id="repairApprove"></p>
+							                        </div>
+							                        <div class="panel-footer">
+						                                <button type="submit" class="btn btn-success" name="rAction" value="repairPerson" onclick="repairApprove();">Approve</button>
+						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
+							                        </div>
+							                    </div>	
+			                                </div> 
+			                                
+		                                	<div class="col-lg-3">
+							                    <div class="panel panel-default">
+							                        <div class="panel-heading">
+							                            <b>Request section (LD up)</b>
+							                        </div>
+							                        <div class="panel-body">
+							                            <p id="requestSectionAfterApprove"></p>
+							                        </div>
+							                        <div class="panel-footer">
+						                                <button type="submit" class="btn btn-success" name="rAction" value="requestSection" onclick="requestSectionAfterApprove();">Approve</button>
+						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
+							                        </div>
+							                    </div>
+			                                </div>			                                
+
+		                                	<div class="col-lg-3">
+							                    <div class="panel panel-default">
+							                        <div class="panel-heading">
+							                            <b>QA Approve</b>
+							                        </div>
+							                        <div class="panel-body">
+							                            <p id="QAApprove"></p>
+							                        </div>
+							                        <div class="panel-footer">
+						                                <button type="submit" class="btn btn-success" name="rAction" value="qaPerson" onclick="QAApprove();">Approve</button>
+						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
+							                        </div>
+							                    </div>
+			                                </div>
+
+		                                	<div class="col-lg-3">
+							                    <div class="panel panel-default">
+							                        <div class="panel-heading">
+							                            <b>Repair section (ACH up)</b>
+							                        </div>
+							                        <div class="panel-body">
+							                            <p id="repairSectionAfterApprove"></p>
+							                        </div>							                        
+							                        <div class="panel-footer">
+						                                <button type="submit" class="btn btn-success" name="rAction" value="RepairSectionCheck" onClick="repairSectionAfterApprove();">Approve</button>
+						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
+							                        </div>
+							                    </div>
+			                                </div>	
+			                             </div>	
+			                             <!-- /.row -->	  		                                			                             	                                    
+	                                </div>               
+	                                
+	                                
+	                                   </fieldset>
+	                                                    
+	                            </div>
+	                            
+	                             
+	                                <div class="row">
+											 
+											<div class="col-lg-6 text-left">
 												<button type="reset"
-													onclick="window.location.href='${cPath}/gas/gas_requested_list.htm'"
+													onclick="location='${cPath}/request/requested_list.htm'"
 													class="btn btn-default" style=" width: 100px; "><i class="fa fa-arrow-circle-left"></i> &nbsp;กลับ/Back </button>
 											</div>
+	
+									</div>
+				                                
+		                                
+		                                
+	                        </div>
+	                        <!-- /.panel-body -->
+	                        
+		                                
+		                                
+		                                
+	                        <!-- /.panel-Footer -->
+	                        <div class="panel-footer">
+                                <div class="row">
+                                	<div class="col-lg-4">
+                                		<p class="help-block"><b><spring:message code="repair.footer.detail"/></b></p>
+                                	</div>
+                                	<div class="col-lg-5">
+                                	</div>
+                                	<div class="col-lg-3">
+                                		<p class="help-block" align="right"><b><spring:message code="repair.footer.version"/></b></p>
+                                	</div>
+                                </div>
+	                        </div>
+	                        <!-- /.panel-Footer -->
+	                        
+	                    </div>
+	                    <!-- /.panel -->
+	                </div>
+	                <!-- /.col-lg-8 -->
+	                
+<!-- 	                <div class="col-lg-1"> -->
+	            	
+<!-- 	            	</div>    -->
+	                             
+	            </div>
+	        
 
-								</div>
 
-							</form>
+	</form>	
 
-						</div>
-
-					</div>
-				</div>
-			</div>
-	</div>
-
-	</section>
-	</div>
-
-
-
-	<script type="text/javascript">
-		var jsonObj = {
-			"id" : "",
-			"equipmentId" : "",
-			"jopNo" : "",
-			"approveId" : "",
-			"receiveId" : "",
-			"requestStatus" : "",
-			"companyCode" : "",
-			"companyName" : "",
-			"departmentCode" : "",
-			"departmentName" : "",
-			"requesterCode" : "",
-			"requesterName" : "",
-			"agentName" : "",
-			"phone" : "",
-			"objectiveCode" : "",
-			"departmentCode" : "",
-			"eqCode" : "",
-			"serialNo" : "",
-			"equipmentType" : "",
-			"status" : ""
-		};
-
-		$(function() {
-			getDataUser();
-		});
-		
-		function getDataUser() {
-
-// 			$("#companyForm").val('TPCC');
-
-// 			$("#departmentForm").val('พนักงาน');
-
-// 			$("#requestedNameForm").val('Wongwithit Rubchaleam');
-
-// 			$("#telephoneForm").val('098354522');
-
-// 			$("#ItemForm").val('100000');
-
-// 			changeItemForm($("#ItemForm").val());
-
-// 			$('#ObjectOptions' + '2').prop('checked', true);
-			$('input:radio[name="ObjectOptions"]').filter('[value="${requestObj.objectiveCode}"]').attr('checked', true);
-
-// 			$("#approveBy").val('AmuletKQ Rcl');
-
-// 			$("#approveDate").val('06/09/2018');
-
-		};
-
-		function changeItemForm(value) {
-
-// 			$("#equipmentNo").text(value);
-// 			$("#equipmentSeriesNo").text('456');
-// 			$("#equipmentType").text('789');
-
-		};
-
-		function conditionOther() {
-
-			$("#OtherForm").prop("disabled", false);
-
-		};
-		function conditionNotOther() {
-
-			$("#OtherForm").val('');
-			$("#OtherForm").prop("disabled", true);
-
-		};
-
-		function getAction() {
-
-			return "";
-
-		};
-
-		function saveOrUpdate() {
-
-			var ObjectOptions = $('input[name=ObjectOptions]:checked',
-					'#myForm').val();
-
-			// 			alert(ObjectOptions);
-			if (ObjectOptions == "") {
-				alert("กรุณาเลือกวัตถุประสงค์");
-				return false;
-			}
-
-			var ItemForm = $('#ItemForm').val();
-			if (ItemForm == "") {
-				alert("กรุณาเลือกอุปกรณ์");
-				return false;
-			}
-
-			jsonObj.equipmentId = $('#ItemForm').val();
-			// 			jsonObj.companyCode 	= $('#companyForm').val();
-			jsonObj.companyName = $('#companyForm').val();
-			// 			jsonObj.departmentCode 	= $('#ItemForm').val();
-
-			jsonObj.departmentName = $('#departmentForm').val();
-			// 			jsonObj.requesterCode 	= $('#ItemForm').val();
-			jsonObj.requesterName = $('#requestedNameForm').val();
-			jsonObj.agentName = $('#agentNameForm').val();
-			jsonObj.objectiveCode = ObjectOptions;
-
-			jsonObj.eqCode = $("#equipmentNo").text();
-			jsonObj.serialNo = $("#equipmentSeriesNo").text();
-			jsonObj.equipmentType = $("#equipmentType").text();
-
-			bootbox.confirm({
-				title : "Confirm",
-				message : _confirmSaveTxt,
-				buttons : {
-					cancel : {
-						label : '<i class="fa fa-times"></i> Cancel',
-						className : 'btn-danger'
-					},
-					confirm : {
-						label : '<i class="fa fa-check"></i> Confirm',
-						className : 'btn-success'
-					}
-				},
-				callback : function(result) {
-					if (result) {
-						$.ajax({
-							method : "POST",
-							data : jsonObj,
-							url : cPath + "/GasRequest/save"
-
-						}).done(function(result) {
-							$.notify({
-								title : "<strong>Success!</strong> ",
-								message : " Save successfully"
-							});
-
-						}).fail(function(jqXHR, textStatus, errorThrown) {
-							alert('ERROR');
-
-						});
-					}
-				}
-			});
-			// 			alert(ItemForm);
-		};
-	</script>
+</section>
+</div>	
+</body>
