@@ -51,7 +51,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			request.setRequestType(requestType);
 			
 			request.setRequestStatus(rs.getString("requestStatus"));
-			request.setRequestBy(rs.getString("tmpCreateBy"));
+			request.setRequestBy(rs.getString("CreateBy"));
 			request.setstatus_name(rs.getString("status_name"));
 		    request.setCreateDate(rs.getDate("createDate"));
 		    request.setCreateDateStr(DateUtils.get_yyyymmdd_hhmmss_en_from_date(rs.getTimestamp("createDate")));
@@ -79,7 +79,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			request.setRequestType(requestType);
 			
 			request.setRequestStatus(rs.getString("requestStatus"));
-			request.setRequestBy(rs.getString("tmpCreateBy"));
+			request.setRequestBy(rs.getString("CreateBy"));
 			request.setstatus_name(rs.getString("status_name"));
 			
 			section.setSection_ID(rs.getString("section_ID"));
@@ -186,7 +186,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 				"	,rqh.requestType_ID" + 
 				"	,rt.requestType_Name" + 
 				"	,rqh.status requestStatus ,misc.value1 as status_name" + 
-				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  tmpCreateBy" + 
+				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  CreateBy" + 
 				"	,rqh.createDate" +
 				"   FROM tb_RequestHeader rqh" + 
 				"	LEFT JOIN tb_RequestType rt on rqh.requestType_ID = rt.requestType_ID" + 
@@ -308,7 +308,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 				"	,rqh.requestType_ID" + 
 				"	,rt.requestType_Name" + 
 				"	,rqh.status requestStatus ,misc.value1 as status_name" + 
-				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  tmpCreateBy" + 
+				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  CreateBy" + 
 				"	,rqh.createDate , sec.section_ID,  sec.section_name " +
 				"	,loc.location_ID , loc.location_name , rqh.beforeDetail " +
 				"   FROM tb_RequestHeader rqh" + 

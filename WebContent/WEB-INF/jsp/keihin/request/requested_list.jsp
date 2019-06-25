@@ -224,7 +224,7 @@
 							}
 						}, 
 						{ "data": "requestType.requestType_name" }, 						 
-						{ "data": "createBy" },
+						{ "data": "requestBy" },
 						{ "data": "createDateStr" },
 						{ "data": "status_name" },
 						{
