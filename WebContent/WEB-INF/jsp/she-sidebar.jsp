@@ -27,7 +27,7 @@
 				</a>
 					<ul class="treeview-menu">
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>User Type Master<span
+								class="fa fa-chevron-circle-right"></i>User Type<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -40,7 +40,7 @@
 						</li>
 
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Check Tool Master<span
+								class="fa fa-chevron-circle-right"></i>Check Tool<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -53,7 +53,7 @@
 						</li>
 
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Department Master<span
+								class="fa fa-chevron-circle-right"></i>Department<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -66,7 +66,7 @@
 						</li>
 
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Factory Master<span
+								class="fa fa-chevron-circle-right"></i>Factory<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -79,7 +79,7 @@
 						</li>
 
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Location Master<span
+								class="fa fa-chevron-circle-right"></i>Location<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -93,7 +93,7 @@
 
 
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Machine Master<span
+								class="fa fa-chevron-circle-right"></i>Machine<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -106,7 +106,7 @@
 						</li>
 						
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Maker Master<span
+								class="fa fa-chevron-circle-right"></i>Maker<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -119,7 +119,7 @@
 						</li>
 
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Mold Type Master<span
+								class="fa fa-chevron-circle-right"></i>Mold Type<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -132,7 +132,7 @@
 						</li>
 						
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Production Line Master<span
+								class="fa fa-chevron-circle-right"></i>Production Line<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -145,7 +145,7 @@
 						</li>
 						
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Section Master<span
+								class="fa fa-chevron-circle-right"></i>Section<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -158,7 +158,7 @@
 						</li>
 						
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Unit Type Master<span
+								class="fa fa-chevron-circle-right"></i>Unit Type<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
@@ -171,7 +171,7 @@
 						</li>
 						
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Request Type Master<span
+								class="fa fa-chevron-circle-right"></i>Request Type<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
