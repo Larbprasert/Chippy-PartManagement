@@ -192,7 +192,7 @@
 				                                    <p class="help-block"><b> Problem Picture Before (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
 <!-- 				                                    <input type="file"  name="beforePicture[]" class="form-control-file" id="beforePicture" class="file"   multiple> -->
 				                                  	<button type="button" class="btn btn-warning" id="beforePicture" onclick="popupUpload('1')" > 
-				                                			<i class="fa fa-upload"></i> Upload File (After) </button>
+				                                			<i class="fa fa-upload"></i> Upload File </button>
 				                               
 				                                </div>
 			                                </div>    	                                
