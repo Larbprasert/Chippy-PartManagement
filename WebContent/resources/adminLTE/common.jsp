@@ -99,7 +99,9 @@
 
 <c:set var="_CURR_YEAR" scope="session" value="<%=curr_year%>"/>
 
-<security:authorize access="hasAnyRole('ADMIN','GAS_STAFF','GAS_SUP','GAS_SEC_MNG')" var="roleApprove" />
+<%-- <security:authorize access="hasAnyRole('ADMIN','GAS_STAFF','GAS_SUP','GAS_SEC_MNG')" var="roleApprove" /> --%>
+<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF','ROLE_REQ_MNG', 'ROLE_REQ_SUP', 'ROLE_REQ_USER','ROLE_QA')" var="roleApprove" />
+
 <%-- <security:authorize access="hasRole('ROLE_VIEW')" var="roleView" /> --%>
 <%-- <security:authorize access="hasRole('ROLE_DELETE')" var="roleDel" /> --%>
 <%-- <security:authorize access="hasRole('ROLE_ADMIN')" var="roleAdmin" /> --%>

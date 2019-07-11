@@ -337,7 +337,7 @@
 		                                            
 							                        <div class="form-group input-group">
 							                            <span class="input-group-addon">Complete(เสร็จสิ้น)</span>
-							                            <input type="text" class="form-control" placeholder="Complete(เสร็จสิ้น)" name="timeFinish" id="timeFinish" value="">										                        		                        
+							                            <input type="text" class="form-control" placeholder="Complete(เสร็จสิ้น)" name="timeFinish" id="timeFinish" value="" onblur="calTime()" >										                        		                        
 							                        </div>
 		                                        </div>
 		                                        
@@ -350,6 +350,24 @@
 							                        </div>	
 							                        		                                             
 		                                        </div>
+<script>
+function calTime() {
+  //alert("Input field lost focus.");
+  var tim1 = $('#timeStart').val();
+  var tim2 = $('#timeFinish').val();
+  var ary1 = tim1.split(':');
+  var ary2 = tim2.split(':');
+  var minsdiff = parseInt(ary2[0],10)*60+parseInt(ary2[1],10)-parseInt(ary1[0],10)*60-parseInt(ary1[1],10);
+  
+  var timediff = minsdiff;
+	$('#totalTime').val(timediff);
+	
+  //Convert to Hour
+  //alert(String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1));
+  //var timediff = String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1);
+	
+}
+</script>		
 		                                        
 		                                        </div>
 			                                </div>			                                    	                                
