@@ -179,7 +179,7 @@
 				                                    <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
 <!-- 				                                    <input type="file" class="form-control-file" id="beforePicture" > -->
 				                                <button type="button" class="btn btn-warning"  onclick="popupUpload('1')" > 
-				                                <i class="fa fa-upload"></i> Upload File (Before) </button>
+				                                <i class="fa fa-upload"></i> Upload File </button>
 				                                </div>
 			                                </div>    	                                
 		                                </div>  
@@ -392,11 +392,82 @@ function calTime() {
 <%-- 		                                		<jsp:include page="${cPath}/request/requestWithDataTable.jsp"></jsp:include> --%>
 			<div class="table-title">
                 <div class="row">
-                    <div class="col-sm-12">
-                    	<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                    <div class="col-sm-12" align="right">
+                    	<button type="button" class="btn btn-info add-new" id="btaddnew" onclick="popupAddpart()"><i class="fa fa-plus"></i> Add Part</button>                     	 
+<!--                     	<button type="button" class="btn btn-info add-new" id="btaddnew" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add New</button> -->
+<!--                     	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>  -->
                     </div>                    
                 </div>
             </div>
+ 
+ <script type="text/javascript">
+ function popupAddpart() {
+<%-- 		<%@ include file="requested_addpart.jsp"%> --%>
+// 		alert("add part!!!");
+		$('#addPartModal').modal('show');		
+	}
+ </script>
+ 
+ 
+ <!-- Modal -->
+<div id="addPartModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+      	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>        
+        <h4 class="modal-title">Add Part</h4>
+      </div>
+      
+      <div class="modal-body">
+        <div class="form-group">
+			<label>Part ID</label>
+			<input type="text" class="form-control" id="part_ID" name="part_ID" >
+			
+<!-- 							for test -->
+<%-- 			<input id="request_ID" type="hidden" value="<%=request_ID %>" />							 --%>
+		</div>
+		
+		<div class="form-group">
+			<label>Part Name</label>
+			<input type="text" class="form-control" id="part_name" name="part_name" readonly>
+		</div>
+		
+		<div class="form-group">
+   						<label>Qty</label>
+   						<input type="text" class="form-control" name="qty" id="qty">
+   						<input type="hidden" class="form-control" name="beforeQty" id="beforeQty">
+		</div>
+		
+		<div class="form-group">
+			<label>Price</label>
+			<input type="text" class="form-control" name="price" id="price" readonly >
+		</div>
+		
+		<div class="form-group">
+			<label>Other Cost</label>
+			<input type="text" class="form-control" name="other_cost" id="other_cost">
+		</div>
+		
+		<div class="form-group">
+			<label>Total Cost</label>
+			<input type="text" class="form-control" name="total_cost" id="total_cost" readonly>
+		</div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
+ 
+             
 			<table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -440,7 +511,7 @@ function calTime() {
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                
-											<div class="col-lg-4">
+											<div class="col-lg-5">
 		                                		<div class="form-group">
 				                                	<p class="help-block"><b> ประเภทการซ่อม  </b></p>
 				                                	
@@ -452,7 +523,7 @@ function calTime() {
 				                                </div>
 			                                </div>
 
-											<div class="col-lg-8">
+											<div class="col-lg-7">
 				                                <div class="form-group">
 					                                <p class="help-block"><b> การตรวจสอบเครื่องมือและเครื่องจักรหลังการซ่อม  (Check Tooling and Machine after  Repaired) </b></p>
 															<c:forEach var="item" items="${LOV_CHECKTOOLAFTER}">
@@ -670,6 +741,9 @@ $(function() {
 
 });
 
+
+
+
 function popupUpload(type) {
 	
 	
@@ -791,3 +865,5 @@ function actionApprove(level){
 </script>
 
 	<%@ include file="requested_upload.jsp"%>
+	
+	

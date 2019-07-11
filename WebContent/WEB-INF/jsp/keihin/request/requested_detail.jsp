@@ -342,7 +342,7 @@
 <%-- 		                                		<jsp:include page="${cPath}/request/requestWithDataTable.jsp"></jsp:include> --%>
 										<div class="table-title">
 							                <div class="row">
-							                    <div class="col-sm-12">
+							                    <div class="col-sm-12" align="right">
 							                    	<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
 							                    </div>                    
 							                </div>
