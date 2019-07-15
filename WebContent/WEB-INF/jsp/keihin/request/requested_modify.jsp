@@ -179,11 +179,36 @@
 				                                    <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
 <!-- 				                                    <input type="file" class="form-control-file" id="beforePicture" > -->
 				                                <button type="button" class="btn btn-warning"  onclick="popupUpload('1')" > 
-				                                <i class="fa fa-upload"></i> Upload File (Before) </button>
+				                                <i class="fa fa-upload"></i> Upload File </button>
 				                                </div>
 			                                </div>    	                                
 		                                </div>  
 		                                <!-- /.row --> 
+		                                
+		                                
+						<div class="row">
+							<div class="col-md-12">
+							  <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
+							
+							<table id="upload-request"class="table table-striped table-bordered" style="width: 100%">
+								<thead class="bg-green color-palette">
+										<tr>
+											<th class="text-center"  width="6%">No</th>
+											<th class="text-center">File Name</th>
+											<th class="text-center">Date</th>
+											<th class="text-center" swidth="10%">Size</th>
+<!-- 											<th class="text-center">Type</th> -->
+											<th class="text-center" width="10%">Download</th>
+										</tr>
+									</thead>
+									 <tbody>
+									 
+									 
+									 </tbody>
+								</table>
+							</div>
+
+						</div>
 		                                
 		                                <hr>
 		                                
@@ -196,7 +221,8 @@
 							                            <b>Request person</b>
 							                        </div>
 							                        <div class="panel-body">
-							                            <p id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </p>
+							                            <span id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </s>
+							                        	<span class="label label-success pull-right">Create</span>
 							                        </div>
 							                        <div class="panel-footer text-right">
 <!-- 							                        	<input type="hidden" name="status" value="1"> -->
@@ -337,7 +363,7 @@
 		                                            
 							                        <div class="form-group input-group">
 							                            <span class="input-group-addon">Complete(เสร็จสิ้น)</span>
-							                            <input type="text" class="form-control" placeholder="Complete(เสร็จสิ้น)" name="timeFinish" id="timeFinish" value="">										                        		                        
+							                            <input type="text" class="form-control" placeholder="Complete(เสร็จสิ้น)" name="timeFinish" id="timeFinish" value="" onblur="calTime()" >										                        		                        
 							                        </div>
 		                                        </div>
 		                                        
@@ -350,6 +376,24 @@
 							                        </div>	
 							                        		                                             
 		                                        </div>
+<script>
+function calTime() {
+  //alert("Input field lost focus.");
+  var tim1 = $('#timeStart').val();
+  var tim2 = $('#timeFinish').val();
+  var ary1 = tim1.split(':');
+  var ary2 = tim2.split(':');
+  var minsdiff = parseInt(ary2[0],10)*60+parseInt(ary2[1],10)-parseInt(ary1[0],10)*60-parseInt(ary1[1],10);
+  
+  var timediff = minsdiff;
+	$('#totalTime').val(timediff);
+	
+  //Convert to Hour
+  //alert(String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1));
+  //var timediff = String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1);
+	
+}
+</script>		
 		                                        
 		                                        </div>
 			                                </div>			                                    	                                
@@ -374,11 +418,82 @@
 <%-- 		                                		<jsp:include page="${cPath}/request/requestWithDataTable.jsp"></jsp:include> --%>
 			<div class="table-title">
                 <div class="row">
-                    <div class="col-sm-12">
-                    	<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
+                    <div class="col-sm-12" align="right">
+                    	<button type="button" class="btn btn-info add-new" id="btaddnew" onclick="popupAddpart()"><i class="fa fa-plus"></i> Add Part</button>                     	 
+<!--                     	<button type="button" class="btn btn-info add-new" id="btaddnew" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add New</button> -->
+<!--                     	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>  -->
                     </div>                    
                 </div>
             </div>
+ 
+ <script type="text/javascript">
+ function popupAddpart() {
+<%-- 		<%@ include file="requested_addpart.jsp"%> --%>
+// 		alert("add part!!!");
+		$('#addPartModal').modal('show');		
+	}
+ </script>
+ 
+ 
+ <!-- Modal -->
+<div id="addPartModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-header">
+      	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>        
+        <h4 class="modal-title">Add Part</h4>
+      </div>
+      
+      <div class="modal-body">
+        <div class="form-group">
+			<label>Part ID</label>
+			<input type="text" class="form-control" id="part_ID" name="part_ID" >
+			
+<!-- 							for test -->
+<%-- 			<input id="request_ID" type="hidden" value="<%=request_ID %>" />							 --%>
+		</div>
+		
+		<div class="form-group">
+			<label>Part Name</label>
+			<input type="text" class="form-control" id="part_name" name="part_name" readonly>
+		</div>
+		
+		<div class="form-group">
+   						<label>Qty</label>
+   						<input type="text" class="form-control" name="qty" id="qty">
+   						<input type="hidden" class="form-control" name="beforeQty" id="beforeQty">
+		</div>
+		
+		<div class="form-group">
+			<label>Price</label>
+			<input type="text" class="form-control" name="price" id="price" readonly >
+		</div>
+		
+		<div class="form-group">
+			<label>Other Cost</label>
+			<input type="text" class="form-control" name="other_cost" id="other_cost">
+		</div>
+		
+		<div class="form-group">
+			<label>Total Cost</label>
+			<input type="text" class="form-control" name="total_cost" id="total_cost" readonly>
+		</div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
+ 
+             
 			<table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -422,7 +537,7 @@
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                
-											<div class="col-lg-4">
+											<div class="col-lg-5">
 		                                		<div class="form-group">
 				                                	<p class="help-block"><b> ประเภทการซ่อม  </b></p>
 				                                	
@@ -434,7 +549,7 @@
 				                                </div>
 			                                </div>
 
-											<div class="col-lg-8">
+											<div class="col-lg-7">
 				                                <div class="form-group">
 					                                <p class="help-block"><b> การตรวจสอบเครื่องมือและเครื่องจักรหลังการซ่อม  (Check Tooling and Machine after  Repaired) </b></p>
 															<c:forEach var="item" items="${LOV_CHECKTOOLAFTER}">
@@ -573,6 +688,16 @@
 	                                </div>                                
 	                                
 	                                </div>
+	                                
+	                                
+	                                 <div class="row">
+									<div class="col-lg-6 text-left">
+										<button type="reset"
+											onclick="location='${cPath}/request/requested_list.htm'"
+											class="btn btn-default" style=" width: 100px; "><i class="fa fa-arrow-circle-left"></i> &nbsp; Back </button>
+									</div>
+								</div>
+								
 	                        </div>
 	                        <!-- /.panel-body -->
 	                        
@@ -652,6 +777,9 @@ $(function() {
 
 });
 
+
+
+
 function popupUpload(type) {
 	
 	
@@ -659,7 +787,7 @@ function popupUpload(type) {
 
 	console.log("id:"+reqId);
 	/**call method in modal*/
-	_UPLOAD_FILE.loadFileList(reqId,type);
+// 	_UPLOAD_FILE.loadFileList(reqId,type);
 	
 //		/**test upload*/
 //		_UPLOAD_FILE.uploadUpload(id)
@@ -773,3 +901,6 @@ function actionApprove(level){
 </script>
 
 	<%@ include file="requested_upload.jsp"%>
+
+	
+	

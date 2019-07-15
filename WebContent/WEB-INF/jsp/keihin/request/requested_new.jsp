@@ -20,7 +20,7 @@
  
 <div class="content-wrapper">
 		<section class="content-header">
-			<h1 class="page-header">Repair/Rebuild Request Detail</h1>
+			<h1 class="page-header">Repair/Rebuild Request</h1>
 		</section> 
 		
   <section class="content">
@@ -160,19 +160,7 @@
 				                            
 			                            </div>
 			                            <!-- /.row -->                                   
-	                                    
-	                                    <div class="row">
-		                                    <div class="col-lg-6">
-		                                                
-				                                
-			                                </div>
-		
-		                                    <div class="col-lg-6">
-		                                             
-				                                
-			                                </div>	
-		                                </div>
-		                                <!-- /.row -->
+	                            
 		                                
 		                                <!-- /.row -->
 		                                <div class="row">
@@ -187,19 +175,42 @@
 		                                
 		                                <!-- /.row -->
 		                                <div class="row">
-		                                	<div class="col-lg-6">
+		                                	<div class="col-md-12">
 				                                <div class="form-group">
 				                                    <p class="help-block"><b> Problem Picture Before (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
 <!-- 				                                    <input type="file"  name="beforePicture[]" class="form-control-file" id="beforePicture" class="file"   multiple> -->
 				                                  	<button type="button" class="btn btn-warning" id="beforePicture" onclick="popupUpload('1')" > 
-				                                			<i class="fa fa-upload"></i> Upload File (After) </button>
+				                                			<i class="fa fa-upload"></i> Upload File </button>
 				                               
 				                                </div>
-			                                </div>    	                                
-		                                </div>  
-		                                <!-- /.row --> 
+		                                
+												
+												<table id="upload-request"class="table table-striped table-bordered" style="width: 100%">
+													<thead class="bg-green color-palette">
+															<tr>
+																<th class="text-center"  width="6%">No</th>
+																<th class="text-center">File Name</th>
+																<th class="text-center">Date</th>
+																<th class="text-center" swidth="10%">Size</th>
+					<!-- 											<th class="text-center">Type</th> -->
+																<th class="text-center" width="10%">Download</th>
+															</tr>
+														</thead>
+														 <tbody>
+														 
+														 
+														 </tbody>
+													</table>
+												</div>
+					
+											</div>
+
+ 
+					 					<br>
 		                                
 		                                <hr>
+		                                
+		                                
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                	<div class="col-lg-4">
@@ -259,7 +270,13 @@
 		                                </div> 		
 		                                
 		                                
-		                                                                
+		                              <div class="row">
+									<div class="col-lg-6 text-left">
+										<button type="reset"
+											onclick="location='${cPath}/request/requested_list.htm'"
+											class="btn btn-default" style=" width: 100px; "><i class="fa fa-arrow-circle-left"></i> &nbsp; Back </button>
+									</div>
+								</div>                      
 		                                <!-- /.row -->	
 	                                </div>
 
@@ -364,14 +381,60 @@ function saveReq(){
 
 function popupUpload(type) {
 	
-	_UPLOAD_FILE.loadFileList(null,type);
+// 	_UPLOAD_FILE.loadFileList(null,type);
 	
-	$('#upload-btn-new').show();
+// 	$('#upload-btn-new').show();
 	
 	
 }
 
+
+var fileTable = $('#upload-request').DataTable({
+	autoWidth: false,
+	"searching": false,
+	"paging":   false,
+	"info":   false,
+	data:[],
+    columns: [
+		{
+			"data" : "id",
+			"fnCreatedCell" : function(nTd, sData,
+					oData, iRow, iCol) {
+				var txt = iRow;
+				$(nTd).html(txt + 1);
+			}
+		},    	
+		{ "data": "fileName" }, 
+		{ "data": "createDateStr" }, 
+		{ "data": "fileSize" }, 
+		{ 
+     		"data": "id"
+	        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
+	        	 	+' onclick="downloadFile('+ oData.id +')"> <i class="fa fa-download"></i> Download </button>';
+	            $(nTd).html(txt);
+	        } 
+        } 
+//			,{ 
+//	     		"data": "id"
+//		        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+//		        	 var txt = '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" '
+//		        		 + 'onclick="deleteFile('+ oData.id+')"> <i class="fa fa-trash"></i> Delete </button>';
+//		            $(nTd).html(txt);
+//		        } 
+//         }
+    ],
+      "aoColumnDefs": [
+      { "sClass": "text-center", "aTargets": [0,2,3,4,5] },
+    ],
+    rowCallback: function (row, data) {}, 
+    ordering: false, 
+	 destroy: true 
+ });
+  
+  
+
 </script>
 </body>
 
-	<%@ include file="requested_upload.jsp"%>
+<%@ include file="requested_upload_new.jsp"%>
