@@ -121,14 +121,14 @@
 	                            <div class="tab-content">
 	                                <div class="tab-pane fade in active" id="requestDeatil-pills" >
 									
-										 <fieldset  class="fs-detail" disabled>
+										 <fieldset  class="fs-detail" >
 									 
 										<!-- /.row -->
 										<div class="row">
 											<div class="col-lg-6">
 				                                <div class="form-group">
 					                                <p class="help-block"><b>Request Type</b></p>
-					                                <input   type="text" class="form-control"   value="${requestObj.requestType.requestType_name}">
+					                                <input  disabled type="text" class="form-control"   value="${requestObj.requestType.requestType_name}">
 				                                </div> 
 				                            </div>
 
@@ -136,7 +136,7 @@
 		                                                                    
 				                                <div class="form-group">
 					                                <p class="help-block"><b>Location / Process</b></p>
-					                                <input   type="text" class="form-control"   value="${requestObj.location.location_name}">
+					                                <input disabled  type="text" class="form-control"   value="${requestObj.location.location_name}">
 				                                </div>
 				                                
 			                                </div>					                            
@@ -151,83 +151,60 @@
 		                                	<div class="col-lg-12">
 				                                <div class="form-group">
 				                                    <p class="help-block"><b> Before Problem Description (รายละเอียดปัญหาก่อนแก้ไข) </b></p>
-				                                    <textarea   class="form-control" rows="3" name="beforeDetail">${requestObj.beforeDetail}</textarea>
+				                                    <textarea  disabled  class="form-control" rows="3" name="beforeDetail">${requestObj.beforeDetail}</textarea>
 				                                </div>
 			                                </div>
 		                                </div>  
 		                                <!-- /.row -->  
-		                                
+		                               
+		                               
+		                               
 		                                <!-- /.row -->
-		                                <div class="row">
+		                                <!-- <div class="row">
 		                                	<div class="col-lg-6">
 				                                <div class="form-group">
 				                                    <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
-<!-- 				                                    <input type="button" class="form-control-file" id="beforePicture"> -->
+				                                <button type="button" class="btn btn-warning"  onclick="popupUpload('1')" > 
+				                                <i class="fa fa-upload"></i> Upload File (Before) </button>
 				                                </div>
 			                                </div>    	                                
-		                                </div>  
+		                                </div>   -->
 		                                <!-- /.row --> 
 		                                
-		                                
-		                                </fieldset>
-		                                
-		                                  <hr>
-		                                  
-		                              
-		                                <!-- /.row -->
-		                                <div class="row hidden">
-		                                	<div class="col-lg-4">
+		                     
+					<!-- 	           <fieldset class="well"><div class="w  "> -->
 
-							                    <div class="panel panel-default">
-							                        <div class="panel-heading">
-							                            <b>Request person</b>
-							                        </div>
-							                        <div class="panel-body">
-							                            <p id="request"></p>
-							                        </div>
-							                        <div class="panel-footer">
-							                        	<input type="hidden" name="status" value="1">
-						                                <button type="submit" class="btn btn-success" name="rAction" value="Create" id="" onClick="requestApprove();">Create</button>
-						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
-						                                
-							                        </div>
-							                    </div>
+		 
+						<div class="row">
+							<div class="col-md-12">
+							  <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
+							
+							<table id="upload-request"class="table table-striped table-bordered" style="width: 100%">
+								<thead class="bg-green color-palette">
+										<tr>
+											<th class="text-center"  width="6%">No</th>
+											<th class="text-center">File Name</th>
+											<th class="text-center">Date</th>
+											<th class="text-center" swidth="10%">Size</th>
+<!-- 											<th class="text-center">Type</th> -->
+											<th class="text-center" width="10%">Download</th>
+										</tr>
+									</thead>
+									 <tbody>
+									 
+									 
+									 </tbody>
+								</table>
+							</div>
 
-			                                </div>  
-			                                
-		                                	<div class="col-lg-4">
-							                    <div class="panel panel-info">
-							                        <div class="panel-heading">
-							                            <b>Section Approve  (LD Up)</b>
-							                        </div>
-							                        <div class="panel-body">
-							                            <p id="requestSectionBeforeApprove"></p>
-							                        </div>
-							                        <div class="panel-footer">
-						                                <button type="submit" class="btn btn-success" name="rAction" value="" id="btnRequestSectionBeforeApprove" onClick="requestSectionBeforeApprove();">Approve</button>
-						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
-							                        </div>
-							                    </div>
-			                                </div>
+						</div>
 
-		                                	<div class="col-lg-4">
-							                    <div class="panel panel-success">
-							                        <div class="panel-heading">
-							                            <b>Repair section Approve (ACH  Up)</b>
-							                        </div>
-							                        <div class="panel-body">
-							                            <p id="repairSectionBeforeApprove"></p>
-							                        </div>
-							                        <div class="panel-footer">
-						                                <button type="submit" class="btn btn-success" name="rAction" value="" id="btnRepairSectionBeforeApprove" onClick="repairSectionBeforeApprove();">Approve</button>
-						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
-							                        </div>
-							                    </div>
-			                                </div>			                                			                                  	                                
-		                                </div> 		                                
-		                                <!-- /.row -->	
+ 
+				
 		                                
-		                           
+		                                  </fieldset>
+		                               
+		                                
 	                                </div>
 
 <!-- ###########################################################################       body repair detail	                     -->	                                
@@ -342,7 +319,7 @@
 <%-- 		                                		<jsp:include page="${cPath}/request/requestWithDataTable.jsp"></jsp:include> --%>
 										<div class="table-title">
 							                <div class="row">
-							                    <div class="col-sm-12">
+							                    <div class="col-sm-12" align="right">
 							                    	<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
 							                    </div>                    
 							                </div>
@@ -454,68 +431,6 @@
 		                            
 <!-- ###########################################################################       approve	                     -->			                                
 		                                <!-- /.row -->
-		                                <div class="row hidden" >
-		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
-							                        <div class="panel-heading">
-							                            <b>Repair person</b>
-							                        </div>
-							                        <div class="panel-body">
-							                            <p id="repairApprove"></p>
-							                        </div>
-							                        <div class="panel-footer">
-						                                <button type="submit" class="btn btn-success" name="rAction" value="repairPerson" onclick="repairApprove();">Approve</button>
-						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
-							                        </div>
-							                    </div>	
-			                                </div> 
-			                                
-		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
-							                        <div class="panel-heading">
-							                            <b>Request section (LD up)</b>
-							                        </div>
-							                        <div class="panel-body">
-							                            <p id="requestSectionAfterApprove"></p>
-							                        </div>
-							                        <div class="panel-footer">
-						                                <button type="submit" class="btn btn-success" name="rAction" value="requestSection" onclick="requestSectionAfterApprove();">Approve</button>
-						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
-							                        </div>
-							                    </div>
-			                                </div>			                                
-
-		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
-							                        <div class="panel-heading">
-							                            <b>QA Approve</b>
-							                        </div>
-							                        <div class="panel-body">
-							                            <p id="QAApprove"></p>
-							                        </div>
-							                        <div class="panel-footer">
-						                                <button type="submit" class="btn btn-success" name="rAction" value="qaPerson" onclick="QAApprove();">Approve</button>
-						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
-							                        </div>
-							                    </div>
-			                                </div>
-
-		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
-							                        <div class="panel-heading">
-							                            <b>Repair section (ACH up)</b>
-							                        </div>
-							                        <div class="panel-body">
-							                            <p id="repairSectionAfterApprove"></p>
-							                        </div>							                        
-							                        <div class="panel-footer">
-						                                <button type="submit" class="btn btn-success" name="rAction" value="RepairSectionCheck" onClick="repairSectionAfterApprove();">Approve</button>
-						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a> 
-							                        </div>
-							                    </div>
-			                                </div>	
-			                             </div>	
-			                             <!-- /.row -->	  		                                			                             	                                    
 	                                </div>               
 	                                
 	                                
@@ -524,15 +439,13 @@
 	                            </div>
 	                            
 	                             
-	                                <div class="row">
-											 
-											<div class="col-lg-6 text-left">
-												<button type="reset"
-													onclick="location='${cPath}/request/requested_list.htm'"
-													class="btn btn-default" style=" width: 100px; "><i class="fa fa-arrow-circle-left"></i> &nbsp;กลับ/Back </button>
-											</div>
-	
+                                <div class="row">
+									<div class="col-lg-6 text-left">
+										<button type="reset"
+											onclick="location='${cPath}/request/requested_list.htm'"
+											class="btn btn-default" style=" width: 100px; "><i class="fa fa-arrow-circle-left"></i> &nbsp; Back </button>
 									</div>
+								</div>
 				                                
 		                                
 		                                
@@ -571,6 +484,74 @@
 
 
 	</form>	
+	
+	
+	<script type="text/javascript">
+
+	var reqStatus = "${requestObj.requestStatus}";
+	var reqId = "${requestObj.request_ID}";
+	
+	  var fileTable = $('#upload-request').DataTable({
+		autoWidth: false,
+		"searching": false,
+		"paging":   false,
+		"info":   false,
+		data:[],
+	    columns: [
+			{
+				"data" : "id",
+				"fnCreatedCell" : function(nTd, sData,
+						oData, iRow, iCol) {
+					var txt = iRow;
+					$(nTd).html(txt + 1);
+				}
+			},    	
+			{ "data": "fileName" }, 
+			{ "data": "createDateStr" }, 
+			{ "data": "fileSize" }, 
+			{ 
+	     		"data": "id"
+		        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+		        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
+		        	 	+' onclick="downloadFile('+ oData.id +')"> <i class="fa fa-download"></i> Download </button>';
+		            $(nTd).html(txt);
+		        } 
+            } 
+// 			,{ 
+// 	     		"data": "id"
+// 		        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+// 		        	 var txt = '<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" '
+// 		        		 + 'onclick="deleteFile('+ oData.id+')"> <i class="fa fa-trash"></i> Delete </button>';
+// 		            $(nTd).html(txt);
+// 		        } 
+//             }
+	    ],
+	      "aoColumnDefs": [
+	      { "sClass": "text-center", "aTargets": [0,2,3,4,5] },
+	    ],
+	    rowCallback: function (row, data) {}, 
+	    ordering: false, 
+		 destroy: true 
+	 });
+	  
+	  
+	  $.ajax({
+          url: cPath+"/fileUpload/getFileList.json",
+          data: { "reqId" : reqId , "type" : "1" }
+      }).done(function (result) {
+    	  
+    	  console.log(result);
+      	
+//       	fileTable.clear().draw();
+//           if(result.recordsTotal>0){
+// 	            fileTable.rows.add(result.data).draw();
+//           }
+      	
+        });
+	 
+	
+	
+	</script>
 
 </section>
 </div>	
