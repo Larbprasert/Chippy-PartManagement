@@ -141,7 +141,7 @@ public class FileUploadDao extends AbstractCommonJdbcDao {
 		StringBuilder sql = new StringBuilder();
 		 sql.append(" SELECT a.*  ");
 		 sql.append("   FROM  "+TABLE_NAME);
-		 sql.append("   WHERE 1=1 ");
+		 sql.append("   a WHERE 1=1 ");
 		
 		List wh = new ArrayList<>();
 //		 

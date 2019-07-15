@@ -900,10 +900,6 @@ function actionApprove(level){
 
 </script>
 
-	<%@ include file="requested_upload.jsp"%>
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d876bf2b19e9c619d03151c514abd0d233d085c
+	<%@ include file="requested_upload.jsp"%> 
 	
 	

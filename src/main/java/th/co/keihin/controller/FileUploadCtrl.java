@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +35,7 @@ import th.co.tpcc.model.FilUploadResponseList;
 import th.co.tpcc.model.FileDeleteResponse;
 import th.co.tpcc.model.FileMeta;
 
-@Controller
+@RestController
 @RequestMapping("/fileUpload")
 public class FileUploadCtrl {
 	
@@ -240,7 +240,7 @@ public class FileUploadCtrl {
 		return respList;
 	} */
 	
-	@RequestMapping(value = "/getFileList")
+	@RequestMapping(value = "/getFileList.json")
 	public DataTableAjax<FileUploadBean> getFileList(FileUploadBean bean) {
 //		logger.info(" getDataTable.getDataTable ");
 		DataTableAjax dataTableAjax = new DataTableAjax<>();
