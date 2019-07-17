@@ -81,9 +81,7 @@ public class ApplicationCache {
 	private static List<LovInfo> LOV_MAINTENACETYPE = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_JUDMENT = new ArrayList<LovInfo>();	
 	private static List<LovInfo> LOV_MOVEMENT = new ArrayList<LovInfo>();
-
-
-	
+		
 	/********************* Method for Get Cache - Start *********************/
 	
 	/** Parameter Group & Parameter Info */
