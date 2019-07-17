@@ -102,7 +102,7 @@ public class PartMasterService {
 	}
 
 	
-	public DataTableAjax<PartMasterBean> getAll() {
+	public DataTableAjax<PartMasterBean> getAll(PartMasterBean bean) {
 		// TODO Auto-generated method stub
 		
 		DataTableAjax<PartMasterBean> listPartMaster = new DataTableAjax<PartMasterBean>();
@@ -121,10 +121,19 @@ public class PartMasterService {
 				+ "LEFT JOIN tb_MoldType mt ON pm.moldType_ID = mt.moldType_ID "
 				+ "LEFT JOIN tbm_misc_data act on pm.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' "
 				+ "where 1=1 "
-				+ "and pm.activeFlag <> 2 "
-				+ "order by pm.part_ID";
+				+ "and pm.activeFlag <> 2 ";
+				
 		
-		System.out.println(query);
+		
+		if(StringUtils.isNotEmpty(bean.getPart_name())){
+			query += " and ( pm.part_ID like '%"+bean.getPart_name()+"%' " ;
+			query += " or pm.part_name like '%"+bean.getPart_name()+"%' ) " ;
+		}
+		
+		
+		query += "order by pm.part_ID";
+		
+//		System.out.println(query);
 		
 		List<PartMasterBean> list = jdbcTemplate.query(query,PARTMASTER_MAPPER);
 		

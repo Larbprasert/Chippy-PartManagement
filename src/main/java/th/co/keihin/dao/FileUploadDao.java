@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -90,7 +91,7 @@ public class FileUploadDao extends AbstractCommonJdbcDao {
 	}
 	
 	 public void insert(FileUploadBean bean) {
-		 jdbcTemplate.update(SQL_INSERT,
+		 Long insertRecord = executeInsert(SQL_INSERT,
 					new Object[] { 
 							bean.getFileId(),
 							bean.getReqId(),
@@ -101,6 +102,18 @@ public class FileUploadDao extends AbstractCommonJdbcDao {
 							bean.getFileDesc(),
 							bean.getCreateBy()
 							});
+			bean.setId(insertRecord.toString());
+		 
+//		 Long insertRecord = executeInsert(SQL_INSERT,
+//					new Object[] { 
+//							bean.getFileId(),
+//							bean.getEqId(),
+//							bean.getFileName(),
+//							bean.getFileType(),
+//							bean.getFileSize(),
+//							bean.getFileDesc(),
+//							bean.getCreateBy()
+//							});
 //			bean.setId(insertRecord.intValue());
 //	        return insertRecord.intValue();
 	    }
@@ -156,10 +169,11 @@ public class FileUploadDao extends AbstractCommonJdbcDao {
 //			wh.add( "%"+param.getSerialNo()+"%");
 //			sql.append(" AND a.SERIAL_NO like  ? ");
 //		}
-//		if(StringUtils.isNotEmpty(param.getEqTypeCode())){
-//			wh.add( param.getEqTypeCode() );
-//			sql.append(" AND a.EQ_TYPE =  ? ");
-//		}
+		
+		if(StringUtils.isNotEmpty(param.getType())){
+			wh.add( param.getType() );
+			sql.append(" AND a.TYPE =  ? ");
+		}
 //		
 		if(null!=param.getReqId()){
 			wh.add( param.getReqId() );

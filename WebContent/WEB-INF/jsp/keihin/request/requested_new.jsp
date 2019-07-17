@@ -125,18 +125,13 @@
 	                            <!-- Tab panes -->
 	                            <div class="tab-content">
 	                                <div class="tab-pane fade in active" id="requestDeatil-pills">
-										<!-- /.row -->
-										<div class="row">
-											<div class="col-lg-12">
-											<br>
-											</div>
-										</div>
+									 
 										
 										<!-- /.row -->
 										<div class="row">
 											<div class="col-lg-6">
 				                                <div class="form-group">
-					                                <p class="help-block"><b>Request Type</b></p>
+					                                <p class="help-block"><b>Request Type</b> <i class="fa  fa-asterisk text-red"></i></p>
 					                                <select class="form-control" name="requestType.requestType_ID" required>
 														 <c:forEach var="item" items="${LOV_REQUESTTYPE}">
 													     	<option value="${item.code}" ${item.code == requestBean.requestType.requestType_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
@@ -148,7 +143,7 @@
 		                                    <div class="col-lg-6">
 		                                                                    
 				                                <div class="form-group">
-					                                <p class="help-block"><b>Location / Process</b></p>
+					                                <p class="help-block"><b>Location / Process</b> <i class="fa  fa-asterisk text-red"></i></p>
 														<select class="form-control" name="location.location_ID" required>
 															<c:forEach var="item" items="${LOV_LOCATION}">
 																<option value="${item.code}" ${item.code == requestBean.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
@@ -166,7 +161,7 @@
 		                                <div class="row">
 		                                	<div class="col-lg-12">
 				                                <div class="form-group">
-				                                    <p class="help-block"><b> Problem Description Before (รายละเอียดปัญหาก่อนแก้ไข) </b></p>
+				                                    <p class="help-block"><b> Problem Description Before (รายละเอียดปัญหาก่อนแก้ไข) </b> <i class="fa  fa-asterisk text-red"></i></p>
 				                                    <textarea class="form-control" rows="4"  id="beforeDetail" name="beforeDetail"></textarea>
 				                                </div>
 			                                </div>
@@ -176,6 +171,8 @@
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                	<div class="col-md-12">
+		                                	
+<!-- 		                                	<fieldset > -->
 				                                <div class="form-group">
 				                                    <p class="help-block"><b> Problem Picture Before (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
 <!-- 				                                    <input type="file"  name="beforePicture[]" class="form-control-file" id="beforePicture" class="file"   multiple> -->
@@ -185,14 +182,13 @@
 				                                </div>
 		                                
 												
-												<table id="upload-request"class="table table-striped table-bordered" style="width: 100%">
+												<!-- <table id="upload-request"class="table table-striped table-bordered" style="width: 100%">
 													<thead class="bg-green color-palette">
 															<tr>
 																<th class="text-center"  width="6%">No</th>
 																<th class="text-center">File Name</th>
 																<th class="text-center">Date</th>
 																<th class="text-center" swidth="10%">Size</th>
-					<!-- 											<th class="text-center">Type</th> -->
 																<th class="text-center" width="10%">Download</th>
 															</tr>
 														</thead>
@@ -200,14 +196,16 @@
 														 
 														 
 														 </tbody>
-													</table>
+													</table> -->
+													
+													
+<!-- 													</fieldset> -->
+													
 												</div>
 					
 											</div>
 
  
-					 					<br>
-		                                
 		                                <hr>
 		                                
 		                                
@@ -312,7 +310,7 @@
 	                             
 	            </div>
 	        
-
+			<input type="hidden" id="tempFileId" name="fileId">
 
 	</form>	
 
@@ -366,8 +364,8 @@ function saveReq(){
 		    },
 		    callback: function (result) {
 		        if(result){
-		        	 
-		        	// Submit form
+		        	
+		        	$("#tempFileId").val(_UPLOAD_FILE.uploadTempId.join());
 		        	
 		        	$("#myForm").submit();
 				 
@@ -381,10 +379,7 @@ function saveReq(){
 
 function popupUpload(type) {
 	
-// 	_UPLOAD_FILE.loadFileList(null,type);
-	
-// 	$('#upload-btn-new').show();
-	
+	_UPLOAD_FILE.uploadNew(null,1);
 	
 }
 

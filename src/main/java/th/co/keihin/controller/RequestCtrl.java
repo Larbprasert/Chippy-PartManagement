@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.keihin.model.RepairDetail;
 import th.co.keihin.model.RequestBean;
 import th.co.keihin.service.CheckToolService;
 import th.co.keihin.service.LocationService;
@@ -169,7 +170,7 @@ public class RequestCtrl {
 		requestService.requestSave(bean);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:../request/requested_edit/"+bean.getrequest_ID());
+		mav.setViewName("redirect:../request/requested_edit/"+bean.getRequest_ID());
 		mav.addObject("status","S");
 		
 		return mav;
@@ -185,9 +186,31 @@ public class RequestCtrl {
 		return responseResult;
 	}
 	
+	
+
+	@RequestMapping(value = "/request/repairUpdate", method = RequestMethod.POST)
+	public ResponseResult repairUpdate( RepairDetail request,
+			RedirectAttributes redir,HttpServletRequest httpRequest) {
+		
+		ResponseResult responseResult = new ResponseResult();
+		responseResult = requestService.repairSave(request);
+		
+		return responseResult;
+	}
+	
+	
+	
 	@RequestMapping("/request/search.json")
 	public DataTableAjax<RequestBean> search(HttpServletRequest request, HttpServletResponse response,RequestBean bean) throws ServletException, IOException {
 		DataTableAjax<RequestBean> dataTableAjax = requestService.getAll(bean);
 		return dataTableAjax;
 	}
+	
+	@RequestMapping("/request/getRepairPart.json")
+	public DataTableAjax<RepairDetail> getRepairPart(HttpServletRequest request, HttpServletResponse response,RepairDetail bean) throws ServletException, IOException {
+		DataTableAjax<RepairDetail> dataTableAjax = requestService.getRepairPart(bean);
+		return dataTableAjax;
+	}
+	 
+	
 }

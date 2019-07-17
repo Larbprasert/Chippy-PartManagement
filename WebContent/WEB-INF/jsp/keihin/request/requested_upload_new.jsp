@@ -95,7 +95,13 @@
 	</div>
 	
 
-	
+<script type="text/javascript">
+
+var _UPLOAD_FILE = {};
+
+_UPLOAD_FILE.uploadTempId = [];
+
+</script>
 
 
 <!-- The template to display files available for upload -->
@@ -128,9 +134,14 @@
     </tr>
 {% } %}
 </script>
+
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
+{% for (var i=0, file; file=o.files[i]; i++) { 
+	
+	_UPLOAD_FILE.uploadTempId.push(file.id);
+
+%}
     <tr class="template-download fade">
         <!-- <td class="text-center">
             <span class="preview">
@@ -199,11 +210,39 @@
 <!-- The File Upload user interface plugin -->
 <script src="${cPath}/resources/jFileupload/js/jquery.fileupload-ui.js"></script>
 <!-- The main application script -->
-<script src="${cPath}/resources/jFileupload/js/she_upload.js"></script>
+<script src="${cPath}/resources/jFileupload/js/fileupload.js"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
 <!--[if (gte IE 8)&(lt IE 10)]>
 <script src="js/cors/jquery.xdr-transport.js"></script>
 <![endif]-->
 	
+	
+<script type="text/javascript">
+
+
+_UPLOAD_FILE.uploadNew = function(reqId,type){
+	 
+	$('#fileUploadModal').modal('show');
+	
+//	console.log(" _UPLOAD_FILE.uploadFile : "+_UPLOAD_FILE.ereqId);
+// 	if(reqId){
+		$('#fileupload').bind('fileuploadsubmit', function (e, data) {
+		    data.formData = {reqId: reqId? reqId:"" , type : type? type:1};
+		});
+		
+		
+// 		$("#fileUploadModal").on("hidden.bs.modal", function () {
+// 			_UPLOAD_FILE.loadFileList(reqId);
+// 		});
+	
+// 	}
+	
+// 	$("table tbody.file-file").empty();
+	
+}
+
+ 
+	
+</script>
 	
 	

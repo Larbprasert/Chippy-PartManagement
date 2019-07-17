@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.FileUploadBean;
 import th.co.keihin.service.FileUploadService;
@@ -34,6 +35,7 @@ import th.co.tpcc.model.FilUploadResponse;
 import th.co.tpcc.model.FilUploadResponseList;
 import th.co.tpcc.model.FileDeleteResponse;
 import th.co.tpcc.model.FileMeta;
+import th.co.tpcc.model.SysParam;
 
 @RestController
 @RequestMapping("/fileUpload")
@@ -68,9 +70,10 @@ public class FileUploadCtrl {
      * @return LinkedList<FileMeta> as json format
      * @throws UnsupportedEncodingException 
      ****************************************************/
-    @RequestMapping(value="/upload", method = RequestMethod.POST)
-    public @ResponseBody FilUploadResponseList upload(MultipartHttpServletRequest request, HttpServletResponse response,
-    		@RequestParam("eqId") String eqId) throws UnsupportedEncodingException {
+    @RequestMapping(value="/uploadFile", method = RequestMethod.POST)
+    public @ResponseBody FilUploadResponseList upload(
+    		MultipartHttpServletRequest request, HttpServletResponse response,
+    		 String reqId, String type) throws UnsupportedEncodingException {
     	FilUploadResponseList respList = new FilUploadResponseList();
     	ArrayList<FilUploadResponse> uparr = new ArrayList();
     	DateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -80,7 +83,9 @@ public class FileUploadCtrl {
     	
          Iterator<String> itr =  request.getFileNames();
          MultipartFile mpf = null;
-         String uploadPath = environment.getProperty("file.upload.path");
+         
+	     SysParam UPLOAD_PATH = ApplicationCache.getParamGroupValue("PARAM_TYPE","UPLOAD_PATH");
+         String uploadPath = UPLOAD_PATH.getValue_2()!=null? UPLOAD_PATH.getValue_2():environment.getProperty("file.upload.path");
  
 //         Long eqIds = new Long(eqId);
          
@@ -93,7 +98,7 @@ public class FileUploadCtrl {
              
             String ofileName = new String(mpf.getOriginalFilename().getBytes(), "UTF-8");
              
-             System.out.println("eqId : "+eqId);
+             System.out.println("reqId : "+reqId);
              System.out.println("Name : "+ofileName +", "+mpf.getSize());
  
              //2.2 if files > 10 remove the first from the list
@@ -114,20 +119,21 @@ public class FileUploadCtrl {
                  // copy file to local disk (make sure the path "e.g. D:/temp/files" exists)        
 //                String file = uploadPath+mpf.getOriginalFilename();
                 String fileId = uploadPath + fileName;
-                System.out.println("upload file : "+fileId);
+//                System.out.println("upload file : "+fileId);
                 FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(fileId));
                 
                 FileUploadBean document = new FileUploadBean();
-                document.setReqId(eqId);
+                document.setReqId(reqId);
+                document.setType(type);
                 document.setFileId(fileId);
                 document.setFileName(ofileName);
                 document.setFileType(fileMeta.getFileType());
-//                document.setFileDesc(fileMeta.getFileType());
+                document.setFileDesc("1".equals(type)? "Before":"After");
                 document.setFileSize(fileMeta.getFileSize());
                 
                 uploadService.insert(document);
-                
-                fileMeta.setFileId(eqId);
+           
+                fileMeta.setFileId(reqId);
                 
                 FilUploadResponse fileObj = new FilUploadResponse();
                 fileObj.setDeleteUrl( request.getContextPath()+"/fileUpload/fileRemove/"+document.getId());
@@ -138,6 +144,8 @@ public class FileUploadCtrl {
                 fileObj.setName(ofileName);
                 fileObj.setSize(fileMeta.getFileSize());
                 fileObj.setType(fileMeta.getFileType());
+                fileObj.setId(document.getId());
+                
                 uparr.add(fileObj);
 //                System.out.println(fileObj.getDeleteUrl());
             } catch (IOException e) {

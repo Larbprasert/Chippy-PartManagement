@@ -1,7 +1,10 @@
 package th.co.keihin.service;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.CallableStatementCreator;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.admin.entity.UserProfile;
@@ -21,6 +27,7 @@ import th.co.baiwa.common.util.DateUtils;
 import th.co.keihin.constant.RequestConstants;
 import th.co.keihin.model.DepartmentBean;
 import th.co.keihin.model.LocationBean;
+import th.co.keihin.model.RepairDetail;
 import th.co.keihin.model.RequestBean;
 import th.co.keihin.model.RequestTypeBean;
 import th.co.keihin.model.SectionBean;
@@ -44,7 +51,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			DepartmentBean department = new DepartmentBean();
 			RequestTypeBean requestType = new RequestTypeBean();
 			
-			request.setrequest_ID(rs.getString("request_ID"));
+			request.setRequest_ID(rs.getString("request_ID"));
 			
 			requestType.setRequestType_ID(rs.getString("requestType_ID"));
 			requestType.setRequestType_name(rs.getString("requestType_name"));
@@ -52,7 +59,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			
 			request.setRequestStatus(rs.getString("requestStatus"));
 			request.setRequestBy(rs.getString("CreateBy"));
-			request.setstatus_name(rs.getString("status_name"));
+			request.setStatus_name(rs.getString("status_name"));
 		    request.setCreateDate(rs.getDate("createDate"));
 		    request.setCreateDateStr(DateUtils.get_yyyymmdd_hhmmss_en_from_date(rs.getTimestamp("createDate")));
 		    request.setInformDate(DateUtils.get_yyyyMMdd_from_date(rs.getTimestamp("createDate")));
@@ -72,7 +79,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			LocationBean location = new LocationBean();
 			RequestTypeBean requestType = new RequestTypeBean();
 			
-			request.setrequest_ID(rs.getString("request_ID"));
+			request.setRequest_ID(rs.getString("request_ID"));
 			
 			requestType.setRequestType_ID(rs.getString("requestType_ID"));
 			requestType.setRequestType_name(rs.getString("requestType_name"));
@@ -80,7 +87,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			
 			request.setRequestStatus(rs.getString("requestStatus"));
 			request.setRequestBy(rs.getString("CreateBy"));
-			request.setstatus_name(rs.getString("status_name"));
+			request.setStatus_name(rs.getString("status_name"));
 			
 			section.setSection_ID(rs.getString("section_ID"));
 			section.setSection_name(rs.getString("section_name"));
@@ -90,7 +97,27 @@ public class RequestService extends AbstractCommonJdbcDao {
 			location.setLocation_name(rs.getString("location_name"));
 			request.setLocation(location);
 			
-			request.setbeforeDetail(rs.getString("beforeDetail"));
+			request.setBeforeDetail(rs.getString("beforeDetail"));
+
+			request.setCheckToolBefore_ID(rs.getString("checkToolBefore_ID"));
+			request.setCheckToolAfter_ID(rs.getString("checkToolAfter_ID"));
+			request.setAttachFile(rs.getString("attachFile"));
+			request.setAfterComment(rs.getString("afterComment"));
+			request.setAfterDescription(rs.getString("afterDescription"));
+			request.setStartTime(rs.getString("startTime"));
+			request.setFinishTime(rs.getString("finishTime"));
+			request.setConfirmJudment(rs.getString("confirmJudment"));
+			request.setConcernQA(rs.getString("concernQA"));
+			request.setMaintenanceType(rs.getString("maintenanceType"));
+
+			request.setRequestApproveBy(rs.getString("requestApproveBy"));
+			request.setRequestSectionBy(rs.getString("requestSectionBy"));
+			request.setRepairSectionBy(rs.getString("repairSectionBy"));
+			request.setRepairPersonBy(rs.getString("repairPersonBy"));
+			request.setConfirmRepairBy(rs.getString("confirmRepairBy"));
+			request.setQaApproveBy(rs.getString("qaApproveBy"));
+			request.setAchApproveBy(rs.getString("achApproveBy"));
+			
 			
 			request.setCreateDate(rs.getDate("createDate"));
 			request.setCreateDateStr(DateUtils.get_yyyymmdd_hhmmss_en_from_date(rs.getTimestamp("createDate")));
@@ -111,17 +138,25 @@ public class RequestService extends AbstractCommonJdbcDao {
 	public void requestSave(RequestBean rqt) {
 				
 			String reqNo =genNextReqNo(); //  Get Req No from DB ;
-			rqt.setrequest_ID(reqNo);
+			rqt.setRequest_ID(reqNo);
 			
 			jdbcTemplate.update(SQL_INSERT_REQ,
 				new Object[] {
-					rqt.getrequest_ID(), rqt.getRequestType().getRequestType_ID(), 
+					rqt.getRequest_ID(), rqt.getRequestType().getRequestType_ID(), 
 					rqt.getUserProfile().getUserId() , rqt.getUserProfile().getSection().getSection_ID(),
-					rqt.getLocation().getLocation_ID(),rqt.getbeforeDetail(),
+					rqt.getLocation().getLocation_ID(),rqt.getBeforeDetail(),
 					RequestConstants.REQUEST_STATUS.CREATED,
 					rqt.getCreateBy() ,
 					rqt.getCreateBy() 
 				});
+			
+			
+			if(StringUtils.isNotEmpty(rqt.getFileId())){
+				String updateFile = " UPDATE tb_document_upload SET req_id = '"+reqNo+"' Where id in ("+rqt.getFileId()+")";
+				jdbcTemplate.update(updateFile);
+			}
+				
+			
 	}
 	
 	protected final static String SQL_INSERT_REQ = buildInsertREQ();
@@ -169,13 +204,6 @@ public class RequestService extends AbstractCommonJdbcDao {
 		return sql.toString();
 	}
 	
-	
-	public void repairSave(RequestBean rqt) {
-		
-			
-//			CallableStatement cstmt = con.prepareCall("{call sp_Request_Insert(?,?,?,?,?,?,?,?,?,?)}");
-			
-	}
 
 	public DataTableAjax<RequestBean> getAll(RequestBean req) {
 		// TODO Auto-generated method stub
@@ -214,8 +242,8 @@ public class RequestService extends AbstractCommonJdbcDao {
 //			query = query + "	AND rqh.status <> 7";
 //		}
 		List wh = new ArrayList<>();
-		if(StringUtils.isNotEmpty(req.getrequest_ID())){
-			wh.add( "%"+req.getrequest_ID()+"%");
+		if(StringUtils.isNotEmpty(req.getRequest_ID())){
+			wh.add( "%"+req.getRequest_ID()+"%");
 			sql.append(" AND rqh.request_ID like  ? ");
 		}
 		if(StringUtils.isNotEmpty(req.getRequestTypeSearch())){
@@ -307,6 +335,22 @@ public class RequestService extends AbstractCommonJdbcDao {
 		String query = "SELECT rqh.request_ID" + 
 				"	,rqh.requestType_ID" + 
 				"	,rt.requestType_Name" + 
+				"	,rqh.checkToolBefore_ID " + 
+				"	,rqh.checkToolAfter_ID  " + 
+				"	,rqh.attachFile       " + 
+				"	,rqh.afterComment       " + 
+				"	,rqh.afterDescription   " + 
+				"	,rqh.startTime          " + 
+				"	,rqh.finishTime         " + 
+				"	,rqh.confirmJudment     " + 
+				"	,rqh.concernQA ,  rqh.maintenanceType" + 
+				"	,rqh.requestApproveBy " +
+				"	,rqh.requestSectionBy " +
+				"	,rqh.repairSectionBy  " +
+				"	,rqh.repairPersonBy   " +
+				"	,rqh.confirmRepairBy  " +
+				"	,rqh.qaApproveBy      " +
+				"	,rqh.achApproveBy     " +
 				"	,rqh.status requestStatus ,misc.value1 as status_name" + 
 				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  CreateBy" + 
 				"	,rqh.createDate , sec.section_ID,  sec.section_name " +
@@ -369,9 +413,8 @@ public class RequestService extends AbstractCommonJdbcDao {
 		
 		return responseResult;
 	}
-
-
-
+ 
+	
 	public int requestUpdate(RequestBean rqt) {
 		List param = new ArrayList();
 		
@@ -385,44 +428,141 @@ public class RequestService extends AbstractCommonJdbcDao {
 		param.add(rqt.getRequestStatus());
 		param.add(rqt.getUpdateBy());
 		
-		//*** Send Approve 
+		// Section Approve (LD Up)
 		if(RequestConstants.REQUEST_STATUS.APPROVE_LV1.equals(rqt.getRequestStatus())){
 			sql.append(", requestSectionBy  = ?  ");
 			param.add(rqt.getUpdateBy());
 		}
 		
+		//Repair Section Approve (ACH Up)
 		if(RequestConstants.REQUEST_STATUS.APPROVE_LV2.equals(rqt.getRequestStatus())){
 			sql.append(", repairSectionBy  = ?  ");
 			param.add(rqt.getUpdateBy());
 		}
-		
+
+		// Repair Person  
 		if(RequestConstants.REQUEST_STATUS.APPROVE_LV3.equals(rqt.getRequestStatus())){
+			
 			sql.append(", repairPersonBy  = ?  ");
+			sql.append(", checkToolBefore_ID    = ?  ");     
+			sql.append(", checkToolAfter_ID     = ?  ");     
+			sql.append(", attachFile          = ?  ");     
+			sql.append(", afterComment          = ?  ");     
+			sql.append(", afterDescription      = ?  ");     
+			sql.append(", startTime             = ?  ");     
+			sql.append(", finishTime            = ?  ");     
+			sql.append(", concernQA             = ?  ");     
+//			sql.append(", confirmJudment        = ?  ");     
+			sql.append(", maintenanceType             = ?  ");     
+			
 			param.add(rqt.getUpdateBy());
+			param.add(rqt.getCheckToolBefore_ID());
+			param.add(rqt.getCheckToolAfter_ID());
+			param.add(rqt.getAttachFile());
+			param.add(rqt.getAfterComment());
+			param.add(rqt.getAfterDescription());
+			param.add(rqt.getStartTime());
+			param.add(rqt.getFinishTime());
+//			param.add(rqt.getConfirmJudment());
+			param.add(rqt.getConcernQA());
+			param.add(rqt.getMaintenanceType());
+
 		}
 		
+		 // Request Section (LD up)
 		if(RequestConstants.REQUEST_STATUS.APPROVE_LV4.equals(rqt.getRequestStatus())){
 			sql.append(", confirmRepairBy  = ?  ");
 			param.add(rqt.getUpdateBy());
 		}
-		
+		// QA Approve
 		if(RequestConstants.REQUEST_STATUS.APPROVE_LV5.equals(rqt.getRequestStatus())){
 			sql.append(", qaApproveBy  = ?  ");
 			param.add(rqt.getUpdateBy());
+			
+			sql.append(", confirmJudment   = ?  "); 
+			param.add(rqt.getConfirmJudment());
 		}
-		  
+		// Repair Section (ACH up)
 		if(RequestConstants.REQUEST_STATUS.COMPLETE.equals(rqt.getRequestStatus())){
 			sql.append(", achApproveBy  = ?  ");
 			param.add(rqt.getUpdateBy());
-		}
+			
+			
+		}    
+		
 		
 		sql.append(" WHERE ");
 		sql.append("   request_ID = ? ");
 		
-		param.add(rqt.getrequest_ID());
+		param.add(rqt.getRequest_ID());
 		
 		int updateRecord = jdbcTemplate.update(sql.toString(), param.toArray() );
 		return updateRecord;
 	}
+	
+	public ResponseResult repairSave(RepairDetail repairDetail) {
+		/*List paramList = new ArrayList();
+	    paramList.add(new SqlParameter(Types.VARCHAR));
+	    paramList.add(new SqlParameter(Types.VARCHAR));
+	    paramList.add(new SqlParameter(Types.VARCHAR));
+	    paramList.add(new SqlParameter(Types.VARCHAR));
+	    paramList.add(new SqlParameter(Types.VARCHAR));
+	    paramList.add(new SqlParameter(Types.VARCHAR));
+	    paramList.add(new SqlParameter(Types.VARCHAR));
+	   jdbcTemplate.call(new CallableStatementCreator() {
+	        @Override
+	        public CallableStatement createCallableStatement(Connection con) throws SQLException {
+	            CallableStatement cstmt = con.prepareCall("{call sp_Request_Insert(?,?,?,?,?,?,?,?,?,?)}");
+	            cstmt.setString(1, repairDetail.getRequest_ID());
+                cstmt.setString(2, repairDetail.getPart_ID());
+                cstmt.setString(3, repairDetail.getPart_qty());
+                cstmt.setString(4, repairDetail.getPart_price());
+                cstmt.setString(5, repairDetail.getOther_cost());
+                cstmt.setString(6, repairDetail.getTotal_cost());
+                if (repairDetail.getUpdateBy() == null) {
+                        repairDetail.setUpdateBy("System");
+                }
+                cstmt.setString(7,repairDetail.getUpdateBy());
+	            return cstmt;
+	        }
+	    }, paramList);*/
+		
+		List param = new ArrayList();
+		param.add(repairDetail.getRequest_ID());
+        param.add(repairDetail.getPart_ID());
+        param.add(repairDetail.getPart_qty());
+        param.add(repairDetail.getPart_price());
+        param.add(repairDetail.getOther_cost());
+        param.add(repairDetail.getTotal_cost());
+        param.add(repairDetail.getUpdateBy());
+		int updateRecord = jdbcTemplate.update("{call sp_RepairDetail_Insert(?,?,?,?,?,?,?)}", param.toArray() );
+
+		
+		ResponseResult responseResult = new ResponseResult();
+			
+		responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+		responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		responseResult.setData(repairDetail);
+		
+		return responseResult;
+			
+	}
+
+
+	public DataTableAjax<RepairDetail> getRepairPart(RepairDetail bean) {
+		String query = " select rd.* , pm.part_Name from tb_RepairDetail rd"
+				+ " left join tb_PartMaster pm on pm.part_ID = rd.part_ID"
+				+ " where rd.request_ID = ? ";
+		List list = jdbcTemplate.queryForList(query,new Object[] { bean.getRequest_ID() } );
+		
+		DataTableAjax<RepairDetail> listrequest = new DataTableAjax<RepairDetail>();
+		int total = list!=null? list.size():0;
+		listrequest.setRecordsTotal(total);
+		listrequest.setRecordsFiltered(total);
+		listrequest.setData(list);
+		
+		return listrequest;
+	}
+ 
 
 }

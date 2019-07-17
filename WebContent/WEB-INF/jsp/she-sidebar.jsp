@@ -361,6 +361,6 @@
 		return this.href == url;
 	}).parentsUntil(".sidebar-menu > .treeview-menu").addClass('active');
 	
-	console.log(url);
+// 	console.log(url);
 	
 </script>

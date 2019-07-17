@@ -236,7 +236,7 @@
 						
 				    ],
 				      "aoColumnDefs": [
-				      { "sClass": "text-center", "aTargets": [0,1,2,3,4,5] },
+				      { "sClass": "text-center", "aTargets": [0,1,2,3,4,5,6] },
 				    ],
 				    rowCallback: function (row, data) {}, 
 				    ordering: false, 
@@ -247,11 +247,12 @@
 // 					console.log(oData);
 					var htm = "";
 					if($roleApprove){
-// 						if("1"==oData['requestStatus']){
-								htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-file-text"></i> Approve Request </button> ';
-// 						}else{
-// 							htm = '<button type="button" onclick="viewDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-file-text"></i> View Request </button> ';
-// 						}
+						if("7"==oData['requestStatus'] || "99"== oData['requestStatus']){
+							 var st = ("99"== oData['requestStatus']) ? "btn-danger":"btn-success";
+							 htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool '+st+' btn-table"><i class="fa fa-file-text-o"></i>&nbsp; View Request </button> ';
+						}else{
+							 htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-check-square-o"></i> Approve Request </button> ';
+						}
 					}
 					return htm;
 

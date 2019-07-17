@@ -114,8 +114,8 @@ public class PartMasterCtrl {
 	
 	
 	@RequestMapping("/partMaster/search.json")
-	public DataTableAjax<PartMasterBean> search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getAll();
+	public DataTableAjax<PartMasterBean> search(HttpServletRequest request, HttpServletResponse response,PartMasterBean bean) throws ServletException, IOException {
+		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getAll(bean);
 		return dataTableAjax;
 	}
 }

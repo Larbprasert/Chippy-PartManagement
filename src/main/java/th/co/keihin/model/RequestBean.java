@@ -10,11 +10,11 @@ public class RequestBean extends BaseDomain {
 	private String doc_number;
 
 	private RequestTypeBean requestType;
-	 private String requestTypeSearch;
+	private String requestTypeSearch;
 	// private String requestType_name;
 
 	private SectionBean section;
-	 private String sectionSearch;
+	private String sectionSearch;
 	// private String location_ID;
 
 	private String beforeDetail;
@@ -24,34 +24,29 @@ public class RequestBean extends BaseDomain {
 	private String user_name;
 
 	private MachineBean machine;
-	// private String machine_ID;
-	// private String machine_name;
+	private String fileId;
 
 	private LocationBean location;
 
 	private String informDate;
 	private String informTime;
 
-
 	private CheckToolBean checkTool;
 
-	private String requestApprove_ID;
-	private String requestApprove_name;
-
-	private String repairApprove_ID;
-	private String repairApprove_name;
-
-	private String confirmRepair_ID;
-	private String confirmRepair_name;
-
-	private String confirmRequest_ID;
-	private String confirmRequest_name;
-
-	private String qaApprove_ID;
-	private String qaApprove_name;
-
-	private String achApprove_ID;
-	private String achApprove_name;
+	private String requestApproveBy;
+	private String requestSectionBy;
+	private String repairSectionBy;
+	private String repairPersonBy;
+	private String confirmRepairBy;
+	private String qaApproveBy;
+	private String achApproveBy;
+	private String requestApproveFlg;
+	private String requestSectionFlg;
+	private String repairSectionFlg;
+	private String repairPersonFlg;
+	private String confirmRepairFlg;
+	private String qaApproveFlg;
+	private String achApproveFlg;
 
 	/** For details */
 	private String sectionName;
@@ -59,12 +54,32 @@ public class RequestBean extends BaseDomain {
 	private String requestBy;
 	private String status_name;
 
-	public CheckToolBean getCheckTool() {
-		return checkTool;
+	// Repair Detail
+	private String checkToolBefore_ID;
+	private String checkToolAfter_ID;
+	private String attachFile;
+	private String afterComment;
+	private String afterDescription;
+	private String startTime;
+	private String finishTime;
+	private String confirmJudment;
+	private String concernQA;
+	private String maintenanceType;
+
+	public String getRequest_ID() {
+		return request_ID;
 	}
 
-	public void setCheckTool(CheckToolBean checkTool) {
-		this.checkTool = checkTool;
+	public void setRequest_ID(String request_ID) {
+		this.request_ID = request_ID;
+	}
+
+	public String getDoc_number() {
+		return doc_number;
+	}
+
+	public void setDoc_number(String doc_number) {
+		this.doc_number = doc_number;
 	}
 
 	public RequestTypeBean getRequestType() {
@@ -75,231 +90,12 @@ public class RequestBean extends BaseDomain {
 		this.requestType = requestType;
 	}
 
-	public LocationBean getLocation() {
-		return location;
+	public String getRequestTypeSearch() {
+		return requestTypeSearch;
 	}
 
-	public void setLocation(LocationBean location) {
-		this.location = location;
-	}
-
-	public String getrequest_ID() {
-		return request_ID;
-	}
-
-	public void setrequest_ID(String newrequest_ID) {
-		request_ID = newrequest_ID;
-	}
-
-	public String geDoc_number() {
-		return doc_number;
-	}
-
-	public void setDoc_number(String newDoc_number) {
-		doc_number = newDoc_number;
-	}
-
-	// public String getrequestType_ID() {
-	// return requestType_ID;
-	// }
-	//
-	// public void setrequestType_ID(String newrequestType_ID) {
-	// requestType_ID = newrequestType_ID;
-	// }
-	//
-	// public String getrequestType_name() {
-	// return requestType_name;
-	// }
-	//
-	// public void setrequestType_name(String newrequestType_name) {
-	// requestType_name = newrequestType_name;
-	// }
-	//
-	//
-	// public String getSection_ID() {
-	// return section_ID;
-	// }
-	//
-	// public void setSection_ID(String newSection_ID) {
-	// section_ID = newSection_ID;
-	// }
-	//
-	// public String getLocation_ID() {
-	// return location_ID;
-	// }
-	//
-	// public void setLocation_ID(String newLocation_ID) {
-	// location_ID = newLocation_ID;
-	// }
-
-	public String getbeforeDetail() {
-		return beforeDetail;
-	}
-
-	public void setbeforeDetail(String newbeforeDetail) {
-		beforeDetail = newbeforeDetail;
-	}
-
-	public List getbeforePicture() {
-		return beforePicture;
-	}
-
-	public void setbeforePicture(List newbeforePicture) {
-		beforePicture = newbeforePicture;
-	}
-
-	public String getUser_ID() {
-		return user_ID;
-	}
-
-	public void setUser_ID(String newUser_ID) {
-		user_ID = newUser_ID;
-	}
-
-	public String getuser_name() {
-		return user_name;
-	}
-
-	public void setuser_name(String newuser_name) {
-		user_name = newuser_name;
-	}
-
-	// public String getMachine_ID() {
-	// return machine_ID;
-	// }
-	//
-	// public void setMachine_ID(String newMachine_ID) {
-	// machine_ID = newMachine_ID;
-	// }
-	//
-	//
-	// public String getMachine_name() {
-	// return machine_name;
-	// }
-	//
-	// public void setMachine_name(String newMachine_name) {
-	// machine_name = newMachine_name;
-	// }
-	//
-	//
-
-	public String getstatus_name() {
-		return status_name;
-	}
-
-	public void setstatus_name(String newstatus_name) {
-		status_name = newstatus_name;
-	}
-
-	 
-	// requestApprove
-	public String getrequestApprove_ID() {
-		return requestApprove_ID;
-	}
-
-	public void setrequestApprove_ID(String newrequestApprove_ID) {
-		requestApprove_ID = newrequestApprove_ID;
-	}
-
-	public String getrequestApprove_name() {
-		return requestApprove_name;
-	}
-
-	public void setrequestApprove_name(String newrequestApprove_name) {
-		requestApprove_name = newrequestApprove_name;
-	}
-
-	// repairApprove
-	public String getrepairApprove_ID() {
-		return repairApprove_ID;
-	}
-
-	public void setrepairApprove_ID(String newrepairApprove_ID) {
-		repairApprove_ID = newrepairApprove_ID;
-	}
-
-	public String getrepairApprove_name() {
-		return repairApprove_name;
-	}
-
-	public void setrepairApprove_name(String newrepairApprove_name) {
-		repairApprove_name = newrepairApprove_name;
-	}
-
-	// confirmRepair
-	public String getconfirmRepair_ID() {
-		return confirmRepair_ID;
-	}
-
-	public void setconfirmRepair_ID(String newconfirmRepair_ID) {
-		confirmRepair_ID = newconfirmRepair_ID;
-	}
-
-	public String getconfirmRepair_name() {
-		return confirmRepair_name;
-	}
-
-	public void setconfirmRepair_name(String newconfirmRepair_name) {
-		confirmRepair_name = newconfirmRepair_name;
-	}
-
-	// confirmRequest
-	public String getconfirmRequest_ID() {
-		return confirmRequest_ID;
-	}
-
-	public void setconfirmRequest_ID(String newconfirmRequest_ID) {
-		confirmRequest_ID = newconfirmRequest_ID;
-	}
-
-	public String getconfirmRequest_name() {
-		return confirmRequest_name;
-	}
-
-	public void setconfirmRequest_name(String newconfirmRequest_name) {
-		confirmRequest_name = newconfirmRequest_name;
-	}
-
-	// qaApprove
-	public String getqaApprove_ID() {
-		return qaApprove_ID;
-	}
-
-	public void setqaApprove_ID(String newqaApprove_ID) {
-		qaApprove_ID = newqaApprove_ID;
-	}
-
-	public String getqaApprove_name() {
-		return qaApprove_name;
-	}
-
-	public void setqaApprove_name(String newqaApprove_name) {
-		qaApprove_name = newqaApprove_name;
-	}
-
-	// achApprove
-	public String getachApprove_ID() {
-		return achApprove_ID;
-	}
-
-	public void setachApprove_ID(String newachApprove_ID) {
-		achApprove_ID = newachApprove_ID;
-	}
-
-	public String getachApprove_name() {
-		return achApprove_name;
-	}
-
-	public void setachApprove_name(String newachApprove_name) {
-		achApprove_name = newachApprove_name;
-	}
-
-	public String getRequestStatus() {
-		return requestStatus;
-	}
-
-	public void setRequestStatus(String requestStatus) {
-		this.requestStatus = requestStatus;
+	public void setRequestTypeSearch(String requestTypeSearch) {
+		this.requestTypeSearch = requestTypeSearch;
 	}
 
 	public SectionBean getSection() {
@@ -310,14 +106,6 @@ public class RequestBean extends BaseDomain {
 		this.section = section;
 	}
 
-	public MachineBean getMachine() {
-		return machine;
-	}
-
-	public void setMachine(MachineBean machine) {
-		this.machine = machine;
-	}
-
 	public String getSectionSearch() {
 		return sectionSearch;
 	}
@@ -326,12 +114,60 @@ public class RequestBean extends BaseDomain {
 		this.sectionSearch = sectionSearch;
 	}
 
-	public String getRequestTypeSearch() {
-		return requestTypeSearch;
+	public String getBeforeDetail() {
+		return beforeDetail;
 	}
 
-	public void setRequestTypeSearch(String requestTypeSearch) {
-		this.requestTypeSearch = requestTypeSearch;
+	public void setBeforeDetail(String beforeDetail) {
+		this.beforeDetail = beforeDetail;
+	}
+
+	public List getBeforePicture() {
+		return beforePicture;
+	}
+
+	public void setBeforePicture(List beforePicture) {
+		this.beforePicture = beforePicture;
+	}
+
+	public String getUser_ID() {
+		return user_ID;
+	}
+
+	public void setUser_ID(String user_ID) {
+		this.user_ID = user_ID;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public MachineBean getMachine() {
+		return machine;
+	}
+
+	public void setMachine(MachineBean machine) {
+		this.machine = machine;
+	}
+
+	public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
+	}
+
+	public LocationBean getLocation() {
+		return location;
+	}
+
+	public void setLocation(LocationBean location) {
+		this.location = location;
 	}
 
 	public String getInformDate() {
@@ -350,12 +186,12 @@ public class RequestBean extends BaseDomain {
 		this.informTime = informTime;
 	}
 
-	public String getRequestBy() {
-		return requestBy;
+	public CheckToolBean getCheckTool() {
+		return checkTool;
 	}
 
-	public void setRequestBy(String requestBy) {
-		this.requestBy = requestBy;
+	public void setCheckTool(CheckToolBean checkTool) {
+		this.checkTool = checkTool;
 	}
 
 	public String getSectionName() {
@@ -364,6 +200,222 @@ public class RequestBean extends BaseDomain {
 
 	public void setSectionName(String sectionName) {
 		this.sectionName = sectionName;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public String getRequestBy() {
+		return requestBy;
+	}
+
+	public void setRequestBy(String requestBy) {
+		this.requestBy = requestBy;
+	}
+
+	public String getStatus_name() {
+		return status_name;
+	}
+
+	public void setStatus_name(String status_name) {
+		this.status_name = status_name;
+	}
+
+	public String getCheckToolBefore_ID() {
+		return checkToolBefore_ID;
+	}
+
+	public void setCheckToolBefore_ID(String checkToolBefore_ID) {
+		this.checkToolBefore_ID = checkToolBefore_ID;
+	}
+
+	public String getCheckToolAfter_ID() {
+		return checkToolAfter_ID;
+	}
+
+	public void setCheckToolAfter_ID(String checkToolAfter_ID) {
+		this.checkToolAfter_ID = checkToolAfter_ID;
+	}
+
+	public String getAttachFile() {
+		return attachFile;
+	}
+
+	public void setAttachFile(String attachFile) {
+		this.attachFile = attachFile;
+	}
+
+	public String getAfterComment() {
+		return afterComment;
+	}
+
+	public void setAfterComment(String afterComment) {
+		this.afterComment = afterComment;
+	}
+
+	public String getAfterDescription() {
+		return afterDescription;
+	}
+
+	public void setAfterDescription(String afterDescription) {
+		this.afterDescription = afterDescription;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getFinishTime() {
+		return finishTime;
+	}
+
+	public void setFinishTime(String finishTime) {
+		this.finishTime = finishTime;
+	}
+
+	public String getConfirmJudment() {
+		return confirmJudment;
+	}
+
+	public void setConfirmJudment(String confirmJudment) {
+		this.confirmJudment = confirmJudment;
+	}
+
+	public String getConcernQA() {
+		return concernQA;
+	}
+
+	public void setConcernQA(String concernQA) {
+		this.concernQA = concernQA;
+	}
+
+	public String getMaintenanceType() {
+		return maintenanceType;
+	}
+
+	public void setMaintenanceType(String maintenanceType) {
+		this.maintenanceType = maintenanceType;
+	}
+
+	public String getRequestApproveBy() {
+		return requestApproveBy;
+	}
+
+	public void setRequestApproveBy(String requestApproveBy) {
+		this.requestApproveBy = requestApproveBy;
+	}
+
+	public String getRequestSectionBy() {
+		return requestSectionBy;
+	}
+
+	public void setRequestSectionBy(String requestSectionBy) {
+		this.requestSectionBy = requestSectionBy;
+	}
+
+	public String getRepairSectionBy() {
+		return repairSectionBy;
+	}
+
+	public void setRepairSectionBy(String repairSectionBy) {
+		this.repairSectionBy = repairSectionBy;
+	}
+
+	public String getRepairPersonBy() {
+		return repairPersonBy;
+	}
+
+	public void setRepairPersonBy(String repairPersonBy) {
+		this.repairPersonBy = repairPersonBy;
+	}
+
+	public String getConfirmRepairBy() {
+		return confirmRepairBy;
+	}
+
+	public void setConfirmRepairBy(String confirmRepairBy) {
+		this.confirmRepairBy = confirmRepairBy;
+	}
+
+	public String getQaApproveBy() {
+		return qaApproveBy;
+	}
+
+	public void setQaApproveBy(String qaApproveBy) {
+		this.qaApproveBy = qaApproveBy;
+	}
+
+	public String getAchApproveBy() {
+		return achApproveBy;
+	}
+
+	public void setAchApproveBy(String achApproveBy) {
+		this.achApproveBy = achApproveBy;
+	}
+
+	public String getRequestApproveFlg() {
+		return requestApproveFlg;
+	}
+
+	public void setRequestApproveFlg(String requestApproveFlg) {
+		this.requestApproveFlg = requestApproveFlg;
+	}
+
+	public String getRequestSectionFlg() {
+		return requestSectionFlg;
+	}
+
+	public void setRequestSectionFlg(String requestSectionFlg) {
+		this.requestSectionFlg = requestSectionFlg;
+	}
+
+	public String getRepairSectionFlg() {
+		return repairSectionFlg;
+	}
+
+	public void setRepairSectionFlg(String repairSectionFlg) {
+		this.repairSectionFlg = repairSectionFlg;
+	}
+
+	public String getRepairPersonFlg() {
+		return repairPersonFlg;
+	}
+
+	public void setRepairPersonFlg(String repairPersonFlg) {
+		this.repairPersonFlg = repairPersonFlg;
+	}
+
+	public String getConfirmRepairFlg() {
+		return confirmRepairFlg;
+	}
+
+	public void setConfirmRepairFlg(String confirmRepairFlg) {
+		this.confirmRepairFlg = confirmRepairFlg;
+	}
+
+	public String getQaApproveFlg() {
+		return qaApproveFlg;
+	}
+
+	public void setQaApproveFlg(String qaApproveFlg) {
+		this.qaApproveFlg = qaApproveFlg;
+	}
+
+	public String getAchApproveFlg() {
+		return achApproveFlg;
+	}
+
+	public void setAchApproveFlg(String achApproveFlg) {
+		this.achApproveFlg = achApproveFlg;
 	}
 
 }

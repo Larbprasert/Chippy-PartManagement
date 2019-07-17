@@ -102,10 +102,10 @@ public class GasRequestService {
 //				,new InternetAddress(cc2) 
 		};
 		
-		EmailUtils.sendEmail(from,password, addressTo, addressCC,
-				"Sending_Portable Gas Detector Calibration", // Subject
-				"Dear Users, Please be arranged to be sent the following gas detectors to SHE within 3 days " // Body
-		);
+//		EmailUtils.sendEmail(from,password, addressTo, addressCC,
+//				"Sending_Portable Gas Detector Calibration", // Subject
+//				"Dear Users, Please be arranged to be sent the following gas detectors to SHE within 3 days " // Body
+//		);
 		
 		return true;
 	}

@@ -14,7 +14,19 @@
 <!-- CSS adjustments for browsers with JavaScript disabled -->
 <noscript><link rel="stylesheet" href="${cPath}/resources/jFileupload/css/jquery.fileupload-noscript.css"></noscript>
 <noscript><link rel="stylesheet" href="${cPath}/resources/jFileupload/css/jquery.fileupload-ui-noscript.css"></noscript>
+    
+    <link href="${cPath}/resources/css/dataTables.checkboxes.css" rel="stylesheet" />
 
+
+<%--     <script src="${cPath}/resources/js/dataTables.bootstrap.min.js"></script> --%>
+    <script src="${cPath}/resources/js/dataTables.checkboxes.min.js"></script>
+    
+    
+<style>
+.question{
+ 	text-decoration: underline; 
+ }
+</style>
 
 <div class="content-wrapper">
 		
@@ -126,18 +138,13 @@
 	                            <div class="tab-content">
 	                            
 	                                <div class="tab-pane fade in active" id="requestDeatil-pills">
-										<!-- /.row -->
-										<div class="row">
-											<div class="col-lg-12">
-											<br>
-											</div>
-										</div>
+									 
 										
 										<!-- /.row -->
 										<div class="row">
 											<div class="col-lg-6">
 				                                <div class="form-group">
-					                                <p class="help-block"><b>Request Type</b></p>
+					                                <p class="help-block question"><b>Request Type</b></p>
 					                                <select class="form-control" name="requestType.requestType_ID" disabled>
 														 <c:forEach var="item" items="${LOV_REQUESTTYPE}">
 													     	<option value="${item.code}" ${item.code == requestObj.requestType.requestType_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
@@ -149,7 +156,7 @@
 		                                    <div class="col-lg-6">
 		                                                                    
 				                                <div class="form-group">
-					                                <p class="help-block"><b>Location / Process</b></p>
+					                                <p class="help-block question"><b>Location / Process</b></p>
 														<select class="form-control" name="location.location_ID" disabled>
 															<c:forEach var="item" items="${LOV_LOCATION}">
 																<option value="${item.code}" ${item.code == requestObj.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
@@ -165,7 +172,7 @@
 		                                <div class="row">
 		                                	<div class="col-lg-12">
 				                                <div class="form-group">
-				                                    <p class="help-block"><b> Before Problem Description (รายละเอียดปัญหาก่อนแก้ไข) </b></p>
+				                                    <p class="help-block question"><b> Before Problem Description (รายละเอียดปัญหาก่อนแก้ไข) </b></p>
 				                                    <textarea   class="form-control" rows="3" name="beforeDetail" disabled>${requestObj.beforeDetail}</textarea>
 				                                </div>
 			                                </div>
@@ -173,56 +180,54 @@
 		                                <!-- /.row -->  
 		                                
 		                                <!-- /.row -->
-		                                <div class="row">
+		                               <!--  <div class="row">
 		                                	<div class="col-lg-6">
 				                                <div class="form-group">
-				                                    <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
-<!-- 				                                    <input type="file" class="form-control-file" id="beforePicture" > -->
+				                                    <p class="help-block question"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
 				                                <button type="button" class="btn btn-warning"  onclick="popupUpload('1')" > 
 				                                <i class="fa fa-upload"></i> Upload File </button>
 				                                </div>
 			                                </div>    	                                
-		                                </div>  
+		                                </div>   -->
 		                                <!-- /.row --> 
 		                                
 		                                
 						<div class="row">
 							<div class="col-md-12">
-							  <p class="help-block"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
-							
-							<table id="upload-request"class="table table-striped table-bordered" style="width: 100%">
+								 <div class="form-group">
+								 	<p class="help-block question"><b> Before Picture Problem (รูปภาพปัญหาก่อนการแก้ไข) </b></p>
+								 	 	<button type="button" class="btn btn-info" id="beforePicture" onclick="popupUpload('1')" > 
+					                	<i class="fa fa-upload"></i> View Upload File </button>
+								 </div>
+							<!-- <table id="upload-request-view"class="table table-striped table-bordered" style="width: 100%">
 								<thead class="bg-green color-palette">
 										<tr>
 											<th class="text-center"  width="6%">No</th>
 											<th class="text-center">File Name</th>
 											<th class="text-center">Date</th>
 											<th class="text-center" swidth="10%">Size</th>
-<!-- 											<th class="text-center">Type</th> -->
 											<th class="text-center" width="10%">Download</th>
 										</tr>
 									</thead>
-									 <tbody>
-									 
-									 
-									 </tbody>
-								</table>
+									  
+								</table> -->
 							</div>
 
 						</div>
 		                                
-		                                <hr>
+<!-- 		                                <hr> -->
 		                                
 		                                <!-- /.row -->
 		                              <div class="row">
 		                                   <div class="col-lg-4">
 
-							                    <div class="panel panel-default">
+							                    <div class="panel panel-info">
 							                        <div class="panel-heading">
-							                            <b>Request person</b>
+							                            <b>Request Person</b>
 							                        </div>
 							                        <div class="panel-body">
-							                            <span id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </s>
-							                        	<span class="label label-success pull-right">Create</span>
+							                            <span id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </span>
+<!-- 							                        	<span class="label label-success pull-right">Create</span> -->
 							                        </div>
 							                        <div class="panel-footer text-right">
 <!-- 							                        	<input type="hidden" name="status" value="1"> -->
@@ -241,7 +246,14 @@
 							                        </div>
 							                        <div class="panel-body">
 							                        	<c:forEach var="ld_user" items="${APPROVE_LD}">
-													     	<p  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
+													     	<span title="${ld_user.email}"  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</span> 
+													     	 
+<%-- 													     	 ${requestObj.requestStatus} ${requestObj.requestSectionBy} --%>
+													     	 
+<!-- 													    	<span class="label label-danger pull-right">Cancel</span>  -->
+
+<!-- 													    	<span class="label label-success pull-right">Approve</span> -->
+
 													    </c:forEach>	
 							                            
 							                        </div>
@@ -255,13 +267,13 @@
 			                                </div>
 
 		                                	<div class="col-lg-4">
-							                    <div class="panel panel-success">
+							                    <div class="panel panel-info">
 							                        <div class="panel-heading">
-							                            <b>Repair section Approve (ACH  Up)</b>
+							                            <b>Repair Section Approve (ACH  Up)</b>
 							                        </div>
 							                        <div class="panel-body">
 							                           <c:forEach var="ach_user" items="${APPROVE_ACH}">
-													     	<p  >${ach_user.firstNameTh} ${ach_user.lastNameTh}</p> 
+													     	<span title="${ach_user.email}" >${ach_user.firstNameTh} ${ach_user.lastNameTh}</span> 
 													    </c:forEach>	
 							                        </div>
 							                        <div class="panel-footer text-right">
@@ -286,44 +298,45 @@
 	                                <div class="tab-pane fade" id="repairDeatil-pills">
 	                                	
 	                                	<!-- /.row -->
-										<div class="row">
-											<div class="col-lg-12">
-											<br>
-											</div>
-										</div>
+<!-- 										<div class="row"> -->
+<!-- 											<div class="col-lg-12"> -->
+<!-- 											<br> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 										
 										<!-- /.row -->
 										<div class="row">
 											<div class="col-lg-9">
 				                                <div class="form-group">
-					                                <p class="help-block"><b>ตรวจสอบเครื่องมือและเครื่องจักรก่อนการซ่อม  (Check Tooling and Machine before  Repaired)</b></p>		
- 														
-															<c:forEach var="item" items="${LOV_CHECKTOOLBEFORE}">
-																<input type="radio" name="checkToolBefore_ID" value="${item.code}" ${item.code == requestBean.checkTool.checkTool_ID ? 'selected="selected"' : ''} >&nbsp; ${item.descTH}  &nbsp; 
-															</c:forEach>	
-															
+					                                <p class="help-block question"><b>ตรวจสอบเครื่องมือและเครื่องจักรก่อนการซ่อม  (Check Tooling and Machine before  Repaired)</b> 
+					                                 <i class="fa  fa-asterisk text-red"></i></p>		
+													<c:forEach var="item" items="${LOV_CHECKTOOLBEFORE}">
+														<input type="checkbox" name="checkToolBefore_IDChk" value="${item.code}" ${ fn:indexOf(requestObj.checkToolBefore_ID,item.code)>=0 ? 'checked' : ''} >&nbsp; ${item.descTH}  &nbsp; 
+													</c:forEach>	
 				                                </div> 
 				                            </div>
 			                            </div>
-			                            <!-- /.row --> 
+			                            <!-- /.row -->  
 			                            
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                	<div class="col-lg-9">
 				                                <div class="form-group">
-				                                    <p class="help-block"><b> After  Description Correction (รายละเอียดการแก้ไข) </b></p>
-				                                    <textarea class="form-control" rows="3" name="afterDetail"></textarea>
+				                                    <p class="help-block question"><b> After  Description Correction (รายละเอียดการแก้ไข) </b></p>
+				                                    <textarea class="form-control" rows="3" name="afterDescription">${requestObj.afterDescription}</textarea>
 				                                </div>
 			                                </div>
 
 											<div class="col-lg-3">
 				                                <div class="form-group">
-				                                    <p class="help-block"><b> Attach files (เอกสารแนบ) </b></p>
+				                                    <p class="help-block question"><b> Attach Files (เอกสารแนบ) </b></p>
 				                                     <label class="radio-inline">
-		                                                <input type="radio" name="attachfile" id="attachfileYes" value="1">มี (Yes)
+		                                                <input type="radio" name="attachFile" id="attachfileYes"
+		                                                 value="1"  ${'1'== requestObj.attachFile ? 'checked' : ''} >มี (Yes)
 		                                            </label>
 		                                            <label class="radio-inline">
-		                                                <input type="radio" name="attachfile" id="attachfileNo" value="0">ไม่มี (No)
+		                                                <input type="radio" name="attachFile" id="attachfileNo"  
+		                                                 value="0"  ${null== requestObj.attachFile||'0'== requestObj.attachFile ? 'checked' : ''} >ไม่มี (No)
 		                                            </label>		                                            
 				                                </div>
 			                                </div>
@@ -335,10 +348,15 @@
 		                                <div class="row">
 		                                	<div class="col-lg-6">
 				                                <div class="form-group">
-				                                    <p class="help-block"><b> After  Picture Problem (รูปภาพปัญหาหลังการแก้ไข) </b></p>
+				                                    <p class="help-block question"><b> After  Picture Problem (รูปภาพปัญหาหลังการแก้ไข) </b></p>
 <!-- 				                                    <input type="file" class="form-control-file" id="afterPicture"> -->
-				                                     <button type="button" class="btn btn-warning" id="afterPicture" onclick="popupUpload('2')" > 
-				                                			<i class="fa fa-upload"></i> Upload File (After) </button>
+				                                     <button  type="button" class="btn btn-warning" id="afterPicture" onclick="popupUpload('2')" > 
+				                                			<i class="fa fa-upload"></i> Upload File</button>
+				                                	 
+				                                     <button  type="button" class="btn btn-info" id="afterPictureViewBtn" onclick="popupUpload('2')" > 
+				                                			<i class="fa fa-upload"></i> View Upload File </button>
+				                                	 
+				                               
 				                                </div>
 			                                </div>    	                                
 		                                </div>  
@@ -348,63 +366,68 @@
 		                                <div class="row">
 		                                	<div class="col-lg-12">
 		                                		<div class="form-group">
-		                                		<p class="help-block"><b> เวลาที่ใช้ในการซ่อม  </b></p>
-		                                        <div class="col-md-4">
-		                                            
-							                        <div class="form-group input-group">
-							                            <span class="input-group-addon">Start(เริ่ม)</span>
-							                            <input type="text" class="form-control" placeholder="Start(เริ่ม)" name="timeStart" id="timeStart" value="">										                        		                        
-							                        </div>		                                            
-		                                            
-		                                            
-		                                        </div>
-		                                        
-		                                        <div class="col-md-4">
-		                                            
-							                        <div class="form-group input-group">
-							                            <span class="input-group-addon">Complete(เสร็จสิ้น)</span>
-							                            <input type="text" class="form-control" placeholder="Complete(เสร็จสิ้น)" name="timeFinish" id="timeFinish" value="" onblur="calTime()" >										                        		                        
-							                        </div>
-		                                        </div>
-		                                        
-				                                <div class="col-md-4">
-		                                             
-							                        <div class="form-group input-group">
-							                            <span class="input-group-addon">Total(รวม)</span>
-							                            <input type="text" class="form-control" placeholder="Total(รวม)" name="totalTime" id="totalTime" value="" readonly>										                        		                        
-							                        	<span class="input-group-addon">Minutes</span>
-							                        </div>	
-							                        		                                             
-		                                        </div>
-<script>
-function calTime() {
-  //alert("Input field lost focus.");
-  var tim1 = $('#timeStart').val();
-  var tim2 = $('#timeFinish').val();
-  var ary1 = tim1.split(':');
-  var ary2 = tim2.split(':');
-  var minsdiff = parseInt(ary2[0],10)*60+parseInt(ary2[1],10)-parseInt(ary1[0],10)*60-parseInt(ary1[1],10);
-  
-  var timediff = minsdiff;
-	$('#totalTime').val(timediff);
-	
-  //Convert to Hour
-  //alert(String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1));
-  //var timediff = String(100+Math.floor(minsdiff/60)).substr(1)+':'+String(100+minsdiff%60).substr(1);
-	
-}
-</script>		
+			                                		<p class="help-block question"><b> เวลาที่ใช้ในการซ่อม  </b> <i class="fa  fa-asterisk text-red"></i></p>
+			                                        <div class="col-md-4">
+								                        <div class="form-group input-group">
+								                            <span class="input-group-addon">Start(เริ่ม)</span>
+								                            <input type="time" class="form-control text-right" required value="${requestObj.startTime}"
+								                            placeholder="Start(เริ่ม)" name="startTime" id="timeStart" onchange="calTime()" >										                        		                        
+								                        </div>		                                            
+			                                        </div>
+			                                        
+			                                        <div class="col-md-4">
+								                        <div class="form-group input-group">
+								                            <span class="input-group-addon bg-danger">Complete(เสร็จสิ้น)</span>
+								                            <input type="time" class="form-control text-right" required value="${requestObj.finishTime}"
+								                            placeholder="Complete(เสร็จสิ้น)" name="finishTime" id="timeFinish"   onchange="calTime()" >										                        		                        
+								                        </div>
+			                                        </div>
+			                                        
+					                                <div class="col-md-4">
+								                        <div class="form-group input-group">
+								                            <span class="input-group-addon">Total(รวม)</span>
+								                            <input type="text" class="form-control text-right" placeholder="Total(รวม)" name="totalTime" id="totalTime" value="" readonly>										                        		                        
+								                        	<span class="input-group-addon">Minutes</span>
+								                        </div>	
+			                                        </div>
 		                                        
 		                                        </div>
+		                                         
 			                                </div>			                                    	                                
 		                                </div>  
 		                                <!-- /.row --> 
-
-										<hr>
+		                
+	<script>
+	
+	function calTime() {
+		
+	  //alert("Input field lost focus.");
+	  var tim1 = $('#timeStart').val();
+	  var tim2 = $('#timeFinish').val();
+	  
+	// parse time using 24-hour clock and use UTC to prevent DST issues
+	  var start = moment.utc(tim1, "HH:mm");
+	  var end = moment.utc(tim2, "HH:mm");
+	 var minutes = end.diff(start, 'minutes');
+	  if(minutes>=0){
+		  var duration = moment.duration(minutes, 'minutes');
+		  if(minutes>60){
+			    $('#totalTime').val(duration.format("H:mm"));
+		  }else{
+			  $('#totalTime').val(minutes);
+		  }
+	  }
+	     
+	}
+	
+// 	calTime();
+	
+	</script>		
+			                                       
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                	<div class="col-lg-12">
-		                                		<p class="help-block"><b> รายละเอียดการใช้อะไหล่  </b></p>	
+		                                		<p class="help-block question"><b> รายละเอียดการใช้อะไหล่  </b> </p>	
 		                                	</div>
 		                                </div>
 		                                <!-- /.row --> 
@@ -414,122 +437,39 @@ function calTime() {
 		                                <div class="row" >
 		                                	<div class="col-lg-12">
 		                                	
-<!-- 		                                	Data Table CRUD -->
-<%-- 		                                		<jsp:include page="${cPath}/request/requestWithDataTable.jsp"></jsp:include> --%>
-			<div class="table-title">
-                <div class="row">
-                    <div class="col-sm-12" align="right">
-                    	<button type="button" class="btn btn-info add-new" id="btaddnew" onclick="popupAddpart()"><i class="fa fa-plus"></i> Add Part</button>                     	 
-<!--                     	<button type="button" class="btn btn-info add-new" id="btaddnew" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add New</button> -->
-<!--                     	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>  -->
-                    </div>                    
-                </div>
-            </div>
- 
- <script type="text/javascript">
- function popupAddpart() {
-<%-- 		<%@ include file="requested_addpart.jsp"%> --%>
-// 		alert("add part!!!");
-		$('#addPartModal').modal('show');		
-	}
- </script>
- 
- 
- <!-- Modal -->
-<div id="addPartModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      
-      <div class="modal-header">
-      	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>        
-        <h4 class="modal-title">Add Part</h4>
-      </div>
-      
-      <div class="modal-body">
-        <div class="form-group">
-			<label>Part ID</label>
-			<input type="text" class="form-control" id="part_ID" name="part_ID" >
-			
-<!-- 							for test -->
-<%-- 			<input id="request_ID" type="hidden" value="<%=request_ID %>" />							 --%>
-		</div>
-		
-		<div class="form-group">
-			<label>Part Name</label>
-			<input type="text" class="form-control" id="part_name" name="part_name" readonly>
-		</div>
-		
-		<div class="form-group">
-   						<label>Qty</label>
-   						<input type="text" class="form-control" name="qty" id="qty">
-   						<input type="hidden" class="form-control" name="beforeQty" id="beforeQty">
-		</div>
-		
-		<div class="form-group">
-			<label>Price</label>
-			<input type="text" class="form-control" name="price" id="price" readonly >
-		</div>
-		
-		<div class="form-group">
-			<label>Other Cost</label>
-			<input type="text" class="form-control" name="other_cost" id="other_cost">
-		</div>
-		
-		<div class="form-group">
-			<label>Total Cost</label>
-			<input type="text" class="form-control" name="total_cost" id="total_cost" readonly>
-		</div>
-      </div>
-      
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
-      </div>
-    </div>
-
-  </div>
-</div>
- 
- 
-             
-			<table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Part ID</th>
-                        <th>Part Name</th>
-						<th>Qty</th>
-                        <th>Price</th>
-                        <th>Other Cost</th>
-                        <th>Total Cost</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                	<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-                        <td>Part ID</td>
-                        <td>Part Name</td>
-						<td>Qty</td>
-                        <td>Price</td>
-                        <td>Other Cost</td>
-                        <td>Total Cost</td>
-                        <td>
-                            <a href="#editPartModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                </tbody>
-             </table>
-		                                	</div>
-		                                </div>
+										<div class="table-title">
+							                <div class="row">
+							                    <div class="col-sm-12"  >
+							                    	<button type="button" class="btn btn-info add-new" id="btnnewPart" onclick="popupAddpart()"><i class="fa fa-plus"></i> Add Part</button>                     	 
+							                    	&nbsp;<button type="button" class="btn btn-danger" id="btnDelPart" onclick="popupDelpart()"><i class="fa fa-trash-o"></i> Delete Part</button>                     	 
+							                    </div>                    
+							                </div>
+							            </div>
+						 
+						 
+						 
+								<%@ include file="requested_add_part.jsp"%> 
+	
+					
+						 
+									<table id="part-table" class="table table-striped table-hover table-bordered">
+						                <thead class="bg-green color-palette">
+						                    <tr>
+						                        <th>#</th>
+						                        <th>Part ID</th>
+						                        <th>Part Name</th>
+												<th>Qty</th>
+						                        <th>Price</th>
+						                        <th>Other Cost</th>
+						                        <th>Total Cost</th>
+						                        <th>Actions</th>
+						                    </tr>
+						                </thead>
+						             </table>
+						             
+						             
+                               		</div>
+                               </div>
 
 										<!-- /.row -->
 		                                										
@@ -537,23 +477,22 @@ function calTime() {
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                
-											<div class="col-lg-5">
+											<div class="col-lg-6">
 		                                		<div class="form-group">
-				                                	<p class="help-block"><b> ประเภทการซ่อม  </b></p>
+				                                	<p class="help-block question"><b> ประเภทการซ่อม  </b>  <i class="fa  fa-asterisk text-red"></i></p>
 				                                	
 				                                			<c:forEach var="item" items="${LOV_MAINTENANCETYPE}">
-																<input type="radio" name="maintenanceType" value="${item.code}">&nbsp; ${item.descTH} &nbsp;  
+																<input type="radio" name="maintenanceType" value="${item.code}" ${item.code == requestObj.maintenanceType ? 'checked' : ''} >&nbsp; ${item.descTH} &nbsp;  
 															</c:forEach>
-				                                		
 
 				                                </div>
 			                                </div>
 
-											<div class="col-lg-7">
-				                                <div class="form-group">
-					                                <p class="help-block"><b> การตรวจสอบเครื่องมือและเครื่องจักรหลังการซ่อม  (Check Tooling and Machine after  Repaired) </b></p>
+											<div class="col-lg-6">
+				                                <div class="form-group ">
+					                                <p class="help-block question"><b> การตรวจสอบเครื่องมือและเครื่องจักรหลังการซ่อม  (Check Tooling and Machine after  Repaired) </b></p>
 															<c:forEach var="item" items="${LOV_CHECKTOOLAFTER}">
-																<input type="radio" name="checkToolAfter_ID" value="${item.code}" ${item.code == requestBean.checkTool.checkTool_ID ? 'selected="selected"' : ''} >&nbsp; ${item.descTH}  &nbsp; 
+																<input type="checkbox" name="checkToolAfter_IDChk" value="${item.code}" ${ fn:indexOf(requestObj.checkToolAfter_ID,item.code)>=0 ? 'checked' : ''} >&nbsp; ${item.descTH}  &nbsp; 
 															</c:forEach>
 				                                </div> 
 				                            </div>
@@ -564,33 +503,32 @@ function calTime() {
 		                                <div class="row">
 		                                	<div class="col-lg-6">
 				                                <div class="form-group">
-				                                    <p class="help-block"><b> Comment After Repair/Rebuild </b></p>
-				                                    <textarea class="form-control" rows="4" name="afterComment"></textarea>
+				                                    <p class="help-block question"><b> Comment After Repair/Rebuild </b></p>
+				                                    <textarea class="form-control" rows="4" name="afterComment">${requestObj.afterComment}</textarea>
 				                                </div>
 			                                </div>
 
 		                                	<div class="col-lg-6">
-		                                		<div class="row">
 		                                			<div class="form-group">
-		                                				<p class="help-block"><b> ※ กรณีที่มีความเกี่ยวข้องด้านคุณภาพให้แผนก QA ร่วมตรวจเช็คด้วย </b></p>
+		                                				<p class="help-block question"><b> กรณีที่มีความเกี่ยวข้องด้านคุณภาพให้แผนก QA ร่วมตรวจเช็คด้วย </b></p>
 		                                				<label class="radio-inline">
-		                                                    <input type="radio" name="concernQA" id="concernQA" value="1">เกี่ยวข้อง
+		                                                    <input type="radio" name="concernQA" id="concernQA" value="1"  ${'1'== requestObj.concernQA ? 'checked' : ''}>เกี่ยวข้อง
 		                                                </label>
 		                                                <label class="radio-inline">
-		                                                    <input type="radio" name="concernQA" id="concernQA" value="0">ไม่เกี่ยวข้อง
+		                                                    <input type="radio" name="concernQA" id="concernQA" value="0" ${(null== requestObj.concernQA ||'0'== requestObj.concernQA) ? 'checked' : ''} >ไม่เกี่ยวข้อง
 		                                                </label>
 		                                			</div>
-		                                		</div>
 		                                		
 		                                		
-				                                <div class="row">
-					                                <div class="form-group">
-					                                    <p class="help-block"><b> ความเห็นสำหรับ QA </b></p>
+					                                <div  class="form-group" id="concernQA-form" style="display: none;" >
+					                                    <p class="help-block question"><b> ความเห็นสำหรับ QA </b></p>
 															<c:forEach var="item" items="${LOV_JUDMENT}">
-																<input type="radio" name="confirmJudment" value="${item.code}" >&nbsp; ${item.descTH}  &nbsp; 
+																<input disabled type="radio" name="confirmJudment" value="${item.code}" ${item.code== requestObj.confirmJudment ? 'checked' : ''}>&nbsp; ${item.descTH}  &nbsp; 
 															</c:forEach>
 					                                </div>
-					                        	</div>
+					                                
+					                                
+					                                
 			                                </div>	   		                                
 			                                
 		                                </div>  
@@ -611,13 +549,13 @@ function calTime() {
 		                                <!-- /.row -->
 		                                <div class="row">
 		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
+							                    <div class="panel panel-info">
 							                        <div class="panel-heading">
-							                            <b>Repair person</b>
+							                            <b>Repair Person</b>
 							                        </div>
 							                        <div class="panel-body">
 							                            <c:forEach var="ld_user" items="${ROLE_MT_STAFF}">
-													     	<p  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
+													     	<p  title="${ld_user.email}"  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
 													    </c:forEach>	
 							                        </div>
 							                        <div class="panel-footer text-right">
@@ -628,13 +566,13 @@ function calTime() {
 			                                </div> 
 			                                
 		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
+							                    <div class="panel panel-info">
 							                        <div class="panel-heading">
-							                            <b>Request section (LD up)</b>
+							                            <b>Request Section (LD up)</b>
 							                        </div>
 							                        <div class="panel-body">
 							                           <c:forEach var="ld_user" items="${APPROVE_LD}">
-													     	<p  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
+													     	<p   title="${ld_user.email}" >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
 													    </c:forEach>	
 							                        </div>
 							                        <div class="panel-footer text-right">
@@ -646,14 +584,14 @@ function calTime() {
 							                    </div>
 			                                </div>			                                
 
-		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
+		                                	<div class="col-lg-3" id="appQA-form" style="display: none;">
+							                    <div class="panel panel-info">
 							                        <div class="panel-heading">
 							                            <b>QA Approve</b>
 							                        </div>
 							                        <div class="panel-body">
 							                            <c:forEach var="ld_user" items="${ROLE_QA}">
-													     	<p  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
+													     	<p   title="${ld_user.email}" >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
 													    </c:forEach>	
 							                        </div>
 							                        <div class="panel-footer text-right">
@@ -666,23 +604,23 @@ function calTime() {
 			                                </div>
 
 		                                	<div class="col-lg-3">
-							                    <div class="panel panel-default">
+							                    <div class="panel panel-info">
 							                        <div class="panel-heading">
-							                            <b>Repair section (ACH up)</b>
+							                            <b>Repair Section (ACH up)</b>
 							                        </div>
 							                        <div class="panel-body">
 							                           <c:forEach var="ach_user" items="${APPROVE_ACH}">
-													     	<p  >${ach_user.firstNameTh} ${ach_user.lastNameTh}</p> 
+													     	<p   title="${ach_user.email}" >${ach_user.firstNameTh} ${ach_user.lastNameTh}</p> 
 													    </c:forEach>	
 							                        </div>							                        
 							                        <div class="panel-footer text-right">
 							                        	<button type="button" disabled class="btn btn-danger"  id="cn_btn_7"   onclick="actionApprove(99);"><i class="fa fa-ban"></i>&nbsp; Cancel </button>
 														&nbsp;&nbsp;
 						                                <button type="button" disabled class="btn btn-success"  id="approve_btn_7" value="" onClick="actionApprove(7);"><i class="fa  fa-check-square-o"></i> Approve</button>
-<!-- 						                                <a type="reset" class="btn btn-default" href="../pages/index.jsp" role="button" >Cancel</a>  -->
 							                        </div>
-							                    </div>
+							                    </div> 
 			                                </div>	
+			                                
 			                             </div>	
 			                             <!-- /.row -->	  		                                			                             	                                    
 	                                </div>                                
@@ -733,6 +671,11 @@ function calTime() {
 	    <!-- /#wrapper -->
 	 
 
+		<input type="hidden" name="requestStatus" id="requestStatus"  >
+		<input type="hidden" name="checkToolBefore_ID" id="checkToolBefore_ID"  >
+		<input type="hidden" name="checkToolAfter_ID" id="checkToolAfter_ID"  >
+<%-- 		<input type="hidden" name="requestStatus" value="${requestObj.requestStatus}"> --%>
+		
 	</form>	
 
 </section>
@@ -749,157 +692,296 @@ function calTime() {
 var reqStatus = "${requestObj.requestStatus}";
 var reqId = "${requestObj.request_ID}";
 var jsonObj = { "request_ID" : reqId };
+var appVrole = "";
 
 $(function() {
 
-	if("1"==reqStatus){
-		$('#approve_ld_btn,#cn_ld_btn').prop('disabled', false);
-	}else if("2"==reqStatus){
-		$('#approve_ach_btn,#cn_ach_btn').prop('disabled', false);
-		
-	}else if("3"==reqStatus){
-		$('#approve_btn_4,#cn_btn_4').prop('disabled', false);
+	var isQA = $("input[name='concernQA']:checked").val();
+	
+// 	console.log("isQA :"+isQA);
+	
+	if(reqStatus>=3){
 		$('#tab2').show();
 		$('#tab2_l').tab('show');
-		
-	}else if("4"==reqStatus){
-		$('#approve_btn_5,#cn_btn_5').prop('disabled', false);
-		$('#tab2').show();
-		
-	}else if("5"==reqStatus){
-		$('#approve_btn_6,#cn_btn_6').prop('disabled', false);
-		$('#tab2').show();
-		
-	}else if("6"==reqStatus){
-		$('#approve_btn_7,#cn_btn_7').prop('disabled', false);
-		$('#tab2').show();
+	}
+	
+	if(reqStatus>3){
+		$("input,textarea").prop('readonly', true);
+		$("input[type='radio'],input[type='checkbox']").prop('disabled', true);
+		$("#btnnewPart,#afterPicture").hide();
+	}else{
+		$("#afterPictureViewBtn").hide();
 	}
 
+	if("1"==reqStatus){
+		$('#approve_ld_btn,#cn_ld_btn').prop('disabled', false);
+// 		$('#tab1_l').tab('show');
+	}else if("2"==reqStatus){
+		$('#approve_ach_btn,#cn_ach_btn').prop('disabled', false);
+// 		$('#tab1_l').tab('show');
+	}else if("3"==reqStatus){
+		$('#approve_btn_4,#cn_btn_4').prop('disabled', false);
+// 		$('#tab2').show();
+// 		$('#tab2_l').tab('show');
+	}else if("4"==reqStatus){
+		$('#approve_btn_5,#cn_btn_5').prop('disabled', false);
+// 		$('#tab2').show();
+	}else if("5"==reqStatus){
+// 		$('#tab2').show();
+		if(isQA=="1"){
+			$("input[name='confirmJudment']").prop('disabled', false);
+			$('#approve_btn_6,#cn_btn_6').prop('disabled', false);
+		}else{
+			$('#approve_btn_7,#cn_btn_7').prop('disabled', false);
+		}
+	}else if("6"==reqStatus){
+	
+		$('#approve_btn_7,#cn_btn_7').prop('disabled', false);
+	}
+	
+	if(isQA=="1"){
+		if(reqStatus>=5){
+			$('#concernQA-form').show();
+		}
+		$('#appQA-form').show();
+	}
+	
+	
+	$("input[name='concernQA']") .change(function(){ 
+    	 if($(this).is(":checked") ){  
+             var val = $(this).val(); // retrieve the value
+             if(val=="1"){
+//          		$('#concernQA-form').show();
+         		$('#appQA-form').show();
+         	 }else{
+//          		$('#concernQA-form').hide();
+         		$('#appQA-form').hide();
+         	 }
+         }
+    });
+
+	
+	calTime();
+	loadPart();
+	
 });
 
-
-
-
-function popupUpload(type) {
-	
-	
-// 	$('#uploadModal').modal('show');
-
-	console.log("id:"+reqId);
-	/**call method in modal*/
-// 	_UPLOAD_FILE.loadFileList(reqId,type);
-	
-//		/**test upload*/
-//		_UPLOAD_FILE.uploadUpload(id)
+function getActionColumn(oData,iRow) {
+ 	var htm = '<button type="button" onclick="openModaledituser(\''+ iRow +'\')" class="btn btn-warning btn-action">Edit</button>  ' ;
+ 	 htm += ' <button type="button" onclick="doDelete(\''+ oData.emp_id  +'\', \''+ oData.emp_no  +'\')" class="btn btn-danger btn-action">Delete</button>  ' ;
+		return htm;
 }
 
+ 
+
+var PART_TABLE = $('#part-table').DataTable({
+	autoWidth: false,
+	data:[],
+    columns: [
+		{ "data": "part_ID" }, 
+		{ "data": "part_ID" }, 
+		{ "data": "part_Name" }, 
+		{ "data": "part_qty" }, 
+		{ "data": "part_price"
+			,"render": function ( data, type, row ) {
+	            return data.toFixed(2);
+	        }
+		 }, 
+		{ "data": "other_cost" 
+			,"render": function ( data, type, row ) {
+	            return data.toFixed(2);
+	        }
+		}, 
+		{ "data": "total_cost" 
+			,"render": function ( data, type, row ) {
+                return data.toFixed(2);
+            }
+		}, 
+		{ 
+     		"data": "part_ID","sWidth": "100px"
+	        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+	        	$(nTd).html(getActionColumn(oData,iRow));
+// 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
+// 	        	 	+' onclick="downloadFile('+ oData.id +')"> <i class="fa fa-download"></i> Download </button>';
+// 	            $(nTd).html(txt);
+	        } 
+        }
+    ],
+      "aoColumnDefs": [
+      { "sClass": "text-center", "aTargets": [0,1,3,4,5,6,7] }
+      ,{
+          'targets': 0,
+          'checkboxes': true
+       }
+    ],
+    rowCallback: function (row, data) {}, 
+    ordering: false, 
+	destroy: true,
+	autoWidth: false,
+	"searching": false,
+	"paging":   false
+// 	"info":   false
+ });
+
+function loadPart(){
+	$.ajax({
+        url: cPath+"/request/getRepairPart.json",
+        data: {request_ID : reqId}
+    }).done(function (result) {
+    	PART_TABLE.clear().draw();
+        if(result.recordsTotal>0){
+            PART_TABLE.rows.add(result.data).draw();
+        }
+      }).fail(function (jqXHR, textStatus, errorThrown) { 
+            // needs to implement if it fails
+      });
+	
+}
+
+
+	
+function popupUpload(type) {
+	
+// 	$('#uploadViewModal').modal('show');
+
+// 	console.log(reqId,type);
+	
+	/**call method in modal*/
+	if(reqStatus==3){
+		_UPLOAD_FILE.uploadNew(reqId,type);
+	}else{
+		_UPLOAD_FILE_VIEW.loadFile(reqId,type);
+	}
+	
+	
+	 
+}
+
+
+function downloadFile (id){
+	window.open( cPath+"/fileUpload/get/"+id , "_blank");
+}
 
 function actionApprove(level){
 	 
 	
-// 	var beforeDetail = $('#beforeDetail').val();
-// 	if(beforeDetail.trim() == "" ){
-// 		alert("กรุณาระบุรายละเอียดปัญหาก่อนแก้ไข");
-// 		$('#beforeDetail').focus();
-// 		return false;
-// 	}
-// 	$('#uploadModal').modal('show');
+	if("3"==reqStatus ){
+		
+		if ($('input[name=checkToolBefore_IDChk]:checked').length == 0) {
+			alert("กรุณาระบุ ตรวจสอบเครื่องมือและเครื่องจักรก่อนการซ่อม");
+			$('input[name=checkToolBefore_IDChk]').focus();
+			return false;
+		}
+		
+		  //alert("Input field lost focus.");
+		  var tim1 = $('#timeStart').val();
+		  var tim2 = $('#timeFinish').val();
+		if (tim1.trim()=='' || tim2.trim()=='') {
+			alert("กรุณาระบุ เวลาที่ใช้ในการซ่อม");
+			if(tim1.trim()=='')
+			$('#timeStart').focus();
+			$('#timeFinish').focus();
+			return false;
+		}
+		
+		if ($('input[name=maintenanceType]:checked').length == 0) {
+			alert("กรุณาระบุ ประเภทการซ่อม ");
+			$('input[name=maintenanceType]').focus();
+			return false;
+		}
+		
+		var checkToolBefore_IDarr = [];
+		var checkToolAfter_IDarr = [];
+		
+	
+		$. each($("input[name='checkToolBefore_IDChk']:checked"), function(){
+			checkToolBefore_IDarr.push($(this).val());
+		});
+		
+		$. each($("input[name='checkToolAfter_IDChk']:checked"), function(){
+			checkToolAfter_IDarr.push($(this). val());
+		});
+	 
+		$('#checkToolBefore_ID').val(checkToolBefore_IDarr.join());
+		$('#checkToolAfter_ID').val(checkToolAfter_IDarr.join());
+		
+		
+// 		console.log(checkToolAfter_IDarr);
+// 		console.log(checkToolAfter_IDarr);
+	}
+	
+	var isQA = $("input[name='concernQA']:checked").val();
+	if("5"==reqStatus&&isQA=="1"){
+		if ($('input[name=confirmJudment]:checked').length == 0) {
+			alert("กรุณาระบุ ความเห็นสำหรับ QA ");
+			$('input[name=confirmJudment]').focus();
+			return false;
+		}
+	}
+		
+		
 	
 		var statustxt =  (level=="99")? "Cancel" : "Approve" ;
 		
-		jsonObj['requestStatus'] = level ;
-			
-// 		console.log(jsonObj);
-	
-		if("1"==reqStatus || "2"==reqStatus){
-			
-			
-			bootbox.confirm({
-	 		    title: "Confirm",
-	 		    size: 'small',
-	 		    message: "Confirm <b>"+statustxt+"</b> this request?",
-	 		    buttons: {
-	 		        cancel: {
-	 		            label: '<i class="fa fa-times"></i> Cancel',
-	 		            className: 'btn-danger'
-	 		        },
-	 		        confirm: {
-	 		            label: '<i class="fa fa-check"></i> Confirm',
-	 		            className: 'btn-success'
-	 		        }
-	 		    },
-	 		    callback: function (result) {
-	 		        if(result){ 
-			        	 
-	 		        $.ajax({
-						method : "POST",
-						data : jsonObj,
-						url : cPath + "/request/requestUpdate"
-
-					}).done(function(result) {
-						
-						alert("Save successfully !");
-						
-// 							swal({
-// 							  title: "Success",
-// 							  text: " Save successfully !",
-// 							  icon: "success"
-// 							})
-							
-//							.then((s) => {
-							location = cPath + "/request/requested_edit/"+reqId;
-//							});
-
-//							swal({s
-//									title: "Success",
-//	 							  text: " Save successfully !",
-//	 							 type: "success"
-//								},
-//								function(inputValue){
-//// 									location = cPath + "/GasRequest/gas_requested_modify/"+jsonObj.id;
-//								});
-						
-
-					}).fail(function(jqXHR, textStatus, errorThrown) {
-						alert('ERROR');
-
-					});
-					 
-	 		        }
-	 		    }
-	 		}); 
-		}
-
-// 	 bootbox.confirm({
-// 		    title: "Confirm",
-// 		    size: 'small',
-// 		    message: "Confirm create new request?",
-// 		    buttons: {
-// 		        cancel: {
-// 		            label: '<i class="fa fa-times"></i> Cancel',
-// 		            className: 'btn-danger'
-// 		        },
-// 		        confirm: {
-// 		            label: '<i class="fa fa-check"></i> Confirm',
-// 		            className: 'btn-success'
-// 		        }
-// 		    },
-// 		    callback: function (result) {
-// 		        if(result){
+		$('#requestStatus').val(level);
+		
+		
+		bootbox.confirm({
+ 		    title: "Confirm",
+ 		    size: 'small',
+ 		    message: "Confirm <b>"+statustxt+"</b> this request?",
+ 		    buttons: {
+ 		        cancel: {
+ 		            label: '<i class="fa fa-times"></i> Cancel',
+ 		            className: 'btn-danger'
+ 		        },
+ 		        confirm: {
+ 		            label: '<i class="fa fa-check"></i> Confirm',
+ 		            className: 'btn-success'
+ 		        }
+ 		    },
+ 		    callback: function (result) {
+ 		        if(result){ 
 		        	 
-// 		        	// Submit form
-		        	
-// 		        	$("#myForm").submit();
+ 		        $.ajax({
+					method : "POST",
+					data : $('#myForm').serialize(),
+					url : cPath + "/request/requestUpdate"
+
+				}).done(function(result) {
+					
+					alert("Save successfully !");
+					location = cPath + "/request/requested_edit/"+reqId;
+
+
+				}).fail(function(jqXHR, textStatus, errorThrown) {
+					alert('ERROR');
+
+				});
 				 
-// 		        }
-// 		    }
-// 		}); 
-//		alert(ItemForm);
+ 		        }
+ 		    }
+ 		}); 
+		
+		
+		 
 };
+
+
+
+	function popupAddpart() {
+		$('#addPartModal').modal('show');	
+		$('#price,#other_cost,#total_cost').val(0);	
+		$('#qty,#part_ID').val('');	
+		$('#part_ID').selectpicker("refresh");
+		
+	}
+// 	popupAddpart();
 
 
 </script>
 
-	<%@ include file="requested_upload.jsp"%> 
+	<%@ include file="requested_upload_view.jsp"%> 
 	
+	<%@ include file="requested_upload_new.jsp"%>
 	

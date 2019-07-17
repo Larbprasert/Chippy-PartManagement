@@ -10,12 +10,9 @@ public class TestSendEmail {
 
 		System.out.println("SimpleEmail Start");
 
-		String from = "sheadmin@baiwa.co.th";
-		String password = "buckwa12";
 		
 		String to1 = "kroekpong@baiwa.co.th";
-//		String to2 = "partner_kroekpong.sa@saicmotor-cp.com";
-		String cc1 = "wongwithit@baiwa.co.th";
+		String cc1 = "partner_marut.la@saicmotor-cp.com";
 //		String cc2 = "partner_wongwithit.ru@saicmotor-cp.com";
 
 		InternetAddress[] addressTo = { 
@@ -28,9 +25,21 @@ public class TestSendEmail {
 //				,new InternetAddress(cc2) 
 		};
 		
-		EmailUtils.sendEmail(from,password, addressTo, addressCC,
-				"SimpleEmail Testing Subject : SHE Project", // Subject
-				"SHE Project : SHE Project : SHE Project SimpleEmail Testing Body " // Body
+		String body = "</br>"
+//				+ "<p><strong>Dear Users,</strong></p> "
+				+ "<p style=\"margin-left: 25px;\">Your requested has been <strong style=\"color: #0000ff;\">Approve</strong>.</p> "
+				+ "<p style=\"margin-left: 25px;\">"
+				+ "<ul> "
+				+ "<li><strong>Request No.</strong> : {request_ID}</li> "
+				+ "<li><strong>Request Type</strong> : {requestType}</li> "
+				+ "<li><strong>Description</strong> : {description}</li>"
+				+ "</ul> "
+				+ "<p style=\"margin-left: 30px;\"> Link URL : <a href=\"http://{url}\">  View Request  </a></p> "
+				+ "</br>";
+		
+		EmailUtils.sendEmail(addressTo, addressCC,
+				"[Approve] Request Number : XXXXXXXXXXXX", // Subject
+				body
 		);
 	}
 

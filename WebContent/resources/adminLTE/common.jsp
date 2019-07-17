@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,6 +66,10 @@
 
 <link rel="stylesheet" href="${cPath}/resources/css/custom.css${ver}"/>
 
+<!--  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" /> -->
+   
+
+
 <!--Icons-->
 <%-- <script src="${cPath}/resources/js/lumino.glyphs.js"></script> --%>
 <script src="${cPath}/resources/js/jquery-1.11.1.min.js"></script>
@@ -79,6 +84,8 @@
 <script src="${cPath}/resources/bootstrap-notify-3.1.3/bootstrap-notify.min.js"></script> 
 <script src="${cPath}/resources/js/bootbox.min.js"></script> 
 <script src="${cPath}/resources/js/jquery.blockUI.js"></script>
+<script src="${cPath}/resources/js/moment.min.js"></script>
+<script src="${cPath}/resources/js/moment-duration-format.min.js"></script>
 
 <script src="${cPath}/resources/adminLTE/js/adminlte.min.js"></script>
         
@@ -88,7 +95,8 @@
 <script src="${cPath}/resources/ChartJS/Chart.PieceLabel.min.js"></script> 
 <script src="${cPath}/resources/ChartJS/chartjs-plugin-annotation.min.js"></script> 
 
-
+<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script> -->
+ 
 <script src="${cPath}/resources/js/common.js${ver}"></script> 
 
 
