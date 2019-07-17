@@ -39,7 +39,7 @@
 			<p class="help-block"><b>Part ID:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Part ID" name="part_ID" value="${partMasterBean.part_ID}" >
+			<input type="text" class="form-control" placeholder="Part ID" name="part_ID" value="${partMasterBean.part_ID}" readonly>
 		</div>
 		<div class="col-lg-2">
 			<p class="help-block"><b>Part Name:</b></p>
@@ -55,14 +55,16 @@
 			<p class="help-block"><b>Qty:</b></p>
 		</div>
 		<div class="col-lg-4">
-			<input type="text" class="form-control" placeholder="Qty" name="qty" value="${partMasterBean.qty}"  >
+			<input type="text" class="form-control" placeholder="Qty" name="qty" value="${partMasterBean.qty}" >
 		</div>
+		
 		<div class="col-lg-2">
 			<p class="help-block"><b>Price:</b></p>
 		</div>
 		<div class="col-lg-4">
 			<input type="text" class="form-control" placeholder="Price" name="price" value="${partMasterBean.price}" >
-		</div>		
+		</div>	
+			
 	</div>
 	<br>
 
@@ -83,6 +85,7 @@
 	<br>
                     		
 	<div class="row">
+		
 		<div class="col-lg-2">
 			<p class="help-block"><b>Unit Type:</b></p>
 		</div>
@@ -92,7 +95,8 @@
 					<option value="${item.code}" ${item.code == partMasterBean.unitType.unitType_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
 				</c:forEach>				
 			</select>
-		</div>
+		</div>	
+		
 		<div class="col-lg-2">
 			<p class="help-block"><b>Location:</b></p>
 		</div>
@@ -102,7 +106,7 @@
 					<option value="${item.code}" ${item.code == partMasterBean.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
 				</c:forEach>				
 			</select>
-		</div>		
+		</div>					
 	</div>
 	<br>
 		                        
@@ -116,7 +120,8 @@
 					<option value="${item.code}" ${item.code == partMasterBean.maker.maker_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
 				</c:forEach>				
 			</select>
-		</div>
+		</div>	
+		
 		<div class="col-lg-2">
 			<p class="help-block"><b>Mold/Type:</b></p>
 		</div>
@@ -126,11 +131,12 @@
 					<option value="${item.code}" ${item.code == partMasterBean.moldType.moldType_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
 				</c:forEach>				
 			</select>
-		</div>		
+		</div>					
 	</div>
 	<br>
 
-	<div class="row">
+	<div class="row">		
+		
 		<div class="col-lg-2">
 			<p class="help-block"><b>Status:</b></p>
 		</div>
@@ -140,10 +146,7 @@
 					<option value="${item.code}" ${item.code == partMasterBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
 				</c:forEach>				
 			</select>
-		</div>
-		<div class="col-lg-6">
-			
-		</div>				
+		</div>			
 	</div>
 </div>
 	                        
