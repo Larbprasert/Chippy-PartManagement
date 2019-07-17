@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.keihin.constant.RequestConstants;
 import th.co.keihin.model.RepairDetail;
 import th.co.keihin.model.RequestBean;
 import th.co.keihin.service.CheckToolService;
@@ -194,6 +195,29 @@ public class RequestCtrl {
 		
 		ResponseResult responseResult = new ResponseResult();
 		responseResult = requestService.repairSave(request);
+		
+		return responseResult;
+	}
+	
+	@RequestMapping(value = "/request/deleteRepairPart", method = RequestMethod.POST)
+	public ResponseResult deleteRepairPart( RepairDetail request,
+			RedirectAttributes redir,HttpServletRequest httpRequest) {
+		
+		ResponseResult responseResult = new ResponseResult();
+		
+		if(request.getRepairDetail_ID()!=null){
+			
+			String requestId = request.getRequest_ID();
+			String[] repairId = request.getRepairDetail_ID().split(",");
+			for (String rId : repairId) {
+				responseResult = requestService.repairDel(new RepairDetail(requestId,rId));
+				System.out.println("deleteRepairPart > requestId:"+requestId+", rId:"+rId);
+			}
+			
+			responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+			responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		
+		}
 		
 		return responseResult;
 	}

@@ -501,32 +501,6 @@ public class RequestService extends AbstractCommonJdbcDao {
 	}
 	
 	public ResponseResult repairSave(RepairDetail repairDetail) {
-		/*List paramList = new ArrayList();
-	    paramList.add(new SqlParameter(Types.VARCHAR));
-	    paramList.add(new SqlParameter(Types.VARCHAR));
-	    paramList.add(new SqlParameter(Types.VARCHAR));
-	    paramList.add(new SqlParameter(Types.VARCHAR));
-	    paramList.add(new SqlParameter(Types.VARCHAR));
-	    paramList.add(new SqlParameter(Types.VARCHAR));
-	    paramList.add(new SqlParameter(Types.VARCHAR));
-	   jdbcTemplate.call(new CallableStatementCreator() {
-	        @Override
-	        public CallableStatement createCallableStatement(Connection con) throws SQLException {
-	            CallableStatement cstmt = con.prepareCall("{call sp_Request_Insert(?,?,?,?,?,?,?,?,?,?)}");
-	            cstmt.setString(1, repairDetail.getRequest_ID());
-                cstmt.setString(2, repairDetail.getPart_ID());
-                cstmt.setString(3, repairDetail.getPart_qty());
-                cstmt.setString(4, repairDetail.getPart_price());
-                cstmt.setString(5, repairDetail.getOther_cost());
-                cstmt.setString(6, repairDetail.getTotal_cost());
-                if (repairDetail.getUpdateBy() == null) {
-                        repairDetail.setUpdateBy("System");
-                }
-                cstmt.setString(7,repairDetail.getUpdateBy());
-	            return cstmt;
-	        }
-	    }, paramList);*/
-		
 		List param = new ArrayList();
 		param.add(repairDetail.getRequest_ID());
         param.add(repairDetail.getPart_ID());
@@ -537,17 +511,31 @@ public class RequestService extends AbstractCommonJdbcDao {
         param.add(repairDetail.getUpdateBy());
 		int updateRecord = jdbcTemplate.update("{call sp_RepairDetail_Insert(?,?,?,?,?,?,?)}", param.toArray() );
 
-		
 		ResponseResult responseResult = new ResponseResult();
 			
 		responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
 		responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
 		responseResult.setData(repairDetail);
-		
 		return responseResult;
 			
 	}
 
+	public ResponseResult repairDel(RepairDetail repairDetail) {
+		List param = new ArrayList();
+		param.add(repairDetail.getRequest_ID());
+		param.add(repairDetail.getRepairDetail_ID());
+        param.add(repairDetail.getUpdateBy());
+		int updateRecord = jdbcTemplate.update("{call sp_RepairDetail_Delete(?,?,?)}", param.toArray() );
+
+		ResponseResult responseResult = new ResponseResult();
+			
+		responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+		responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		responseResult.setData(repairDetail);
+		return responseResult;
+			
+	}
+	
 
 	public DataTableAjax<RepairDetail> getRepairPart(RepairDetail bean) {
 		String query = " select rd.* , pm.part_Name from tb_RepairDetail rd"

@@ -13,6 +13,15 @@ public class RepairDetail  extends BaseDomain{
 	private String total_cost;
 	private String part_name;
 
+	public RepairDetail(){
+		
+	}
+	
+	public RepairDetail(String requestId, String repairDetail_ID) {
+		this.request_ID =requestId;
+		this.repairDetail_ID =repairDetail_ID;
+	}
+
 	public String getRepairDetail_ID() {
 		return repairDetail_ID;
 	}

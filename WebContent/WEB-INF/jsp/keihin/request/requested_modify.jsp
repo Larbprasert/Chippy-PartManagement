@@ -441,7 +441,7 @@
 							                <div class="row">
 							                    <div class="col-sm-12"  >
 							                    	<button type="button" class="btn btn-info add-new" id="btnnewPart" onclick="popupAddpart()"><i class="fa fa-plus"></i> Add Part</button>                     	 
-							                    	&nbsp;<button type="button" class="btn btn-danger" id="btnDelPart" onclick="popupDelpart()"><i class="fa fa-trash-o"></i> Delete Part</button>                     	 
+							                    	&nbsp;<button type="button" class="btn btn-danger" id="btnDelPart" onclick="selectDelete()"><i class="fa fa-trash-o"></i> Delete Part</button>                     	 
 							                    </div>                    
 							                </div>
 							            </div>
@@ -708,7 +708,7 @@ $(function() {
 	if(reqStatus>3){
 		$("input,textarea").prop('readonly', true);
 		$("input[type='radio'],input[type='checkbox']").prop('disabled', true);
-		$("#btnnewPart,#afterPicture").hide();
+		$("#btnnewPart,#btnDelPart,#afterPicture").hide();
 	}else{
 		$("#afterPictureViewBtn").hide();
 	}
@@ -767,8 +767,9 @@ $(function() {
 });
 
 function getActionColumn(oData,iRow) {
- 	var htm = '<button type="button" onclick="openModaledituser(\''+ iRow +'\')" class="btn btn-warning btn-action">Edit</button>  ' ;
- 	 htm += ' <button type="button" onclick="doDelete(\''+ oData.emp_id  +'\', \''+ oData.emp_no  +'\')" class="btn btn-danger btn-action">Delete</button>  ' ;
+//  	var htm = '<button type="button" onclick="openModaledituser(\''+ iRow +'\')" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button>  ' ;
+ 	 var htm = '';
+ 	 htm += ' <button type="button" onclick="doDeletePart(\''+ oData.repairDetail_ID  +'\', \''+ oData.part_ID +" - "+oData.part_Name  +'\')" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</button>  ' ;
 		return htm;
 }
 
@@ -778,27 +779,27 @@ var PART_TABLE = $('#part-table').DataTable({
 	autoWidth: false,
 	data:[],
     columns: [
-		{ "data": "part_ID" }, 
-		{ "data": "part_ID" }, 
+		{ "data": "repairDetail_ID", "sWidth": "30px" }, 
+		{ "data": "part_ID", "sWidth": "120px"}, 
 		{ "data": "part_Name" }, 
-		{ "data": "part_qty" }, 
-		{ "data": "part_price"
+		{ "data": "part_qty", "sWidth": "100px" }, 
+		{ "data": "part_price","sWidth": "100px"
 			,"render": function ( data, type, row ) {
 	            return data.toFixed(2);
 	        }
 		 }, 
-		{ "data": "other_cost" 
+		{ "data": "other_cost", "sWidth": "100px"
 			,"render": function ( data, type, row ) {
 	            return data.toFixed(2);
 	        }
 		}, 
-		{ "data": "total_cost" 
+		{ "data": "total_cost" ,"sWidth": "100px"
 			,"render": function ( data, type, row ) {
                 return data.toFixed(2);
             }
 		}, 
 		{ 
-     		"data": "part_ID","sWidth": "100px"
+     		"data": "part_ID","sWidth": "150px"
 	        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
 	        	$(nTd).html(getActionColumn(oData,iRow));
 // 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
@@ -839,6 +840,89 @@ function loadPart(){
 }
 
 
+function selectDelete() {
+	var sel = [];
+      var rows_selected = PART_TABLE.column(0).checkboxes.selected();
+      $.each(rows_selected, function(index, rowId){
+    	  sel.push(rowId);
+      });
+      
+      
+      if(sel.length > 0){
+    	 
+    		bootbox.confirm({
+    		    title: "Confirm Delete ?",
+    		    size: 'small',
+    		    message: "Do you want to delete  "+sel.length+" parts ?",
+    		    buttons: {
+    		        cancel: {
+    		            label: '<i class="fa fa-times"></i> Cancel',
+    		            className: 'btn-danger'
+    		        },
+    		        confirm: {
+    		            label: '<i class="fa fa-check"></i> Confirm',
+    		            className: 'btn-success'
+    		        }
+    		    },
+    		    callback: function (result) {
+    		        if(result){ 
+    		        	var del_ids = sel.join(",");	
+    					$.ajax({
+    						method : "POST",
+    						url : cPath + "/request/deleteRepairPart",
+    						data: { 
+    							request_ID: reqId, 
+    							repairDetail_ID: del_ids 
+    						}
+    					}).done(function (result) {
+    							alert("Delete successfully !");
+    							loadPart();
+    					});
+    		        }
+    		    }
+    		});
+      }else{
+    	  alert("Please select least 1 items !","warning");
+      }
+	  
+}
+
+
+function doDeletePart(del_ids , partName) { 
+ 
+	 
+	bootbox.confirm({
+		    title: "Confirm",
+		    size: 'small',
+		    message: "Confirm delete this part ["+partName+"] ?",
+		    buttons: {
+		        cancel: {
+		            label: '<i class="fa fa-times"></i> Cancel',
+		            className: 'btn-danger'
+		        },
+		        confirm: {
+		            label: '<i class="fa fa-check"></i> Confirm',
+		            className: 'btn-success'
+		        }
+		    },
+		    callback: function (result) {
+		    	 if(result){ 
+//  		        	var del_ids = sel.join(",");	
+ 					$.ajax({
+ 						method : "POST",
+ 						url : cPath + "/request/deleteRepairPart",
+ 						data: { 
+ 							request_ID: reqId, 
+ 							repairDetail_ID: del_ids 
+ 						}
+ 					}).done(function (result) {
+ 							alert("Delete successfully !");
+ 							loadPart();
+ 					});
+ 		        }
+		    }
+		}); 
+}
 	
 function popupUpload(type) {
 	
@@ -919,7 +1003,6 @@ function actionApprove(level){
 		}
 	}
 		
-		
 	
 		var statustxt =  (level=="99")? "Cancel" : "Approve" ;
 		
@@ -973,10 +1056,12 @@ function actionApprove(level){
 		$('#addPartModal').modal('show');	
 		$('#price,#other_cost,#total_cost').val(0);	
 		$('#qty,#part_ID').val('');	
+		$('#part_ID').empty();	
+		$('#part_ID').html('');
+		$('#part_ID').selectpicker('deselectAll');	
 		$('#part_ID').selectpicker("refresh");
 		
 	}
-// 	popupAddpart();
 
 
 </script>

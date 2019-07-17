@@ -130,6 +130,10 @@ public class PartMasterService {
 			query += " or pm.part_name like '%"+bean.getPart_name()+"%' ) " ;
 		}
 		
+		if(StringUtils.isNotEmpty(bean.getSysPart_ID())){
+			query += " and pm.part_ID not in ( SELECT pa.part_ID from  tb_RepairDetail pa where pa.request_ID = '"+bean.getSysPart_ID()+"' ) " ;
+		}
+		
 		
 		query += "order by pm.part_ID";
 		

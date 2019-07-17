@@ -97,13 +97,18 @@
         			    type: "POST",
         			    dataType: "json",
         			    data: {
-        			    	part_name: "{{{q}}}"
+        			    	part_name: "{{{q}}}",
+        			    	sysPart_ID:reqId
         			    }
         			  },
         			  locale: {
         			    emptyTitle: "Select and Typing ID or Name"
         			  },
         			  log: 0,
+        			  cache: false,
+        		      clearOnEmpty: true,
+        		      preserveSelected: false,
+        		      emptyRequest: true,
         			  preprocessData: function(data) {
         				var data = data.data;
         			    var i,
@@ -112,14 +117,15 @@
         			    if (l) {
         			      for (i = 0; i < l; i++) {
         			        array.push(
-        			          $.extend(true, data[i], {
-        			            text: data[i].part_ID+" - "+data[i].part_name,
-        			            value: data[i].part_ID,
-        			            data: {
-        			              price:data[i].price,
-        			              subtext: "["+data[i].qty+" "+data[i].unitType.unitType_name+"]"
-        			            }
-        			          })
+//         			          $.extend(false, data[i], 
+								{
+	        			            text: data[i].part_ID+" - "+data[i].part_name,
+	        			            value: data[i].part_ID,
+	        			            data: {
+	        			              price:data[i].price,
+	        			              subtext: "["+data[i].qty+" "+data[i].unitType.unitType_name+"]"
+	        			            }
+        			          }
         			        );
         			      }
         			    }
@@ -139,7 +145,7 @@
         
 	        $('#part_ID').on('change', function(){
 					selPrice =	 $(this).find(':selected').data('price');
-// 		            console.log(selPrice);
+		            console.log(selPrice);
 					if(selPrice>0){
 						$('#price').val(selPrice.toFixed(2));
 					}
@@ -189,6 +195,12 @@
         			$('#qty').focus();
         			return false;
         		}
+        		
+        		if ( $('#qty').val() <= 0 ) {
+        			alert("Please input Qty. more than 0 ");
+        			$('#qty').focus();
+        			return false;
+        		}
 
         		var jsond = {};
         		jsond.request_ID = reqId;
@@ -198,7 +210,7 @@
         		jsond.other_cost = $('#other_cost').val();
         		jsond.total_cost = $('#total_cost').val();
         		
-        		console.log(jsond);
+//         		console.log(jsond);
 
 				bootbox.confirm({
 			 		    title: "Confirm",
@@ -225,11 +237,10 @@
 
 			 	        			}).done(function(result) {
 			 	        				
-			 	        				alert("Save successfully !");
+// 			 	        				alert("Save successfully !");
 			 	        				
 			 	        				$('#addPartModal').modal('hide');	
-//			 	        				location = cPath + "/request/requested_edit/"+reqId;
-
+			 	        				loadPart();
 
 			 	        			}).fail(function(jqXHR, textStatus, errorThrown) {
 			 	        				alert('ERROR');
