@@ -5,6 +5,9 @@
 
 <tiles-definitions>
 
+<!-- Dashboard -->
+		<definition name="dashboard_mt" template="/WEB-INF/jsp/keihin/dashboard/dashboard_mt.jsp" />
+		
 <!-- CheckTool -->
 		<definition name="checkTool_list" template="/WEB-INF/jsp/keihin/checkTool/checkTool_list.jsp" />
 		<definition name="checkTool_view" template="/WEB-INF/jsp/keihin/checkTool/checkTool_view.jsp" />

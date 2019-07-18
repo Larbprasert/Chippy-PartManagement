@@ -713,28 +713,28 @@ $(function() {
 		$("#afterPictureViewBtn").hide();
 	}
 
-	if("1"==reqStatus){
+	if("1"==reqStatus && $ROLE_REQ_MNG){
 		$('#approve_ld_btn,#cn_ld_btn').prop('disabled', false);
 // 		$('#tab1_l').tab('show');
-	}else if("2"==reqStatus){
+	}else if("2"==reqStatus && $ROLE_MT_MNG){
 		$('#approve_ach_btn,#cn_ach_btn').prop('disabled', false);
 // 		$('#tab1_l').tab('show');
-	}else if("3"==reqStatus){
+	}else if("3"==reqStatus && $ROLE_MT_STAFF){
 		$('#approve_btn_4,#cn_btn_4').prop('disabled', false);
 // 		$('#tab2').show();
 // 		$('#tab2_l').tab('show');
-	}else if("4"==reqStatus){
+	}else if("4"==reqStatus && $ROLE_REQ_MNG){
 		$('#approve_btn_5,#cn_btn_5').prop('disabled', false);
 // 		$('#tab2').show();
 	}else if("5"==reqStatus){
 // 		$('#tab2').show();
-		if(isQA=="1"){
+		if(isQA=="1" && $ROLE_QA){
 			$("input[name='confirmJudment']").prop('disabled', false);
 			$('#approve_btn_6,#cn_btn_6').prop('disabled', false);
-		}else{
+		}else if(isQA=="0" && $ROLE_MT_MNG){
 			$('#approve_btn_7,#cn_btn_7').prop('disabled', false);
 		}
-	}else if("6"==reqStatus){
+	}else if("6"==reqStatus && $ROLE_MT_MNG){
 	
 		$('#approve_btn_7,#cn_btn_7').prop('disabled', false);
 	}
@@ -767,10 +767,12 @@ $(function() {
 });
 
 function getActionColumn(oData,iRow) {
-//  	var htm = '<button type="button" onclick="openModaledituser(\''+ iRow +'\')" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button>  ' ;
  	 var htm = '';
- 	 htm += ' <button type="button" onclick="doDeletePart(\''+ oData.repairDetail_ID  +'\', \''+ oData.part_ID +" - "+oData.part_Name  +'\')" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</button>  ' ;
-		return htm;
+	 	if("3"==reqStatus){
+//  	 		htm += '<button type="button" onclick="editPart(\''+ iRow +'\')" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button>  &nbsp;' ;
+	 	 	htm += ' <button type="button"  onclick="doDeletePart(\''+ oData.repairDetail_ID  +'\', \''+ oData.part_ID  +'\')" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</button>  ' ;
+	 	}
+ 	 return htm;
 }
 
  
@@ -779,7 +781,15 @@ var PART_TABLE = $('#part-table').DataTable({
 	autoWidth: false,
 	data:[],
     columns: [
-		{ "data": "repairDetail_ID", "sWidth": "30px" }, 
+		{ "data": "repairDetail_ID"
+			, "sWidth": "30px" 
+			,"fnCreatedCell" : function(nTd, sData, oData, iRow, iCol) {
+			    if(reqStatus!=3){
+					var txt = iRow;
+					$(nTd).html(++txt);
+				}
+			}
+		},
 		{ "data": "part_ID", "sWidth": "120px"}, 
 		{ "data": "part_Name" }, 
 		{ "data": "part_qty", "sWidth": "100px" }, 
@@ -799,7 +809,7 @@ var PART_TABLE = $('#part-table').DataTable({
             }
 		}, 
 		{ 
-     		"data": "part_ID","sWidth": "150px"
+     		"data": "part_ID","sWidth": "100px"
 	        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
 	        	$(nTd).html(getActionColumn(oData,iRow));
 // 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
@@ -812,7 +822,7 @@ var PART_TABLE = $('#part-table').DataTable({
       { "sClass": "text-center", "aTargets": [0,1,3,4,5,6,7] }
       ,{
           'targets': 0,
-          'checkboxes': true
+          'checkboxes': (reqStatus==3)
        }
     ],
     rowCallback: function (row, data) {}, 

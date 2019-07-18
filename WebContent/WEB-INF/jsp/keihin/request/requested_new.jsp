@@ -367,6 +367,8 @@ function saveReq(){
 		        	
 		        	$("#tempFileId").val(_UPLOAD_FILE.uploadTempId.join());
 		        	
+		        	 _loader(true);
+		        	 
 		        	$("#myForm").submit();
 				 
 		        }

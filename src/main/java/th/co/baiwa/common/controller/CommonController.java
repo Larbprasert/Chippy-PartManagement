@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.UserBean;
 import th.co.baiwa.common.util.UserLoginUtils;
+import th.co.keihin.constant.RequestConstants;
 
 @RestController
 public class CommonController {
@@ -54,13 +55,15 @@ public class CommonController {
         mav.addObject("isSessionTimout", isNotLogin);
         String view = "home";
         
-//        UserBean user = UserLoginUtils.getCurrentUser();
-//        if(null!=user){
-//        	if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains("ENVI"))){
-//        		view = "dashboard_envi";
-//        	}else if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains("GAS"))){
-//        		view = "dashboard_gas";
-//        	}
+        UserBean user = UserLoginUtils.getCurrentUser();
+        if(null!=user){
+        	if( user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_ADMIN))
+        			||user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_MT_STAFF))
+        			||user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_MT_MNG))
+        			||user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_MT_SUP))
+        			){ 
+        		view = "dashboard_mt";
+        	}
         	
 	        //Add Message
 //	        Map<String, String> msgs = ApplicationCache.getAllMessageEN();
@@ -71,7 +74,7 @@ public class CommonController {
 //	        ConcurrentHashMap<String, List<LovInfo>> lov = ApplicationCache.getLov();
 //	        json = gson.toJson(lov);
 //	        mav.addObject("lovmaster", json);
-//        }
+        }
         
         
         mav.setViewName(view);

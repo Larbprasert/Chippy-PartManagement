@@ -1,7 +1,9 @@
 package th.co.keihin.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -116,8 +118,8 @@ public class RequestCtrl {
 		mav.addObject("LOV_MAINTENANCETYPE", ApplicationCache.getLovMaintenanceType());
 //		
 		
-		List ROLE_REQ_MNG =  requestService.findUserByRoleSec("ROLE_REQ_MNG", bean.getUserProfile().getSection().getSection_ID());
-		List ROLE_MT_MNG = requestService.findUserByRoleSec("ROLE_MT_MNG",null);
+		List ROLE_REQ_MNG =  requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG, bean.getUserProfile().getSection().getSection_ID());
+		List ROLE_MT_MNG = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG,null);
 		
 		
 		mav.addObject("APPROVE_LD", ROLE_REQ_MNG);
@@ -148,11 +150,11 @@ public class RequestCtrl {
 		mav.addObject("requestObj",bean);
 		
 
-		List ROLE_REQ_MNG =  requestService.findUserByRoleSec("ROLE_REQ_MNG", bean.getSection().getSection_ID());
-		List ROLE_MT_MNG = requestService.findUserByRoleSec("ROLE_MT_MNG",null);
+		List ROLE_REQ_MNG =  requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG, bean.getSection().getSection_ID());
+		List ROLE_MT_MNG = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG,null);
 		
-		List ROLE_MT_STAFF = requestService.findUserByRoleSec("ROLE_MT_STAFF",null);
-		List ROLE_QA = requestService.findUserByRoleSec("ROLE_QA",null);
+		List ROLE_MT_STAFF = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_STAFF,null);
+		List ROLE_QA = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_QA,null);
 		
 		
 		mav.addObject("APPROVE_LD", ROLE_REQ_MNG);
@@ -236,5 +238,15 @@ public class RequestCtrl {
 		return dataTableAjax;
 	}
 	 
+	
+	
+	@RequestMapping("/request/getDashBoard.json")
+	public ResponseResult getDashBoard(HttpServletRequest request, HttpServletResponse response,RequestBean bean) throws ServletException, IOException {
+//		DataTableAjax<RequestBean> dataTableAjax = requestService.getAll(bean);
+		ResponseResult responseResult = requestService.getDashBoard(bean);
+		
+		return  responseResult ;
+	}
+	
 	
 }

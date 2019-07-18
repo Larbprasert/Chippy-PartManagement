@@ -110,16 +110,23 @@
 <%-- <security:authorize access="hasAnyRole('ADMIN','GAS_STAFF','GAS_SUP','GAS_SEC_MNG')" var="roleApprove" /> --%>
 <security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF','ROLE_REQ_MNG', 'ROLE_REQ_SUP', 'ROLE_REQ_USER','ROLE_QA')" var="roleApprove" />
 
-<%-- <security:authorize access="hasRole('ROLE_VIEW')" var="roleView" /> --%>
-<%-- <security:authorize access="hasRole('ROLE_DELETE')" var="roleDel" /> --%>
-<%-- <security:authorize access="hasRole('ROLE_ADMIN')" var="roleAdmin" /> --%>
-<%-- <security:authorize access="hasRole('ROLE_SADMIN')" var="roleSuperUser" /> --%>
+<security:authorize access="hasAnyRole('ROLE_ADMIN')" var="H_ROLE_ADMIN" />
+<security:authorize access="hasAnyRole('ROLE_REQ_USER')" var="H_ROLE_REQ_USER" />
+<security:authorize access="hasAnyRole('ROLE_REQ_MNG','ROLE_REQ_SUP')" var="H_ROLE_REQ_MNG" />
+<security:authorize access="hasAnyRole('ROLE_MT_STAFF')" var="H_ROLE_MT_STAFF" />
+<security:authorize access="hasAnyRole('ROLE_MT_MNG','ROLE_MT_SUP')" var="H_ROLE_MT_MNG" />
+<security:authorize access="hasAnyRole('ROLE_QA')" var="H_ROLE_QA" />
 
 <script>
 	var cPath = "${cPath}"; 
 	var $roleApprove = ${roleApprove}; 
-// 	var $roleView = ${roleView}; 
-// 	var $roleAdmin = ${roleAdmin}; 
+
+	var $ROLE_REQ_USER = ${H_ROLE_REQ_USER}; 
+	var $ROLE_REQ_MNG = ${H_ROLE_REQ_MNG}; 
+	var $ROLE_MT_STAFF = ${H_ROLE_MT_STAFF}; 
+	var $ROLE_MT_MNG = ${H_ROLE_MT_MNG}; 
+	var $ROLE_QA = ${H_ROLE_QA}; 
+	var $ROLE_ADMIN = ${H_ROLE_ADMIN}; 
 
 	var $roleAdmin = true; 
 	var $roleEdit =  true; 

@@ -1,29 +1,34 @@
 package th.co.keihin.service;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.CallableStatementCreator;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.SqlOutParameter;
-import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 
+import th.co.baiwa.admin.dao.UserDao;
 import th.co.baiwa.admin.entity.UserProfile;
+import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.common.bean.UserBean;
 import th.co.baiwa.common.persistence.dao.AbstractCommonJdbcDao;
 import th.co.baiwa.common.util.DateUtils;
+import th.co.baiwa.common.util.EmailUtils;
+import th.co.baiwa.common.util.UserLoginUtils;
 import th.co.keihin.constant.RequestConstants;
 import th.co.keihin.model.DepartmentBean;
 import th.co.keihin.model.LocationBean;
@@ -32,12 +37,16 @@ import th.co.keihin.model.RequestBean;
 import th.co.keihin.model.RequestTypeBean;
 import th.co.keihin.model.SectionBean;
 import th.co.portal.model.gas.ResponseResult;
+import th.co.tpcc.model.SysParam;
 
 @Repository("requestService")
 public class RequestService extends AbstractCommonJdbcDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private UserDao userDao; 
 
 	
 	private RowMapper REQUEST_MAPPER = new RowMapper(){
@@ -118,7 +127,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			request.setQaApproveBy(rs.getString("qaApproveBy"));
 			request.setAchApproveBy(rs.getString("achApproveBy"));
 			
-			
+			request.setUser_ID(rs.getString("user_ID"));
 			request.setCreateDate(rs.getDate("createDate"));
 			request.setCreateDateStr(DateUtils.get_yyyymmdd_hhmmss_en_from_date(rs.getTimestamp("createDate")));
 			request.setInformDate(DateUtils.get_yyyyMMdd_from_date(rs.getTimestamp("createDate")));
@@ -139,13 +148,14 @@ public class RequestService extends AbstractCommonJdbcDao {
 				
 			String reqNo =genNextReqNo(); //  Get Req No from DB ;
 			rqt.setRequest_ID(reqNo);
+			rqt.setRequestStatus(RequestConstants.REQUEST_STATUS.CREATED);
 			
 			jdbcTemplate.update(SQL_INSERT_REQ,
 				new Object[] {
 					rqt.getRequest_ID(), rqt.getRequestType().getRequestType_ID(), 
 					rqt.getUserProfile().getUserId() , rqt.getUserProfile().getSection().getSection_ID(),
 					rqt.getLocation().getLocation_ID(),rqt.getBeforeDetail(),
-					RequestConstants.REQUEST_STATUS.CREATED,
+					rqt.getRequestStatus(),
 					rqt.getCreateBy() ,
 					rqt.getCreateBy() 
 				});
@@ -156,7 +166,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 				jdbcTemplate.update(updateFile);
 			}
 				
-			
+			boolean isSendmail  = sendEmail(rqt);
 	}
 	
 	protected final static String SQL_INSERT_REQ = buildInsertREQ();
@@ -261,6 +271,27 @@ public class RequestService extends AbstractCommonJdbcDao {
 			sql.append(" AND rqh.status =  ? ");
 		}
 		
+		UserBean user = UserLoginUtils.getCurrentUser();
+//		Stream<GrantedAuthority> ustream = user.getAuthorities().stream();
+        if(null!=user && !user.getAuthorities().stream().anyMatch(
+        		ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_ADMIN))){
+        	
+        	if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_REQ_USER))){
+        		sql.append(" AND rqh.user_id = ? ");
+        		wh.add(user.getUserId());
+        	}
+        	else if( user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_REQ_MNG))||
+        			user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_REQ_SUP))
+        			){
+        		sql.append(" AND rqh.section_ID = ?   ");
+        		wh.add(user.getUserProfile().getUserProfile().getSection().getSection_ID());
+        	}
+//        	else if(ustream.anyMatch( ro -> ro.getAuthority().contains("GAS_SEC_MNG"))){
+//        		sql.append(" AND a.AREA_SEC+',' LIKE ?  ");
+//        		wh.add( "%"+user.getUserId()+",%"  );
+//        	}
+        }
+		
 		sql.append("	order by rqh.request_ID desc ");
 		
 //		System.out.println(sql.toString());
@@ -350,7 +381,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 				"	,rqh.repairPersonBy   " +
 				"	,rqh.confirmRepairBy  " +
 				"	,rqh.qaApproveBy      " +
-				"	,rqh.achApproveBy     " +
+				"	,rqh.achApproveBy, rqh.user_id   " +
 				"	,rqh.status requestStatus ,misc.value1 as status_name" + 
 				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  CreateBy" + 
 				"	,rqh.createDate , sec.section_ID,  sec.section_name " +
@@ -367,8 +398,128 @@ public class RequestService extends AbstractCommonJdbcDao {
 		return (list!=null&&list.size()>0)? list.get(0): new RequestBean();
 	}
 
-
 	
+	
+	public boolean sendEmail(RequestBean requested){
+		
+        try{
+        	
+//			buildEmail(requested);
+			
+			InternetAddress[] addressTo = requested.getAddressTo();
+			InternetAddress[] addressCC = requested.getAddressCC();
+			
+//			System.out.println("addressTo : "+addressTo);
+//			System.out.println("addressCC : "+addressCC);
+			
+			String templateSub = "[Approve] Request Number : {request_ID}";
+			String templateBody  = ""
+//					+ "<p><strong>Dear Users,</strong></p> "
+//					+ "<p style=\"margin-left: 25px;\">"
+					+ "<ul> "
+					+ "<li><strong>Request No.</strong> : {request_ID}</li> "
+					+ "<li><strong>Request Status</strong> : {requestStatus}</li> "
+					+ "<li><strong>Request Type</strong> : {requestType}</li> "
+//					+ "<li><strong>Description</strong> : {description}</li>"
+					+ "</ul> "
+					+ "<p style=\"margin-left: 30px;\"> Link URL : <a href=\"http://{url}\">  View Request  </a></p> "
+					+ "</br>";
+			
+			
+//			String reqUserEmail = requested.getUserProfile().getEmail();
+			requested = getRequestedDetail(requested.getRequest_ID());
+			UserProfile userCreate =  userDao.getById(requested.getUser_ID());
+			String reqUserEmail = userCreate.getEmail();
+			
+			if(RequestConstants.REQUEST_STATUS.CANCEL.equals(requested.getRequestStatus())){
+				templateSub = templateSub.replace("Approve", "Cancel");
+				InternetAddress[] toMail = {  new InternetAddress(reqUserEmail)  };
+				addressTo = toMail;
+			}else if(RequestConstants.REQUEST_STATUS.CREATED.equals(requested.getRequestStatus())){
+				List<UserProfile> userList = findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG , requested.getUserProfile().getSection().getSection_ID());
+				addressTo = buildToEmail(userList);
+				InternetAddress[] ccMail= {  new InternetAddress(reqUserEmail)  };
+				addressCC  = ccMail;
+			}else if(RequestConstants.REQUEST_STATUS.APPROVE_LV1.equals(requested.getRequestStatus())){
+				List<UserProfile> userList = findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG , null);
+				addressTo = buildToEmail(userList);
+				InternetAddress[] ccMail= {  new InternetAddress(reqUserEmail)  };
+				addressCC  = ccMail;
+			}else if(RequestConstants.REQUEST_STATUS.APPROVE_LV2.equals(requested.getRequestStatus())){
+				List<UserProfile> userList = findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_STAFF , null);
+				addressTo = buildToEmail(userList);
+				InternetAddress[] ccMail= {  new InternetAddress(reqUserEmail)  };
+				addressCC  = ccMail;
+			}else if(RequestConstants.REQUEST_STATUS.APPROVE_LV3.equals(requested.getRequestStatus())){
+				List<UserProfile> userList = findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG , requested.getUserProfile().getSection().getSection_ID());
+				addressTo = buildToEmail(userList);
+				InternetAddress[] ccMail= {  new InternetAddress(reqUserEmail)  };
+				addressCC  = ccMail;
+			}else if(RequestConstants.REQUEST_STATUS.APPROVE_LV4.equals(requested.getRequestStatus())){
+				List<UserProfile> userList = findUserByRoleSec(RequestConstants.ROLE.ROLE_QA , null);
+				addressTo = buildToEmail(userList);
+				InternetAddress[] ccMail= {  new InternetAddress(reqUserEmail)  };
+				addressCC  = ccMail;
+			}else if(RequestConstants.REQUEST_STATUS.APPROVE_LV5.equals(requested.getRequestStatus())){
+				List<UserProfile> userList = findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG , null);
+				addressTo = buildToEmail(userList);
+				InternetAddress[] ccMail= {  new InternetAddress(reqUserEmail)  };
+				addressCC  = ccMail;
+			}else if(RequestConstants.REQUEST_STATUS.COMPLETE.equals(requested.getRequestStatus())){
+				templateSub = templateSub.replace("Approve", "Complete");
+				InternetAddress[] toMail = {  new InternetAddress(reqUserEmail)  };
+				addressTo = toMail;
+			}
+			
+			SysParam MAIL_HOST_URL = ApplicationCache.getParamGroupValue("EMAIL_CONFIG","MAIL_HOST_URL");
+			String url = MAIL_HOST_URL.getValue_2(); //  http://localhost:9000/KEIHINPortal/
+			url +=  "/request/requested_edit/"+requested.getRequest_ID();
+        	
+//        	System.out.println("url : "+url);
+        	
+//			SysParam headerTemp = ApplicationCache.getParamGroupValue("EMAIL_CONFIG", templateSub);
+//			SysParam bodyTemp = ApplicationCache.getParamGroupValue("EMAIL_CONFIG", templateBody);
+	
+//			Requested _requested = getRequestedDetail(requested.getId()+"");
+//			
+//			String subj = headerTemp.getValue_2();
+//			String body = bodyTemp.getValue_2();
+			
+		
+			
+			String subj = templateSub.replaceAll("\\{request_ID\\}", requested.getRequest_ID());
+			String body = templateBody;
+			body = body.replaceAll("\\{request_ID\\}", requested.getRequest_ID())
+			.replaceAll("\\{requestStatus\\}", requested.getStatus_name()!=null? requested.getStatus_name():"")
+			.replaceAll("\\{requestType\\}", (requested.getRequestType()==null && requested.getRequestType().getRequestType_name()==null)? "": requested.getRequestType().getRequestType_name())
+//			.replaceAll("\\{description\\}", _requested.getPurpose()==null? "":_requested.getPurpose())
+			.replaceAll("\\{url\\}", url);
+			 
+//			System.out.println(body);
+
+			
+			boolean suc = EmailUtils.sendEmail(addressTo, addressCC, subj, body);
+			return suc;
+		
+        } catch (Exception e) {
+			e.printStackTrace();
+			return false;
+        }
+	
+	}
+	
+	private InternetAddress[] buildToEmail(List<UserProfile> users) throws AddressException{
+		List<InternetAddress> toList = new ArrayList<InternetAddress>();
+		for (UserProfile usr : users) {
+			if(usr.getEmail()!=null){
+				toList.add(new InternetAddress(usr.getEmail()));
+			}
+		}
+		InternetAddress[] addressTo =  new InternetAddress[toList.size()];
+		return toList.toArray(addressTo);
+	}
+			
+
 	public ResponseResult requestUpdate(HttpServletRequest httpRequest, RequestBean requested) {
 		
 		ResponseResult responseResult = new ResponseResult();
@@ -392,11 +543,14 @@ public class RequestService extends AbstractCommonJdbcDao {
 				}
 			}*/
 			
+//			String mailStatus = RequestConstants.MAIL_STATUS.NO_SENT;
 			
 			/**-- Update Request  ---*/
 //			requested.setMailStatus(mailStatus);
 			
 			this.requestUpdate(requested);
+			
+			boolean isSendmail  = sendEmail(requested);
 			
 			/**-- Insert History records ---*/
 //			RequestedHistory history = new RequestedHistory(requested);
@@ -550,6 +704,59 @@ public class RequestService extends AbstractCommonJdbcDao {
 		listrequest.setData(list);
 		
 		return listrequest;
+	}
+
+
+	public ResponseResult getDashBoard(RequestBean bean) {
+		ResponseResult responseResult = new ResponseResult();
+		
+		String query = " select (select count(*) as rCount from tb_RequestHeader where 1=1 and status = 1) as 'Create' "+
+		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1 and (status <> 1 and status <> 7)) as 'On_Process'"+
+		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1 and status = 7) as 'Complete' "+
+		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1) as 'Summary' ";
+		 
+		Map<String, Object> result =  jdbcTemplate.queryForMap(query);
+		
+//		String querytop ""                                                             ";
+		
+		String querytop =" SELECT TOP 5 rd.part_id , pm.part_name, SUM(rd.part_qty) total_use, rd.part_price, SUM(rd.other_cost) other_cost, SUM(rd.total_cost) total_cost "   +
+		//"    ,MONTH(rd.createDate) AS [Month]"   +
+		"    ,YEAR(rd.createDate) AS [Year]"   +
+		" FROM tb_repairdetail rd"   +
+		" LEFT JOIN tb_partmaster pm ON rd.part_id = pm.part_id"   +
+		" WHERE 1=1"   +
+		" AND YEAR(rd.createDate) = YEAR(GETDATE())"   +
+		" GROUP BY"   +
+		//"     MONTH(rd.createDate)" ,  +
+		"     YEAR(rd.createDate)"   +
+		"     ,rd.part_id , pm.part_name,rd.part_price"   +
+		" ORDER BY rd.part_id"  ;
+		
+		List<Map<String, Object>> result_top =  jdbcTemplate.queryForList(querytop);
+		
+		String querytype = 
+			" SELECT rh.requesttype_id, rt.requesttype_name , CAST((COUNT(rh.requesttype_id) * 100.0 / (SELECT COUNT(*) FROM tb_RequestHeader)) AS DECIMAL(18, 2)) AS Percentage  "+
+			" FROM tb_RequestHeader rh"+
+			" LEFT JOIN tb_requesttype rt ON rh.requesttype_id = rt.requesttype_id"+
+			" WHERE 1=1"+
+			" GROUP BY rh.requesttype_id, rt.requesttype_name";
+			 
+				
+		List<Map<String, Object>> result_ty =  jdbcTemplate.queryForList(querytype);
+		
+		
+		Map dsmap = new HashMap();
+		
+		dsmap.put("request_count", result);
+		dsmap.put("part_top_5", result_top);
+		dsmap.put("request_type",result_ty);
+		
+		
+		responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+		responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		responseResult.setData(dsmap);
+		return responseResult;
+		
 	}
  
 

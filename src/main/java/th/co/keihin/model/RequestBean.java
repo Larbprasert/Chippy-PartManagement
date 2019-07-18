@@ -2,6 +2,8 @@ package th.co.keihin.model;
 
 import java.util.List;
 
+import javax.mail.internet.InternetAddress;
+
 import th.co.baiwa.common.persistence.entity.BaseDomain;
 
 public class RequestBean extends BaseDomain {
@@ -65,6 +67,11 @@ public class RequestBean extends BaseDomain {
 	private String confirmJudment;
 	private String concernQA;
 	private String maintenanceType;
+	
+	private InternetAddress[] addressTo;
+	private InternetAddress[] addressCC;
+	
+	
 
 	public String getRequest_ID() {
 		return request_ID;
@@ -416,6 +423,22 @@ public class RequestBean extends BaseDomain {
 
 	public void setAchApproveFlg(String achApproveFlg) {
 		this.achApproveFlg = achApproveFlg;
+	}
+
+	public InternetAddress[] getAddressTo() {
+		return addressTo;
+	}
+
+	public void setAddressTo(InternetAddress[] addressTo) {
+		this.addressTo = addressTo;
+	}
+
+	public InternetAddress[] getAddressCC() {
+		return addressCC;
+	}
+
+	public void setAddressCC(InternetAddress[] addressCC) {
+		this.addressCC = addressCC;
 	}
 
 }

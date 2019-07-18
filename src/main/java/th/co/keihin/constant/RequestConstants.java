@@ -15,6 +15,18 @@ public class RequestConstants {
 	}
  
 	
+	public static final class ROLE {
+		public static final String ROLE_ADMIN = "ROLE_ADMIN";
+		public static final String ROLE_MT_MNG = "ROLE_MT_MNG";
+		public static final String ROLE_MT_SUP = "ROLE_MT_SUP";
+		public static final String ROLE_MT_STAFF = "ROLE_MT_STAFF";
+		public static final String ROLE_REQ_MNG = "ROLE_REQ_MNG";
+		public static final String ROLE_REQ_SUP = "ROLE_REQ_SUP";
+		public static final String ROLE_REQ_USER = "ROLE_REQ_USER";
+		public static final String ROLE_QA = "ROLE_QA";
+	}
+	
+	
 	public static class REQUEST_STATUS {
 		public static final String CREATED = "1";// Created
 		public static final String APPROVE_LV1 = "2";

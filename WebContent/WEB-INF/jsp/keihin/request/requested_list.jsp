@@ -218,10 +218,11 @@
 								$(nTd).html(txt + 1);
 							}
 						},
-						{ "data": "request_ID" 
-							,"render" : function(val, vc , obj) {
-								return '<a href="${cPath}/request/requested_detail/'+ obj.request_ID +'" >'+obj.request_ID+'</a>';
-							}
+						{ 
+							"data": "request_ID" 
+// 							,"render" : function(val, vc , obj) {
+// 								return '<a href="${cPath}/request/requested_detail/'+ obj.request_ID +'" >'+obj.request_ID+'</a>';
+// 							}
 						}, 
 						{ "data": "requestType.requestType_name" }, 						 
 						{ "data": "requestBy" },
@@ -246,13 +247,11 @@
 				function getActionColumn(oData) {
 // 					console.log(oData);
 					var htm = "";
-					if($roleApprove){
-						if("7"==oData['requestStatus'] || "99"== oData['requestStatus']){
-							 var st = ("99"== oData['requestStatus']) ? "btn-danger":"btn-success";
-							 htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool '+st+' btn-table"><i class="fa fa-file-text-o"></i>&nbsp; View Request </button> ';
-						}else{
-							 htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-check-square-o"></i> Approve Request </button> ';
-						}
+					if("7"==oData['requestStatus'] || "99"== oData['requestStatus']){
+						 var st = ("99"== oData['requestStatus']) ? "btn-danger":"btn-success";
+						 htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool '+st+' btn-table"><i class="fa fa-file-text-o"></i>&nbsp; View Request </button> ';
+					}else{
+						 htm = '<button type="button" onclick="editDetail(\''+ oData.request_ID  +'\')" class="btn btn-box-tool btn-info btn-table"><i class="fa fa-check-square-o"></i> Approve Request </button> ';
 					}
 					return htm;
 

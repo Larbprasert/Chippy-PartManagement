@@ -23,8 +23,8 @@ public class EmailUtils {
 	private static String MAIL_SMTP_AUTH = "true";
 	private static String MAIL_SMTP_HOST = "smtp.gmail.com";
 	private static String MAIL_SMTP_PORT = "587";
-	private static String MAIL_PASS = "";
-	private static String MAIL_FROM_ADDR= "kroekpong@gmail.com";
+	private static String MAIL_PASS = "123,ki69";
+	private static String MAIL_FROM_ADDR= "partmanagementservice@gmail.com";
 	private static String MAIL_FROM_NAME= "Part Management System";
 	public static boolean TEST_SEND = true;
 

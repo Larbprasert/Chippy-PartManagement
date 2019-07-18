@@ -122,7 +122,7 @@
 		                  <div class="form-group">
 			                    <label for="" class="col-lg-4 control-label">Email</label>
 			                    <div class="col-lg-6">
-			                      <input type="text" class="form-control" name="email" value="${userProfile.email}" ${_EDIT_MODE}>
+			                      <input required="required" type="text" class="form-control" name="email" value="${userProfile.email}" ${_EDIT_MODE}>
 			                    <div class="help-block with-errors"></div>
 			                    </div>
 			                  </div>
