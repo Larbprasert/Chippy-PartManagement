@@ -312,17 +312,21 @@
 
 				<!-- 					<li class="header">Authorization</li> -->
 
+				
 				<li><a href="${cPath}/admin/user/viewUser.htm"> <i
 						class="fa fa-users"></i> <span>User Management</span>
 				</a></li>
+				
 
-				<li><a href="${cPath}/maintain/parameter.htm"> <i
-						class="fa  fa-hashtag"></i> <span>Parameter Config</span>
-				</a></li>
-
-<%-- 				<li><a href="${cPath}/reloadCache" target="_blank"> <i --%>
-<!-- 						class="fa  fa-refresh"></i> <span>Reload Cache</span> -->
-<!-- 				</a></li> -->
+				<security:authorize access="hasAnyRole('ADMIN')">
+					<li><a href="${cPath}/maintain/parameter.htm"> <i
+							class="fa  fa-hashtag"></i> <span>Parameter Config</span>
+					</a></li>
+	
+					<li><a href="${cPath}/reloadCache" target="_blank"> <i
+							class="fa  fa-refresh"></i> <span>Reload Cache</span>
+					</a></li>
+				</security:authorize>
 
 			</security:authorize>
 

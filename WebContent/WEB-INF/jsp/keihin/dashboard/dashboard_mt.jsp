@@ -110,7 +110,7 @@
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
               </div>
             </div>
             <!-- /.box-header -->
@@ -118,7 +118,7 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class=" ">
-                    <canvas id="pieChart" height="160" width="206" style="width: 206px; height: 160px;"></canvas>
+                    <canvas id="pieChart" height="143" width="206" style="width: 206px; height: 143px;"></canvas>
                   </div>
                 </div>
                  
@@ -152,7 +152,7 @@
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+<!--                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
               </div>
             </div>
             <!-- /.box-header -->
