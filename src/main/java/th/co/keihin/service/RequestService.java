@@ -278,7 +278,7 @@ public class RequestService extends AbstractCommonJdbcDao {
         	
         	if(user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_REQ_USER))){
         		sql.append(" AND rqh.user_id = ? ");
-        		wh.add(user.getUserId());
+        		wh.add(String.valueOf(user.getUserId()));
         	}
         	else if( user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_REQ_MNG))||
         			user.getAuthorities().stream().anyMatch( ro -> ro.getAuthority().contains(RequestConstants.ROLE.ROLE_REQ_SUP))

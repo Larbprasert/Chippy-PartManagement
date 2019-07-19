@@ -43,11 +43,13 @@
 									                    <i class="glyphicon glyphicon-ban-circle"></i>
 									                    <span>Cancel upload</span>
 									                </button>
-									                <button type="button" class="btn btn-danger delete">
-									                    <i class="glyphicon glyphicon-trash"></i>
-									                    <span>Delete</span>
-									                </button>
-									                <input type="checkbox" class="toggle minimal"> Select All
+									                
+<!-- 									                <button type="button" class="btn btn-danger delete"> -->
+<!-- 									                    <i class="glyphicon glyphicon-trash"></i> -->
+<!-- 									                    <span>Delete</span> -->
+<!-- 									                </button> -->
+									                
+<!-- 									                <input type="checkbox" class="toggle minimal"> Select All -->
 									                
 									                <span class="fileupload-process"></span>
 									            </div>
@@ -174,7 +176,9 @@ _UPLOAD_FILE.uploadTempId = [];
                     <i class="glyphicon glyphicon-trash"></i>
                     <span>Delete</span>
                 </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
+
+                <!--<input type="checkbox" name="delete" value="1" class="toggle">-->
+
             {% } else { %}
                 <button class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>

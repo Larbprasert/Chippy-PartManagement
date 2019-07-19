@@ -33,9 +33,10 @@
 		                                    <th>#</th>
 		                                    <th>Part ID</th>
 		                                    <th>Part Name</th>
-		                                    <th>Maker/Brand</th>
-		                                    <th>Mold/Type</th>
 		                                    <th>Qty</th>
+		                                    <th>Min Stock</th>
+		                                    <th>Max Stock</th>
+		                                    <th>Location</th>
 		                                    <th>Status</th>
 		                                </tr>
 						</thead>						 
@@ -122,14 +123,24 @@ $(document).ready(function() {
 							}
 						}, 
 						{ "data": "part_name" },
-						{ "data": "maker.maker_name" },
-						{ "data": "moldType.moldType_name" },
-						{ "data": "qty" },
+// 						{ "data": "maker.maker_name" },
+// 						{ "data": "moldType.moldType_name" },
+						{ "data": "qty"
+	
+							,"render" : function(val, vc , obj) {
+								return  obj.qty > obj.max_stock ?"<p style='color:green'><b>"+obj.qty+"</b></p>"
+										: obj.qty < obj.min_stock ? "<p style='color:red'><b>"+obj.qty+"<b></p>"
+												: obj.qty ;
+							}
+						},
+						{ "data": "min_stock" },
+						{ "data": "max_stock" },
+						{ "data": "location.location_name" },						
 						{ "data": "activeFlag_name" }   
 						
 				    ],
 				      "aoColumnDefs": [
-				      { "sClass": "text-center", "aTargets": [0,1,5] },
+				      { "sClass": "text-center", "aTargets": [0,1,3,4,5,7] },
 				    ],
 				    rowCallback: function (row, data) {}, 
 				    ordering: false, 

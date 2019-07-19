@@ -20,24 +20,27 @@
 
 				<li class="header">Master Data Maintenance</li>
 
-				<li class="treeview"><a href="#"> <i class="fa fa-flask"></i>
+				<li class="treeview"><a href="#"> <i class="fa fa-wrench"></i>
 						<span>Master Maintenance</span> <span class="pull-right-container"> <i
 							class="fa fa-angle-left pull-right"></i>
 					</span>
 				</a>
 					<ul class="treeview-menu">
-						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>User Type<span
-								class="pull-right-container"> <i
-									class="fa fa-angle-left pull-right"></i>
-							</span> </a>
-							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+						<security:authorize access="hasAnyRole('ADMIN')">
+							<li class="treeview"><a href="#"><i
+									class="fa fa-chevron-circle-right"></i>User Type<span
+									class="pull-right-container"> <i
+										class="fa fa-angle-left pull-right"></i>
+								</span> </a>
+								<ul class="treeview-menu">
+									
 									<li><a href="${cPath}/userType/userType_list.htm"><i
-											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
-								</security:authorize>
-							</ul>
-						</li>
+											class="fa fa-chevron-circle-right"></i> Search & Modify </a>
+									</li>
+									
+								</ul>
+							</li>
+						</security:authorize>
 
 						<li class="treeview"><a href="#"><i
 								class="fa fa-chevron-circle-right"></i>Check Tool<span
@@ -187,7 +190,7 @@
 			</security:authorize>
 
 			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
-				<li class="treeview"><a href="#"> <i class="fa fa-cubes"></i>
+				<li class="treeview"><a href="#"> <i class="fa fa-database"></i>
 						<span>Utility</span> <span class="pull-right-container"> <i
 							class="fa fa-angle-left pull-right"></i>
 					</span>
@@ -212,7 +215,7 @@
 
 			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF','ROLE_REQ_MNG', 'ROLE_REQ_SUP', 'ROLE_REQ_USER','ROLE_QA')">
 				<li class="header">Request Maintenance Data</li>
-				<li class="treeview"><a href="#"> <i class="fa fa-fire"></i>
+				<li class="treeview"><a href="#"> <i class="fa fa-pencil-square-o"></i>
 					<span>Request Maintenance Data</span> <span class="pull-right-container">
 							<i class="fa fa-angle-left pull-right"></i>
 					</span>
