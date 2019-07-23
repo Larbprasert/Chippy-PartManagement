@@ -144,9 +144,14 @@
 		                                                                    
 				                                <div class="form-group">
 					                                <p class="help-block"><b>Location / Process</b> <i class="fa  fa-asterisk text-red"></i></p>
-														<select class="form-control" name="location.location_ID" required>
-															<c:forEach var="item" items="${LOV_LOCATION}">
-																<option value="${item.code}" ${item.code == requestBean.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+<!-- 														<select class="form-control" name="location.location_ID" required> -->
+<%-- 															<c:forEach var="item" items="${LOV_LOCATION}"> --%>
+<%-- 																<option value="${item.code}" ${item.code == requestBean.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option> --%>
+<%-- 															</c:forEach>				 --%>
+<!-- 														</select> -->
+														<select class="form-control" name="machine.machine_ID" required>
+															<c:forEach var="item" items="${LOV_MACHINE}">
+																<option value="${item.code}" ${item.code == requestBean.machine.machine_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
 															</c:forEach>				
 														</select>
 				                                </div>

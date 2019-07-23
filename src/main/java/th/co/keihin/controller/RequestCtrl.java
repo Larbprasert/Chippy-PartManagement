@@ -25,6 +25,7 @@ import th.co.keihin.model.RepairDetail;
 import th.co.keihin.model.RequestBean;
 import th.co.keihin.service.CheckToolService;
 import th.co.keihin.service.LocationService;
+import th.co.keihin.service.MachineService;
 import th.co.keihin.service.RequestService;
 import th.co.keihin.service.RequestTypeService;
 import th.co.keihin.service.SectionService;
@@ -49,6 +50,9 @@ public class RequestCtrl {
 	
 	@Autowired
 	private RequestService requestService;
+
+	@Autowired
+	private MachineService machineService;
 	
 		
 //	
@@ -81,7 +85,9 @@ public class RequestCtrl {
 		
 		
 		mav.addObject("LOV_REQUESTTYPE",requestTypeService.loadActiveRequestType());
+
 		mav.addObject("LOV_LOCATION",locationService.loadActiveLocation());
+		mav.addObject("LOV_MACHINE",machineService.loadActiveMachine());
 		
 		mav.addObject("LOV_CHECKTOOLBEFORE", checkToolService.loadCheckToolBefore());
 		mav.addObject("LOV_CHECKTOOLAFTER", checkToolService.loadCheckToolAfter());
@@ -109,7 +115,9 @@ public class RequestCtrl {
 //		mav.addObject("LOV_SECTION",sectionService.loadActiveSection());
 		
 		mav.addObject("LOV_REQUESTTYPE",requestTypeService.loadActiveRequestType());
+		
 		mav.addObject("LOV_LOCATION",locationService.loadActiveLocation());
+		mav.addObject("LOV_MACHINE",machineService.loadActiveMachine());
 		
 		mav.addObject("LOV_CHECKTOOLBEFORE", checkToolService.loadCheckToolBefore());
 		mav.addObject("LOV_CHECKTOOLAFTER", checkToolService.loadCheckToolAfter());
@@ -136,7 +144,9 @@ public class RequestCtrl {
 		ModelAndView mav = new ModelAndView();
 		 
 		mav.addObject("LOV_REQUESTTYPE",requestTypeService.loadActiveRequestType());
+		
 		mav.addObject("LOV_LOCATION",locationService.loadActiveLocation());
+		mav.addObject("LOV_MACHINE",machineService.loadActiveMachine());
 		
 		mav.addObject("LOV_CHECKTOOLBEFORE", checkToolService.loadCheckToolBefore());
 		mav.addObject("LOV_CHECKTOOLAFTER", checkToolService.loadCheckToolAfter());

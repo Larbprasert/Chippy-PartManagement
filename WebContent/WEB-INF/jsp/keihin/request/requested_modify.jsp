@@ -157,9 +157,14 @@
 		                                                                    
 				                                <div class="form-group">
 					                                <p class="help-block question"><b>Location / Process</b></p>
-														<select class="form-control" name="location.location_ID" disabled>
-															<c:forEach var="item" items="${LOV_LOCATION}">
-																<option value="${item.code}" ${item.code == requestObj.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
+<!-- 														<select class="form-control" name="location.location_ID" disabled> -->
+<%-- 															<c:forEach var="item" items="${LOV_LOCATION}"> --%>
+<%-- 																<option value="${item.code}" ${item.code == requestObj.location.location_ID ? 'selected="selected"' : ''}  >${item.descTH}</option> --%>
+<%-- 															</c:forEach>				 --%>
+<!-- 														</select> -->
+														<select class="form-control" name="machine.machine_ID" disabled>
+															<c:forEach var="item" items="${LOV_MACHINE}">
+																<option value="${item.code}" ${item.code == requestObj.machine.machine_ID ? 'selected="selected"' : ''}  >${item.descTH}</option>
 															</c:forEach>				
 														</select>
 				                                </div>

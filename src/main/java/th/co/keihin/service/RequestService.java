@@ -32,6 +32,7 @@ import th.co.baiwa.common.util.UserLoginUtils;
 import th.co.keihin.constant.RequestConstants;
 import th.co.keihin.model.DepartmentBean;
 import th.co.keihin.model.LocationBean;
+import th.co.keihin.model.MachineBean;
 import th.co.keihin.model.RepairDetail;
 import th.co.keihin.model.RequestBean;
 import th.co.keihin.model.RequestTypeBean;
@@ -59,7 +60,9 @@ public class RequestService extends AbstractCommonJdbcDao {
 			SectionBean section = new SectionBean();
 			DepartmentBean department = new DepartmentBean();
 			RequestTypeBean requestType = new RequestTypeBean();
-			
+
+			MachineBean machine = new MachineBean();
+
 			request.setRequest_ID(rs.getString("request_ID"));
 			
 			requestType.setRequestType_ID(rs.getString("requestType_ID"));
@@ -88,6 +91,8 @@ public class RequestService extends AbstractCommonJdbcDao {
 			LocationBean location = new LocationBean();
 			RequestTypeBean requestType = new RequestTypeBean();
 			
+			MachineBean machine = new MachineBean();
+			
 			request.setRequest_ID(rs.getString("request_ID"));
 			
 			requestType.setRequestType_ID(rs.getString("requestType_ID"));
@@ -102,9 +107,13 @@ public class RequestService extends AbstractCommonJdbcDao {
 			section.setSection_name(rs.getString("section_name"));
 			request.setSection(section);
 			
-			location.setLocation_ID(rs.getString("location_id"));
-			location.setLocation_name(rs.getString("location_name"));
-			request.setLocation(location);
+//			location.setLocation_ID(rs.getString("location_id"));
+//			location.setLocation_name(rs.getString("location_name"));
+//			request.setLocation(location);
+			
+			machine.setMachine_ID(rs.getString("machine_id"));
+			machine.setMachine_name(rs.getString("machine_name"));
+			request.setMachine(machine);
 			
 			request.setBeforeDetail(rs.getString("beforeDetail"));
 
@@ -154,7 +163,10 @@ public class RequestService extends AbstractCommonJdbcDao {
 				new Object[] {
 					rqt.getRequest_ID(), rqt.getRequestType().getRequestType_ID(), 
 					rqt.getUserProfile().getUserId() , rqt.getUserProfile().getSection().getSection_ID(),
-					rqt.getLocation().getLocation_ID(),rqt.getBeforeDetail(),
+					
+//					rqt.getLocation().getLocation_ID(),rqt.getBeforeDetail(),
+					rqt.getMachine().getMachine_ID(),rqt.getBeforeDetail(),
+					
 					rqt.getRequestStatus(),
 					rqt.getCreateBy() ,
 					rqt.getCreateBy() 
@@ -179,7 +191,9 @@ public class RequestService extends AbstractCommonJdbcDao {
 		sql.append(", user_ID              "); 
 		sql.append(", section_ID           "); 
 		
-		sql.append(", location_ID          "); 
+//		sql.append(", location_ID          ");
+		sql.append(", machine_ID          ");
+		
 		sql.append(", informDate           "); 
 		sql.append(", informTime           "); 
 		sql.append(", beforeDetail         "); 
@@ -385,12 +399,18 @@ public class RequestService extends AbstractCommonJdbcDao {
 				"	,rqh.status requestStatus ,misc.value1 as status_name" + 
 				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  CreateBy" + 
 				"	,rqh.createDate , sec.section_ID,  sec.section_name " +
-				"	,loc.location_ID , loc.location_name , rqh.beforeDetail " +
+				
+//				"	,loc.location_ID , loc.location_name , rqh.beforeDetail " +
+				"	,mac.machine_ID , mac.machine_name , rqh.beforeDetail " +
+
 				"   FROM tb_RequestHeader rqh" + 
 				"	LEFT JOIN tb_RequestType rt on rqh.requestType_ID = rt.requestType_ID" + 
 				"	LEFT JOIN tbm_misc_data misc on rqh.status = misc.misc_code AND misc.misc_type = 'ApplicationStatus'" + 
 				"	LEFT JOIN tb_Section sec on sec.section_ID = rqh.section_ID " + 
-				"	LEFT JOIN tb_location loc on loc.location_ID = rqh.location_ID " + 
+				
+//				"	LEFT JOIN tb_location loc on loc.location_ID = rqh.location_ID " + 
+				"	LEFT JOIN tb_machine mac on mac.machine_ID = rqh.machine_ID COLLATE SQL_Latin1_General_CP1_CI_AS " +
+
 				"	LEFT JOIN adm_user_profile usr on rqh.user_ID =   CONVERT(VARCHAR(50),usr.user_ID) " + 
 				"   WHERE  rqh.request_ID =  ? ";
 		
@@ -641,9 +661,7 @@ public class RequestService extends AbstractCommonJdbcDao {
 			sql.append(", achApproveBy  = ?  ");
 			param.add(rqt.getUpdateBy());
 			
-			
 		}    
-		
 		
 		sql.append(" WHERE ");
 		sql.append("   request_ID = ? ");

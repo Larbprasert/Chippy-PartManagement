@@ -7,11 +7,14 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
+import th.co.keihin.model.LocationBean;
 import th.co.keihin.model.MachineBean;
 import th.co.keihin.model.ProductionLineBean;
 
@@ -159,5 +162,26 @@ public class MachineService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
+	}
+	
+	public List<LovInfo> loadActiveMachine() {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+			
+		String query = "Select a.machine_ID, a.machine_name "+
+				"From tb_machine a " + 
+				"where 1=1 and a.activeFlag <> 2 " +
+				"order by a.machine_ID";
+				
+		List<MachineBean> machinelist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(MachineBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (MachineBean machineBean : machinelist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(machineBean.getMachine_ID());
+			lovInfo.setDescTH(machineBean.getMachine_name());
+			lovInfo.setDescEN(machineBean.getMachine_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
 	}
 }
