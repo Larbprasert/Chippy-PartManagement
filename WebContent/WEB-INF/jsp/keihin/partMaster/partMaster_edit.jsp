@@ -52,19 +52,39 @@
 	
 	<div class="row">
 		<div class="col-lg-2">
-			<p class="help-block"><b>Qty:</b></p>
+			<p class="help-block"><b>Action:</b></p>
 		</div>
 		<div class="col-lg-4">
+			<select class="form-control" name="movementCode" required>
+				<c:forEach var="item" items="${LOV_MOVEMENT}">
+					<option value="${item.code}">${item.descTH}</option>
+				</c:forEach>				
+			</select>
+		</div>		
+	</div>
+	<br>
+	
+	<div class="row">
+		<div class="col-lg-2">
+			<p class="help-block"><b>Current Qty:</b></p>
+		</div>
+		<div class="col-lg-2">
+			<input type="text" class="form-control" placeholder="Qty" name="qty_before" value="${partMasterBean.qty}" readonly >
+		</div>
+		
+		<div class="col-lg-2">
+			<p class="help-block" align="right"><b>Qty:</b></p>
+		</div>
+		<div class="col-lg-2">
 			<input type="text" class="form-control" placeholder="Qty" name="qty" value="${partMasterBean.qty}" >
 		</div>
 		
 		<div class="col-lg-2">
-			<p class="help-block"><b>Price:</b></p>
+			<p class="help-block" align="right"><b>Price:</b></p>
 		</div>
-		<div class="col-lg-4">
+		<div class="col-lg-2">
 			<input type="text" class="form-control" placeholder="Price" name="price" value="${partMasterBean.price}" >
 		</div>	
-			
 	</div>
 	<br>
 
@@ -135,8 +155,7 @@
 	</div>
 	<br>
 
-	<div class="row">		
-		
+	<div class="row">
 		<div class="col-lg-2">
 			<p class="help-block"><b>Status:</b></p>
 		</div>
@@ -146,7 +165,7 @@
 					<option value="${item.code}" ${item.code == partMasterBean.activeFlag ? 'selected="selected"' : ''}  >${item.descTH}</option>
 				</c:forEach>				
 			</select>
-		</div>			
+		</div>				
 	</div>
 </div>
 	                        

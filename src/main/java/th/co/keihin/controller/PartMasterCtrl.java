@@ -89,6 +89,8 @@ public class PartMasterCtrl {
 		mav.addObject("LOV_MOLDTYPE",moldTypeService.loadActiveMoldType());
 		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
+		
+		mav.addObject("LOV_MOVEMENT",ApplicationCache.getLovMovement());
 				
 		mav.setViewName("partMaster_edit");
 		return mav;

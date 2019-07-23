@@ -2,6 +2,7 @@ package th.co.keihin.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.UnitTypeBean;
+import th.co.portal.model.gas.ResponseResult;
 import th.co.keihin.model.LocationBean;
 import th.co.keihin.model.MakerBean;
 import th.co.keihin.model.MoldTypeBean;
@@ -72,7 +74,12 @@ public class PartMasterService {
 			moldType.setMoldType_name(rs.getString("moldType_name"));
 			partMaster.setMoldType(moldType);
 			
+//			partMaster.setMovementCode(rs.getInt("movementCode"));
+//			partMaster.setMovement_name(rs.getString("movement_name"));
 			
+//			partMaster.setQty_before(rs.getInt("qty_before"));
+			
+					
 			return partMaster;
 		}
 	};
@@ -252,7 +259,9 @@ public class PartMasterService {
 					+ "where 1=1 "+
 					"and sysPart_ID=? ");
 	    	
-			System.out.println("Edit Part_ID = " + PartMaster.getPart_ID());
+//			System.out.println("Edit Part_ID = " + PartMaster.getPart_ID());
+//			System.out.println("Movement Code = " + PartMaster.getMovementCode());
+//			System.out.println("Qty Before = " + PartMaster.getQty_before());
 	    	
 	    	int updateRecord = jdbcTemplate.update(query,
 	    			new Object[] {  
@@ -274,6 +283,14 @@ public class PartMasterService {
 							
 							"sys" + PartMaster.getPart_ID()
 	    					});
+	    	
+	    	List param = new ArrayList();
+			param.add(PartMaster.getPart_ID());
+			param.add(PartMaster.getQty_before());
+			param.add(PartMaster.getQty());
+			param.add(PartMaster.getMovementCode());
+			param.add(PartMaster.getUpdateBy());
+			int insertMovement = jdbcTemplate.update("{call sp_PartMovement_Insert(?,?,?,?,?)}", param.toArray() );
 
 		} catch (Exception e) {
 			e.printStackTrace();

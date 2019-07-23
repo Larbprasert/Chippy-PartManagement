@@ -33,6 +33,11 @@ public class PartMasterBean extends BaseDomain{
     private int activeFlag;
     private String activeFlag_name;
     
+    private int movementCode;
+    private String movement_name;
+    
+    private int qty_before;
+    
 //	private Date createDate;
 //	private String createBy;
 //	
@@ -144,5 +149,31 @@ public class PartMasterBean extends BaseDomain{
 	public void setActiveFlag_name(String activeFlag_name) {
 		this.activeFlag_name = activeFlag_name;
 	}
+
+	public int getMovementCode() {
+		return movementCode;
+	}
+
+	public void setMovementCode(int movementCode) {
+		this.movementCode = movementCode;
+	}
+
+	public String getMovement_name() {
+		return movement_name;
+	}
+
+	public void setMovement_name(String movement_name) {
+		this.movement_name = movement_name;
+	}
+
+	public int getQty_before() {
+		return qty_before;
+	}
+
+	public void setQty_before(int qty_before) {
+		this.qty_before = qty_before;
+	}
+	
+	
 	
 }
