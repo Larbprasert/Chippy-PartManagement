@@ -290,7 +290,8 @@ public class PartMasterService {
 			param.add(PartMaster.getQty());
 			param.add(PartMaster.getMovementCode());
 			param.add(PartMaster.getUpdateBy());
-			int insertMovement = jdbcTemplate.update("{call sp_PartMovement_Insert(?,?,?,?,?)}", param.toArray() );
+			param.add("Master");
+			int insertMovement = jdbcTemplate.update("{call sp_PartMovement_Insert(?,?,?,?,?,?)}", param.toArray() );
 
 		} catch (Exception e) {
 			e.printStackTrace();
