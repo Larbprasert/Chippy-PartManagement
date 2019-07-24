@@ -19,7 +19,7 @@
 					<div class="box-tools pull-right">
 						<button type="button"
 							class="btn btn-box-tool btn-success btn-table" onclick="doAdd()">
-							<i class="fa fa-plus"></i>  Register New Mold Type
+							<i class="fa fa-plus"></i>  Register New Model / Type
 						</button>
 					</div>
 				</div>
@@ -31,8 +31,8 @@
 						<thead class="bg-green color-palette">
 		                                <tr>
 		                                    <th>#</th>
-		                                    <th>Mold Type ID</th>
-		                                    <th>Mold Type Name</th>
+		                                    <th>Model ID</th>
+		                                    <th>Model Name</th>
 		                                    <th>Status</th>
 		                                </tr>
 						</thead>						 

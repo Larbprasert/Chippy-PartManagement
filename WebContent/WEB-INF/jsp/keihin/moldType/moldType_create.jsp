@@ -15,7 +15,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">MoldType - Create</h1>
+                    <h1 class="page-header">Model / Type - Create</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -28,7 +28,7 @@
             	<div class="col-lg-6">
                     <div class="panel panel-warning">
                         <div class="panel-heading">
-                            <b>Mold Type :</b> Create New 
+                            <b>Model / Type :</b> Create New 
                         </div>
                         
                        	
@@ -36,7 +36,7 @@
                        		
 		       					<div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Mold Type ID : </b></p>
+                       					<p class="help-block"><b>Model ID : </b></p>
                        				</div>
                        				<div class="col-lg-8">
                        					<input type="text" class="form-control" placeholder="Mold Type ID" name="moldType_ID" value="" >
@@ -45,7 +45,7 @@
                        			<br>
                        			<div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Mold Type Name : </b></p>
+                       					<p class="help-block"><b>Model Name : </b></p>
                        				</div>
                        				<div class="col-lg-8">
                        					<input type="text" class="form-control" placeholder="Mold Type Name" name="moldType_name" value="" >

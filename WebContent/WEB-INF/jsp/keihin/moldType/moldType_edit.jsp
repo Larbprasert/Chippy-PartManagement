@@ -15,7 +15,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Mold Type Edit</h1>
+                    <h1 class="page-header">Model / Type Edit</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -35,7 +35,7 @@
 		       					
 		                        <div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Mold Type ID : </b></p>
+                       					<p class="help-block"><b>Model ID : </b></p>
                        				</div>
                        				<div class="col-lg-8">
                        					<input type="text" class="form-control" placeholder="Mold Type ID" name="moldType_ID" value="${moldTypeBean.moldType_ID}" readonly>
@@ -44,7 +44,7 @@
                        			<br>
                        			<div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Mold Type Name : </b></p>
+                       					<p class="help-block"><b>Model Name : </b></p>
                        				</div>
                        				<div class="col-lg-8">
                        					<input type="text" class="form-control" placeholder="Mold Type Name" name="moldType_name" value="${moldTypeBean.moldType_name}" >
