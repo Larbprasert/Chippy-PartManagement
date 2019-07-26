@@ -729,8 +729,8 @@ public class RequestService extends AbstractCommonJdbcDao {
 		ResponseResult responseResult = new ResponseResult();
 		
 		String query = " select (select count(*) as rCount from tb_RequestHeader where 1=1 and status = 1) as 'Create' "+
-		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1 and (status <> 1 and status <> 7)) as 'On_Process'"+
-		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1 and status = 7) as 'Complete' "+
+		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1 and (status <> 1 and status <> 7 and status <> 99)) as 'On_Process'"+
+		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1 and status in(7,99)) as 'Complete' "+
 		 "    ,(select count(*) as rCount from tb_RequestHeader where 1=1) as 'Summary' ";
 		 
 		Map<String, Object> result =  jdbcTemplate.queryForMap(query);
