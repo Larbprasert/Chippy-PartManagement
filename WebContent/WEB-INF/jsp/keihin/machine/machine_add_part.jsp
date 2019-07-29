@@ -70,9 +70,9 @@
 		  </div>
 		</div>
 		
-  <script type="text/javascript">
   
-  var selPrice;
+  <script type="text/javascript">
+    var selPrice;
         $(document).ready(function() {
 
         	var options = {
@@ -127,50 +127,47 @@
 					.filter(".with-ajax")
 					.ajaxSelectPicker(options);
 // 				   $("select").trigger("change");
-        
-	        $('#part_ID').on('change', function(){
-					selPrice =	 $(this).find(':selected').data('price');
-		            console.log(selPrice);
-					if(selPrice>0){
-						$('#price').val(selPrice.toFixed(2));
-					}
-		        	
-		            if($('#qty').val()>0 && selPrice>0){
-// 		        		$('#total_cost').val($('#qty').val()*selPrice);
-		            	var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
-		        		$('#total_cost').val(v.toFixed(2));
-		        	}
-		            
-		            
-	          });
-        
-        
 
+//-- Change part
+// 	        $('#part_ID').on('change', function(){
+// 					selPrice =	 $(this).find(':selected').data('price');
+// 		            console.log(selPrice);
+// 					if(selPrice>0){
+// 						$('#price').val(selPrice.toFixed(2));
+// 					}
+		        	
+// 		            if($('#qty').val()>0 && selPrice>0){
+// // 		        		$('#total_cost').val($('#qty').val()*selPrice);
+// 		            	var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
+// 		        		$('#total_cost').val(v.toFixed(2));
+// 		        	}
+		            
+		            
+// 	          });
+ 
 	  });
-        
-        
-        
-        
-        $('#qty').on('change', function(){
-//         	if($('#qty').val()>=0 && selPrice>=0){
-//         		$('#price').val($('#qty').val()*selPrice);
+
+// -- Change Qty        
+//         $('#qty').on('change', function(){
+// //         	if($('#qty').val()>=0 && selPrice>=0){
+// //         		$('#price').val($('#qty').val()*selPrice);
+// //         	}
+//         	if($('#qty').val()>=0 && selPrice>=0 && $('#other_cost').val()>=0){
+//         		var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
+//         		$('#total_cost').val(v.toFixed(2));
 //         	}
-        	if($('#qty').val()>=0 && selPrice>=0 && $('#other_cost').val()>=0){
-        		var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
-        		$('#total_cost').val(v.toFixed(2));
-        	}
-        	this.value = parseFloat(this.value).toFixed(0);
+//         	this.value = parseFloat(this.value).toFixed(0);
         	
-        });
+//         });
         
-        $('#other_cost').on('change', function(){
-        	if($('#qty').val()>=0 && selPrice>=0 && $('#other_cost').val()>=0){
-        		var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
-        		$('#total_cost').val(v.toFixed(2));
-        	}
+//         $('#other_cost').on('change', function(){
+//         	if($('#qty').val()>=0 && selPrice>=0 && $('#other_cost').val()>=0){
+//         		var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
+//         		$('#total_cost').val(v.toFixed(2));
+//         	}
         	
-        	this.value = parseFloat(this.value).toFixed(2);
-        });
+//         	this.value = parseFloat(this.value).toFixed(2);
+//         });
 
         
         function actionSubmitPart(){
@@ -191,11 +188,12 @@
         		jsond.request_ID = reqId;
         		jsond.part_ID = $('#part_ID').val();
         		jsond.part_qty = $('#qty').val();
-        		jsond.part_price = $('#price').val();
-        		jsond.other_cost = $('#other_cost').val();
-        		jsond.total_cost = $('#total_cost').val();
         		
-//         		console.log(jsond);
+//         		jsond.part_price = $('#price').val();
+//         		jsond.other_cost = $('#other_cost').val();
+//         		jsond.total_cost = $('#total_cost').val();
+        		
+         		console.log(jsond);
 
 				bootbox.confirm({
 			 		    title: "Confirm",
@@ -239,8 +237,4 @@
 					
 				
         }  
-
-        
-        
-        
 		</script>
