@@ -116,14 +116,18 @@
 
 	<div class="row">
 		<div class="col-lg-2">
+			<p class="help-block"><b>Rank:</b></p>
+		</div>
+		<div class="col-lg-4">
+			<input type="text" class="form-control" placeholder="Rank" name="rank_name" value="${partMasterBean.rank_name}" readonly>
+		</div>
+		<div class="col-lg-2">
 			<p class="help-block"><b>Status:</b></p>
 		</div>
 		<div class="col-lg-4">
 			<input type="text" class="form-control" placeholder="Status" name="activeFlag_name" value="${partMasterBean.activeFlag_name}" readonly>
 		</div>
-		<div class="col-lg-6">
-			
-		</div>				
+						
 	</div>
 </div>
 	                        

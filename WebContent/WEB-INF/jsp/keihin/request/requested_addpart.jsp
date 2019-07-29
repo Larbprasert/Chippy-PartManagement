@@ -16,7 +16,7 @@
 						<input type="text" class="form-control" id="part_ID" name="part_ID" >
 						
 <!-- 							for test -->
-						<input id="request_ID" type="hidden" value="<%=request_ID %>" />							
+<%-- 						<input id="request_ID" type="hidden" value="<%=request_ID %>" />							 --%>
 					</div>
 					
 					<div class="form-group">

@@ -56,8 +56,7 @@ public class PartMasterService {
 			partMaster.setCreateDate(rs.getDate("createDate"));
 			partMaster.setUpdateBy(rs.getString("updateBy"));
 			partMaster.setUpdateDate(rs.getDate("updateDate"));
-			
-			
+		
 			unitType.setUnitType_ID(rs.getString("unitType_ID"));
 			unitType.setUnitType_name(rs.getString("unitType_name"));
 			partMaster.setUnitType(unitType);
@@ -78,7 +77,10 @@ public class PartMasterService {
 //			partMaster.setMovement_name(rs.getString("movement_name"));
 			
 //			partMaster.setQty_before(rs.getInt("qty_before"));
-			
+
+			partMaster.setRank(rs.getInt("rank"));				
+			partMaster.setRank_name(rs.getString("rank_name"));
+
 					
 			return partMaster;
 		}
@@ -94,12 +96,14 @@ public class PartMasterService {
 				+ ",mk.maker_name "
 				+ ",mt.moldType_Name "
 				+ ",act.value1 as activeFlag_name "
+				+ ",rank.value1 as rank_name "
 				+ "From tb_partMaster pm "
 				+ "LEFT JOIN tb_UnitType ut ON pm.unitType_ID = ut.unitType_ID "
 				+ "LEFT JOIN tb_Location lc ON pm.location_ID = lc.location_ID "
 				+ "LEFT JOIN tb_Maker mk ON pm.maker_ID = mk.maker_ID COLLATE database_default "
 				+ "LEFT JOIN tb_MoldType mt ON pm.moldType_ID = mt.moldType_ID "
 				+ "LEFT JOIN tbm_misc_data act on pm.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' "
+				+ "LEFT JOIN tbm_misc_data rank on pm.rank = rank.misc_code and rank.misc_type = 'Ranking' "
 				+ "where 1=1 "
 				+ "and pm.activeFlag <> 2 " 
 				+ "and pm.part_ID='" + partMaster_ID +"'"; 
@@ -121,17 +125,17 @@ public class PartMasterService {
 				+ ",mk.maker_name "
 				+ ",mt.moldType_Name "
 				+ ",act.value1 as activeFlag_name "
+				+ ",rank.value1 as rank_name "
 				+ "From tb_partMaster pm "
 				+ "LEFT JOIN tb_UnitType ut ON pm.unitType_ID = ut.unitType_ID "
 				+ "LEFT JOIN tb_Location lc ON pm.location_ID = lc.location_ID "
 				+ "LEFT JOIN tb_Maker mk ON pm.maker_ID = mk.maker_ID COLLATE database_default "
 				+ "LEFT JOIN tb_MoldType mt ON pm.moldType_ID = mt.moldType_ID "
 				+ "LEFT JOIN tbm_misc_data act on pm.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' "
+				+ "LEFT JOIN tbm_misc_data rank on pm.rank = rank.misc_code and rank.misc_type = 'Ranking' "
 				+ "where 1=1 "
 				+ "and pm.activeFlag <> 2 ";
 				
-		
-		
 		if(StringUtils.isNotEmpty(bean.getPart_name())){
 			query += " and ( pm.part_ID like '%"+bean.getPart_name()+"%' " ;
 			query += " or pm.part_name like '%"+bean.getPart_name()+"%' ) " ;
@@ -187,9 +191,10 @@ public class PartMasterService {
 						+ "qty,"
 						+ "price,"
 						+ "activeFlag,"
+						+ "rank,"
 						+ "createDate,"
 						+ "createBy) "+
-						"values(?,?,?,?,?,?,?,?,?,?,?,?,getdate(),?) ";
+						"values(?,?,?,?,?,?,?,?,?,?,?,?,?,getdate(),?) ";
 			jdbcTemplate.update(query,
 					new Object[] {  
 							"sys" + PartMaster.getPart_ID(),
@@ -207,6 +212,7 @@ public class PartMasterService {
 							PartMaster.getQty(),
 							PartMaster.getPrice(),
 							PartMaster.getActiveFlag(),
+							PartMaster.getRank(),
 							PartMaster.getCreateBy(),
 							});
 			
@@ -254,6 +260,7 @@ public class PartMasterService {
 					+ "qty=?,"
 					+ "price=?,"
 					+ "activeFlag=?,"
+					+ "rank=?,"
 					+ "updateBy=?, "
 					+ "updateDate=getdate() "
 					+ "where 1=1 "+
@@ -278,6 +285,7 @@ public class PartMasterService {
 							PartMaster.getQty(),
 							PartMaster.getPrice(),
 							PartMaster.getActiveFlag(),
+							PartMaster.getRank(),
 							
 							PartMaster.getUpdateBy(),
 							

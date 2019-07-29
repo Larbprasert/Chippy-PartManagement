@@ -43,7 +43,10 @@ public class PartMasterBean extends BaseDomain{
 //	
 //	private Date updateDate;
 //	private String updateBy;
-	
+
+    private int rank;
+    private String rank_name;
+    
 
 	public String getSysPart_ID() {
         return sysPart_ID;
@@ -173,6 +176,24 @@ public class PartMasterBean extends BaseDomain{
 	public void setQty_before(int qty_before) {
 		this.qty_before = qty_before;
 	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public String getRank_name() {
+		return rank_name;
+	}
+
+	public void setRank_name(String rank_name) {
+		this.rank_name = rank_name;
+	}
+
+	
 	
 	
 	

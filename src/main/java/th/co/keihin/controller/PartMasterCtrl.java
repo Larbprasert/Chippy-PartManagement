@@ -73,6 +73,8 @@ public class PartMasterCtrl {
 		
 		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 
+		mav.addObject("LOV_RANKING",ApplicationCache.getLovRanking());
+
 		mav.setViewName("partMaster_create");
 		return mav;
 	}
@@ -92,6 +94,8 @@ public class PartMasterCtrl {
 		
 		mav.addObject("LOV_MOVEMENT",ApplicationCache.getLovMovement());
 				
+		mav.addObject("LOV_RANKING",ApplicationCache.getLovRanking());
+		
 		mav.setViewName("partMaster_edit");
 		return mav;
 	}

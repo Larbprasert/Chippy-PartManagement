@@ -81,6 +81,9 @@ public class ApplicationCache {
 	private static List<LovInfo> LOV_MAINTENACETYPE = new ArrayList<LovInfo>();
 	private static List<LovInfo> LOV_JUDMENT = new ArrayList<LovInfo>();	
 	private static List<LovInfo> LOV_MOVEMENT = new ArrayList<LovInfo>();
+
+	private static List<LovInfo> LOV_RANKING = new ArrayList<LovInfo>();
+	
 		
 	/********************* Method for Get Cache - Start *********************/
 	
@@ -317,6 +320,8 @@ public class ApplicationCache {
 		LOV_MAINTENACETYPE = lovDao.loadMaintenanceType();
 		LOV_JUDMENT = lovDao.loadJudment();
 		LOV_MOVEMENT = lovDao.loadMovement();
+		
+		LOV_RANKING = lovDao.loadRanking();
 //		Load constanst of Partmanagement value to temp server
 		
 	}
@@ -370,6 +375,10 @@ public class ApplicationCache {
 	
 	public static List<LovInfo> getLovMovement() {
 		return LOV_MOVEMENT;
+	}
+	
+	public static List<LovInfo> getLovRanking() {
+		return LOV_RANKING;
 	}
 //Load constanst of Partmanagement value to temp server
 }

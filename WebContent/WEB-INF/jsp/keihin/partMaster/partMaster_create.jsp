@@ -132,6 +132,16 @@
 
 	<div class="row">
 		<div class="col-lg-2">
+			<p class="help-block"><b>Ranking:</b></p>
+		</div>
+		<div class="col-lg-4">
+			<select class="form-control" name="rank" required>
+				<c:forEach var="item" items="${LOV_RANKING}">
+					<option value="${item.code}" ${item.code == partMasterBean.rank ? 'selected="selected"' : ''}  >${item.descTH}</option>
+				</c:forEach>				
+			</select>
+		</div>
+		<div class="col-lg-2">
 			<p class="help-block"><b>Status:</b></p>
 		</div>
 		<div class="col-lg-4">
@@ -141,9 +151,6 @@
 				</c:forEach>				
 			</select>
 		</div>
-		<div class="col-lg-6">
-			
-		</div>				
 	</div>
 </div>
 

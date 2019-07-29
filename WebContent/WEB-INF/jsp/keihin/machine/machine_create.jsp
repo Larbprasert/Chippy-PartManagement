@@ -76,6 +76,47 @@
                        				</div>	
                        			</div>
                                 
+                                <br>
+								<!-- /.row -->
+<!--                                 <div class="row"> -->
+<!--                                 	<div class="col-lg-12"> -->
+<!--                                 		<p class="help-block question"><b> รายละเอียดการใช้อะไหล่  </b> </p>	 -->
+<!--                                 	</div> -->
+<!--                                 </div> -->
+                                <!-- /.row --> 
+
+
+                                <!-- /.row -->
+                                <div class="row" >
+                                	<div class="col-lg-12">
+                                	
+										<div class="table-title">
+							                <div class="row">
+							                    <div class="col-sm-12"  >
+							                    	<button type="button" class="btn btn-info add-new" id="btnnewPart" onclick="popupAddpart()"><i class="fa fa-plus"></i> Add Part</button>                     	 
+							                    	&nbsp;<button type="button" class="btn btn-danger" id="btnDelPart" onclick="selectDelete()"><i class="fa fa-trash-o"></i> Delete Part</button>                     	 
+							                    </div>                    
+							                </div>
+							            </div>
+						 
+										<%@ include file="machine_add_part.jsp"%> 
+						 
+										<table id="part-table" class="table table-striped table-hover table-bordered">
+							                <thead class="bg-green color-palette">
+							                    <tr>
+							                        <th>#</th>
+							                        <th>Part ID</th>
+							                        <th>Part Name</th>
+													<th>Qty</th>
+							                        <th>Actions</th>
+							                    </tr>
+							                </thead>
+							             </table>
+									</div>
+                               </div>
+
+										<!-- /.row -->
+
                                 
                                   					 	       
 	                        </div>

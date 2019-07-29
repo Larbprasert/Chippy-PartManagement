@@ -186,6 +186,22 @@ public class LovDao extends AbstractCommonJdbcDao {
 			
 		});
 	}
+
+	public List<LovInfo> loadRanking() {
+		String query = "select misc_code,value1 from tbm_misc_data where 1=1 and misc_type = 'Ranking' order by misc_code";
+		return executeQuery(query, new RowMapper<LovInfo>() {
+			
+			@Override
+			public LovInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				LovInfo info = new LovInfo();
+				info.setCode(rs.getString("misc_code"));
+				info.setDescEN(rs.getString("value1"));
+				info.setDescTH(rs.getString("value1"));
+				return info;
+			}
+			
+		});
+	}
 	
 	
 //	Load constanst of Partmanagement value to temp server	
