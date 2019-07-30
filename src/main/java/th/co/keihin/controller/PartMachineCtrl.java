@@ -31,7 +31,6 @@ public class PartMachineCtrl {
 	
 	@Autowired
 	private PartMasterService partMasterService;
-
 	
 	@Autowired
 	private MachineService machineService;

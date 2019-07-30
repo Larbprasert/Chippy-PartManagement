@@ -14,15 +14,22 @@ import org.springframework.stereotype.Repository;
 
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.baiwa.preferences.entity.LovInfo;
+import th.co.keihin.constant.RequestConstants;
 import th.co.keihin.model.LocationBean;
 import th.co.keihin.model.MachineBean;
+import th.co.keihin.model.PartMachineBean;
 import th.co.keihin.model.ProductionLineBean;
+import th.co.keihin.model.RepairDetail;
+import th.co.portal.model.gas.ResponseResult;
 
 @Repository("machineService")
 public class MachineService {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private PartMachineService partMachineService;
 	
 	private RowMapper MACHINE_MAPPER = new RowMapper(){
 		
@@ -113,6 +120,8 @@ public class MachineService {
 							machine.getCreateBy(),
 							machine.getProductionLine().getProductionLine_ID(),
 							});
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 	
@@ -184,4 +193,84 @@ public class MachineService {
 		}
 		return lovInfos;
 	}
+	
+	
+	
+	
+	
+	//################################################### Part in Machine
+	public DataTableAjax<PartMachineBean> getPartMachine(PartMachineBean bean) {
+		String query = "SELECT pmac.* , mac.machine_name, pm.part_name " + 
+				"FROM tb_Part_Machine pmac " + 
+				"  LEFT JOIN tb_Machine mac on pmac.machine_ID = mac.machine_ID COLLATE SQL_Latin1_General_CP1_CI_AS " + 
+				"  LEFT JOIN tb_PartMaster pm on pmac.part_ID = pm.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS " + 
+				"WHERE 1=1 " +
+				"and mac.machine_ID= ? "; 
+		List list = jdbcTemplate.queryForList(query,new Object[] { bean.getMachine_ID() } );
+		
+		DataTableAjax<PartMachineBean> listpartmachine = new DataTableAjax<PartMachineBean>();
+		int total = list!=null? list.size():0;
+		listpartmachine.setRecordsTotal(total);
+		listpartmachine.setRecordsFiltered(total);
+		listpartmachine.setData(list);
+		
+		return listpartmachine;
+	}
+	
+	public ResponseResult partMachineSave(PartMachineBean partMachine) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("createBy : " + partMachine.getCreateBy() + " || machine_name: " + partMachine.getMachine().getMachine_name() + 
+				" || machine_ID: " + partMachine.getMachine_ID() + " || Part_ID: " + partMachine.getPart_ID() +
+				" || machine_ID: " + partMachine.getPartMaster().getPart_name());
+		
+		try {
+
+			String query = "INSERT INTO tb_part_machine (part_ID,machine_ID,qty,createDate,createBy) "+
+							"VALUES (?,?,?,getdate(),?) ";		
+			jdbcTemplate.update(query,
+					new Object[] {  
+							partMachine.getPart_ID(),
+							partMachine.getMachine_ID(),
+							partMachine.getQty(),
+							partMachine.getCreateBy(),
+							});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ResponseResult responseResult = new ResponseResult();
+		
+		responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+		responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		responseResult.setData(partMachine);
+		return responseResult;	
+	}
+	
+		
+	public ResponseResult partMachineDelete(PartMachineBean partMachine) {
+		// TODO Auto-generated method stub
+		try {
+
+			String query = "DELETE FROM tb_partmachine WHERE 1=1 AND part_ID=?, AND machine_ID = ?";
+			
+			int updateRecord = jdbcTemplate.update(query,
+					new Object[] {  
+							partMachine.getPart_ID(),							
+							partMachine.getMachine_ID()
+							});
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ResponseResult responseResult = new ResponseResult();
+		
+		responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+		responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		responseResult.setData(partMachine);
+		return responseResult;		
+	}
+	//################################################### Part in Machine
+	
 }

@@ -13,7 +13,16 @@ public class PartMachineBean extends BaseDomain{
     private PartMasterBean partMaster;
     private MachineBean machine;
     
-        
+   
+    public PartMachineBean(){
+		
+	}
+	
+	public PartMachineBean(String partID, String machineID, int qty) {
+		this.part_ID =partID;
+		this.machine_ID =machineID;
+		this.qty =qty;
+	}
     
 	public PartMasterBean getPartMaster() {
 		return partMaster;

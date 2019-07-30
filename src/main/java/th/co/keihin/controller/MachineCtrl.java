@@ -8,17 +8,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
 
 import th.co.keihin.service.MachineService;
+import th.co.keihin.service.PartMachineService;
+import th.co.keihin.constant.RequestConstants;
 import th.co.keihin.model.MachineBean;
-
+import th.co.keihin.model.PartMachineBean;
 import th.co.keihin.service.ProductionLineService;
+import th.co.portal.model.gas.ResponseResult;
 import th.co.keihin.model.ProductionLineBean;
+import th.co.keihin.model.RepairDetail;
 
 
 @RestController
@@ -29,6 +35,12 @@ public class MachineCtrl {
 
 	@Autowired
 	private ProductionLineService productionLineService;
+	
+	@Autowired
+	private PartMachineService partMachineService;
+	
+	
+	
 //	
 	@RequestMapping("/machine/machine_list.htm")
 	public ModelAndView machine_list(HttpServletRequest httpRequest) {
@@ -102,4 +114,63 @@ public class MachineCtrl {
 		return dataTableAjax;
 	}
 
+	
+	
+	//################################################### Part in Machine
+	@RequestMapping("/request/getPartMachine.json")
+	public DataTableAjax<PartMachineBean> getPartMachine(HttpServletRequest request, HttpServletResponse response,PartMachineBean bean) throws ServletException, IOException {
+		DataTableAjax<PartMachineBean> dataTableAjax = machineService.getPartMachine(bean);
+		return dataTableAjax;
+	}
+		
+	@RequestMapping(value = "/request/partMachineDelete", method = RequestMethod.POST)
+	public ResponseResult deletePartMachine( PartMachineBean request,
+			RedirectAttributes redir,
+			HttpServletRequest httpRequest) {
+		
+		ResponseResult responseResult = new ResponseResult();
+		
+		if(request.getMachine().getMachine_ID()!=null){
+			
+//			String requestId = request.getRequest_ID();
+			String partID = request.getPart_ID();
+			String machineID = request.getMachine_ID();
+			Integer qty = request.getQty();
+			
+			responseResult = machineService.partMachineDelete(new PartMachineBean(partID,machineID,qty)); 
+			System.out.println("deletePart > partId:"+partID+", MachineID:"+machineID+", Qty:"+qty);
+						
+			responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+			responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		
+		}
+		
+		return responseResult;
+	}
+	
+	@RequestMapping(value = "/request/partMachineSave", method = RequestMethod.POST)
+	public ResponseResult savePartMachine(PartMachineBean request,
+			RedirectAttributes redir,
+			HttpServletRequest httpRequest) {
+		
+		ResponseResult responseResult = new ResponseResult();
+		
+		if(request.getMachine().getMachine_ID()!=null){
+			
+//			String requestId = request.getRequest_ID();
+			String partID = request.getPart_ID();
+			String machineID = request.getMachine_ID();
+			Integer qty = request.getQty();
+			
+			responseResult = machineService.partMachineSave(new PartMachineBean(partID,machineID,qty)); 
+			System.out.println("addPart > partId:"+partID+", MachineID:"+machineID+", Qty:"+qty);
+						
+			responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+			responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		
+		}
+		
+		return responseResult;
+	}
+	//################################################### Part in Machine
 }
