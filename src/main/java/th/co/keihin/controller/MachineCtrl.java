@@ -1,12 +1,14 @@
 package th.co.keihin.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,7 @@ import th.co.keihin.service.ProductionLineService;
 import th.co.portal.model.gas.ResponseResult;
 import th.co.keihin.model.ProductionLineBean;
 import th.co.keihin.model.RepairDetail;
+import th.co.keihin.model.RequestBean;
 
 
 @RestController
@@ -88,21 +91,46 @@ public class MachineCtrl {
 		return mav;
 	}
 	
+	
 	@RequestMapping("/machine/machine_save.htm")
 	public ModelAndView machine_save(HttpServletRequest httpRequest, MachineBean bean, String rAction) {
 		
-		if ("Edit".equals(rAction)) {
-			machineService.edit(bean);
-		}else if ("Create".equals(rAction)) {
-			machineService.save(bean);
-		}else if ("Delete".equals(rAction)) {
-			machineService.delete(bean);		
-		}
-		
+//		if ("Edit".equals(rAction)) {
+//			machineService.edit(bean);
+//		}else if ("Create".equals(rAction)) {
+//			machineService.save(bean);
+//		}else if ("Delete".equals(rAction)) {
+//			machineService.delete(bean);		
+//		}
+//		
+//		
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("redirect:../machine/machine_list.htm");
+//		mav.addObject("status","S");
+//		
+//		return mav;
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:../machine/machine_list.htm");
-		mav.addObject("status","S");
+		
+		if ("Edit".equals(rAction)) {
+			machineService.edit(bean);
+			
+			mav.setViewName("redirect:../machine/machine_list.htm");
+			mav.addObject("status","S");
+			
+		}else if ("Create".equals(rAction)) {
+			machineService.save(bean);
+			
+//			mav.setViewName("redirect:../machine/machine_edit.htm?machine_ID=${bean.machine_ID}"); 
+			mav.setViewName("redirect:../machine/machine_edit.htm?machine_ID="+bean.getMachine_ID());
+			mav.addObject("status","S");
+			
+		}else if ("Delete".equals(rAction)) {
+			machineService.delete(bean);	
+			
+			mav.setViewName("redirect:../machine/machine_list.htm");
+			mav.addObject("status","S");
+		}
 		
 		return mav;
 	}
@@ -128,49 +156,35 @@ public class MachineCtrl {
 			RedirectAttributes redir,
 			HttpServletRequest httpRequest) {
 		
+		String partID = request.getPart_ID();
+		String machineID = request.getMachine_ID();
+		Integer qty = request.getQty();
+		
+		System.out.println("deletePart > partId:"+partID+", MachineID:"+machineID);
+		
 		ResponseResult responseResult = new ResponseResult();
-		
-		if(request.getMachine().getMachine_ID()!=null){
-			
-//			String requestId = request.getRequest_ID();
-			String partID = request.getPart_ID();
-			String machineID = request.getMachine_ID();
-			Integer qty = request.getQty();
-			
-			responseResult = machineService.partMachineDelete(new PartMachineBean(partID,machineID,qty)); 
-			System.out.println("deletePart > partId:"+partID+", MachineID:"+machineID+", Qty:"+qty);
-						
-			responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
-			responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
-		
+		if(request.getMachine_ID()!=null){
+			responseResult = machineService.partMachineDelete(request);
 		}
-		
 		return responseResult;
 	}
 	
 	@RequestMapping(value = "/machine/partMachineSave", method = RequestMethod.POST)
-	public ResponseResult savePartMachine(PartMachineBean request,
-			RedirectAttributes redir,
-			HttpServletRequest httpRequest) {
+	public ResponseResult savePartMachine( PartMachineBean request,
+			RedirectAttributes redir,HttpServletRequest httpRequest) {
+		
+		
+		String partID = request.getPart_ID();
+		String machineID = request.getMachine_ID();
+		Integer qty = request.getQty();
+		System.out.println("addPart > partId:"+partID+", MachineID:"+machineID+", Qty:"+qty);
 		
 		ResponseResult responseResult = new ResponseResult();
-		
 		if(request.getMachine_ID()!=null){
-			
-//			String requestId = request.getRequest_ID();
-			String partID = request.getPart_ID();
-			String machineID = request.getMachine_ID();
-			Integer qty = request.getQty();
-			
-			responseResult = machineService.partMachineSave(new PartMachineBean(partID,machineID,qty)); 
-			System.out.println("addPart > partId:"+partID+", MachineID:"+machineID+", Qty:"+qty);
-						
-			responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
-			responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
-		
+			responseResult = machineService.partMachineSave(request);
 		}
-		
 		return responseResult;
 	}
+
 	//################################################### Part in Machine
 }

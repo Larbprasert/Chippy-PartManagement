@@ -20,6 +20,7 @@ import th.co.keihin.model.MachineBean;
 import th.co.keihin.model.PartMachineBean;
 import th.co.keihin.model.ProductionLineBean;
 import th.co.keihin.model.RepairDetail;
+import th.co.keihin.model.RequestBean;
 import th.co.portal.model.gas.ResponseResult;
 
 @Repository("machineService")
@@ -217,6 +218,7 @@ public class MachineService {
 		return listpartmachine;
 	}
 	
+	
 	public ResponseResult partMachineSave(PartMachineBean partMachine) {
 		// TODO Auto-generated method stub
 //		
@@ -254,7 +256,7 @@ public class MachineService {
 		// TODO Auto-generated method stub
 		try {
 
-			String query = "DELETE FROM tb_partmachine WHERE 1=1 AND part_ID=?, AND machine_ID = ?";
+			String query = "DELETE FROM tb_part_machine WHERE 1=1 AND part_ID=? AND machine_ID = ?";
 			
 			int updateRecord = jdbcTemplate.update(query,
 					new Object[] {  

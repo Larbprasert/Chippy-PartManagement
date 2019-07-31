@@ -149,7 +149,7 @@
         		var jsond = {};
         		jsond.machine_ID = $('#machine_ID').val();
         		jsond.part_ID = $('#part_ID').val();
-        		jsond.part_qty = $('#qty').val();
+        		jsond.qty = $('#qty').val();
         		
 //         		jsond.part_price = $('#price').val();
 //         		jsond.other_cost = $('#other_cost').val();
@@ -182,9 +182,9 @@
 
 			 	        			}).done(function(result) {
 			 	        				
- 			 	        				alert("Save successfully !");
+//  			 	        				alert("Save successfully !");
 			 	        				
-			 	        				$('#addPartModal').modal('hide');	
+			 	        				$('#addPartMachineModal').modal('hide');	
 			 	        				loadPart();
 
 			 	        			}).fail(function(jqXHR, textStatus, errorThrown) {

@@ -86,36 +86,7 @@
                                 <!-- /.row --> 
 
 
-                                <!-- /.row -->
-                                <div class="row" >
-                                	<div class="col-lg-12">
-                                	
-										<div class="table-title">
-							                <div class="row">
-							                    <div class="col-sm-12"  >
-							                    	<button type="button" class="btn btn-info add-new" id="btnnewPart" onclick="popupAddpart()"><i class="fa fa-plus"></i> Add Part</button>                     	 
-							                    	&nbsp;<button type="button" class="btn btn-danger" id="btnDelPart" onclick="selectDelete()"><i class="fa fa-trash-o"></i> Delete Part</button>                     	 
-							                    </div>                    
-							                </div>
-							            </div>
-						 
-										<%@ include file="machine_add_part.jsp"%> 
-						 
-										<table id="part-table" class="table table-striped table-hover table-bordered">
-							                <thead class="bg-green color-palette">
-							                    <tr>
-							                        <th>#</th>
-							                        <th>Part ID</th>
-							                        <th>Part Name</th>
-													<th>Qty</th>
-							                        <th>Actions</th>
-							                    </tr>
-							                </thead>
-							             </table>
-									</div>
-                               </div>
-
-										<!-- /.row -->
+                                
 
                                 
                                   					 	       
@@ -138,9 +109,6 @@
 </form>            
 
 <script type="text/javascript">
-var machineID = "${requestObj.machine_ID}";
-var jsonObj = { "machine_ID" : machineID };
- 
 function doSaveMachine() {
 	var _f = $('#myForm').validator('validate');
 	if (_f.has('.has-error').length == 0) {
@@ -166,70 +134,4 @@ function doSaveMachine() {
 	});
 	}
 }
-
-
-function popupAddpart() {
-	$('#addPartMachineModal').modal('show');	
-	$('#qty,#part_ID').val('');	
-	$('#part_ID').empty();	
-	$('#part_ID').html('');
-	$('#part_ID').selectpicker('deselectAll');	
-	$('#part_ID').selectpicker("refresh");
-}
-
-
-function loadPart(){
-	$.ajax({
-        url: cPath+"/machine/getPartMachine.json",
-        data: {machine_ID : machineID}
-    }).done(function (result) {
-    	PART_TABLE.clear().draw();
-        if(result.recordsTotal>0){
-            PART_TABLE.rows.add(result.data).draw();
-        }
-      }).fail(function (jqXHR, textStatus, errorThrown) { 
-            // needs to implement if it fails
-      });
-	
-}
-
-
-var PART_TABLE = $('#part-table').DataTable({
-	autoWidth: false,
-	data:[],
-    columns: [
-		{ "data": "machine_ID"
-			, "sWidth": "30px" 
-			,"fnCreatedCell" : function(nTd, sData, oData, iRow, iCol) {
-			    if(reqStatus!=3){
-					var txt = iRow;
-					$(nTd).html(++txt);
-				}
-			}
-		},
-		{ "data": "part_ID", "sWidth": "120px"}, 
-		{ "data": "part_name" }, 
-		{ "data": "qty", "sWidth": "100px" },  
-		{ 
-     		"data": "part_ID","sWidth": "100px"
-	        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-	        	$(nTd).html(getActionColumn(oData,iRow));
-// 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
-// 	        	 	+' onclick="downloadFile('+ oData.id +')"> <i class="fa fa-download"></i> Download </button>';
-// 	            $(nTd).html(txt);
-	        } 
-        }
-    ],
-      "aoColumnDefs": [
-      { "sClass": "text-center", "aTargets": [0,1] }
-    ],
-    rowCallback: function (row, data) {}, 
-    ordering: false, 
-	destroy: true,
-	autoWidth: false,
-	"searching": false,
-	"paging":   false
-// 	"info":   false
- });
-
 </script>  
