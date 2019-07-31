@@ -117,13 +117,13 @@ public class MachineCtrl {
 	
 	
 	//################################################### Part in Machine
-	@RequestMapping("/request/getPartMachine.json")
+	@RequestMapping("/machine/getPartMachine.json")
 	public DataTableAjax<PartMachineBean> getPartMachine(HttpServletRequest request, HttpServletResponse response,PartMachineBean bean) throws ServletException, IOException {
 		DataTableAjax<PartMachineBean> dataTableAjax = machineService.getPartMachine(bean);
 		return dataTableAjax;
 	}
 		
-	@RequestMapping(value = "/request/partMachineDelete", method = RequestMethod.POST)
+	@RequestMapping(value = "/machine/partMachineDelete", method = RequestMethod.POST)
 	public ResponseResult deletePartMachine( PartMachineBean request,
 			RedirectAttributes redir,
 			HttpServletRequest httpRequest) {
@@ -148,14 +148,14 @@ public class MachineCtrl {
 		return responseResult;
 	}
 	
-	@RequestMapping(value = "/request/partMachineSave", method = RequestMethod.POST)
+	@RequestMapping(value = "/machine/partMachineSave", method = RequestMethod.POST)
 	public ResponseResult savePartMachine(PartMachineBean request,
 			RedirectAttributes redir,
 			HttpServletRequest httpRequest) {
 		
 		ResponseResult responseResult = new ResponseResult();
 		
-		if(request.getMachine().getMachine_ID()!=null){
+		if(request.getMachine_ID()!=null){
 			
 //			String requestId = request.getRequest_ID();
 			String partID = request.getPart_ID();

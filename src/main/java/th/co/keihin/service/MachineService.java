@@ -219,10 +219,12 @@ public class MachineService {
 	
 	public ResponseResult partMachineSave(PartMachineBean partMachine) {
 		// TODO Auto-generated method stub
+//		
+//		System.out.println("createBy : " + partMachine.getCreateBy() + " || machine_name: " + partMachine.getMachine().getMachine_name() + 
+//				" || machine_ID: " + partMachine.getMachine_ID() + " || Part_ID: " + partMachine.getPart_ID() +
+//				" || machine_ID: " + partMachine.getPartMaster().getPart_name());
 		
-		System.out.println("createBy : " + partMachine.getCreateBy() + " || machine_name: " + partMachine.getMachine().getMachine_name() + 
-				" || machine_ID: " + partMachine.getMachine_ID() + " || Part_ID: " + partMachine.getPart_ID() +
-				" || machine_ID: " + partMachine.getPartMaster().getPart_name());
+		System.out.println("machine_ID: " + partMachine.getMachine_ID());
 		
 		try {
 

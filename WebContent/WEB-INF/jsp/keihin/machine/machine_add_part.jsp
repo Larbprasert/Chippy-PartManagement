@@ -10,7 +10,7 @@
 
 
 		 <!-- Modal -->
-		<div id="addPartModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static" >
+		<div id="addPartMachineModal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static" >
 		  <div class="modal-dialog">
 		
 		    <!-- Modal content-->
@@ -26,39 +26,29 @@
 <!-- 		      <form action="#" id="addPartForm"  method="post" > -->
 		      
 		        <div class="row"> 
-		        	<div class="col-lg-12">
+		        	<div class="col-lg-6">
 				        <div class="form-group">
-								<label >Part</label>
+								<label >Part ID</label>
 								<select id="part_ID" class="form-control selectpicker with-ajax" data-live-search="true"></select>
 <!-- 			      			</div> -->
 						</div>
 					</div>
-		        	<!-- <div class="col-lg-6">
-						<div class="form-group">
-								<label>Part Name</label>
-								<input type="text" class="form-control" id="part_name" name="part_name" readonly>
-						</div>
-					</div> -->
-				</div>
-				
-				
-				
-				 <div class="row"> 
-				 		<div class="col-lg-6">
-						<div class="form-group">
-				   						<label >Qty. <b style="color: red;">*</b></label>
-				   						<input   type="text" class="form-control number text-right" name="qty" id="qty" value="">
-<!-- 				   						<input type="hidden" class="form-control" name="beforeQty" id="beforeQty"> -->
-						</div>
-						</div>
-						<div class="col-lg-6">
+					
+<!-- 		        	<div class="col-lg-6"> -->
 <!-- 						<div class="form-group"> -->
-<!-- 							<label>Price</label> -->
-<!-- 							<input type="text" class="form-control number text-right" name="price" id="price" readonly  value="0"> -->
+<!-- 								<label>Part Name</label> -->
+<!-- 								<input type="text" class="form-control" id="part_name" name="part_name" readonly> -->
 <!-- 						</div> -->
+<!-- 					</div>  -->
+					<div class="col-lg-6">
+						<div class="form-group">
+	   						<label >Qty. <b style="color: red;">*</b></label>
+	   						<input   type="text" class="form-control number text-right" name="qty" id="qty" value="">
+<!-- 				   						<input type="hidden" class="form-control" name="machine_ID" id="machine_ID"> -->
 						</div>
+					</div>
 				</div>
-<!-- 			      </form> -->
+
 		      </div>
 		      
 		      <div class="modal-footer">
@@ -72,7 +62,7 @@
 		
   
   <script type="text/javascript">
-    var selPrice;
+    
         $(document).ready(function() {
 
         	var options = {
@@ -82,8 +72,9 @@
         			    type: "POST",
         			    dataType: "json",
         			    data: {
-        			    	part_name: "{{{q}}}",
-        			    	sysPart_ID:reqId
+//         			    	part_name: "{{{q}}}",
+//         			    	sysPart_ID:reqId
+        			    	part_name: "{{{q}}}"
         			    }
         			  },
         			  locale: {
@@ -130,44 +121,15 @@
 
 //-- Change part
 // 	        $('#part_ID').on('change', function(){
-// 					selPrice =	 $(this).find(':selected').data('price');
-// 		            console.log(selPrice);
-// 					if(selPrice>0){
-// 						$('#price').val(selPrice.toFixed(2));
-// 					}
-		        	
-// 		            if($('#qty').val()>0 && selPrice>0){
-// // 		        		$('#total_cost').val($('#qty').val()*selPrice);
-// 		            	var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
-// 		        		$('#total_cost').val(v.toFixed(2));
-// 		        	}
-		            
-		            
+// 	        	selPrice =	 $(this).find(':selected').data('price');
+// 	            console.log(selPrice);
+// 	            if(selPrice>0){
+// 					$('#qty').val(selPrice.toFixed(2));
+// 				}
+// 				//$('#part_name').val();
 // 	          });
  
 	  });
-
-// -- Change Qty        
-//         $('#qty').on('change', function(){
-// //         	if($('#qty').val()>=0 && selPrice>=0){
-// //         		$('#price').val($('#qty').val()*selPrice);
-// //         	}
-//         	if($('#qty').val()>=0 && selPrice>=0 && $('#other_cost').val()>=0){
-//         		var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
-//         		$('#total_cost').val(v.toFixed(2));
-//         	}
-//         	this.value = parseFloat(this.value).toFixed(0);
-        	
-//         });
-        
-//         $('#other_cost').on('change', function(){
-//         	if($('#qty').val()>=0 && selPrice>=0 && $('#other_cost').val()>=0){
-//         		var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
-//         		$('#total_cost').val(v.toFixed(2));
-//         	}
-        	
-//         	this.value = parseFloat(this.value).toFixed(2);
-//         });
 
         
         function actionSubmitPart(){
@@ -185,7 +147,7 @@
         		}
 
         		var jsond = {};
-        		jsond.request_ID = reqId;
+        		jsond.machine_ID = $('#machine_ID').val();
         		jsond.part_ID = $('#part_ID').val();
         		jsond.part_qty = $('#qty').val();
         		
@@ -216,11 +178,11 @@
 			 	        		$.ajax({
 			 	        				method : "POST",
 			 	        				data : jsond,
-			 	        				url : cPath + "/request/repairUpdate"
+			 	        				url : cPath + "/machine/partMachineSave"
 
 			 	        			}).done(function(result) {
 			 	        				
-// 			 	        				alert("Save successfully !");
+ 			 	        				alert("Save successfully !");
 			 	        				
 			 	        				$('#addPartModal').modal('hide');	
 			 	        				loadPart();

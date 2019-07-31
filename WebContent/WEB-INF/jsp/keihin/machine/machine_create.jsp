@@ -37,7 +37,7 @@
                        					<p class="help-block"><b>Machine ID : </b></p>
                        				</div>
                        				<div class="col-lg-8">
-                       					<input type="text" class="form-control" placeholder="Machine ID" name="machine_ID" value="" >
+                       					<input type="text" class="form-control" placeholder="Machine ID"  id="machine_ID" name="machine_ID"  value="" >
                        				</div>	
                        			</div>
                        			<br>
@@ -138,6 +138,8 @@
 </form>            
 
 <script type="text/javascript">
+var machineID = "${requestObj.machine_ID}";
+var jsonObj = { "machine_ID" : machineID };
  
 function doSaveMachine() {
 	var _f = $('#myForm').validator('validate');
@@ -164,4 +166,70 @@ function doSaveMachine() {
 	});
 	}
 }
+
+
+function popupAddpart() {
+	$('#addPartMachineModal').modal('show');	
+	$('#qty,#part_ID').val('');	
+	$('#part_ID').empty();	
+	$('#part_ID').html('');
+	$('#part_ID').selectpicker('deselectAll');	
+	$('#part_ID').selectpicker("refresh");
+}
+
+
+function loadPart(){
+	$.ajax({
+        url: cPath+"/machine/getPartMachine.json",
+        data: {machine_ID : machineID}
+    }).done(function (result) {
+    	PART_TABLE.clear().draw();
+        if(result.recordsTotal>0){
+            PART_TABLE.rows.add(result.data).draw();
+        }
+      }).fail(function (jqXHR, textStatus, errorThrown) { 
+            // needs to implement if it fails
+      });
+	
+}
+
+
+var PART_TABLE = $('#part-table').DataTable({
+	autoWidth: false,
+	data:[],
+    columns: [
+		{ "data": "machine_ID"
+			, "sWidth": "30px" 
+			,"fnCreatedCell" : function(nTd, sData, oData, iRow, iCol) {
+			    if(reqStatus!=3){
+					var txt = iRow;
+					$(nTd).html(++txt);
+				}
+			}
+		},
+		{ "data": "part_ID", "sWidth": "120px"}, 
+		{ "data": "part_name" }, 
+		{ "data": "qty", "sWidth": "100px" },  
+		{ 
+     		"data": "part_ID","sWidth": "100px"
+	        ,"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+	        	$(nTd).html(getActionColumn(oData,iRow));
+// 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
+// 	        	 	+' onclick="downloadFile('+ oData.id +')"> <i class="fa fa-download"></i> Download </button>';
+// 	            $(nTd).html(txt);
+	        } 
+        }
+    ],
+      "aoColumnDefs": [
+      { "sClass": "text-center", "aTargets": [0,1] }
+    ],
+    rowCallback: function (row, data) {}, 
+    ordering: false, 
+	destroy: true,
+	autoWidth: false,
+	"searching": false,
+	"paging":   false
+// 	"info":   false
+ });
+
 </script>  
