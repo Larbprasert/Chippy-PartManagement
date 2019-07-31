@@ -133,12 +133,20 @@ public class MachineService {
 		// TODO Auto-generated method stub
 		try {
 
+			System.out.println("Delete machine ID: " + machine.getMachine_ID());
+			
 			String query = "update tb_machine set activeFlag = 2, updateBy=?, updateDate=getdate() Where machine_ID=?";
 			
 			int updateRecord = jdbcTemplate.update(query,
 					new Object[] {  
 							machine.getUpdateBy(),							
 							machine.getMachine_ID()
+							});
+			
+			String delPart = "delete from tb_part_machine where 1=1 and machine_ID = ?";
+			int deletePart = jdbcTemplate.update(delPart,
+					new Object[] {  
+							machine.getMachine_ID(),						
 							});
 
 		} catch (Exception e) {
