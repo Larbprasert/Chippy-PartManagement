@@ -14,6 +14,7 @@ import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.MachineBean;
 import th.co.keihin.model.PartMachineBean;
 import th.co.keihin.model.PartMasterBean;
+import th.co.keihin.model.UnitTypeBean;
 
 
 @Repository("partMachineService")
@@ -32,7 +33,9 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 			PartMachineBean partMachine = new PartMachineBean();
 			PartMasterBean partMaster = new PartMasterBean();
 			MachineBean machine = new MachineBean();
+			UnitTypeBean unitType = new UnitTypeBean();
 			
+			partMachine.setMachine_ID(rs.getString("machine_ID"));
 			partMachine.setPart_ID(rs.getString("part_ID"));
 			partMachine.setPart_name(rs.getString("part_name"));
 			partMachine.setQty(rs.getInt("qty"));
@@ -42,11 +45,15 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 
 //			partMaster.setPart_ID(rs.getString("part_ID"));
 			partMaster.setPart_name(rs.getString("part_name"));
+			partMaster.setPrice(rs.getFloat("price"));
 			partMachine.setPartMaster(partMaster);
 			
 //			machine.setMachine_ID(rs.getString("machine_ID"));
 			machine.setMachine_name(rs.getString("machine_name"));
 			partMachine.setMachine(machine);
+			
+			unitType.setUnitType_name(rs.getString("unitType_name"));
+			partMachine.setUnitType(unitType);
 								
 			return partMachine;
 		}
@@ -80,17 +87,33 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 		return  list!=null&& list.size()>0? list.get(0) : new PartMachineBean();
 	}
 
-	public DataTableAjax<PartMachineBean> getAll() {
+	public DataTableAjax<PartMachineBean> getAll(PartMachineBean bean) {
 		// TODO Auto-generated method stub
 				
 		DataTableAjax<PartMachineBean> listpartmachine = new DataTableAjax<PartMachineBean>();
 		
-		String query = "SELECT pmac.* , mac.machine_name, pm.part_name " + 
-				"FROM tb_Part_Machine pmac " + 
-				"  LEFT JOIN tb_Machine mac on pmac.machine_ID = mac.machine_ID COLLATE SQL_Latin1_General_CP1_CI_AS " + 
-				"  LEFT JOIN tb_PartMaster pm on pmac.part_ID = pm.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS " + 
-				"WHERE 1=1 " +
-				"ORDER BY pmac.machine_ID";
+		String query = "SELECT pmac.* , mac.machine_name, pm.part_name " 
+				+ ",pm.price "
+				+ ",ut.unitType_name " 
+				+ "FROM tb_Part_Machine pmac " 
+				+ "  LEFT JOIN tb_Machine mac on pmac.machine_ID = mac.machine_ID COLLATE SQL_Latin1_General_CP1_CI_AS "  
+				+ "  LEFT JOIN tb_PartMaster pm on pmac.part_ID = pm.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS " 
+				+ "  LEFT JOIN tb_UnitType ut ON pm.unitType_ID = ut.unitType_ID " 
+				+ "WHERE 1=1 ";				
+		
+		if(StringUtils.isNotEmpty(bean.getPart_name())){
+			query += " and ( pmac.part_ID like '%"+bean.getPart_name()+"%' " ;
+			query += " or pm.part_name like '%"+bean.getPart_name()+"%' ) " ;
+		}
+		
+		if(StringUtils.isNotEmpty(bean.getMachine_ID())){
+			query += " and pmac.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS not in ( SELECT pa.part_ID from  tb_RepairDetail pa where pa.request_ID = '"+bean.getMachine_ID()+"' ) " ;
+		}		
+		
+		query += "order by pmac.machine_ID";
+		
+//		System.out.println(query);
+		
 		List<PartMachineBean> list = jdbcTemplate.query(query,PARTMACHINE_MAPPER);
 		
 		int total = list!=null? list.size():0;

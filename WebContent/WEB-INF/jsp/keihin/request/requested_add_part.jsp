@@ -47,8 +47,8 @@
 				 		<div class="col-lg-6">
 						<div class="form-group">
 				   						<label >Qty. <b style="color: red;">*</b></label>
-				   						<input   type="text" class="form-control number text-right" name="qty" id="qty" value="">
-<!-- 				   						<input type="hidden" class="form-control" name="beforeQty" id="beforeQty"> -->
+				   						<input type="text" class="form-control number text-right" name="qty" id="qty" value="">
+				   						<input type="hidden" class="form-control number text-right" name="beforeQty" id="beforeQty" value="">
 						</div>
 						</div>
 						<div class="col-lg-6">
@@ -93,12 +93,15 @@
         	var options = {
 //         			  values: "a, b, c",
         			  ajax: {
-        			    url:  cPath+"/partMaster/search.json",
+//         			    url:  cPath+"/partMaster/search.json",
+        			    url:  cPath+"/partMachine/search.json",
         			    type: "POST",
         			    dataType: "json",
         			    data: {
+//         			    	part_name: "{{{q}}}",
+//         			    	sysPart_ID:reqId
         			    	part_name: "{{{q}}}",
-        			    	sysPart_ID:reqId
+        			    	machine_ID:reqId
         			    }
         			  },
         			  locale: {
@@ -122,8 +125,13 @@
 	        			            text: data[i].part_ID+" - "+data[i].part_name,
 	        			            value: data[i].part_ID,
 	        			            data: {
-	        			              price:data[i].price,
-	        			              subtext: "["+data[i].qty+" "+data[i].unitType.unitType_name+"]"
+// 	        			              price:data[i].price,
+// 	        			              subtext: "["+data[i].qty+" "+data[i].unitType.unitType_name+"]"	
+
+	        			              price:data[i].partMaster.price,
+	        			              qty:data[i].qty,
+	        			              subtext: "["+data[i].qty+" "+data[i].unitType.unitType_name+"]"	        			              
+
 	        			            }
         			          }
         			        );
@@ -146,8 +154,13 @@
 	        $('#part_ID').on('change', function(){
 					selPrice =	 $(this).find(':selected').data('price');
 		            console.log(selPrice);
+		            
+		            bfQty = $(this).find(':selected').data('qty');
+		            console.log(bfQty);
+		            
 					if(selPrice>0){
 						$('#price').val(selPrice.toFixed(2));
+						$('#beforeQty').val(bfQty);
 					}
 		        	
 		            if($('#qty').val()>0 && selPrice>0){
@@ -155,12 +168,7 @@
 		            	var v = parseFloat($('#qty').val()*selPrice) + parseFloat($('#other_cost').val());
 		        		$('#total_cost').val(v.toFixed(2));
 		        	}
-		            
-		            
 	          });
-        
-        
-
 	  });
         
         
@@ -201,6 +209,13 @@
         			$('#qty').focus();
         			return false;
         		}
+        		
+        		if ( $('#beforeQty').val() < $('#qty').val() ) {
+        			alert("Can not input Qty more than inventory stock!!! ");
+        			$('#qty').focus();
+        			return false;
+        		}
+        		
 
         		var jsond = {};
         		jsond.request_ID = reqId;

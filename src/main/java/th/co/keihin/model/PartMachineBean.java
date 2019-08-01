@@ -12,9 +12,18 @@ public class PartMachineBean extends BaseDomain{
     
     private PartMasterBean partMaster;
     private MachineBean machine;
+    private UnitTypeBean unitType;
     
    
-    public PartMachineBean(){
+    public UnitTypeBean getUnitType() {
+		return unitType;
+	}
+
+	public void setUnitType(UnitTypeBean unitType) {
+		this.unitType = unitType;
+	}
+
+	public PartMachineBean(){
 		
 	}
 	

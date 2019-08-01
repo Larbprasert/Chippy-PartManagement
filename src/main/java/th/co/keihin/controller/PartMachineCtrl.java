@@ -36,6 +36,11 @@ public class PartMachineCtrl {
 	private MachineService machineService;
 	
 	
+	@RequestMapping("/partMachine/search.json")
+	public DataTableAjax<PartMachineBean> search(HttpServletRequest request, HttpServletResponse response,PartMachineBean bean) throws ServletException, IOException {
+		DataTableAjax<PartMachineBean> dataTableAjax = partMachineService.getAll(bean);
+		return dataTableAjax;
+	}
 	
 
 }
