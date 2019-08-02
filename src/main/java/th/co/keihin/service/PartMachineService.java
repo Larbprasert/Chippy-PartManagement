@@ -96,23 +96,27 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 				+ ",pm.price "
 				+ ",ut.unitType_name " 
 				+ "FROM tb_Part_Machine pmac " 
-				+ "  LEFT JOIN tb_Machine mac on pmac.machine_ID = mac.machine_ID COLLATE SQL_Latin1_General_CP1_CI_AS "  
-				+ "  LEFT JOIN tb_PartMaster pm on pmac.part_ID = pm.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS " 
+				+ "  LEFT JOIN tb_Machine mac ON pmac.machine_ID = mac.machine_ID COLLATE SQL_Latin1_General_CP1_CI_AS "  
+				+ "  LEFT JOIN tb_PartMaster pm ON pmac.part_ID = pm.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS " 
 				+ "  LEFT JOIN tb_UnitType ut ON pm.unitType_ID = ut.unitType_ID " 
 				+ "WHERE 1=1 ";				
 		
 		if(StringUtils.isNotEmpty(bean.getPart_name())){
-			query += " and ( pmac.part_ID like '%"+bean.getPart_name()+"%' " ;
-			query += " or pm.part_name like '%"+bean.getPart_name()+"%' ) " ;
+			query += " AND ( pmac.part_ID like '%"+bean.getPart_name()+"%' " ;
+			query += " OR pm.part_name like '%"+bean.getPart_name()+"%' ) " ;
 		}
 		
 		if(StringUtils.isNotEmpty(bean.getMachine_ID())){
-			query += " and pmac.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS not in ( SELECT pa.part_ID from  tb_RepairDetail pa where pa.request_ID = '"+bean.getMachine_ID()+"' ) " ;
+			query += " AND pmac.machine_id = (SELECT machine_id FROM tb_requestheader WHERE 1=1 AND request_id = '" +bean.getMachine_ID()+ "' ) ";
+		}
+		
+		if(StringUtils.isNotEmpty(bean.getMachine_ID())){
+			query += " AND pmac.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS NOT IN ( SELECT pa.part_ID FROM  tb_RepairDetail pa WHERE pa.request_ID = '"+bean.getMachine_ID()+"' ) " ;
 		}		
 		
-		query += "order by pmac.machine_ID";
+		query += "ORDER BY pmac.machine_ID";
 		
-//		System.out.println(query);
+		System.out.println(query);
 		
 		List<PartMachineBean> list = jdbcTemplate.query(query,PARTMACHINE_MAPPER);
 		
