@@ -28,7 +28,7 @@
 		        <div class="row"> 
 		        	<div class="col-lg-6">
 				        <div class="form-group">
-								<label >Part ID</label>
+								<label >Part ID or Part Name</label>
 								<select id="part_ID" class="form-control selectpicker with-ajax" data-live-search="true"></select>
 <!-- 			      			</div> -->
 						</div>
