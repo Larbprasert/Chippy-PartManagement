@@ -333,5 +333,15 @@ public class PartMasterService {
 			e.printStackTrace();
 		}		
 	}
+	
+	
+	
+	//################################################### Report
+	public ResponseResult getPartMachineReport(String machine_ID) {
+		
+		
+		return null;		
+	}
+	//################################################### Report
 
 }

@@ -39,6 +39,7 @@
 		 
 <!-- 		  <fieldset><div class="well"> -->
 		   <form class="form-horizontal" id="myForm" commandName="sparepart_report" method="post"> 
+		   <form action="${cPath}/partMaster/partMaster_save.htm" method="post" id="myForm" data-toggle="validator" novalidate="true">
 			 <div class="row">
 				 <div class="col-lg-6">
 					<div class="form-group">

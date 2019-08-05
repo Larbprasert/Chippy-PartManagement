@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
-
+import th.co.keihin.model.MachineBean;
 import th.co.keihin.model.PartMasterBean;
 
 import th.co.keihin.service.LocationService;
@@ -54,6 +54,16 @@ public class PartMasterCtrl {
 		mav.addObject("LOV_MACHINE",machineService.loadActiveMachine());
 		
 		mav.setViewName("sparepart_report");
+		return mav;
+	}
+	
+	@RequestMapping("/partMaster/view_report.htm")
+	public ModelAndView view_report(HttpServletRequest httpRequest, MachineBean bean) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("partMasterBean",partMasterService.getPartMachineReport(bean.getMachine_ID()));
+		
+		mav.setViewName("partMaster_report");
 		return mav;
 	}
 	

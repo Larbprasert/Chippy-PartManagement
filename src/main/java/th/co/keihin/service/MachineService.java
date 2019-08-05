@@ -284,5 +284,6 @@ public class MachineService {
 		return responseResult;		
 	}
 	//################################################### Part in Machine
+
 	
 }
