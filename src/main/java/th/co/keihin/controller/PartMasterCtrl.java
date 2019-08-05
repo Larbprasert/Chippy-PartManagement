@@ -17,6 +17,7 @@ import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.PartMasterBean;
 
 import th.co.keihin.service.LocationService;
+import th.co.keihin.service.MachineService;
 import th.co.keihin.service.MakerService;
 import th.co.keihin.service.MoldTypeService;
 import th.co.keihin.service.PartMasterService;
@@ -40,8 +41,22 @@ public class PartMasterCtrl {
 	
 	@Autowired
 	private MoldTypeService moldTypeService;
+
+	@Autowired
+	private MachineService machineService;
+	
 	
 //	
+	@RequestMapping("/partMaster/sparepart_report.htm")
+	public ModelAndView spartpart_report(HttpServletRequest httpRequest) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("LOV_MACHINE",machineService.loadActiveMachine());
+		
+		mav.setViewName("sparepart_report");
+		return mav;
+	}
+	
 	@RequestMapping("/partMaster/partMaster_list.htm")
 	public ModelAndView partMaster_list(HttpServletRequest httpRequest) {
 		ModelAndView mav = new ModelAndView();

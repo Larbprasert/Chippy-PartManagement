@@ -42,9 +42,6 @@ public class MachineCtrl {
 	@Autowired
 	private PartMachineService partMachineService;
 	
-	
-	
-//	
 	@RequestMapping("/machine/machine_list.htm")
 	public ModelAndView machine_list(HttpServletRequest httpRequest) {
 		ModelAndView mav = new ModelAndView();
