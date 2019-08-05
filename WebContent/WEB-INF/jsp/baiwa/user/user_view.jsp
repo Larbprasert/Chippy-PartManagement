@@ -156,7 +156,7 @@
 					 <div class="box-header with-border">
 			              <h3 class="box-title">Result</h3>
 			              <div class="box-tools pull-right">
-			                <button type="button" class="btn btn-box-tool btn-success btn-table"   onclick="doAdd()"><i class="fa fa-plus"></i> Add
+			                <button type="button" class="btn btn-box-tool btn-success btn-table"   onclick="doAdd()"><i class="fa fa-plus"></i> Register New User
 			                </button>
 			              </div>
 			            </div>

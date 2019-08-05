@@ -12,15 +12,29 @@
 <form action="${cPath}/checkTool/checkTool_save.htm" method="post" id="myForm" data-toggle="validator" >
 
 		<input name ="rAction" type="hidden" value="Create">
+
+<style>
+	hr.style {
+	/*   border: 1px solid grey; */
+	  display: block;
+	  margin-top: 0.5em;
+	  margin-bottom: 0.5em;
+	  margin-left: auto;
+	  margin-right: auto;
+	  border-style: inset;
+	  border-width: 1px;
+	}
+</style>
+
+<div class="content-wrapper">
+		<section class="content-header">
+			<h1 class="page-header">Check Tool - Create</h1>
+		</section> 
+		<hr class="style">
+		
+		<section class="content">
             
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">CheckTool - Create</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            
+                   
             <div class="row">
               	<div class="col-lg-3">
 				
@@ -97,6 +111,7 @@
 				</div>                      
                 </div>
                 <!-- /.col-lg-4 -->
+                </section>
            	</div>
 
 </form>

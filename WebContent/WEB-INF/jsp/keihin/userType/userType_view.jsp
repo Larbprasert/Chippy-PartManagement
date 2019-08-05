@@ -12,15 +12,28 @@
 
 <input name ="rAction" type="hidden" value="Delete">
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">User Type View</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-               
-		<div class = "row">
+<style>
+	hr.style {
+	/*   border: 1px solid grey; */
+	  display: block;
+	  margin-top: 0.5em;
+	  margin-bottom: 0.5em;
+	  margin-left: auto;
+	  margin-right: auto;
+	  border-style: inset;
+	  border-width: 1px;
+	}
+</style>
+
+<div class="content-wrapper">
+		<section class="content-header">
+			<h1 class="page-header">User Type - View</h1>
+		</section> 
+		<hr class="style">
+		
+		<section class="content">
+
+<div class = "row">
                 
 			<div class="col-lg-3">
 			
@@ -65,7 +78,7 @@
 				    <div class="panel-footer">
 <%-- 	                             <button type="button" class="btn  btn-danger " onclick="doDel('${userTypeBean.userType_ID}')">Delete</button> --%>
 						 	  	<input type ="button" value="Delete" name="rAction" role="button" class="btn btn-info" onclick="doDel('${userTypeBean.userType_ID}')">
-						 	  	<a href="${cPath}/userType/userType_edit.htm?userType_ID=${userTypeBean.userType_ID}" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a>
+<%-- 						 	  	<a href="${cPath}/userType/userType_edit.htm?userType_ID=${userTypeBean.userType_ID}" class="btn btn-warning" role="button" aria-pressed="true" value="edit" name="rAction">Edit</a> --%>
 						 	  	<a href="${cPath}/userType/userType_list.htm" class="btn btn-secondary" role="button" aria-pressed="true">Back to List</a>  
 		             </div>
 	         	</div>
@@ -76,8 +89,10 @@
 			</div>
                 
 		</div>
-    <!-- /.col-lg-4 -->
-	</div>
+		
+		</section>		
+</div>
+
 
             
 </form>            

@@ -7,7 +7,7 @@
 	<%@ include file="/WEB-INF/jsp/she-sidebar.jsp"%>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<h1 class="page-header">Mold Type List</h1>
+			<h1 class="page-header">Model / Type List</h1>
 		</section> 
 		
 		<section class="content">
@@ -31,8 +31,8 @@
 						<thead class="bg-green color-palette">
 		                                <tr>
 		                                    <th>#</th>
-		                                    <th>Model ID</th>
-		                                    <th>Model Name</th>
+		                                    <th>Model / Type ID</th>
+		                                    <th>Model / Type Name</th>
 		                                    <th>Status</th>
 		                                </tr>
 						</thead>						 

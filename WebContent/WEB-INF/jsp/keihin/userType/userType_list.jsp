@@ -14,15 +14,15 @@
 		 
 			<!-- 	##### <<<<<  SEARCH ####------------------- -->
 			<div class="box box-primary"  id="rs_table">
-				<div class="box-header with-border">
-					<h3 class="box-title"></h3>
-					<div class="box-tools pull-right">
-						<button type="button"
-							class="btn btn-box-tool btn-success btn-table" onclick="doAdd()">
-							<i class="fa fa-plus"></i>  Register New User Type
-						</button>
-					</div>
-				</div>
+<!-- 				<div class="box-header with-border"> -->
+<!-- 					<h3 class="box-title"></h3> -->
+<!-- 					<div class="box-tools pull-right"> -->
+<!-- 						<button type="button" -->
+<!-- 							class="btn btn-box-tool btn-success btn-table" onclick="doAdd()"> -->
+<!-- 							<i class="fa fa-plus"></i>  Register New User Type -->
+<!-- 						</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 				<div class="box-body">
 					<table id="result-table"

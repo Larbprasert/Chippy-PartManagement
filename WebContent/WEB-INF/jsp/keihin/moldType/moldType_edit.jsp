@@ -12,13 +12,27 @@
 
 <input name ="rAction" type="hidden" value="Edit">
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Model / Type Edit</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+<style>
+	hr.style {
+	/*   border: 1px solid grey; */
+	  display: block;
+	  margin-top: 0.5em;
+	  margin-bottom: 0.5em;
+	  margin-left: auto;
+	  margin-right: auto;
+	  border-style: inset;
+	  border-width: 1px;
+	}
+</style>
+
+<div class="content-wrapper">
+		<section class="content-header">
+			<h1 class="page-header">Model / Type - Edit</h1>
+		</section> 
+		<hr class="style">
+		
+		<section class="content">
+		
             
             <div class="row">
              	<div class="col-lg-3">
@@ -28,14 +42,14 @@
             	<div class="col-lg-6">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <b>moldType :</b> ${moldTypeBean.moldType_name}
+                            <b>Model / Type :</b> ${moldTypeBean.moldType_name}
                         </div>                        
                         
                        		<div class="panel-body">
 		       					
 		                        <div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Model ID : </b></p>
+                       					<p class="help-block"><b>Model / Type ID : </b></p>
                        				</div>
                        				<div class="col-lg-8">
                        					<input type="text" class="form-control" placeholder="Mold Type ID" name="moldType_ID" value="${moldTypeBean.moldType_ID}" readonly>
@@ -44,7 +58,7 @@
                        			<br>
                        			<div class="row">
                        				<div class="col-lg-4">
-                       					<p class="help-block"><b>Model Name : </b></p>
+                       					<p class="help-block"><b>Model / Type Name : </b></p>
                        				</div>
                        				<div class="col-lg-8">
                        					<input type="text" class="form-control" placeholder="Mold Type Name" name="moldType_name" value="${moldTypeBean.moldType_name}" >
@@ -78,6 +92,7 @@
                    
                 </div>
                 <!-- /.col-lg-4 -->
+                </section>
            	</div>
 
             

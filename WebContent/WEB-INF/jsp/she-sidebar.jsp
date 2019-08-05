@@ -122,7 +122,7 @@
 						</li>
 
 						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Mold Type<span
+								class="fa fa-chevron-circle-right"></i>Model / Type<span
 								class="pull-right-container"> <i
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
