@@ -44,7 +44,7 @@
 						<div class="form-group">
 	   						<label >Qty. <b style="color: red;">*</b></label>
 	   						<input   type="text" class="form-control number text-right" name="qty" id="qty" value="">
-<!-- 				   						<input type="hidden" class="form-control" name="machine_ID" id="machine_ID"> -->
+<%-- 				   						<input type="text" class="form-control" name="machine_ID" id="machine_ID" value="${machineBean.machine_ID}" > --%>
 						</div>
 					</div>
 				</div>
@@ -68,13 +68,14 @@
         	var options = {
 //         			  values: "a, b, c",
         			  ajax: {
-        			    url:  cPath+"/partMaster/search.json",
+//         			    url:  cPath+"/partMaster/search.json",
+        			    url:  cPath+"/partMachine/searchRemain.json",
         			    type: "POST",
         			    dataType: "json",
         			    data: {
 //         			    	part_name: "{{{q}}}",
 //         			    	sysPart_ID:reqId
-        			    	part_name: "{{{q}}}"
+        			    	part_name: "{{{q}}}"        			    	
         			    }
         			  },
         			  locale: {

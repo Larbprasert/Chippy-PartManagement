@@ -42,5 +42,11 @@ public class PartMachineCtrl {
 		return dataTableAjax;
 	}
 	
+	@RequestMapping("/partMachine/searchRemain.json")
+	public DataTableAjax<PartMachineBean> searchRemain(HttpServletRequest request, HttpServletResponse response,PartMachineBean bean) throws ServletException, IOException {
+		DataTableAjax<PartMachineBean> dataTableAjax = partMachineService.getRemainPart(bean);
+		return dataTableAjax;
+	}
+	
 
 }

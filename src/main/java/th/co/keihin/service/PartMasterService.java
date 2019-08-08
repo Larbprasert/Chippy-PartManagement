@@ -148,7 +148,7 @@ public class PartMasterService {
 		
 		query += "order by pm.part_ID";
 		
-//		System.out.println(query);
+		System.out.println(query);
 		
 		List<PartMasterBean> list = jdbcTemplate.query(query,PARTMASTER_MAPPER);
 		

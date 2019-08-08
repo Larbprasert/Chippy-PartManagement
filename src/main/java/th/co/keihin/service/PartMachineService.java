@@ -58,6 +58,25 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 			return partMachine;
 		}
 	};
+	
+	
+	private RowMapper PARTREMAIN_MAPPER = new RowMapper(){	
+		
+		public PartMachineBean mapRow(ResultSet rs, int rowNum) throws SQLException {
+			
+			PartMachineBean partMachine = new PartMachineBean();
+			UnitTypeBean unitType = new UnitTypeBean();
+			
+			partMachine.setPart_ID(rs.getString("part_ID"));
+			partMachine.setPart_name(rs.getString("part_name"));
+			partMachine.setQty(rs.getInt("qty"));
+			
+			unitType.setUnitType_name(rs.getString("unitType_name"));
+			partMachine.setUnitType(unitType);
+			
+			return partMachine;
+		}
+	};
 
 	public PartMachineBean getPartBeanByMachineID(String machine_ID) {
 		// TODO Auto-generated method stub
@@ -175,6 +194,41 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+	}
+
+	public DataTableAjax<PartMachineBean> getRemainPart(PartMachineBean bean) {
+		// TODO Auto-generated method stub
+		DataTableAjax<PartMachineBean> listpartremain = new DataTableAjax<PartMachineBean>();
+						
+		String query = "SELECT pm.part_ID, pm.part_name, pm.qty, ut.unitType_ID, ut.unitType_name "
+				+ "FROM tb_PartMaster pm "
+				+ "LEFT JOIN tb_UnitType ut ON pm.unitType_ID = ut.unitType_ID "
+				+ "WHERE 1=1 ";
+				
+		
+		if(StringUtils.isNotEmpty(bean.getPart_name())){
+			query += " AND pm.part_ID NOT IN (SELECT pmac2.part_ID FROM tb_part_Machine pmac2 "
+					+ "LEFT JOIN tb_PartMaster pm2 ON pmac2.part_ID = pm2.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS "
+					+ "WHERE (pmac2.part_ID like '%"+bean.getPart_name()+"%' " 
+					+ "OR pm2.part_name like '%"+bean.getPart_name()+"%' )" ;
+		}
+		
+		if(StringUtils.isNotEmpty(bean.getMachine_ID())){
+			query += " AND pmac2.machine_ID = '" +bean.getMachine_ID()+ "' " ;
+		}
+		
+		query += ") ORDER BY pm.part_ID ";
+		
+		System.out.println(query);
+		
+		List<PartMachineBean> list = jdbcTemplate.query(query,PARTREMAIN_MAPPER);
+		
+		int total = list!=null? list.size():0;
+		listpartremain.setRecordsTotal(total);
+		listpartremain.setRecordsFiltered(total);
+		listpartremain.setData(list);
+		
+		return listpartremain;
 	}
 
 }
