@@ -125,13 +125,14 @@ public class RequestCtrl {
 		mav.addObject("LOV_JUDMENT", ApplicationCache.getLovJudment());
 		mav.addObject("LOV_MAINTENANCETYPE", ApplicationCache.getLovMaintenanceType());
 //		
-		
-		List ROLE_REQ_MNG =  requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG, bean.getUserProfile().getSection().getSection_ID());
-		List ROLE_MT_MNG = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG,null);
-		
-		
-		mav.addObject("APPROVE_LD", ROLE_REQ_MNG);
-		mav.addObject("APPROVE_ACH", ROLE_MT_MNG);
+
+//********************* Show list approve
+//		List ROLE_REQ_MNG =  requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG, bean.getUserProfile().getSection().getSection_ID());
+//		List ROLE_MT_MNG = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG,null);
+//				
+//		mav.addObject("APPROVE_LD", ROLE_REQ_MNG);
+//		mav.addObject("APPROVE_ACH", ROLE_MT_MNG);
+//********************* Show list approve		
 		
 //		mav.addObject("LOV_ACTIVE_FLG",ApplicationCache.getLovActiveFlag());
 		
@@ -159,18 +160,19 @@ public class RequestCtrl {
 		RequestBean bean = requestService.getRequestedDetail(reqId);
 		mav.addObject("requestObj",bean);
 		
-
-		List ROLE_REQ_MNG =  requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG, bean.getSection().getSection_ID());
-		List ROLE_MT_MNG = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG,null);
-		
-		List ROLE_MT_STAFF = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_STAFF,null);
-		List ROLE_QA = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_QA,null);
-		
-		
-		mav.addObject("APPROVE_LD", ROLE_REQ_MNG);
-		mav.addObject("APPROVE_ACH", ROLE_MT_MNG);
-		mav.addObject("ROLE_MT_STAFF", ROLE_MT_STAFF);
-		mav.addObject("ROLE_QA", ROLE_QA);
+		//********************* Show list approve
+//		List ROLE_REQ_MNG =  requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_REQ_MNG, bean.getSection().getSection_ID());
+//		List ROLE_MT_MNG = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_MNG,null);
+//		
+//		List ROLE_MT_STAFF = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_MT_STAFF,null);
+//		List ROLE_QA = requestService.findUserByRoleSec(RequestConstants.ROLE.ROLE_QA,null);
+//		
+//		
+//		mav.addObject("APPROVE_LD", ROLE_REQ_MNG);
+//		mav.addObject("APPROVE_ACH", ROLE_MT_MNG);
+//		mav.addObject("ROLE_MT_STAFF", ROLE_MT_STAFF);
+//		mav.addObject("ROLE_QA", ROLE_QA);
+		//********************* Show list approve
 		
 				
 		mav.setViewName("requested_modify");

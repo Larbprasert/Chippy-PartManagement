@@ -135,6 +135,14 @@ public class RequestService extends AbstractCommonJdbcDao {
 			request.setConfirmRepairBy(rs.getString("confirmRepairBy"));
 			request.setQaApproveBy(rs.getString("qaApproveBy"));
 			request.setAchApproveBy(rs.getString("achApproveBy"));
+
+			request.setRequestApprove(rs.getString("requestApprove"));
+			request.setRequestSection(rs.getString("requestSection"));
+			request.setRepairSection(rs.getString("repairSection"));
+			request.setRepairPerson(rs.getString("repairPerson"));
+			request.setConfirmRepair(rs.getString("confirmRepair"));
+			request.setQaApprove(rs.getString("qaApprove"));
+			request.setAchApprove(rs.getString("achApprove"));
 			
 			request.setUser_ID(rs.getString("user_ID"));
 			request.setCreateDate(rs.getDate("createDate"));
@@ -300,10 +308,7 @@ public class RequestService extends AbstractCommonJdbcDao {
         		sql.append(" AND rqh.section_ID = ?   ");
         		wh.add(user.getUserProfile().getUserProfile().getSection().getSection_ID());
         	}
-//        	else if(ustream.anyMatch( ro -> ro.getAuthority().contains("GAS_SEC_MNG"))){
-//        		sql.append(" AND a.AREA_SEC+',' LIKE ?  ");
-//        		wh.add( "%"+user.getUserId()+",%"  );
-//        	}
+
         }
 		
 		sql.append("	order by rqh.request_ID desc ");
@@ -390,12 +395,30 @@ public class RequestService extends AbstractCommonJdbcDao {
 				"	,rqh.confirmJudment     " + 
 				"	,rqh.concernQA ,  rqh.maintenanceType" + 
 				"	,rqh.requestApproveBy " +
-				"	,rqh.requestSectionBy " +
-				"	,rqh.repairSectionBy  " +
-				"	,rqh.repairPersonBy   " +
-				"	,rqh.confirmRepairBy  " +
-				"	,rqh.qaApproveBy      " +
-				"	,rqh.achApproveBy, rqh.user_id   " +
+				//**** New Query
+				"   ,(select title + ' ' + first_name_th + ' ' + last_name_th from adm_user_profile where 1=1 and user_id = (select user_id from adm_user where 1=1 and username = rqh.requestApproveBy COLLATE SQL_Latin1_General_CP1_CI_AS)) requestApprove " +
+				"   ,rqh.requestSectionBy " +
+				"   ,(select title + ' ' + first_name_th + ' ' + last_name_th from adm_user_profile where 1=1 and user_id = (select user_id from adm_user where 1=1 and username = rqh.requestSectionBy COLLATE SQL_Latin1_General_CP1_CI_AS)) requestSection " +
+				"	,rqh.repairSectionBy " +
+				"	,(select title + ' ' + first_name_th + ' ' + last_name_th from adm_user_profile where 1=1 and user_id = (select user_id from adm_user where 1=1 and username = rqh.repairSectionBy COLLATE SQL_Latin1_General_CP1_CI_AS)) repairSection " +
+				"	,rqh.repairPersonBy  " +
+				"	,(select title + ' ' + first_name_th + ' ' + last_name_th from adm_user_profile where 1=1 and user_id = (select user_id from adm_user where 1=1 and username = rqh.repairPersonBy COLLATE SQL_Latin1_General_CP1_CI_AS)) repairPerson " +
+				"	,rqh.confirmRepairBy " +
+				"	,(select title + ' ' + first_name_th + ' ' + last_name_th from adm_user_profile where 1=1 and user_id = (select user_id from adm_user where 1=1 and username = rqh.confirmRepairBy COLLATE SQL_Latin1_General_CP1_CI_AS)) confirmRepair " +
+				"	,rqh.qaApproveBy " +      	
+				"	,(select title + ' ' + first_name_th + ' ' + last_name_th from adm_user_profile where 1=1 and user_id = (select user_id from adm_user where 1=1 and username = rqh.qaApproveBy COLLATE SQL_Latin1_General_CP1_CI_AS)) qaApprove " +
+				"	,rqh.achApproveBy " +
+				"	,(select title + ' ' + first_name_th + ' ' + last_name_th from adm_user_profile where 1=1 and user_id = (select user_id from adm_user where 1=1 and username = rqh.achApproveBy COLLATE SQL_Latin1_General_CP1_CI_AS)) achApprove " +				
+				
+//				"	,rqh.requestSectionBy " +
+//				"	,rqh.repairSectionBy  " +
+//				"	,rqh.repairPersonBy   " +
+//				"	,rqh.confirmRepairBy  " +
+//				"	,rqh.qaApproveBy      " +
+//				"	,rqh.achApproveBy     " +
+//**** New Query
+
+				"   ,rqh.user_id   	  " +
 				"	,rqh.status requestStatus ,misc.value1 as status_name" + 
 				"	, CASE WHEN rqh.createBy <> 'System' THEN usr.FIRST_NAME_TH + ' ' + usr.LAST_NAME_TH ELSE 'System' END  CreateBy" + 
 				"	,rqh.createDate , sec.section_ID,  sec.section_name " +
@@ -415,6 +438,9 @@ public class RequestService extends AbstractCommonJdbcDao {
 				"   WHERE  rqh.request_ID =  ? ";
 		
 		List<RequestBean> list = jdbcTemplate.query(query,new Object[] { reqId }, REQUEST_MAPPER_DETAIL );
+
+//		System.out.println(query);
+		
 		return (list!=null&&list.size()>0)? list.get(0): new RequestBean();
 	}
 

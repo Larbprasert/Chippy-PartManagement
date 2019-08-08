@@ -223,7 +223,8 @@
 							                            <b>Request person</b>
 							                        </div>
 							                        <div class="panel-body">
-							                            <p id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </p>
+<%-- 							                            <p id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </p> --%>
+							                            <p id="request">${requestObj.requestApprove} </p>							                           
 							                        </div>
 							                        <div class="panel-footer text-right">
 <!-- 							                        	<input type="hidden" name="status" value="1"> -->
@@ -241,9 +242,9 @@
 							                            <b>Section Approve  (LD Up)</b>
 							                        </div>
 							                        <div class="panel-body">
-							                        	<c:forEach var="ld_user" items="${APPROVE_LD}">
-													     	<p  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
-													    </c:forEach>	
+<%-- 							                        	<c:forEach var="ld_user" items="${APPROVE_LD}"> --%>
+<%-- 													     	<p  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p>  --%>
+<%-- 													    </c:forEach>	 --%>
 							                            
 							                        </div>
 <!-- 							                        <div class="panel-footer text-right"> -->

@@ -231,7 +231,9 @@
 							                            <b>Request Person</b>
 							                        </div>
 							                        <div class="panel-body">
-							                            <span id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </span>
+<%-- 							                            <span id="request">${_userProfile.firstNameTh} ${_userProfile.lastNameTh} </span> --%>
+							                            <span id="request">${requestObj.requestApprove} </span>
+							                             
 <!-- 							                        	<span class="label label-success pull-right">Create</span> -->
 							                        </div>
 							                        <div class="panel-footer text-right">
@@ -250,16 +252,12 @@
 							                            <b>Section Approve  (LD Up)</b>
 							                        </div>
 							                        <div class="panel-body">
-							                        	<c:forEach var="ld_user" items="${APPROVE_LD}">
-													     	<span title="${ld_user.email}"  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</span> 
-													     	 
-<%-- 													     	 ${requestObj.requestStatus} ${requestObj.requestSectionBy} --%>
-													     	 
-<!-- 													    	<span class="label label-danger pull-right">Cancel</span>  -->
-
-<!-- 													    	<span class="label label-success pull-right">Approve</span> -->
-
-													    </c:forEach>	
+							                        
+							                        <span id="sectionApprove">${requestObj.requestSection}</span>	
+							                        
+<%-- 							                        	<c:forEach var="ld_user" items="${APPROVE_LD}"> --%>
+<%-- 													     	<span title="${ld_user.email}"  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</span>  --%>
+<%-- 													    </c:forEach>	 --%>
 							                            
 							                        </div>
 							                        <div class="panel-footer text-right">
@@ -277,9 +275,10 @@
 							                            <b>Repair Section Approve (ACH  Up)</b>
 							                        </div>
 							                        <div class="panel-body">
-							                           <c:forEach var="ach_user" items="${APPROVE_ACH}">
-													     	<span title="${ach_user.email}" >${ach_user.firstNameTh} ${ach_user.lastNameTh}</span> 
-													    </c:forEach>	
+							                        	<span id="sectionApprove">${requestObj.repairSection}</span>
+<%-- 							                           <c:forEach var="ach_user" items="${APPROVE_ACH}"> --%>
+<%-- 													     	<span title="${ach_user.email}" >${ach_user.firstNameTh} ${ach_user.lastNameTh}</span>  --%>
+<%-- 													    </c:forEach>	 --%>
 							                        </div>
 							                        <div class="panel-footer text-right">
 									                     <button type="button" class="btn btn-danger"  disabled id="cn_ach_btn"  onclick="actionApprove(99);"><i class="fa fa-ban"></i>&nbsp; Cancel </button>
@@ -289,11 +288,8 @@
 							                       
 							                        </div>
 							                    </div>
-			                                </div>		
-			                                
-		                                	 		                                			                                  	                                
-		                                </div> 		
-		                                
+			                                </div> 		                                			                                  	                                
+		                                </div>
 		                                	                                
 		                                <!-- /.row -->	
 	                                </div>
@@ -559,9 +555,12 @@
 							                            <b>Repair Person</b>
 							                        </div>
 							                        <div class="panel-body">
-							                            <c:forEach var="ld_user" items="${ROLE_MT_STAFF}">
-													     	<p  title="${ld_user.email}"  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
-													    </c:forEach>	
+							                        
+							                        	<span id="repairPerson">${requestObj.repairPerson}</span>
+							                        
+<%-- 							                            <c:forEach var="ld_user" items="${ROLE_MT_STAFF}"> --%>
+<%-- 													     	<p  title="${ld_user.email}"  >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p>  --%>
+<%-- 													    </c:forEach>	 --%>
 							                        </div>
 							                        <div class="panel-footer text-right">
 						                                <button type="button" disabled class="btn btn-success" id="approve_btn_4"  onclick="actionApprove(4);"><i class="fa  fa-check-square-o"></i> Approve</button>
@@ -576,9 +575,12 @@
 							                            <b>Request Section (LD up)</b>
 							                        </div>
 							                        <div class="panel-body">
-							                           <c:forEach var="ld_user" items="${APPROVE_LD}">
-													     	<p   title="${ld_user.email}" >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
-													    </c:forEach>	
+							                        
+							                        	<span id=confirmRepair>${requestObj.confirmRepair}</span>
+							                        	
+<%-- 							                           <c:forEach var="ld_user" items="${APPROVE_LD}"> --%>
+<%-- 													     	<p   title="${ld_user.email}" >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p>  --%>
+<%-- 													    </c:forEach>	 --%>
 							                        </div>
 							                        <div class="panel-footer text-right">
 							                       	 <button type="button" disabled class="btn btn-danger"  id="cn_btn_5"  onclick="actionApprove(99);"><i class="fa fa-ban"></i>&nbsp; Cancel </button>
@@ -595,9 +597,12 @@
 							                            <b>QA Approve</b>
 							                        </div>
 							                        <div class="panel-body">
-							                            <c:forEach var="ld_user" items="${ROLE_QA}">
-													     	<p   title="${ld_user.email}" >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p> 
-													    </c:forEach>	
+							                        
+							                        	<span id=qaApprove>${requestObj.qaApprove}</span>
+							                        	
+<%-- 							                            <c:forEach var="ld_user" items="${ROLE_QA}"> --%>
+<%-- 													     	<p   title="${ld_user.email}" >${ld_user.firstNameTh} ${ld_user.lastNameTh}</p>  --%>
+<%-- 													    </c:forEach>	 --%>
 							                        </div>
 							                        <div class="panel-footer text-right">
 							                        	<button type="button" disabled class="btn btn-danger"  id="cn_btn_6"  onclick="actionApprove(99);"><i class="fa fa-ban"></i>&nbsp; Cancel </button>
@@ -614,9 +619,12 @@
 							                            <b>Repair Section (ACH up)</b>
 							                        </div>
 							                        <div class="panel-body">
-							                           <c:forEach var="ach_user" items="${APPROVE_ACH}">
-													     	<p   title="${ach_user.email}" >${ach_user.firstNameTh} ${ach_user.lastNameTh}</p> 
-													    </c:forEach>	
+							                        
+							                        	<span id=achApprove>${requestObj.achApprove}</span>
+							                        
+<%-- 							                           <c:forEach var="ach_user" items="${APPROVE_ACH}"> --%>
+<%-- 													     	<p   title="${ach_user.email}" >${ach_user.firstNameTh} ${ach_user.lastNameTh}</p>  --%>
+<%-- 													    </c:forEach>	 --%>
 							                        </div>							                        
 							                        <div class="panel-footer text-right">
 							                        	<button type="button" disabled class="btn btn-danger"  id="cn_btn_7"   onclick="actionApprove(99);"><i class="fa fa-ban"></i>&nbsp; Cancel </button>

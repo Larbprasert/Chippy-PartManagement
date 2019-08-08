@@ -42,6 +42,15 @@ public class RequestBean extends BaseDomain {
 	private String confirmRepairBy;
 	private String qaApproveBy;
 	private String achApproveBy;
+	
+	private String requestApprove;
+	private String requestSection;
+	private String repairSection;
+	private String repairPerson;
+	private String confirmRepair;
+	private String qaApprove;
+	private String achApprove;
+	
 	private String requestApproveFlg;
 	private String requestSectionFlg;
 	private String repairSectionFlg;
@@ -72,6 +81,62 @@ public class RequestBean extends BaseDomain {
 	private InternetAddress[] addressCC;
 	
 	
+	
+	public String getRequestApprove() {
+		return requestApprove;
+	}
+
+	public void setRequestApprove(String requestApprove) {
+		this.requestApprove = requestApprove;
+	}
+
+	public String getRequestSection() {
+		return requestSection;
+	}
+
+	public void setRequestSection(String requestSection) {
+		this.requestSection = requestSection;
+	}
+
+	public String getRepairSection() {
+		return repairSection;
+	}
+
+	public void setRepairSection(String repairSection) {
+		this.repairSection = repairSection;
+	}
+
+	public String getRepairPerson() {
+		return repairPerson;
+	}
+
+	public void setRepairPerson(String repairPerson) {
+		this.repairPerson = repairPerson;
+	}
+
+	public String getConfirmRepair() {
+		return confirmRepair;
+	}
+
+	public void setConfirmRepair(String confirmRepair) {
+		this.confirmRepair = confirmRepair;
+	}
+
+	public String getQaApprove() {
+		return qaApprove;
+	}
+
+	public void setQaApprove(String qaApprove) {
+		this.qaApprove = qaApprove;
+	}
+
+	public String getAchApprove() {
+		return achApprove;
+	}
+
+	public void setAchApprove(String achApprove) {
+		this.achApprove = achApprove;
+	}
 
 	public String getRequest_ID() {
 		return request_ID;
