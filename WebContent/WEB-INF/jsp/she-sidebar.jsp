@@ -8,7 +8,6 @@
 		<ul class="sidebar-menu" data-widget="tree">
 
 			<li class="header text-center">
-<%-- 			<img src="${cPath}/resources/images/tp/TPAC-TPCC.png" height="45px" /> --%>
 <%-- 			<img src="${cPath}/resources/images/logo_mg_sm.png" height="45px" /> --%>
 				</li>
 
@@ -227,7 +226,6 @@
 					</span>
 					</a>
 					<ul class="treeview-menu">
-<!-- 						Level #2 -->
 						<li class="treeview"><a href="#"> <i class="fa fa-chevron-circle-right"></i> 
 								<span>Maintenance Service</span> 
 								<span class="pull-right-container"> 
@@ -236,11 +234,9 @@
 							</a>
 							<ul class="treeview-menu">								
 								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF','ROLE_REQ_MNG', 'ROLE_REQ_SUP', 'ROLE_REQ_USER','ROLE_QA')">
-<%-- 									<li><a href="${cPath}/gas/gas_requested_list.htm"> <i --%>
 									<li><a href="${cPath}/request/requested_list.htm"> <i
 											class="fa fa-chevron-circle-right"></i> Requested list
 									</a></li>
-<%-- 									<li><a href="${cPath}/gas/gas_requested_new.htm"> <i --%>
 									<li><a href="${cPath}/request/requested_new.htm"> <i
 											class="fa fa-chevron-circle-right"></i> New Request
 									</a></li>
@@ -252,76 +248,10 @@
 				</li>
 			</security:authorize>
 
-
-
-<!-- 			<security:authorize access="hasAnyRole('TRAIN_VIEW','TRAIN_MODIFY')"> -->
-<!-- 				<li class="header">Safety Training Record</li> -->
-
-
-<!-- 				<li class="treeview"><a href="#"> <i class="fa fa-history"></i> -->
-<!-- 						<span><spring:message code="menu.history" /></span> <span -->
-<!-- 						class="pull-right-container"> <i -->
-<!-- 							class="fa fa-angle-left pull-right"></i> -->
-<!-- 					</span> -->
-<!-- 				</a> -->
-<!-- 					<ul class="treeview-menu"> -->
-<%-- 						<li><a href="${cPath}/history/reportSum.htm"> <i --%>
-<!-- 								class="fa fa-chevron-circle-right"></i> Training Summary Report -->
-<!-- 						</a></li> -->
-<!-- 					</ul></li> -->
-
-<!-- 				<security:authorize access="hasAnyRole('TRAIN_MODIFY')"> -->
-<!-- 					<li class="treeview"><a href="#"> <i -->
-<!-- 							class="fa fa-calendar-check-o"></i> <span>Management</span> <span -->
-<!-- 							class="pull-right-container"> <i -->
-<!-- 								class="fa fa-angle-left pull-right"></i> -->
-<!-- 						</span> -->
-<!-- 					</a> -->
-<!-- 						<ul class="treeview-menu"> -->
-<%-- 							<li><a href="${cPath}/manage/training_manage.htm"> <i --%>
-<!-- 									class="fa fa-chevron-circle-right"></i> Personal Training -->
-<!-- 							</a></li> -->
-<%-- 							<li><a href="${cPath}/manage/job_course_manage.htm"> <i --%>
-<!-- 									class="fa fa-chevron-circle-right"></i> Course Training -->
-<!-- 							</a></li> -->
-<%-- 							<li><a href="${cPath}/manage/job_course_search.htm"> <i --%>
-<!-- 									class="fa fa-chevron-circle-right"></i> Personal / Course -->
-<!-- 									Training -->
-<!-- 							</a></li> -->
-<%-- 							<li><a href="${cPath}/manage/job_course_add.htm"> <i --%>
-<!-- 									class="fa fa-chevron-circle-right"></i> Create Course Training -->
-<!-- 							</a></li> -->
-<!-- 						</ul></li> -->
-<!-- 					<li class="treeview"><a href="#"> <i class="fa fa-wrench"></i> -->
-<!-- 							<span>Maintenance</span> <span class="pull-right-container"> -->
-<!-- 								<i class="fa fa-angle-left pull-right"></i> -->
-<!-- 						</span> -->
-<!-- 					</a> -->
-<!-- 						<ul class="treeview-menu"> -->
-<%-- 							<li><a href="${cPath}/maintain/owner.htm"> <i --%>
-<!-- 									class="fa fa-chevron-circle-right"></i> Contractor Maintenance -->
-<!-- 							</a></li> -->
-<%-- 							<li><a href="${cPath}/maintain/course.htm"> <i --%>
-<!-- 									class="fa fa-chevron-circle-right"></i> Course Maintenance -->
-<!-- 							</a></li> -->
-<%-- 							<li><a href="${cPath}/maintain/positionCourse.htm"> <i --%>
-<!-- 									class="fa fa-chevron-circle-right"></i> Training Need by Job -->
-<!-- 									Position -->
-<!-- 							</a></li> -->
-<!-- 						</ul></li> -->
-<!-- 				</security:authorize> -->
-<!-- 			</security:authorize> -->
-
-
-
-
 			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG')">
 
 				<li class="header">System Configuration</li>
 
-				<!-- 					<li class="header">Authorization</li> -->
-
-				
 				<li><a href="${cPath}/admin/user/viewUser.htm"> <i
 						class="fa fa-users"></i> <span>User Management</span>
 				</a></li>
