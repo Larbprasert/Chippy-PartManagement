@@ -75,7 +75,7 @@
         			    data: {
 //         			    	part_name: "{{{q}}}",
 //         			    	sysPart_ID:reqId
-        			    	part_name: "{{{q}}}"        			    	
+        			    	part_name: "{{{q}}}" 
         			    }
         			  },
         			  locale: {
