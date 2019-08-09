@@ -196,7 +196,7 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 		}		
 	}
 
-	public DataTableAjax<PartMachineBean> getRemainPart(PartMachineBean bean) {
+	public DataTableAjax<PartMachineBean> getPartToMachine(PartMachineBean bean) {
 		// TODO Auto-generated method stub
 		DataTableAjax<PartMachineBean> listpartremain = new DataTableAjax<PartMachineBean>();
 						
@@ -207,7 +207,7 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 				
 		
 		if(StringUtils.isNotEmpty(bean.getPart_name())){
-			query += " AND pm.part_ID NOT IN (SELECT pmac2.part_ID FROM tb_part_Machine pmac2 "
+			query += " AND pm.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS NOT IN (SELECT pmac2.part_ID FROM tb_part_Machine pmac2 "
 					+ "LEFT JOIN tb_PartMaster pm2 ON pmac2.part_ID = pm2.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS "
 					+ "WHERE (pmac2.part_ID like '%"+bean.getPart_name()+"%' " 
 					+ "OR pm2.part_name like '%"+bean.getPart_name()+"%' )" ;
@@ -219,7 +219,7 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 		
 		query += ") ORDER BY pm.part_ID ";
 		
-		System.out.println(query);
+//		System.out.println(query);
 		
 		List<PartMachineBean> list = jdbcTemplate.query(query,PARTREMAIN_MAPPER);
 		

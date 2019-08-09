@@ -42,9 +42,9 @@ public class PartMachineCtrl {
 		return dataTableAjax;
 	}
 	
-	@RequestMapping("/partMachine/searchRemain.json")
-	public DataTableAjax<PartMachineBean> searchRemain(HttpServletRequest request, HttpServletResponse response,PartMachineBean bean) throws ServletException, IOException {
-		DataTableAjax<PartMachineBean> dataTableAjax = partMachineService.getRemainPart(bean);
+	@RequestMapping("/partMachine/searchPart.json")
+	public DataTableAjax<PartMachineBean> searchPart(HttpServletRequest request, HttpServletResponse response,PartMachineBean bean) throws ServletException, IOException {
+		DataTableAjax<PartMachineBean> dataTableAjax = partMachineService.getPartToMachine(bean);
 		return dataTableAjax;
 	}
 	

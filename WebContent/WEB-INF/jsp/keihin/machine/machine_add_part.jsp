@@ -62,20 +62,22 @@
 		
   
   <script type="text/javascript">
+  var machineID = $('#machine_ID').val();
     
         $(document).ready(function() {
+        	
 
         	var options = {
 //         			  values: "a, b, c",
         			  ajax: {
 //         			    url:  cPath+"/partMaster/search.json",
-        			    url:  cPath+"/partMachine/searchRemain.json",
+        			    url:  cPath+"/partMachine/searchPart.json?machine_ID="+ $('#machine_ID').val(),
         			    type: "POST",
         			    dataType: "json",
         			    data: {
 //         			    	part_name: "{{{q}}}",
 //         			    	sysPart_ID:reqId
-        			    	part_name: "{{{q}}}" 
+        			    	part_name: "{{{q}}}"
         			    }
         			  },
         			  locale: {

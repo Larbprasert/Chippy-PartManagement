@@ -127,7 +127,6 @@
 										</div>
 									</div>
 
-									<%@ include file="machine_add_part.jsp"%>
 
 									<table id="part-table"
 										class="table table-striped table-hover table-bordered">
@@ -164,6 +163,7 @@
 			</section>
 		</div>
 
+									<%@ include file="machine_add_part.jsp"%>
 
 	</form>
 
