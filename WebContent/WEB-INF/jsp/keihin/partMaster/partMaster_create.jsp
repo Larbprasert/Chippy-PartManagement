@@ -131,7 +131,7 @@
 			</select>
 		</div>
 		<div class="col-lg-2">
-			<p class="help-block"><b>Mold/Type:</b></p>
+			<p class="help-block"><b>Model / Type:</b></p>
 		</div>
 		<div class="col-lg-4">
 			<select class="form-control" name="moldType.moldType_ID" required>

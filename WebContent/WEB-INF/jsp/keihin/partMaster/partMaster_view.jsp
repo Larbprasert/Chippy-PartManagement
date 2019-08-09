@@ -120,7 +120,7 @@
 			<input type="text" class="form-control" placeholder="Status" name="maker_name" value="${partMasterBean.maker.maker_name}" readonly>
 		</div>
 		<div class="col-lg-2">
-			<p class="help-block"><b>Mold/Type:</b></p>
+			<p class="help-block"><b>Model / Type:</b></p>
 		</div>
 		<div class="col-lg-4">
 			<input type="text" class="form-control" placeholder="Status" name="moldType_name" value="${partMasterBean.moldType.moldType_name}" readonly>
