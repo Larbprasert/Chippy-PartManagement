@@ -7,6 +7,9 @@
 
 <!-- Dashboard -->
 		<definition name="dashboard_mt" template="/WEB-INF/jsp/keihin/dashboard/dashboard_mt.jsp" />
+
+<!-- Report -->
+		<definition name="sparepart_report" template="/WEB-INF/jsp/keihin/partMaster/sparepart_report.jsp" />
 		
 <!-- CheckTool -->
 		<definition name="checkTool_list" template="/WEB-INF/jsp/keihin/checkTool/checkTool_list.jsp" />
@@ -85,7 +88,6 @@
 		<definition name="partMaster_view" template="/WEB-INF/jsp/keihin/partMaster/partMaster_view.jsp" />
 		<definition name="partMaster_edit" template="/WEB-INF/jsp/keihin/partMaster/partMaster_edit.jsp" />
 		<definition name="partMaster_create" template="/WEB-INF/jsp/keihin/partMaster/partMaster_create.jsp" />
-		<definition name="sparepart_report" template="/WEB-INF/jsp/keihin/partMaster/sparepart_report.jsp" />
 
 <!-- Request -->
 		<definition name="requested_new" template="/WEB-INF/jsp/keihin/request/requested_new.jsp" />

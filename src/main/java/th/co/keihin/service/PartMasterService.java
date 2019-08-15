@@ -15,9 +15,11 @@ import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.UnitTypeBean;
 import th.co.portal.model.gas.ResponseResult;
 import th.co.keihin.model.LocationBean;
+import th.co.keihin.model.MachineBean;
 import th.co.keihin.model.MakerBean;
 import th.co.keihin.model.MoldTypeBean;
 import th.co.keihin.model.PartMasterBean;
+import th.co.keihin.model.RepairDetail;
 
 @Repository("partMasterService")
 public class PartMasterService {
@@ -337,10 +339,13 @@ public class PartMasterService {
 	
 	
 	//################################################### Report
-	public ResponseResult getPartMachineReport(String machine_ID) {
+	public DataTableAjax<PartMasterBean> getSparePart_Report(MachineBean bean) {	
+		List param = new ArrayList();
+		param.add(bean.getMachine_ID());		
+		int updateRecord = jdbcTemplate.update("{call sp_Report_Sparepart(?)}", param.toArray() );
 		
+		return null;
 		
-		return null;		
 	}
 	//################################################### Report
 

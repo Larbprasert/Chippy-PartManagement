@@ -22,6 +22,7 @@ import th.co.keihin.service.MakerService;
 import th.co.keihin.service.MoldTypeService;
 import th.co.keihin.service.PartMasterService;
 import th.co.keihin.service.UnitTypeService;
+import th.co.portal.model.gas.ResponseResult;
 
 
 @RestController
@@ -47,25 +48,6 @@ public class PartMasterCtrl {
 	
 	
 //	
-	@RequestMapping("/partMaster/sparepart_report.htm")
-	public ModelAndView spartpart_report(HttpServletRequest httpRequest) {
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("LOV_MACHINE",machineService.loadActiveMachine());
-		
-		mav.setViewName("sparepart_report");
-		return mav;
-	}
-	
-	@RequestMapping("/partMaster/view_report.htm")
-	public ModelAndView view_report(HttpServletRequest httpRequest, MachineBean bean) {
-		ModelAndView mav = new ModelAndView();
-		
-		mav.addObject("partMasterBean",partMasterService.getPartMachineReport(bean.getMachine_ID()));
-		
-		mav.setViewName("partMaster_report");
-		return mav;
-	}
 	
 	@RequestMapping("/partMaster/partMaster_list.htm")
 	public ModelAndView partMaster_list(HttpServletRequest httpRequest) {
@@ -147,6 +129,22 @@ public class PartMasterCtrl {
 	@RequestMapping("/partMaster/search.json")
 	public DataTableAjax<PartMasterBean> search(HttpServletRequest request, HttpServletResponse response,PartMasterBean bean) throws ServletException, IOException {
 		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getAll(bean);
+		return dataTableAjax;
+	}
+	
+	@RequestMapping("/partMaster/sparepart_report.htm")
+	public ModelAndView spartpart_report(HttpServletRequest httpRequest) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("LOV_MACHINE",machineService.loadActiveMachine());
+		
+		mav.setViewName("sparepart_report");
+		return mav;
+	}
+	
+	@RequestMapping("/partMaster/getSparePart_report.json")
+	public DataTableAjax<PartMasterBean> getSparePart_report(HttpServletRequest request, HttpServletResponse response,MachineBean bean) throws ServletException, IOException {
+		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getSparePart_Report(bean);
 		return dataTableAjax;
 	}
 }
