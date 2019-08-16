@@ -61,8 +61,20 @@
 					<div class="form-group "> 
 						<div class="col-lg-12 text-center">
 							<button type="reset" class="btn btn-default"> &nbsp;<spring:message code="common.clearBtn"/> <i class="fa fa-refresh"></i></button>&nbsp;&nbsp;
-							<button type="button" id="searchBtn" class="btn btn-primary"><spring:message code="common.searchBtn"/> <i class="fa fa-search"></i></button>&nbsp;&nbsp;
-<!-- 								<button type="button" class="btn btn-warning" disabled>Export <i class="fa fa-file-excel-o"></i></button> -->
+<%-- 							<button type="button" id="searchBtn" class="btn btn-primary"><spring:message code="common.searchBtn"/> <i class="fa fa-search"></i></button>&nbsp;&nbsp; --%>
+<!-- 							<button type="button" id="searchBtn" class="btn btn-primary" -->
+<!-- 								onclick="doSearch()"> -->
+<!-- 								<i class="fa fa-search"></i> Search -->
+<!-- 							</button> -->
+
+
+<button type="button" class="btn btn-warning" id="exportBtn" onclick="doSearch()">Export <i class="fa fa-file-excel-o"></i></button>
+<!-- <button type="button" class="btn btn-warning" id="exportBtn" onclick="location.href='/partMaster/report'">Export <i class="fa fa-file-excel-o"></i></button> -->
+
+
+<spring:url value="/partMaster/report" var="xlsURL"></spring:url>
+<a href="${xlsURL}">Excel Document</a>
+
 						</div>
 					</div>
 				</div>
@@ -87,14 +99,26 @@
  <script>
  	
  		function doSearch(){
-			
+ 			$.ajax({
+	            url: cPath+"/partMaster/report",
+	            data: $('#myForm').serialize()
+	        }).done(function (result) {
+	        	
+	        	alert("Export successfully !");
+
+	           }).fail(function (jqXHR, textStatus, errorThrown) { 
+	                
+	        	   alert('ERROR');
+	        	   
+	           });
+
 	 	};
  		
-		$("#searchBtn").click(function(){
-			  doSearch();
-        });
+// 		$("#exportBtn").click(function(){
+// 			  doSearch();
+//         });
 
-			  doSearch();
+// 			  doSearch();
 	
 </script>
 	

@@ -4,12 +4,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.servlet.view.document.AbstractXlsView;
 
 import th.co.baiwa.common.bean.DataTableAjax;
 import th.co.keihin.model.UnitTypeBean;
@@ -20,6 +25,26 @@ import th.co.keihin.model.MakerBean;
 import th.co.keihin.model.MoldTypeBean;
 import th.co.keihin.model.PartMasterBean;
 import th.co.keihin.model.RepairDetail;
+
+//*********************************************Excel
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 @Repository("partMasterService")
 public class PartMasterService {
@@ -339,6 +364,129 @@ public class PartMasterService {
 	
 	
 	//################################################### Report
+	private static final String _FILENAME = "../MyFirstExcel.xlsx";
+//	
+//	public class ExcelView extends AbstractXlsView{
+//
+//		@Override
+//		protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
+//				HttpServletResponse response) throws Exception {
+//			// TODO Auto-generated method stub
+//			// change the file name
+//		    response.setHeader("Content-Disposition", "attachment; filename=\"my-exported-file.xls\"");
+//
+//		    // create excel xls sheet
+//		    Sheet sheet = workbook.createSheet("Users Detail");
+//		    sheet.setDefaultColumnWidth(30);
+//
+//		    // create style for header cells
+//		    CellStyle style = workbook.createCellStyle();
+//		    Font font = workbook.createFont();
+//		    font.setFontName("Arial");
+//		    style.setFillForegroundColor(HSSFColor.BLUE.index);
+//		    font.setColor(HSSFColor.BLACK.index);
+//		    style.setFont(font);
+//
+//
+//		    // create header row
+//		    Row header = sheet.createRow(0);
+//		    header.createCell(0).setCellValue("First Name");
+//		    header.getCell(0).setCellStyle(style);
+//		    header.createCell(1).setCellValue("Last Name");
+//		    header.getCell(1).setCellStyle(style);
+//		    header.createCell(2).setCellValue("Number");
+//		    header.getCell(2).setCellStyle(style);
+//		    header.createCell(3).setCellValue("Age");
+//		    header.getCell(3).setCellStyle(style);			
+//		}
+//
+//	}
+	
+	public static ByteArrayInputStream partToExcel(MachineBean bean) throws IOException {
+//	public static ByteArrayInputStream partToExcel(List<PartMasterBean> bean) throws IOException {
+		String[] COLUMNs = { "Id", "Name", "Qty"};
+		Workbook workbook = new XSSFWorkbook(); 
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		
+		try {
+			Sheet sheet = workbook.createSheet("PartMaster");
+			
+			Font headerFont = workbook.createFont();
+			headerFont.setBold(true);
+			headerFont.setColor(IndexedColors.BLUE.getIndex());
+
+			CellStyle headerCellStyle = workbook.createCellStyle();
+			headerCellStyle.setFont(headerFont);
+
+			// Header Row
+			Row headerRow = sheet.createRow(0);
+			
+			// Table Header
+			for (int col = 0; col < COLUMNs.length; col++) {
+				Cell cell = headerRow.createCell(col);
+				cell.setCellValue(COLUMNs[col]);
+				cell.setCellStyle(headerCellStyle);
+			}
+			
+			workbook.write(out);
+				
+			
+		}catch (IOException e) {
+            e.printStackTrace();
+        }	
+		
+		return new ByteArrayInputStream(out.toByteArray());
+	}
+	
+//	public void WriteExcel() {
+//		try {
+//					    
+//			XSSFWorkbook workbook = new XSSFWorkbook();
+//			XSSFSheet sheet = workbook.createSheet("Data");
+//			
+//	        Object[][] datatypes = {
+//	                {"Datatype", "Type", "Size(in bytes)"},
+//	                {"int", "Primitive", 2},
+//	                {"float", "Primitive", 4},
+//	                {"double", "Primitive", 8},
+//	                {"char", "Primitive", 1},
+//	                {"String", "Non-Primitive", "No fixed size"}
+//	        };
+//
+//	        int rowNum = 0;
+//	        System.out.println("Creating excel");
+//
+//	        for (Object[] datatype : datatypes) {
+//	            Row row = sheet.createRow(rowNum++);
+//	            int colNum = 0;
+//	            for (Object field : datatype) {
+//	                Cell cell = row.createCell(colNum++);
+//	                if (field instanceof String) {
+//	                    cell.setCellValue((String) field);
+//	                } else if (field instanceof Integer) {
+//	                    cell.setCellValue((Integer) field);
+//	                }
+//	            }
+//	        }
+//
+//	        try {
+//	            FileOutputStream outputStream = new FileOutputStream(_FILENAME);
+//	            workbook.write(outputStream);
+//	            workbook.close();
+//	        } catch (FileNotFoundException e) {
+//	            e.printStackTrace();
+//	        } catch (IOException e) {
+//	            e.printStackTrace();
+//	        }
+//
+//	        System.out.println("Done");
+//	        
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}		
+//    }
+
+	
 	public DataTableAjax<PartMasterBean> getSparePart_Report(MachineBean bean) {	
 		List param = new ArrayList();
 		param.add(bean.getMachine_ID());		

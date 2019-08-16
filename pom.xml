@@ -171,10 +171,12 @@
 		    <version>2.5.3</version>
 		</dependency>
 		
+		<!-- Excel -->
 		 <dependency>
 		    <groupId>org.apache.poi</groupId>
 		    <artifactId>poi-ooxml</artifactId>
 		    <version>3.15</version>
+<!-- 		    <version>3.9</version> -->
 		  </dependency>
 		
 		<!-- Database -->
@@ -315,6 +317,6 @@
 	</build>
 	
 	<organization>
-		<name>baiwa.co.th</name>
+		<name>Maruto L.</name>
 	</organization>
 </project>
