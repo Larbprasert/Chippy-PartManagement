@@ -174,7 +174,7 @@ public class PartMasterCtrl {
 //	}
 
 	@RequestMapping("/partMaster/report")
-	public void getExcel(HttpServletResponse response, MachineBean bean) throws ServletException, IOException {
+	public void getExcel(HttpServletResponse response, PartMasterBean bean) throws ServletException, IOException {
 
 		ByteArrayInputStream in = partMasterService.partToExcel(bean);
 
