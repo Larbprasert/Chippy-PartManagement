@@ -202,6 +202,29 @@ public class MachineService {
 		}
 		return lovInfos;
 	}
+
+	public List<LovInfo> loadActiveMachineByProductionLine(String productionLine_ID) {
+		List<LovInfo>  lovInfos= new ArrayList<LovInfo>();
+		
+		String query = "Select a.machine_ID, a.machine_name "+
+				"From tb_machine a " + 
+				"where 1=1 " +
+				"and a.productionLine_ID = '" + productionLine_ID + "' " +
+				"and a.activeFlag <> 2 " +
+				"order by a.machine_ID";
+		
+		List<MachineBean> machinelist = jdbcTemplate.query(query,BeanPropertyRowMapper.newInstance(MachineBean.class));
+		
+		LovInfo lovInfo = new LovInfo();
+		for (MachineBean machineBean : machinelist) {
+			lovInfo = new LovInfo();
+			lovInfo.setCode(machineBean.getMachine_ID());
+			lovInfo.setDescTH(machineBean.getMachine_name());
+			lovInfo.setDescEN(machineBean.getMachine_name());
+			lovInfos.add(lovInfo);
+		}
+		return lovInfos;
+	}
 	
 	
 	

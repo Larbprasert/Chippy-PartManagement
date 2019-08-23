@@ -2,6 +2,8 @@ package th.co.keihin.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +58,13 @@ public class PartMasterService {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private MachineService machineService;
+
+	@Autowired
+	private ProductionLineService productionLineService;
+	
 
 	
 	private RowMapper PARTMASTER_MAPPER = new RowMapper(){
@@ -381,7 +390,7 @@ public class PartMasterService {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
 		try {
-			
+						
 			// create excel xls sheet
 		    Sheet sheet = workbook.createSheet("PartMaster");		    
 		    //sheet.setDefaultColumnWidth(30);
@@ -496,7 +505,7 @@ public class PartMasterService {
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(2, 2, 1, 2));
 		    //data
-		    //
+		    plant.createCell(3).setCellValue("xxxx");
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(2, 2, 3, 8));
 		    
@@ -507,18 +516,17 @@ public class PartMasterService {
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(3, 3, 1, 2));
 		    //data
-		    //
+		    section.createCell(3).setCellValue("xxxx");
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(3, 3, 3, 8));
 
 		    Row line = sheet.createRow(4);
 		    line.createCell(1).setCellValue("Line Name : ");
 		    line.getCell(1).setCellStyle(styleBold);
-
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(4, 4, 1, 2));
 		    //data
-		    //
+		    line.createCell(3).setCellValue("xxx");
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(4, 4, 3, 8));
 
@@ -563,9 +571,16 @@ public class PartMasterService {
 	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 18, 18));
 	        stock.setCellStyle(rotation90);
 	        
-	        	        
-	        int year = Year.now().getValue();
-
+	        //Set Year	        
+	        int currentYear = Year.now().getValue();
+	        int lastYear = Year.now().getValue() - 1;
+	        int nextYear = Year.now().getValue() + 1;
+	        
+	        LocalDate today = LocalDate.now();
+	        int month = today.getMonthValue();
+	       
+	        int year = (Year.now().getValue() == currentYear) ? currentYear : (Year.now().getValue() > lastYear) ? lastYear : nextYear   ;
+	        	
 	        //Apr
 	        Cell aprCol = eightRow.createCell(19);
 	        aprCol.setCellValue("Apr - " + Integer.toString(year));
@@ -861,7 +876,7 @@ public class PartMasterService {
 		    
 		    //Resize all columns to fit the content size
 		    sheet.autoSizeColumn(0);
-		    
+		    		    	    
 		    //Data
 		   
 		    

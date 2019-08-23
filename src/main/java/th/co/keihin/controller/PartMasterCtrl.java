@@ -3,6 +3,7 @@ package th.co.keihin.controller;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,14 +20,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import th.co.baiwa.common.ApplicationCache;
 import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
 import th.co.keihin.model.FileUploadBean;
 import th.co.keihin.model.MachineBean;
 import th.co.keihin.model.PartMasterBean;
+import th.co.keihin.model.ProductionLineBean;
 import th.co.keihin.service.LocationService;
 import th.co.keihin.service.MachineService;
 import th.co.keihin.service.MakerService;
 import th.co.keihin.service.MoldTypeService;
 import th.co.keihin.service.PartMasterService;
+import th.co.keihin.service.ProductionLineService;
 import th.co.keihin.service.UnitTypeService;
 
 @RestController
@@ -49,6 +53,9 @@ public class PartMasterCtrl {
 
 	@Autowired
 	private MachineService machineService;
+
+	@Autowired
+	private ProductionLineService productionLineService;
 
 //	
 
@@ -139,10 +146,22 @@ public class PartMasterCtrl {
 	public ModelAndView spartpart_report(HttpServletRequest httpRequest) {
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("LOV_MACHINE", machineService.loadActiveMachine());
+		mav.addObject("LOV_PRODUCTIONLINE", productionLineService.loadActiveProductionLine());
+
+		mav.addObject("LOV_MACHINE", machineService.loadActiveMachine());		
 
 		mav.setViewName("sparepart_report");
 		return mav;
+	}
+
+	@RequestMapping(value = "/partMaster/getMachineByProductionLine.json",headers = "Accept=application/json")
+	public List<LovInfo> getMachineProductionLine(HttpServletRequest httpRequest,MachineBean bean) {
+//		ModelAndView mav = new ModelAndView();
+		
+//		mav.addObject("LOV_MACHINE", machineService.loadActiveMachineByProductionLine(bean.getProductionLine().getProductionLine_ID()));		
+		
+//		mav.setViewName("sparepart_report");
+		return machineService.loadActiveMachineByProductionLine(bean.getProductionLine().getProductionLine_ID());
 	}
 
 	@RequestMapping("/partMaster/getSparePart_report")
