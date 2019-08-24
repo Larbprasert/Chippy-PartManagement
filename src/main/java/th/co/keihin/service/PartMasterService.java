@@ -565,10 +565,16 @@ public class PartMasterService {
 	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 13, 17));
 	        model.setCellStyle(styleBold);
 	        CellUtil.setAlignment(model, HorizontalAlignment.CENTER);
-	        
-	        Cell stock = eightRow.createCell(18);
-	        stock.setCellValue("Qty");
+
+	        Cell rank = eightRow.createCell(18);
+	        rank.setCellValue("Rank");
 	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 18, 18));
+	        rank.setCellStyle(styleBold);
+	        rank.setCellStyle(rotation90);
+	        
+	        Cell stock = eightRow.createCell(19);
+	        stock.setCellValue("Qty");
+	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 19, 19));
 	        stock.setCellStyle(rotation90);
 	        
 	        //Set Year	        
@@ -582,20 +588,20 @@ public class PartMasterService {
 	        int year = (Year.now().getValue() == currentYear) ? currentYear : (Year.now().getValue() > lastYear) ? lastYear : nextYear   ;
 	        	
 	        //Apr
-	        Cell aprCol = eightRow.createCell(19);
+	        Cell aprCol = eightRow.createCell(20);
 	        aprCol.setCellValue("Apr - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 19, 21));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 20, 22));
 
-	        Cell aprStk = nineRow.createCell(19);
+	        Cell aprStk = nineRow.createCell(20);
 	        aprStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 19, 20));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 20, 21));
 
-	        Cell aprActual = nineRow.createCell(21);
+	        Cell aprActual = nineRow.createCell(22);
 	        aprActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 21, 21));	        
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 22, 22));	        
 	        
-	        Cell aprIn = tenRow.createCell(19);
-	        Cell aprOut = tenRow.createCell(20);	        
+	        Cell aprIn = tenRow.createCell(20);
+	        Cell aprOut = tenRow.createCell(21);	        
 	        aprIn.setCellValue("In");
 	        aprOut.setCellValue("Out");
 	        
@@ -606,20 +612,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(aprOut, HorizontalAlignment.CENTER);	        
 	        
 	        //May
-	        Cell mayCol = eightRow.createCell(22);
+	        Cell mayCol = eightRow.createCell(23);
 	        mayCol.setCellValue("May - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 22, 24));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 23, 25));
 	        
-	        Cell mayStk = nineRow.createCell(22);
+	        Cell mayStk = nineRow.createCell(23);
 	        mayStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 22, 23));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 23, 24));
 	        
-	        Cell mayActual = nineRow.createCell(24);
+	        Cell mayActual = nineRow.createCell(25);
 	        mayActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 24, 24));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 25, 25));
 	        
-	        Cell mayIn = tenRow.createCell(22);
-	        Cell mayOut = tenRow.createCell(23);	        
+	        Cell mayIn = tenRow.createCell(23);
+	        Cell mayOut = tenRow.createCell(24);	        
 	        mayIn.setCellValue("In");
 	        mayOut.setCellValue("Out");
 	        
@@ -630,20 +636,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(mayOut, HorizontalAlignment.CENTER);
 	        
 	        //Jun
-	        Cell junCol = eightRow.createCell(25);
+	        Cell junCol = eightRow.createCell(26);
 	        junCol.setCellValue("Jun - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 25, 27));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 26, 28));
 	        
-	        Cell junStk = nineRow.createCell(25);
+	        Cell junStk = nineRow.createCell(26);
 	        junStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 25, 26));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 26, 27));
 	        
-	        Cell junActual = nineRow.createCell(27);
+	        Cell junActual = nineRow.createCell(28);
 	        junActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 27, 27));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 28, 28));
 	        
-	        Cell junIn = tenRow.createCell(25);
-	        Cell junOut = tenRow.createCell(26);	        
+	        Cell junIn = tenRow.createCell(26);
+	        Cell junOut = tenRow.createCell(27);	        
 	        junIn.setCellValue("In");
 	        junOut.setCellValue("Out");
 	        
@@ -654,20 +660,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(junOut, HorizontalAlignment.CENTER);
 	        
 	        //Jul
-	        Cell julCol = eightRow.createCell(28);
+	        Cell julCol = eightRow.createCell(29);
 	        julCol.setCellValue("Jul - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 28, 30));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 29, 31));
 	        
-	        Cell julStk = nineRow.createCell(28);
+	        Cell julStk = nineRow.createCell(29);
 	        julStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 28, 29));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 29, 30));
 	        
-	        Cell julActual = nineRow.createCell(30);
+	        Cell julActual = nineRow.createCell(31);
 	        julActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 30, 30));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 31, 31));
 	        
-	        Cell julIn = tenRow.createCell(28);
-	        Cell julOut = tenRow.createCell(29);	        
+	        Cell julIn = tenRow.createCell(29);
+	        Cell julOut = tenRow.createCell(30);	        
 	        julIn.setCellValue("In");
 	        julOut.setCellValue("Out");
 	        
@@ -678,20 +684,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(julOut, HorizontalAlignment.CENTER);
 	        
 	        //Aug
-	        Cell augCol = eightRow.createCell(31);
+	        Cell augCol = eightRow.createCell(32);
 	        augCol.setCellValue("Aug - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 31, 33));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 32, 34));
 	        
-	        Cell augStk = nineRow.createCell(31);
+	        Cell augStk = nineRow.createCell(32);
 	        augStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 31, 32));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 32, 33));
 	        
-	        Cell augActual = nineRow.createCell(33);
+	        Cell augActual = nineRow.createCell(34);
 	        augActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 33, 33));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 34, 34));
 	        
-	        Cell augIn = tenRow.createCell(31);
-	        Cell augOut = tenRow.createCell(32);	        
+	        Cell augIn = tenRow.createCell(32);
+	        Cell augOut = tenRow.createCell(33);	        
 	        augIn.setCellValue("In");
 	        augOut.setCellValue("Out");
 	        
@@ -702,20 +708,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(augOut, HorizontalAlignment.CENTER);
 	        
 	        //Sep
-	        Cell sepCol = eightRow.createCell(34);
+	        Cell sepCol = eightRow.createCell(35);
 	        sepCol.setCellValue("Sep - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 34, 36));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 35, 37));
 	        
-	        Cell sepStk = nineRow.createCell(34);
+	        Cell sepStk = nineRow.createCell(35);
 	        sepStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 34, 35));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 35, 36));
 	        
-	        Cell sepActual = nineRow.createCell(36);
+	        Cell sepActual = nineRow.createCell(37);
 	        sepActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 36, 36));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 37, 37));
 	        
-	        Cell sepIn = tenRow.createCell(34);
-	        Cell sepOut = tenRow.createCell(35);	        
+	        Cell sepIn = tenRow.createCell(35);
+	        Cell sepOut = tenRow.createCell(36);	        
 	        sepIn.setCellValue("In");
 	        sepOut.setCellValue("Out");
 	        
@@ -726,20 +732,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(sepOut, HorizontalAlignment.CENTER);
 	        
 	        //Oct
-	        Cell octCol = eightRow.createCell(37);
+	        Cell octCol = eightRow.createCell(38);
 	        octCol.setCellValue("Oct - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 37, 39));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 38, 40));
 	        
-	        Cell octStk = nineRow.createCell(37);
+	        Cell octStk = nineRow.createCell(38);
 	        octStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 37, 38));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 38, 39));
 	        
-	        Cell octActual = nineRow.createCell(39);
+	        Cell octActual = nineRow.createCell(40);
 	        octActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 39, 39));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 40, 40));
 	        
-	        Cell octIn = tenRow.createCell(37);
-	        Cell octOut = tenRow.createCell(38);	        
+	        Cell octIn = tenRow.createCell(38);
+	        Cell octOut = tenRow.createCell(39);	        
 	        octIn.setCellValue("In");
 	        octOut.setCellValue("Out");
 	        
@@ -750,20 +756,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(octOut, HorizontalAlignment.CENTER);
 	        
 	        //Nov
-	        Cell novCol = eightRow.createCell(40);
+	        Cell novCol = eightRow.createCell(41);
 	        novCol.setCellValue("Nov - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 40, 42));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 41, 43));
 	        
-	        Cell novStk = nineRow.createCell(40);
+	        Cell novStk = nineRow.createCell(41);
 	        novStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 40, 41));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 41, 42));
 	        
-	        Cell novActual = nineRow.createCell(42);
+	        Cell novActual = nineRow.createCell(43);
 	        novActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 42, 42));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 43, 43));
 	        
-	        Cell novIn = tenRow.createCell(40);
-	        Cell novOut = tenRow.createCell(41);	        
+	        Cell novIn = tenRow.createCell(41);
+	        Cell novOut = tenRow.createCell(42);	        
 	        novIn.setCellValue("In");
 	        novOut.setCellValue("Out");
 	        
@@ -774,20 +780,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(novOut, HorizontalAlignment.CENTER);
 	        
 	        //Dec
-	        Cell decCol = eightRow.createCell(43);
+	        Cell decCol = eightRow.createCell(44);
 	        decCol.setCellValue("Dec - " + Integer.toString(year));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 43, 45));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 44, 46));
 	        
-	        Cell decStk = nineRow.createCell(43);
+	        Cell decStk = nineRow.createCell(44);
 	        decStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 43, 44));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 44, 45));
 	        
-	        Cell decActual = nineRow.createCell(45);
+	        Cell decActual = nineRow.createCell(46);
 	        decActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 45, 45));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 46, 46));
 	        
-	        Cell decIn = tenRow.createCell(43);
-	        Cell decOut = tenRow.createCell(44);	        
+	        Cell decIn = tenRow.createCell(44);
+	        Cell decOut = tenRow.createCell(45);	        
 	        decIn.setCellValue("In");
 	        decOut.setCellValue("Out");
 	        
@@ -798,20 +804,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(decOut, HorizontalAlignment.CENTER);
 	        
 	        //Jan
-	        Cell janCol = eightRow.createCell(46);
+	        Cell janCol = eightRow.createCell(47);
 	        janCol.setCellValue("Jan - " + Integer.toString(year +1));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 46, 48));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 47, 49));
 	        
-	        Cell janStk = nineRow.createCell(46);
+	        Cell janStk = nineRow.createCell(47);
 	        janStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 46, 47));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 47, 48));
 	        
-	        Cell janActual = nineRow.createCell(48);
+	        Cell janActual = nineRow.createCell(49);
 	        janActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 48, 48));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 49, 49));
 	        
-	        Cell janIn = tenRow.createCell(46);
-	        Cell janOut = tenRow.createCell(47);	        
+	        Cell janIn = tenRow.createCell(47);
+	        Cell janOut = tenRow.createCell(48);	        
 	        janIn.setCellValue("In");
 	        janOut.setCellValue("Out");
 	        
@@ -822,20 +828,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(janOut, HorizontalAlignment.CENTER);
 	        
 	        //Feb
-	        Cell febCol = eightRow.createCell(49);
+	        Cell febCol = eightRow.createCell(50);
 	        febCol.setCellValue("Feb - " + Integer.toString(year +1));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 49, 51));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 50, 52));
 	        
-	        Cell febStk = nineRow.createCell(49);
+	        Cell febStk = nineRow.createCell(50);
 	        febStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 49, 50));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 50, 51));
 	        
-	        Cell febActual = nineRow.createCell(51);
+	        Cell febActual = nineRow.createCell(52);
 	        febActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 51, 51));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 52, 52));
 	        
-	        Cell febIn = tenRow.createCell(49);
-	        Cell febOut = tenRow.createCell(50);	        
+	        Cell febIn = tenRow.createCell(50);
+	        Cell febOut = tenRow.createCell(51);	        
 	        febIn.setCellValue("In");
 	        febOut.setCellValue("Out");
 	        
@@ -846,20 +852,20 @@ public class PartMasterService {
 	        CellUtil.setAlignment(febOut, HorizontalAlignment.CENTER);
 	        
 	        //Mar
-	        Cell marCol = eightRow.createCell(52);
+	        Cell marCol = eightRow.createCell(53);
 	        marCol.setCellValue("Mar - " + Integer.toString(year +1));
-	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 52, 54));
+	        sheet.addMergedRegion(new CellRangeAddress(8, 8, 53, 55));
 	        
-	        Cell marStk = nineRow.createCell(52);
+	        Cell marStk = nineRow.createCell(53);
 	        marStk.setCellValue("Stock");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 52, 53));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 9, 53, 54));
 	        
-	        Cell marActual = nineRow.createCell(54);
+	        Cell marActual = nineRow.createCell(55);
 	        marActual.setCellValue("Actual");
-	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 54, 54));
+	        sheet.addMergedRegion(new CellRangeAddress(9, 10, 55, 55));
 	        
-	        Cell marIn = tenRow.createCell(52);
-	        Cell marOut = tenRow.createCell(53);	        
+	        Cell marIn = tenRow.createCell(53);
+	        Cell marOut = tenRow.createCell(54);	        
 	        marIn.setCellValue("In");
 	        marOut.setCellValue("Out");
 	        
@@ -867,8 +873,13 @@ public class PartMasterService {
 	        CellUtil.setAlignment(marStk, HorizontalAlignment.CENTER);
 	        CellUtil.setAlignment(marActual, HorizontalAlignment.CENTER);
 	        CellUtil.setAlignment(marIn, HorizontalAlignment.CENTER);
-	        CellUtil.setAlignment(marOut, HorizontalAlignment.CENTER);
+	        CellUtil.setAlignment(marOut, HorizontalAlignment.CENTER);	        
 	        
+	        Cell remainColEng = eightRow.createCell(56);
+	        remainColEng.setCellValue("Remain");
+	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 56, 56));	        
+//	        CellUtil.setAlignment(remainColEng, HorizontalAlignment.CENTER);	        
+	        remainColEng.setCellStyle(rotation90);
 	        
 //***************************************************************************************		    
 		    
