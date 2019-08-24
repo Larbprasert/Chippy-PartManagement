@@ -488,8 +488,13 @@
 
 				                                </div>
 			                                </div>
-
-											<div class="col-lg-6">
+			                             </div>
+			                             
+<!-- 										<hr>		                                 -->
+		                                <!-- /.row -->
+		                                <div class="row">
+		                                
+											<div class="col-lg-8">
 				                                <div class="form-group ">
 					                                <p class="help-block question"><b> การตรวจสอบเครื่องมือและเครื่องจักรหลังการซ่อม  (Check Tooling and Machine after  Repaired) </b></p>
 															<c:forEach var="item" items="${LOV_CHECKTOOLAFTER}">
