@@ -18,7 +18,8 @@ public class ProductionLineBean extends BaseDomain{
 	private FactoryBean factory;
 //	private String factory_ID;
 //	private String factory_name;
-		
+	
+	private String machine_ID;
 
 	public String getProductionLine_ID() {
         return productionLine_ID;
@@ -61,6 +62,14 @@ public class ProductionLineBean extends BaseDomain{
 
 	public void setFactory(FactoryBean factory) {
 		this.factory = factory;
+	}
+
+	public String getMachine_ID() {
+		return machine_ID;
+	}
+
+	public void setMachine_ID(String machine_ID) {
+		this.machine_ID = machine_ID;
 	}
 	
 	

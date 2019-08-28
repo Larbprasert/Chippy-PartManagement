@@ -129,7 +129,7 @@
 			//Clear before insert
 			$('#machine_ID') .empty();
 		 	//Insert data
-		 	$('<option selected="selected">-- Select Machine --</option>').appendTo('#machine_ID');
+		 	$('<option selected="selected" value="">-- Select Machine --</option>').appendTo('#machine_ID');
 			$.each(result, function(k, v) {
 			    $('<option>').val(v.code).text(v.descTH).appendTo('#machine_ID');
 			});
@@ -142,10 +142,16 @@
  	
  function doExport()
  {
+	 if($('#machine_ID').val()==""){
+		 alert("Please Select Machine !");
+		 return false;
+	 }
 	 
 		var inputs = $("#myForm").serialize();
-	    var url = cPath+'/partMaster/report'; 
-	    location.href = url;
+	    var url = cPath+'/partMaster/report?'+inputs; 
+// 	    location.href = url;
+
+		window.open(url, '_blank');
           
 	 
 // 	$.ajax({

@@ -164,12 +164,12 @@ public class PartMasterCtrl {
 		return machineService.loadActiveMachineByProductionLine(bean.getProductionLine().getProductionLine_ID());
 	}
 
-	@RequestMapping("/partMaster/getSparePart_report")
-	public DataTableAjax<PartMasterBean> getSparePart_report(HttpServletRequest request, HttpServletResponse response,
-			MachineBean bean) throws ServletException, IOException {
-		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getSparePart_Report(bean);
-		return dataTableAjax;
-	}
+//	@RequestMapping("/partMaster/getSparePart_report")
+//	public DataTableAjax<PartMasterBean> getSparePart_report(HttpServletRequest request, HttpServletResponse response,
+//			MachineBean bean) throws ServletException, IOException {
+//		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getSparePart_Report(bean.getMachine_ID());
+//		return dataTableAjax;
+//	}
 
 //	@RequestMapping("/partMaster/report")
 //	public void getExcel(HttpServletRequest request, HttpServletResponse response,MachineBean bean) {
@@ -193,7 +193,7 @@ public class PartMasterCtrl {
 //	}
 
 	@RequestMapping("/partMaster/report")
-	public void getExcel(HttpServletResponse response, PartMasterBean bean) throws ServletException, IOException {
+	public void getExcel(HttpServletResponse response, ProductionLineBean bean) throws ServletException, IOException {
 
 		ByteArrayInputStream in = partMasterService.partToExcel(bean);
 

@@ -1,56 +1,48 @@
 package th.co.keihin.service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.servlet.view.document.AbstractXlsView;
-
-import th.co.baiwa.common.bean.DataTableAjax;
-import th.co.keihin.model.UnitTypeBean;
-import th.co.portal.model.gas.ResponseResult;
-import th.co.keihin.model.LocationBean;
-import th.co.keihin.model.MachineBean;
-import th.co.keihin.model.MakerBean;
-import th.co.keihin.model.MoldTypeBean;
-import th.co.keihin.model.PartMasterBean;
-import th.co.keihin.model.RepairDetail;
-
-//*********************************************Excel
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellUtil;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.stereotype.Repository;
+
+import th.co.baiwa.admin.entity.UserProfile;
+import th.co.baiwa.common.bean.DataTableAjax;
+import th.co.baiwa.preferences.entity.LovInfo;
+import th.co.keihin.model.LocationBean;
+import th.co.keihin.model.MachineBean;
+import th.co.keihin.model.MakerBean;
+import th.co.keihin.model.MoldTypeBean;
+import th.co.keihin.model.PartMasterBean;
+import th.co.keihin.model.ProductionLineBean;
+import th.co.keihin.model.UnitTypeBean;
 
 
 @Repository("partMasterService")
@@ -378,14 +370,27 @@ public class PartMasterService {
 	
 	
 	//################################################### Report
-	public static ByteArrayInputStream partToExcel(PartMasterBean bean) throws IOException {
+	public ByteArrayInputStream partToExcel(ProductionLineBean bean) throws IOException {
 //	public static ByteArrayInputStream partToExcel(List<PartMasterBean> bean) throws IOException {
-		String[] COLUMNs = { "Keihin Thermal Tecnology (Thailand) Co.,Ltd."
-				, "M/C Qty."
-				, "Approve"
-				, "Check"
-				, "Issued"
-				};
+		
+		/* ---- Get ProductionLine Detail ----*/
+		List<LovInfo> mbean = machineService.loadActiveMachineByProductionLine(bean.getProductionLine_ID());
+		 
+		List<Map>  partList = getSparePart_Report(bean.getMachine_ID());
+		
+		bean = productionLineService.getProductionLineBeanByID(bean.getProductionLine_ID());
+		
+		
+	    /* ------- UserProfile ------*/
+	    UserProfile profile = bean.getUserProfile();
+	    
+		
+//		String[] COLUMNs = { "Keihin Thermal Tecnology (Thailand) Co.,Ltd."
+//				, "M/C Qty."
+//				, "Approve"
+//				, "Check"
+//				, "Issued"
+//				};
 		Workbook workbook = new XSSFWorkbook(); 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		
@@ -427,6 +432,7 @@ public class PartMasterService {
 		    
 //		    private static List<Employee> employees =  new ArrayList<>();
 		    
+		    
 		    // create header row
 		    sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 54));	        
 		    Row firstRow = sheet.createRow(0);
@@ -467,7 +473,7 @@ public class PartMasterService {
 		    //M/C Qty
 		    sheet.addMergedRegion(new CellRangeAddress(1, 2, 9, 10));
 		    CellUtil.setAlignment(mcQty, HorizontalAlignment.CENTER);
-		    
+		  
 		    sheet.addMergedRegion(new CellRangeAddress(3, 4, 9, 10));
 		    
 		    //Approve
@@ -496,7 +502,7 @@ public class PartMasterService {
 		    sheet.addMergedRegion(new CellRangeAddress(2, 5, 21, 23));		    
 		    //footer
 		    sheet.addMergedRegion(new CellRangeAddress(6, 6, 21, 23));		    
-		    
+		  
 		    
 		    Row plant = sheet.createRow(2);
 		    plant.createCell(1).setCellValue("Plant : ");
@@ -505,7 +511,8 @@ public class PartMasterService {
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(2, 2, 1, 2));
 		    //data
-		    plant.createCell(3).setCellValue("xxxx");
+		    
+		    plant.createCell(3).setCellValue(bean.getFactory().getFactory_name());
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(2, 2, 3, 8));
 		    
@@ -513,10 +520,13 @@ public class PartMasterService {
 		    section.createCell(1).setCellValue("Section : ");
 		    section.getCell(1).setCellStyle(styleBold);
 		    
+		    section.createCell(9).setCellValue(mbean.size());
+		    CellUtil.setAlignment(section.getCell(9), HorizontalAlignment.CENTER);
+		    
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(3, 3, 1, 2));
 		    //data
-		    section.createCell(3).setCellValue("xxxx");
+		    section.createCell(3).setCellValue(profile.getSection().getSection_name());
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(3, 3, 3, 8));
 
@@ -526,11 +536,12 @@ public class PartMasterService {
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(4, 4, 1, 2));
 		    //data
-		    line.createCell(3).setCellValue("xxx");
+		    line.createCell(3).setCellValue(bean.getProductionLine_name());
 		    //Merge (start - row, end - row, start - col, end - col)
 		    sheet.addMergedRegion(new CellRangeAddress(4, 4, 3, 8));
 
-//***************************************************************************************		    
+//***************************************************************************************		  
+		    
 		    //Header before data		 
 	        Row eightRow = sheet.createRow(8);
 	        Row nineRow = sheet.createRow(9);
@@ -541,6 +552,7 @@ public class PartMasterService {
 	        colItem.setCellValue("Item");
 	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 0, 0));
 	        colItem.setCellStyle(rotation90);	        
+	        CellUtil.setAlignment(colItem, HorizontalAlignment.CENTER);
 
 	        Cell mcName = eightRow.createCell(1);
 	        mcName.setCellValue("M/C Name");
@@ -571,11 +583,13 @@ public class PartMasterService {
 	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 18, 18));
 	        rank.setCellStyle(styleBold);
 	        rank.setCellStyle(rotation90);
+	        CellUtil.setAlignment(rank, HorizontalAlignment.CENTER);
 	        
 	        Cell stock = eightRow.createCell(19);
 	        stock.setCellValue("Qty");
 	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 19, 19));
 	        stock.setCellStyle(rotation90);
+	        CellUtil.setAlignment(stock, HorizontalAlignment.CENTER);
 	        
 	        //Set Year	        
 	        int currentYear = Year.now().getValue();
@@ -878,19 +892,71 @@ public class PartMasterService {
 	        Cell remainColEng = eightRow.createCell(56);
 	        remainColEng.setCellValue("Remain");
 	        sheet.addMergedRegion(new CellRangeAddress(8, 10, 56, 56));	        
-//	        CellUtil.setAlignment(remainColEng, HorizontalAlignment.CENTER);	        
 	        remainColEng.setCellStyle(rotation90);
+	        CellUtil.setAlignment(remainColEng, HorizontalAlignment.CENTER);	        
 	        
-//***************************************************************************************		    
-		    
-		    
+//*************** Spare Part Result
+		    int row = 11;
+		    int itmCount = 1;
+			String[] itmCol = { "ITEM_COUNT" , "MACHINE_NAME",   "PART_NAME", "MAKER_NAME", "MOLDTYPE_NAME",
+					"QTY", "RANK", "APRIN", "APROUT", "APRACTUAL", "MAYIN", "MAYOUT", "MAYACTUAL", "JUNIN", "JUNOUT",
+					"JUNACTUAL", "JULIN", "JULOUT", "JULACTUAL", "AUGIN", "AUGOUT", "AUGACTUAL", "SEPIN", "SEPOUT",
+					"SEPACTUAL", "OCTIN", "OCTOUT", "OCTACTUAL", "NOVIN", "NOVOUT", "NOVACTUAL", "DECIN", "DECOUT",
+					"DECACTUAL","JANIN", "JANOUT", "JANACTUAL", "FEBIN", "FEBOUT", "FEBACTUAL", "MARIN", "MAROUT",
+					"MARACTUAL" , "REMAIN_QTY"};
+			
+			Map<String, HorizontalAlignment> alignStyle = new HashMap<String, HorizontalAlignment>(){{
+				put("MACHINE_NAME",HorizontalAlignment.LEFT);
+				put("PART_NAME",HorizontalAlignment.LEFT);
+			}};
+			
+			Map<String, Integer> mergeStyle = new HashMap<String, Integer>(){{
+				put("MACHINE_NAME", 1);
+				put("PART_NAME", 4);
+				put("MAKER_NAME", 4);
+				put("MOLDTYPE_NAME", 4);
+			}};
+			
+		    for (Map pmap : partList) {
+		    	Row resultRow = sheet.createRow(row);
+		    	int nexcol = 0;
+		    	 for (int i = 0; i < itmCol.length; i++) {
+		    		 String colname = itmCol[i];
+		    		 String celval = String.valueOf(pmap.get(colname));
+//		    		 System.out.println(colname+" > "+celval);
+		    		 Cell cell = resultRow.createCell(nexcol);
+		    		 if(i==0){
+		    			 celval =  String.valueOf(itmCount);
+		    		 }
+		    	
+		    		 cell.setCellValue(celval);
+		    		 
+		    		 /*--  Align Style --*/
+		    		 if(null!= alignStyle.get(colname)){
+		    			 CellUtil.setAlignment(cell,alignStyle.get(colname));
+		    		 }else{ // Default CENTER
+		    			 CellUtil.setAlignment(cell,HorizontalAlignment.CENTER );
+		    		 }
+		    		 
+		    		 /*--  Merge Style Style --*/
+		    		 if(null!= mergeStyle.get(colname)){
+		    			 int mgno = mergeStyle.get(colname);
+		    			 sheet.addMergedRegion(new CellRangeAddress(row, row, nexcol, nexcol+mgno));	 
+		    			 nexcol=nexcol+(mgno+1);
+		    		 }else{
+		    			 nexcol++;
+		    		 }
+		    	 }
+		    	
+		    	 itmCount++;
+		    	 row++;
+			}
+	        
 		    
 		    //Resize all columns to fit the content size
-		    sheet.autoSizeColumn(0);
+//		    sheet.autoSizeColumn(0);
 		    		    	    
 		    //Data
-		   
-		    
 			
 			workbook.write(out);
 				
@@ -902,13 +968,16 @@ public class PartMasterService {
 		return new ByteArrayInputStream(out.toByteArray());
 	}
 	
-	public DataTableAjax<PartMasterBean> getSparePart_Report(MachineBean bean) {	
-		List param = new ArrayList();
-		param.add(bean.getMachine_ID());		
-		int updateRecord = jdbcTemplate.update("{call sp_Report_Sparepart(?)}", param.toArray() );
+	public List getSparePart_Report(String machine_ID) {
 		
-		return null;
+		String query = " SELECT *  FROM view_Report_GetSparePart where machine_ID = '"+machine_ID+"' ";
 		
+		query += " ORDER BY RANK,PART_ID";
+		
+//		System.out.println(query);
+		
+		List list = jdbcTemplate.queryForList(query);
+		return list;
 	}
 	//################################################### Report
 

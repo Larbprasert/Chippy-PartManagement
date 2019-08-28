@@ -1,5 +1,8 @@
 package th.co.keihin.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import th.co.baiwa.common.persistence.entity.BaseDomain;
 
 public class PartMasterBean extends BaseDomain{
@@ -195,6 +198,8 @@ public class PartMasterBean extends BaseDomain{
 
 	
 	
-	
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
 	
 }
