@@ -53,7 +53,7 @@
 		      
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i> Close</button>
-		        <button type="button" class="btn btn-success" id="addPartSubmit" onclick="actionSubmitPart()"><i class="fa fa-check-square-o"></i> Add</button>
+		        <button type="button" class="btn btn-success" id="addPartSubmit" onclick="actionSubmitPartAdd()"><i class="fa fa-check-square-o"></i> Add</button>
 		      </div>
 		    </div>
 		
@@ -135,7 +135,7 @@
 	  });
 
         
-        function actionSubmitPart(){
+        function actionSubmitPartAdd(){
         	 
         		if ( $('#qty').val().trim()=='' ) {
         			alert("Please input Qty !");

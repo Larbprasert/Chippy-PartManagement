@@ -165,6 +165,24 @@ public class MachineCtrl {
 		}
 		return responseResult;
 	}
+
+	@RequestMapping(value = "/machine/partMachineEdit", method = RequestMethod.POST)
+	public ResponseResult editPartMachine( PartMachineBean request,
+			RedirectAttributes redir,
+			HttpServletRequest httpRequest) {
+		
+		String partID = request.getPart_ID();
+		String machineID = request.getMachine_ID();
+		Integer qty = request.getQty();
+		
+		System.out.println("EditPart > partId:"+partID+", MachineID:"+machineID+", Qty:" + qty);
+		
+		ResponseResult responseResult = new ResponseResult();
+		if(request.getMachine_ID()!=null){
+			responseResult = machineService.partMachineEdit(request);
+		}
+		return responseResult;
+	}
 	
 	@RequestMapping(value = "/machine/partMachineSave", method = RequestMethod.POST)
 	public ResponseResult savePartMachine( PartMachineBean request,

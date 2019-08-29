@@ -270,6 +270,16 @@ public class MachineService {
 							partMachine.getQty(),
 							partMachine.getCreateBy(),
 							});
+		
+			List param = new ArrayList();
+			param.add(partMachine.getPart_ID());
+			param.add(0);
+			param.add(partMachine.getQty());
+			param.add(1);
+			param.add(partMachine.getUpdateBy());
+			param.add("PartMachine");
+			int insertMovement = jdbcTemplate.update("{call sp_PartMachine_Insert(?,?,?,?,?,?)}", param.toArray() );
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -295,6 +305,43 @@ public class MachineService {
 							partMachine.getMachine_ID()
 							});
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		ResponseResult responseResult = new ResponseResult();
+		
+		responseResult.setCode(RequestConstants.RESPONSE.SUCCESS_CODE);
+		responseResult.setMessage(RequestConstants.RESPONSE.SUCCESS_MSG);
+		responseResult.setData(partMachine);
+		return responseResult;		
+	}
+	
+	public ResponseResult partMachineEdit(PartMachineBean partMachine) {
+		// TODO Auto-generated method stub
+		try {
+			
+			
+			List param = new ArrayList();
+			param.add(partMachine.getPart_ID());
+			param.add(0);
+			param.add(partMachine.getQty());
+			param.add(1);
+			param.add(partMachine.getUpdateBy());
+			param.add(partMachine.getMachine_ID());
+			int insertMovement = jdbcTemplate.update("{call sp_PartMachine_Edit(?,?,?,?,?,?)}", param.toArray() );
+			
+			
+			String query = "Update tb_part_machine Set Qty = ? WHERE 1=1 AND part_ID=? AND machine_ID = ?";
+			
+			int updateRecord = jdbcTemplate.update(query,
+					new Object[] {
+							partMachine.getQty(),
+							partMachine.getPart_ID(),							
+							partMachine.getMachine_ID()
+			});
+			
+						
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

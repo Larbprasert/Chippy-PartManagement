@@ -163,7 +163,8 @@
 			</section>
 		</div>
 
-									<%@ include file="machine_add_part.jsp"%>
+	<%@ include file="machine_add_part.jsp"%>
+	<%@ include file="machine_edit_part.jsp"%>
 
 	</form>
 
@@ -224,7 +225,8 @@
 
 		function getActionColumn(oData,iRow) {
 		 	 var htm = '';
-// 		  	 		htm += '<button type="button" onclick="editPart(\''+ iRow +'\')" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button>  &nbsp;' ;			 	 	
+// 		  	 		htm += '<button type="button" onclick="doEditPart(\''+ iRow +'\')" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</button>  &nbsp;' ;			 	 	
+					htm += ' <button type="button" onclick="doEditPart(\''+ oData.part_ID  +'\', \''+ oData.part_name  +'\',\''+ oData.qty + '\')"  class="btn btn-info btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</button>  ' ;
 			 	 	
 					htm += ' <button type="button" onclick="doDeletePart(\''+ oData.part_ID  +'\', \''+ oData.part_name  +'\')"  class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Delete</button>  ' ;
 		 	 return htm;
@@ -307,6 +309,16 @@
 		 		        }
 				    }
 				}); 
+		}
+		
+		function doEditPart(partID , partName, qty) { 
+			
+			$('#part_ID_edit').val(partID);
+			$('#part_Name_edit').val(partID+" - "+partName);
+    		$('#qty_edit').val(qty);
+    		$('#qty_bf_edit').val(qty);
+			
+			$('#editPartMachineModal').modal('show');
 		}
 		
 		loadPart() ;
