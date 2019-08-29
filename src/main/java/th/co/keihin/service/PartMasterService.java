@@ -375,7 +375,13 @@ public class PartMasterService {
 		
 		/* ---- Get ProductionLine Detail ----*/
 		List<LovInfo> mbean = machineService.loadActiveMachineByProductionLine(bean.getProductionLine_ID());
-		 
+
+//		if(StringUtils.isNotEmpty(bean.getMachine_ID()) && StringUtils.isNoneEmpty(bean.getProductionLine_ID())){
+//			List<Map>  partList = getSparePart_Report(bean.getMachine_ID());
+//		}else if(StringUtils.isEmpty(bean.getMachine_ID()) && StringUtils.isNoneEmpty(bean.getProductionLine_ID())){
+//			List<Map>  partList = getSparePart_Report(bean.getProductionLine_ID());
+//		}
+
 		List<Map>  partList = getSparePart_Report(bean.getMachine_ID());
 		
 		bean = productionLineService.getProductionLineBeanByID(bean.getProductionLine_ID());
@@ -968,9 +974,9 @@ public class PartMasterService {
 		return new ByteArrayInputStream(out.toByteArray());
 	}
 	
-	public List getSparePart_Report(String machine_ID) {
+	public List getSparePart_Report(String productionLine_machine_ID) {
 		
-		String query = " SELECT *  FROM view_Report_GetSparePart where machine_ID = '"+machine_ID+"' ";
+		String query = " SELECT *  FROM view_Report_GetSparePart where machine_ID = '"+productionLine_machine_ID+"' ";
 		
 		query += " ORDER BY RANK,PART_ID";
 		
