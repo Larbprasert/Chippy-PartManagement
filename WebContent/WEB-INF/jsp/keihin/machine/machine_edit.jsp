@@ -246,15 +246,15 @@
 				}
 			}, {
 				"data" : "part_ID",
-				"sWidth" : "120px"
+				"sWidth" : "100px"
 			}, {
 				"data" : "part_name"
 			}, {
 				"data" : "qty",
-				"sWidth" : "100px"
+				"sWidth" : "50px"
 			}, {
 				"data" : "part_ID",
-				"sWidth" : "100px",
+				"sWidth" : "150px",
 				"fnCreatedCell" : function(nTd, sData, oData, iRow, iCol) {
 					$(nTd).html(getActionColumn(oData, iRow));
 					// 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
