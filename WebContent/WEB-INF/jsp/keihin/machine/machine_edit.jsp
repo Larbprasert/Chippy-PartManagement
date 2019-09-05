@@ -246,15 +246,23 @@
 				}
 			}, {
 				"data" : "part_ID",
+<<<<<<< HEAD
 				"sWidth" : "80px"
+=======
+				"sWidth" : "100px"
+>>>>>>> branch 'master' of https://github.com/Larbprasert/Maven-PartManagement.git
 			}, {
 				"data" : "part_name"
 			}, {
 				"data" : "qty",
-				"sWidth" : "100px"
+				"sWidth" : "50px"
 			}, {
 				"data" : "part_ID",
+<<<<<<< HEAD
 				"sWidth" : "140px",
+=======
+				"sWidth" : "150px",
+>>>>>>> branch 'master' of https://github.com/Larbprasert/Maven-PartManagement.git
 				"fnCreatedCell" : function(nTd, sData, oData, iRow, iCol) {
 					$(nTd).html(getActionColumn(oData, iRow));
 					// 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
