@@ -246,7 +246,7 @@
 				}
 			}, {
 				"data" : "part_ID",
-				"sWidth" : "120px"
+				"sWidth" : "80px"
 			}, {
 				"data" : "part_name"
 			}, {
@@ -254,7 +254,7 @@
 				"sWidth" : "100px"
 			}, {
 				"data" : "part_ID",
-				"sWidth" : "100px",
+				"sWidth" : "140px",
 				"fnCreatedCell" : function(nTd, sData, oData, iRow, iCol) {
 					$(nTd).html(getActionColumn(oData, iRow));
 					// 	        	 var txt = '<button type="button" class="btn btn-info btn-sm" data-toggle="modal" '
