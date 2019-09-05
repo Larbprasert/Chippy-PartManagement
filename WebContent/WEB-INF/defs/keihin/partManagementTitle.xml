@@ -8,6 +8,9 @@
 <!-- Dashboard -->
 		<definition name="dashboard_mt" template="/WEB-INF/jsp/keihin/dashboard/dashboard_mt.jsp" />
 
+<!-- Welcome -->
+		<definition name="welcome" template="/WEB-INF/jsp/welcome.jsp" />
+
 <!-- Report -->
 		<definition name="sparepart_report" template="/WEB-INF/jsp/keihin/partMaster/sparepart_report.jsp" />
 		
