@@ -330,7 +330,7 @@ public class UserDao extends AbstractCommonJdbcDao {
 		
 		sql.append(" ORDER BY USER_ID, USERNAME DESC ");
 		
-		System.out.println(sql.toString());
+//		System.out.println(sql.toString());
 		 
 		List<UserProfile> list = (List<UserProfile>) executeQuery(sql.toString(), wh.toArray(), SELECT_RM);
 		int total = list!=null? list.size():0;
