@@ -50,6 +50,15 @@
 <%--                   <small> <%=showCompareData %></small> --%>
 
 <%-- ${_userProfile} --%>
+
+<c:if test="${not empty userProfile.userId}">
+     <input type="text" class="form-control " name="userName" value="${userProfile.userName}" readonly="readonly">
+</c:if>
+									
+<c:forEach var="item" items="${LOV_ROLE}">
+<option value="${item.code}">${item.descTH}</option>
+</c:forEach>
+
                 </p>
               </li>
               <!-- Menu Body -->

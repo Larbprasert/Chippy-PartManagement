@@ -15,7 +15,7 @@
 <meta name="author" content="">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-<c:set var="projectName" scope="session" value="Part Management"/>
+<c:set var="projectName" scope="session" value="PartManagement"/>
 
 <title>${projectName}</title>
 

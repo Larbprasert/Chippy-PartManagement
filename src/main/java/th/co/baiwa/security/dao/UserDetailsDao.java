@@ -74,7 +74,14 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 		sql.append(" SELECT p.*  ");
 		sql.append("  ,b.section_name   ");
 		sql.append("  ,c.dept_ID,c.dept_name ");
+
+//		sql.append("  ,r.ROLE_CODE as roleCode ,r.ROLE_DESC as roleName ");
+		
 		sql.append(" FROM adm_user_profile p ");
+
+//		sql.append(" LEFT JOIN adm_user_role ur on p.USER_ID = ur.USER_ID ");
+//		sql.append(" LEFT JOIN adm_role r on ur.ROLE_ID = r.ROLE_ID ");
+		
 		sql.append(" LEFT JOIN tb_Section b ON p.section_ID = b.section_ID COLLATE database_default ");
 		sql.append(" LEFT JOIN tb_department c ON b.dept_ID = c.dept_ID COLLATE database_default ");
 		sql.append(" WHERE  p.user_id = ? ");
@@ -104,6 +111,9 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 					user.setActiveFlg(rs.getString("active_flg"));
 					user.setThemeCode(rs.getString("theme_code"));
 					
+//					user.setRoleCode(rs.getString("roleCode"));
+//					user.setRoleName(rs.getString("roleName"));
+					
 //					user.setCompanyCode(rs.getString("COMPANY_CODE"));
 //					user.setCompanyName(rs.getString("COMPANY_NAME"));
 //					user.setDeptCode(rs.getString("DEPT_CODE"));
@@ -116,7 +126,9 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 					department.setDept_ID(rs.getString("dept_ID"));
 					department.setDept_name(rs.getString("dept_name"));
 					user.setDepartment(department);
-										
+					
+//					logger.info("findProfile roleCode={}", user.getRoleCode() + "-" + user.getRoleName());
+					
 					return user;
 				}
 			}

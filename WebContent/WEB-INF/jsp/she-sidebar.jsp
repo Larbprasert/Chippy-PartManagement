@@ -12,7 +12,7 @@
 				</li>
 
 
-			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+			<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 				<li><a href="${cPath}/home.htm"> <i
 						class="fa fa-dashboard"></i> <span>Dashboard</span>
 				</a></li>
@@ -47,7 +47,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/checkTool/checkTool_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -60,7 +60,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/department/department_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -73,7 +73,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/factory/factory_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -86,7 +86,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/location/location_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -100,7 +100,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/machine/machine_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -113,7 +113,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/maker/maker_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -126,7 +126,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/moldType/moldType_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -139,7 +139,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/productionLine/productionLine_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -152,7 +152,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/section/section_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -165,7 +165,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/unitType/unitType_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
@@ -178,7 +178,7 @@
 									class="fa fa-angle-left pull-right"></i>
 							</span> </a>
 							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP')">
+								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF')">
 									<li><a href="${cPath}/requestType/requestType_list.htm"><i
 											class="fa fa-chevron-circle-right"></i> Search & Modify </a></li>
 								</security:authorize>
