@@ -71,14 +71,25 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 //		sql.append(" FROM adm_user_profile p ");
 //		sql.append(" WHERE  p.user_id = ? ");
 
-		sql.append(" SELECT p.*  ");
+		sql.append(" SELECT p.* ");
 		sql.append("  ,b.section_name   ");
 		sql.append("  ,c.dept_ID,c.dept_name ");
+		sql.append("  ,ur.ROLES roleName ");
 
 //		sql.append("  ,r.ROLE_CODE as roleCode ,r.ROLE_DESC as roleName ");
 		
 		sql.append(" FROM adm_user_profile p ");
-
+		sql.append(" JOIN (   select a.USER_ID,                ");   
+		sql.append("         ROLES = STUFF((                   ");   
+		sql.append("            SELECT ', ' +  c.ROLE_DESC      ");   
+		sql.append("            FROM adm_user_role b ,         ");   
+		sql.append("             adm_role c                    ");   
+		sql.append(" 			 WHERE c.ROLE_ID = b.ROLE_ID   ");   
+		sql.append(" 			 and a.USER_ID = b.USER_ID     ");   
+		sql.append("            FOR XML PATH('')               ");   
+		sql.append("            ), 1, 1, '')                   ");   
+		sql.append("             from adm_user a  ) ur         ");
+		sql.append(" ON p.USER_ID = ur.USER_ID            ");	
 //		sql.append(" LEFT JOIN adm_user_role ur on p.USER_ID = ur.USER_ID ");
 //		sql.append(" LEFT JOIN adm_role r on ur.ROLE_ID = r.ROLE_ID ");
 		
@@ -112,7 +123,7 @@ public class UserDetailsDao extends AbstractCommonJdbcDao {
 					user.setThemeCode(rs.getString("theme_code"));
 					
 //					user.setRoleCode(rs.getString("roleCode"));
-//					user.setRoleName(rs.getString("roleName"));
+					user.setRoleName(rs.getString("roleName"));
 					
 //					user.setCompanyCode(rs.getString("COMPANY_CODE"));
 //					user.setCompanyName(rs.getString("COMPANY_NAME"));

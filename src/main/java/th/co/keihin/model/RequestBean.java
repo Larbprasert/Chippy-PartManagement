@@ -80,7 +80,8 @@ public class RequestBean extends BaseDomain {
 	private InternetAddress[] addressTo;
 	private InternetAddress[] addressCC;
 	
-	
+	private String repairDate;
+
 	
 	public String getRequestApprove() {
 		return requestApprove;
@@ -506,4 +507,13 @@ public class RequestBean extends BaseDomain {
 		this.addressCC = addressCC;
 	}
 
+	public String getRepairDate() {
+		return repairDate;
+	}
+
+	public void setRepairDate(String repairDate) {
+		this.repairDate = repairDate;
+	}
+
+	
 }

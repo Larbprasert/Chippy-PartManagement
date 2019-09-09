@@ -186,21 +186,6 @@ public class DateUtils {
 
 	}
 
-	public static String get_yyddmm_from_date(Date dateIn) {
-		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("yymmdd", Locale.US);
-
-		try {
-
-			returnStr = ddmmyyy_sdf.format(dateIn);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		return returnStr;
-
-	}
 
 	public static Date getCurrentDateTime() {
 		return new Date(System.currentTimeMillis());

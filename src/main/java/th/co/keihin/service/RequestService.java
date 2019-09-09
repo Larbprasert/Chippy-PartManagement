@@ -149,6 +149,8 @@ public class RequestService extends AbstractCommonJdbcDao {
 			request.setCreateDateStr(DateUtils.get_yyyymmdd_hhmmss_en_from_date(rs.getTimestamp("createDate")));
 			request.setInformDate(DateUtils.get_yyyyMMdd_from_date(rs.getTimestamp("createDate")));
 			request.setInformTime(DateUtils.get_hhmmss_from_date(rs.getTimestamp("createDate")));
+
+			request.setRepairDate(DateUtils.get_yyyyMMdd_from_date(rs.getDate("repairDate")));
 			
 			return request;
 		}
@@ -426,6 +428,8 @@ public class RequestService extends AbstractCommonJdbcDao {
 //				"	,loc.location_ID , loc.location_name , rqh.beforeDetail " +
 				"	,mac.machine_ID , mac.machine_name , rqh.beforeDetail " +
 
+				"	,rqh.repairDate " +
+
 				"   FROM tb_RequestHeader rqh" + 
 				"	LEFT JOIN tb_RequestType rt on rqh.requestType_ID = rt.requestType_ID" + 
 				"	LEFT JOIN tbm_misc_data misc on rqh.status = misc.misc_code AND misc.misc_type = 'ApplicationStatus'" + 
@@ -654,6 +658,8 @@ public class RequestService extends AbstractCommonJdbcDao {
 			sql.append(", concernQA             = ?  ");     
 //			sql.append(", confirmJudment        = ?  ");     
 			sql.append(", maintenanceType             = ?  ");     
+
+			sql.append(", repairDate             = ?  ");     
 			
 			param.add(rqt.getUpdateBy());
 			param.add(rqt.getCheckToolBefore_ID());
@@ -663,9 +669,10 @@ public class RequestService extends AbstractCommonJdbcDao {
 			param.add(rqt.getAfterDescription());
 			param.add(rqt.getStartTime());
 			param.add(rqt.getFinishTime());
-//			param.add(rqt.getConfirmJudment());
 			param.add(rqt.getConcernQA());
 			param.add(rqt.getMaintenanceType());
+
+			param.add(rqt.getRepairDate());
 
 		}
 		

@@ -368,27 +368,53 @@
 		                                	<div class="col-lg-12">
 		                                		<div class="form-group">
 			                                		<p class="help-block question"><b> เวลาที่ใช้ในการซ่อม  </b> <i class="fa  fa-asterisk text-red"></i></p>
-			                                        <div class="col-md-4">
+			                                       
+			                                       
+			                                        <div class="col-md-3">
+								                        <div class="form-group input-group ">
+								                            <span class="input-group-addon">วันที่ซ่อม</span>
+								                            <input type='text' class="form-control" id='repairDate' name='repairDate' required value="${requestObj.repairDate}"/> <span
+																class="input-group-addon"> <span
+																class="glyphicon glyphicon-calendar"></span>
+															</span>
+								                        </div>		    
+								                        <!-- <div class='input-group date' id='f-lastCalDate' >
+															<input type='text' class="form-control" id='e-lastCalDateTxt' name='lastCalDate'/> <span
+																class="input-group-addon"> <span
+																class="glyphicon glyphicon-calendar"></span>
+															</span>
+														</div>   -->                                      
+			                                        </div>
+			                                        
+			                                        <div class="col-md-3">
 								                        <div class="form-group input-group">
-								                            <span class="input-group-addon">Start(เริ่ม)</span>
+								                            <span class="input-group-addon">เริ่ม</span>
 								                            <input type="time" class="form-control text-right" required value="${requestObj.startTime}"
-								                            placeholder="Start(เริ่ม)" name="startTime" id="timeStart" onchange="calTime()" >										                        		                        
+								                            placeholder="Start(เริ่ม)" name="startTime" id="timeStart" onchange="calTime()" >	
+								                            <span
+																class="input-group-addon"> <span
+																class="fa fa-clock-o"></span>
+															</span>									                        		                        
 								                        </div>		                                            
 			                                        </div>
 			                                        
-			                                        <div class="col-md-4">
+			                                        <div class="col-md-3">
 								                        <div class="form-group input-group">
-								                            <span class="input-group-addon bg-danger">Complete(เสร็จสิ้น)</span>
+								                            <span class="input-group-addon bg-danger">เสร็จสิ้น</span>
 								                            <input type="time" class="form-control text-right" required value="${requestObj.finishTime}"
-								                            placeholder="Complete(เสร็จสิ้น)" name="finishTime" id="timeFinish"   onchange="calTime()" >										                        		                        
+								                            placeholder="Complete(เสร็จสิ้น)" name="finishTime" id="timeFinish"   onchange="calTime()" >
+								                             <span
+																class="input-group-addon"> <span
+																class="fa fa-clock-o"></span>
+															</span>											                        		                        
 								                        </div>
 			                                        </div>
 			                                        
-					                                <div class="col-md-4">
+					                                <div class="col-md-3">
 								                        <div class="form-group input-group">
-								                            <span class="input-group-addon">Total(รวม)</span>
+								                            <span class="input-group-addon">รวม</span>
 								                            <input type="text" class="form-control text-right" placeholder="Total(รวม)" name="totalTime" id="totalTime" value="" readonly>										                        		                        
-								                        	<span class="input-group-addon">Minutes</span>
+								                        	<span class="input-group-addon">Min.</span>
 								                        </div>	
 			                                        </div>
 		                                        
@@ -713,6 +739,7 @@ var jsonObj = { "request_ID" : reqId };
 var appVrole = "";
 
 $(function() {
+	
 
 	var isQA = $("input[name='concernQA']:checked").val();
 	
@@ -729,6 +756,11 @@ $(function() {
 		$("#btnnewPart,#btnDelPart,#afterPicture").hide();
 	}else{
 		$("#afterPictureViewBtn").hide();
+	 	$('#repairDate').datepicker({
+			format : "yyyy-mm-dd",
+			autoclose:true,
+			enableOnReadonly:true
+		});
 	}
 
 	if("1"==reqStatus && $ROLE_REQ_MNG){
