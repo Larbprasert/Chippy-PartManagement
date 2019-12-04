@@ -438,11 +438,12 @@
 	 var minutes = end.diff(start, 'minutes');
 	  if(minutes>=0){
 		  var duration = moment.duration(minutes, 'minutes');
-		  if(minutes>60){
-			    $('#totalTime').val(duration.format("H:mm"));
-		  }else{
-			  $('#totalTime').val(minutes);
-		  }
+// 		  if(minutes>60){
+// 			    $('#totalTime').val(duration.format("H:mm"));
+// 		  }else{
+// 			  $('#totalTime').val(minutes);
+// 		  }
+		  $('#totalTime').val(minutes);
 	  }
 	     
 	}
