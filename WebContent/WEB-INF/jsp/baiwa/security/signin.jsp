@@ -109,15 +109,14 @@
 							<button type="submit" class="btn btn-primary"  > &nbsp;&nbsp;<spring:message code="signin.signinBtn"/> <i class='fa fa-sign-in'></i>&nbsp;&nbsp; </button>
 							</div>
 								<small>
-								Admin  : admin/123456 <br>
-								MT. MNG  : K1304021/123456 <br>
-								MT.Staff  : K1305014/123456 <br>
-								Requestor  : req1/123456 <br>
-								Req Sup.  : sup1/123456 <br>
-								Req MNG  : reqMNG1/123456 <br>
-								QA  : qa01/123456
-<!-- 								Area Dept.  : enviuser/enviuser   -->
- 								</small>		 			
+<!-- 								Admin  : admin/123456 <br> -->
+<!-- 								MT. MNG  : K1304021/123456 <br> -->
+<!-- 								MT.Staff  : K1305014/123456 <br> -->
+<!-- 								Requestor  : req1/123456 <br> -->
+<!-- 								Req Sup.  : sup1/123456 <br> -->
+<!-- 								Req MNG  : reqMNG1/123456 <br> -->
+<!-- 								QA  : qa01/123456 -->
+<!--  								</small>		 			 -->
 							<spring:eval expression="@environment.getProperty('project.lastupdate')" var="lastupdate" />
 							<spring:eval expression="@environment.getProperty('project.version')" var="version" />
 							<div class="text-right"><spring:message code="project.version"/>: ${version} </div>
