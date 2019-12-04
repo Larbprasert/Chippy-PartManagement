@@ -130,7 +130,7 @@
 // 	        			              subtext: "["+data[i].qty+" "+data[i].unitType.unitType_name+"]"	
 
 	        			              price:data[i].partMaster.price,
-	        			              qty:data[i].qty,
+	        			              qty:data[i].partMaster.qty,
 	        			              subtext: "["+data[i].qty+" "+data[i].unitType.unitType_name+"]"	        			              
 
 	        			            }

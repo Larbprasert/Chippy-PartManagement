@@ -46,6 +46,7 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 //			partMaster.setPart_ID(rs.getString("part_ID"));
 			partMaster.setPart_name(rs.getString("part_name"));
 			partMaster.setPrice(rs.getFloat("price"));
+			partMaster.setQty(rs.getInt("qty"));
 			partMachine.setPartMaster(partMaster);
 			
 //			machine.setMachine_ID(rs.getString("machine_ID"));
@@ -111,9 +112,10 @@ private RowMapper PARTMACHINE_MAPPER = new RowMapper(){
 				
 		DataTableAjax<PartMachineBean> listpartmachine = new DataTableAjax<PartMachineBean>();
 		
-		String query = "SELECT pmac.* , mac.machine_name, pm.part_name " 
-				+ ",pm.price "
-				+ ",ut.unitType_name " 
+		String query = "SELECT pmac.part_ID,pmac.machine_ID, pmac.createBy, pmac.createDate "
+				+ ", mac.machine_name "
+				+ ", pm.part_name, pm.qty, pm.price "
+				+ ", ut.unitType_name " 
 				+ "FROM tb_Part_Machine pmac " 
 				+ "  LEFT JOIN tb_Machine mac ON pmac.machine_ID = mac.machine_ID COLLATE SQL_Latin1_General_CP1_CI_AS "  
 				+ "  LEFT JOIN tb_PartMaster pm ON pmac.part_ID = pm.part_ID COLLATE SQL_Latin1_General_CP1_CI_AS " 
