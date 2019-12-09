@@ -172,16 +172,26 @@ public class DateUtils {
 
 	public static String get_yyyyMMdd_from_date(Date dateIn) {
 		String returnStr = "";
-		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-
-		try {
-
-			returnStr = ddmmyyy_sdf.format(dateIn);
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		
+		if (null != dateIn) {
+			SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+			try {
+				returnStr = ddmmyyy_sdf.format(dateIn);
+			}catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
-
+		
+//		SimpleDateFormat ddmmyyy_sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+//
+//		try {
+//
+//			returnStr = ddmmyyy_sdf.format(dateIn);
+//
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
+//
 		return returnStr;
 
 	}
