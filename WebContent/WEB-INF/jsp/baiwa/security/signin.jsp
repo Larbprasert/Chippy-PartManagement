@@ -116,7 +116,7 @@
 <!-- 								Req Sup.  : sup1/123456 <br> -->
 <!-- 								Req MNG  : reqMNG1/123456 <br> -->
 <!-- 								QA  : qa01/123456 -->
-<!--  								</small>		 			 -->
+ 								</small>		 			
 							<spring:eval expression="@environment.getProperty('project.lastupdate')" var="lastupdate" />
 							<spring:eval expression="@environment.getProperty('project.version')" var="version" />
 							<div class="text-right"><spring:message code="project.version"/>: ${version} </div>
