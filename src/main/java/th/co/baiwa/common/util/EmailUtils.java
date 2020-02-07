@@ -21,10 +21,10 @@ public class EmailUtils {
 	private static boolean MAIL_ENABLE = true;
 	private static String MAIL_DEBUG = "false";
 	private static String MAIL_SMTP_AUTH = "true";
-	private static String MAIL_SMTP_HOST = "smtp.gmail.com";
-	private static String MAIL_SMTP_PORT = "587";
-	private static String MAIL_PASS = "123,ki69";
-	private static String MAIL_FROM_ADDR= "partmanagementservice@gmail.com";
+	private static String MAIL_SMTP_HOST = "mail.keihin-kttt.com";
+	private static String MAIL_SMTP_PORT = "25";
+	private static String MAIL_PASS = "PMservice@1";
+	private static String MAIL_FROM_ADDR= "pmservice@keihin-kttt.com";
 	private static String MAIL_FROM_NAME= "Part Management System";
 	public static boolean TEST_SEND = true;
 

@@ -113,7 +113,8 @@ public class PartMasterService {
 
 			partMaster.setRank(rs.getInt("rank"));				
 			partMaster.setRank_name(rs.getString("rank_name"));
-
+			
+			//partMaster.setInvoice_number(rs.getString("invoice_number"));
 					
 			return partMaster;
 		}

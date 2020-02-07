@@ -97,5 +97,11 @@
 		<definition name="requested_detail" template="/WEB-INF/jsp/keihin/request/requested_detail.jsp" />
 		<definition name="requested_modify" template="/WEB-INF/jsp/keihin/request/requested_modify.jsp" />
 		<definition name="requested_list" template="/WEB-INF/jsp/keihin/request/requested_list.jsp" />
+		
+<!-- Inventory -->
+		<definition name="inventoryCtrl_create" template="/WEB-INF/jsp/keihin/inventoryCtrl/inventoryCtrl_create.jsp" />
+		<definition name="inventoryCtrl_view" template="/WEB-INF/jsp/keihin/inventoryCtrl/inventoryCtrl_view.jsp" />
+		<definition name="inventoryCtrl_edit" template="/WEB-INF/jsp/keihin/inventoryCtrl/inventoryCtrl_edit.jsp" />
+		<definition name="inventoryCtrl_list" template="/WEB-INF/jsp/keihin/inventoryCtrl/inventoryCtrl_list.jsp" />
 
 </tiles-definitions>

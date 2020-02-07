@@ -156,41 +156,9 @@ public class PartMasterCtrl {
 
 	@RequestMapping(value = "/partMaster/getMachineByProductionLine.json",headers = "Accept=application/json")
 	public List<LovInfo> getMachineProductionLine(HttpServletRequest httpRequest,MachineBean bean) {
-//		ModelAndView mav = new ModelAndView();
-		
-//		mav.addObject("LOV_MACHINE", machineService.loadActiveMachineByProductionLine(bean.getProductionLine().getProductionLine_ID()));		
-		
-//		mav.setViewName("sparepart_report");
+
 		return machineService.loadActiveMachineByProductionLine(bean.getProductionLine().getProductionLine_ID());
 	}
-
-//	@RequestMapping("/partMaster/getSparePart_report")
-//	public DataTableAjax<PartMasterBean> getSparePart_report(HttpServletRequest request, HttpServletResponse response,
-//			MachineBean bean) throws ServletException, IOException {
-//		DataTableAjax<PartMasterBean> dataTableAjax = partMasterService.getSparePart_Report(bean.getMachine_ID());
-//		return dataTableAjax;
-//	}
-
-//	@RequestMapping("/partMaster/report")
-//	public void getExcel(HttpServletRequest request, HttpServletResponse response,MachineBean bean) {
-//		response.setContentType("application/octet-stream");    // set content attributes for the response
-//		try {
-//		    FileInputStream inputStream = new FileInputStream(new File("xyz.xls"));
-//	
-//		    OutputStream outputStream = response.getOutputStream();             // get output stream of the response
-//	
-//		    byte[] buffer = new byte[1024];
-//		    int bytesRead = -1;
-//		    while ((bytesRead = inputStream.read(buffer)) != -1) {  // write bytes read from the input stream into the output stream
-//		        outputStream.write(buffer, 0, bytesRead);
-//		    }
-//	
-//		    outputStream.flush();
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	
-//	}
 
 	@RequestMapping("/partMaster/report")
 	public void getExcel(HttpServletResponse response, ProductionLineBean bean) throws ServletException, IOException {

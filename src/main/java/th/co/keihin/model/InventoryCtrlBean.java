@@ -5,12 +5,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import th.co.baiwa.common.persistence.entity.BaseDomain;
 
-public class PartMasterBean extends BaseDomain{
+public class InventoryCtrlBean extends BaseDomain{
 	
-	private String sysPart_ID;
+	private String sysInventory_ID;
 	
-	private String part_ID;
-    private String part_name;
+	private String inventory_ID;
+    private String inventory_name;
     
     private UnitTypeBean unitType;
 //    private String unitType_ID;
@@ -24,10 +24,7 @@ public class PartMasterBean extends BaseDomain{
 //    private String maker_ID;
 //    private String maker_name;
     
-    private MoldTypeBean moldType;
-//    private String moldType_ID;
-//    private String moldType_name;    
-        
+          
     private int min_stock;
     private int max_stock;
     private int qty;
@@ -52,32 +49,7 @@ public class PartMasterBean extends BaseDomain{
     
     private String invoice_number;
        
-
-	public String getSysPart_ID() {
-        return sysPart_ID;
-	}
-
-     public void setSysPart_ID(String newSysPart_ID) {
-        sysPart_ID = newSysPart_ID;
-	}		
 	
-	public String getPart_ID() {
-        return part_ID;
-	}
-
-     public void setPart_ID(String newPart_ID) {
-        part_ID = newPart_ID;
-	}
-
-    
-     public String getPart_name() {
-        return part_name;
-	}
-
-     public void setPart_name(String newPart_name) {
-    	 part_name = newPart_name;
-	}
-
 	public UnitTypeBean getUnitType() {
 		return unitType;
 	}
@@ -102,12 +74,28 @@ public class PartMasterBean extends BaseDomain{
 		this.maker = maker;
 	}
 
-	public MoldTypeBean getMoldType() {
-		return moldType;
+	public String getSysInventory_ID() {
+		return sysInventory_ID;
 	}
 
-	public void setMoldType(MoldTypeBean moldType) {
-		this.moldType = moldType;
+	public void setSysInventory_ID(String sysInventory_ID) {
+		this.sysInventory_ID = sysInventory_ID;
+	}
+
+	public String getInventory_ID() {
+		return inventory_ID;
+	}
+
+	public void setInventory_ID(String inventory_ID) {
+		this.inventory_ID = inventory_ID;
+	}
+
+	public String getInventory_name() {
+		return inventory_name;
+	}
+
+	public void setInventory_name(String inventory_name) {
+		this.inventory_name = inventory_name;
 	}
 
 	public int getMin_stock() {
