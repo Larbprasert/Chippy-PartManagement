@@ -75,11 +75,24 @@ public class MakerService {
 		// TODO Auto-generated method stub
 		DataTableAjax<MakerBean> listMaker = new DataTableAjax<MakerBean>();
 		
-		String query = "Select a.*,b.province_name_tha , act.value1 as activeFlag_name " +
+		String query = "Select a.maker_ID " + 
+				",a.maker_name " + 
+				",a.maker_tel " + 
+				",a.maker_contactName + ' ' + a.maker_contactLastName as maker_contactName " + 
+				",a.maker_contactLastName " + 
+				",a.maker_address1 " + 
+				",a.maker_province " + 
+				",a.maker_email " + 
+				",a.activeFlag " + 
+				",a.createDate " + 
+				",a.createBy " + 
+				",a.updateDate " + 
+				",a.updateBy " + 
+				",b.province_name_tha , act.value1 as activeFlag_name " + 
 				"From tb_maker a " + 
-				"left join tbm_province b on a.maker_province = b.province_code COLLATE SQL_Latin1_General_CP1_CI_AS " +
-				"left join tbm_misc_data act on a.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' " +
-				"where 1=1 and a.activeFlag <> 2 " +
+				"left join tbm_province b on a.maker_province = b.province_code COLLATE SQL_Latin1_General_CP1_CI_AS " + 
+				"left join tbm_misc_data act on a.activeFlag = act.misc_code and act.misc_type = 'ActiveFlag' " + 
+				"where 1=1 and a.activeFlag <> 2 " + 
 				"order by a.maker_ID";
 				
 		List<MakerBean> list = jdbcTemplate.query(query,MAKER_MAPPER);
