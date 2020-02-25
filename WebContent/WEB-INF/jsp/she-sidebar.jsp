@@ -214,19 +214,19 @@
 							</ul>
 						</li>
 						
-						<li class="treeview"><a href="#"><i
-								class="fa fa-chevron-circle-right"></i>Inventory Control <span
-								class="pull-right-container"> <i
-								class="fa fa-angle-left pull-right"></i>
-							</span> </a>
+<!-- 						<li class="treeview"><a href="#"><i -->
+<!-- 								class="fa fa-chevron-circle-right"></i>Inventory Control <span -->
+<!-- 								class="pull-right-container"> <i -->
+<!-- 								class="fa fa-angle-left pull-right"></i> -->
+<!-- 							</span> </a> -->
 							
-							<ul class="treeview-menu">
-								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF' )">
-									<li><a href="${cPath}/inventoryCtrl/inventoryCtrl_list.htm"><i
-											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li>
-								</security:authorize>				
-							</ul>
-						</li>
+<!-- 							<ul class="treeview-menu"> -->
+<!-- 								<security:authorize access="hasAnyRole('ADMIN','ROLE_MT_MNG','ROLE_MT_SUP','ROLE_MT_STAFF' )"> -->
+<%-- 									<li><a href="${cPath}/inventoryCtrl/inventoryCtrl_list.htm"><i --%>
+<!-- 											class="fa fa-chevron-circle-right"></i>Search & Modify </a></li> -->
+<!-- 								</security:authorize>				 -->
+<!-- 							</ul> -->
+<!-- 						</li> -->
 					</ul>
 				</li>
 			</security:authorize>
