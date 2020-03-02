@@ -12,11 +12,11 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>th.co.khotdee168</groupId>
-	<artifactId>MaintenancePortal</artifactId>
+	<artifactId>KEIHINPortal</artifactId>
 	
 	<version>1.0.0</version>
 	<packaging>war</packaging>
-	<name>MaintenancePortal</name>
+	<name>KEIHINPortal</name>
 	
 	<properties>
 		<!-- JDK -->
